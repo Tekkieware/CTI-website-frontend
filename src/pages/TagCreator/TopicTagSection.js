@@ -120,10 +120,7 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
         <Grid>
           <Grid style={{ padding: '24px 0px' }}>
             <Typography variant='body1'>
-              Current topic tags on{' '}
-              <Box component='span' style={{ fontWeight: '700' }}>
-                {repositoryName}:
-              </Box>
+              These are your current topic tags in your repo:
             </Typography>
           </Grid>
           <Grid
@@ -161,6 +158,8 @@ export const AddTagsQuestion = ({
   handleDelete,
   repoChangeAlert,
   setRepoChangeAlert,
+  displayTypo,
+  setDisplayTypo,
 }) => {
   const [addTagValue, setAddTagValue] = useState('');
   const handleChangeTag = (event) => {
@@ -169,6 +168,7 @@ export const AddTagsQuestion = ({
   const showAddTopicTag = () => {
     setChangeValue('GenerateTags');
     setDisplayState('GenerateTags');
+    setDisplayTypo(false)
   };
 
   return (
@@ -192,6 +192,7 @@ export const AddTagsQuestion = ({
           handleDelete={handleDelete}
           repoChangeAlert={repoChangeAlert}
           setRepoChangeAlert={setRepoChangeAlert}
+          displayTypo={displayTypo}
         />
       ) : null}
       {addTagValue === 'no' ? showAddTopicTag() : null}
@@ -272,6 +273,7 @@ export const NewTags = ({
   linkStyles,
   handleDelete,
   userTags,
+  displayTypo,
 }) => {
   const classes = useStyles();
   const handleResetForm = () => {
@@ -286,7 +288,7 @@ export const NewTags = ({
       <Grid>
         <Grid className={classes.addTopicGridPadding}>
           <Typography variant='body1'>
-            New tags to add to your repository:
+            {displayTypo ? 'New tags to add to your repository:':'Suggested tags to add to your repository:'}
           </Typography>
         </Grid>
         <Grid container className={classes.tagGridStyle}>
