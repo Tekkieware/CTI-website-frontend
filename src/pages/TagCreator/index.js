@@ -64,6 +64,12 @@ const getRepositoryUrlPath = (repositoryUrl) => {
   const suffix = /\.git$/;
   result = result.replace(prefix, '');
   result = result.replace(suffix, '');
+  const arr = result.split('/');
+  if (arr.length < 2) {
+    result = 'error';
+  } else {
+    result = arr.slice(0, 2).join('/');
+  }
   return result;
 };
 
@@ -131,6 +137,7 @@ const TagCreator = () => {
   const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
+  const [displayTypo, setDisplayTypo] = useState(true);
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
     { href: '/join-index', name: 'Add Your Project' },
@@ -219,6 +226,9 @@ const TagCreator = () => {
     // Return error message if no url present
     if (urlPath.length === 0) {
       return setTopicSearchError('Please enter a URL');
+    }
+    if (urlPath === 'error') {
+      return setTopicSearchError('Please enter a valid URL');
     }
     // Fetches Tags from API only if URL is changed
     if (prevRefUrl !== repositoryUrl) {
@@ -377,6 +387,8 @@ const TagCreator = () => {
                 handleDelete={handleDelete}
                 repoChangeAlert={repoChangeAlert}
                 setRepoChangeAlert={setRepoChangeAlert}
+                displayTypo={displayTypo}
+                setDisplayTypo={setDisplayTypo}
               />
             </>
           )}
@@ -400,6 +412,7 @@ const TagCreator = () => {
             setUserTags={setUserTags}
             handleAdd={handleAdd}
             handleDelete={handleDelete}
+            displayTypo={displayTypo}
           />
         </>
       );
@@ -452,7 +465,7 @@ const TagCreator = () => {
             question={
               <>
                 Are you affiliated with an{' '}
-                <Link to='/organizations/all'> organization</Link>?
+                <Link to='/organizations/all'>organization</Link>?
               </>
             }
           />
