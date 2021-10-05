@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Confetti from '../../components/Confetti';
 
 const useStyles = makeStyles((theme) => ({
   btnStyle: {
@@ -162,7 +163,7 @@ const BottomSection = () => {
               <Typography variant='h3' className={classes.txtStyle}>
                 {addBtnClicked ? (
                   <>
-                    Thank you for submmiting<br></br> your project!
+                    Thank you for submitting<br></br> your project!
                   </>
                 ) : (
                   <>
@@ -173,6 +174,7 @@ const BottomSection = () => {
               </Typography>
             </Grid>
             {!addBtnClicked && renderBtnWithDescription(classes, btnClick)}
+            <Confetti fire={addBtnClicked} />
             <Grid
               container
               direction='row'
