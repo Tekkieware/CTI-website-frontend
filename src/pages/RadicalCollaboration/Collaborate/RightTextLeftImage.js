@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap:'wrap',
     marginBottom: '40px',
   },
-  rightinnerTextCardContainer: {
+  rightInnerTextCardContainer: {
     background: 'none',
     width: '45%',
     [theme.breakpoints.down('xs')]: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '3px',
     },
   },
-  rightcardHeading: {
+  rightCardHeading: {
     color: theme.palette.secondary.dark,
     fontSize: '42px',
     lineHeight: '48px',
@@ -36,15 +36,16 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '27px',
     },
   },
-  rightsubcardHeading: {
+  rightSubcardHeading: {
     [theme.breakpoints.down('sm')]: {
       fontSize:'15px',
     },
   },
-  rightdescription: {
+  rightDescription: {
     marginTop: '7px',
     fontSize:'18px',
     textAlign: 'justify',
+    marginBottom: '11px',
     '& a:visited': {
       color: theme.palette.secondary.main,
     },
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize:'16px',
     },
   },
-  rightbuttonStyle: {
+  rightButtonStyle: {
     backgroundColor: theme.palette.spectrum.lightBlue,
     padding: '8px 32px',
     top: '21px',
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '13px',
     },
   },
-  rightimgCard: {
+  rightImgCard: {
     background: 'none',
     width: '45%',
     marginTop: '30px',
@@ -72,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  rightcardMedia: {
+  rightCardMedia: {
     borderRadius: '8px',
 
     [theme.breakpoints.down('xs')]: {
@@ -80,26 +81,50 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }))
-const RightImageLeftText = ({ mainHeading, subHeading,description,buttonText,buttonHref,imageSrc }) => {
-
+const RightImageLeftText = ({
+  mainHeading,
+  subHeading,
+  description,
+  buttonText,
+  buttonHref,
+  imageSrc,
+  hasExternalNav,
+}) => {
   const classes = useStyles();
   return (
     <Grid container className={classes.rightContainerStyle}>
-      <Card className={classes.rightimgCard}>
+      <Card className={classes.rightImgCard}>
         <CardMedia
-          className={classes.rightcardMedia}
+          className={classes.rightCardMedia}
           component='img'
           image={imageSrc}
         />
       </Card>
-      <Paper elevation={0} className={classes.rightinnerTextCardContainer}>
-        <Typography className={classes.rightcardHeading} variant='h4'> {mainHeading} </Typography>
-        <Typography variant="h6" color='primary' className={classes.rightsubcardHeading}>{subHeading}</Typography>
-        <Typography className={classes.rightdescription}>{description}</Typography>
-        <NavButton  href={buttonHref} to={buttonHref} className={classes.leftbuttonStyle}>{buttonText}</NavButton>
+      <Paper elevation={0} className={classes.rightInnerTextCardContainer}>
+        <Typography className={classes.rightCardHeading} variant='h4'>
+          {' '}
+          {mainHeading}{' '}
+        </Typography>
+        <Typography
+          variant='h6'
+          color='primary'
+          className={classes.rightSubcardHeading}
+        >
+          {subHeading}
+        </Typography>
+        <Typography className={classes.rightDescription}>
+          {description}
+        </Typography>
+        <NavButton
+          href={buttonHref}
+          to={buttonHref}
+          isExternal={hasExternalNav}
+          className={classes.rightButtonStyle}
+        >
+          {buttonText}
+        </NavButton>
       </Paper>
     </Grid>
-
   );
 };
 export default RightImageLeftText;

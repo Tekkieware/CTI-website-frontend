@@ -47,34 +47,70 @@ const Collaborate = () => {
       </Box>
       <Box className='containerGray'>
         <Container>
-          <Grid container item className={classes.LinkText}  xs={12}  spacing={4}>
-            <LeftTextRightImage  mainHeading="Donate" subHeading="Every gift helps us continue our work."
-              description="Your tax-deductible gift today will help make more open-source solutions easily available for the
-              communities who need it the most. Thank You"
+          <Grid container item className={classes.LinkText} xs={12} spacing={4}>
+            <LeftTextRightImage
+              mainHeading='Donate'
+              subHeading='Every gift helps us continue our work.'
+              description='Your tax-deductible gift today will help make more open-source solutions easily available for the
+              communities who need it the most. Thank You'
               hasExternalNav={false}
-              buttonHref="/donate"
-              buttonText="Make a Donation"
+              buttonHref='/donate'
+              buttonText='Make a Donation'
               imageSrc='/images/Donate-to-Us.png'
             />
-            <RightTextLeftImage imageSrc='/images/Evangelize-Us.png' mainHeading="Share the CTI" subHeading="Love the Index? Be an evangelist!"
-              description="Help others and their communities discover, share and benefit from contributed projects on the index."
+            <RightTextLeftImage
+              imageSrc='/images/Evangelize-Us.png'
+              mainHeading='Share the CTI'
+              subHeading='Love the Index? Be an evangelist!'
+              description='Help others and their communities discover, share and benefit from contributed projects on the index.'
               hasExternalNav={false}
-              buttonHref="/support/share"
-              buttonText="Share the Civic Tech Index"/>
-            <LeftTextRightImage  mainHeading="Volunteer With Us" subHeading="Help us improve the Civic Tech Index."
-              description={["Please ",  <Link key="about" to='https://www.hackforla.org/#about' target='_blank'>complete this application</Link> ,
-                " if you would like us to reach out to you directly or find us on our ", <Link key="projects" to='https://www.hackforla.org/projects/civic-tech-index' target='_blank'>project team page.</Link>]}
+              buttonHref='/support/share'
+              buttonText='Share the Civic Tech Index'
+            />
+            <LeftTextRightImage
+              mainHeading='Volunteer With Us'
+              subHeading='Help us improve the Civic Tech Index.'
+              description={[
+                'Please ',
+                <Link
+                  key='about'
+                  to='https://www.hackforla.org/#about'
+                  target='_blank'
+                >
+                  complete this application
+                </Link>,
+                ' if you would like us to reach out to you directly or find us on our ',
+                <Link
+                  key='projects'
+                  to='https://www.hackforla.org/projects/civic-tech-index'
+                  target='_blank'
+                >
+                  project team page.
+                </Link>,
+              ]}
               hasExternalNav={true}
-              buttonHref="http://www.hackforla.org/projects/civic-tech-index"
-              buttonText="Become a Volunteer"
+              buttonHref='http://www.hackforla.org/projects/civic-tech-index'
+              buttonText='Become a Volunteer'
               imageSrc='/images/Volunteer-With-Us.png'
             />
-            <RightTextLeftImage imageSrc='/images/FAQ.png' mainHeading="Need Help?" subHeading="Can&apos;t find the answer youre looking for?"
-              description={[`We've shared some of our most frequently asked questions to help you out!  View our `,  <Link key="faq" to="/faq">FAQ</Link>,
-                " to find answers or ", <Link key="contact"  to='/contact' target='_blank'>contact us.</Link>]}
+            <RightTextLeftImage
+              imageSrc='/images/FAQ.png'
+              mainHeading='Need Help?'
+              subHeading="Can't find the answer youre looking for?"
+              description={[
+                `We've shared some of our most frequently asked questions to help you out!  View our `,
+                <Link key='faq' to='/faq'>
+                  FAQ
+                </Link>,
+                ' to find answers or ',
+                <Link key='contact' to='/contact' target='_blank'>
+                  contact us.
+                </Link>,
+              ]}
               hasExternalNav={false}
-              buttonHref="/faq"
-              buttonText="View the FAQ"/>
+              buttonHref='/faq'
+              buttonText='View the FAQ'
+            />
           </Grid>
         </Container>
       </Box>

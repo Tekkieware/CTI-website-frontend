@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  leftinnerTextCardContainer: {
+  leftInnerTextCardContainer: {
     background: 'none',
     width: '50%',
     [theme.breakpoints.down('sm')]: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  leftcardHeading: {
+  leftCardHeading: {
     color: theme.palette.secondary.dark,
     fontSize: '42px',
     lineHeight: '48px',
@@ -44,12 +44,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '27px',
     },
   },
-  leftsubcardHeading: {
+  leftSubcardHeading: {
     [theme.breakpoints.down('sm')]: {
       fontSize:'15px',
     },
   },
-  leftdescription: {
+  leftDescription: {
     marginTop: '7px',
     fontSize:'18px',
     textAlign: 'justify',
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'justify',
     },
   },
-  leftbuttonStyle: {
+  leftButtonStyle: {
     padding: '8px 32px',
     top: '21px',
     color:'#FEFEFE',
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '13px',
     },
   },
-  leftimgCard: {
+  leftImgCard: {
     background: 'none',
     width: '45%',
     marginTop: '30px',
@@ -80,34 +80,58 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  leftcardMedia: {
+  leftCardMedia: {
     borderRadius: '8px',
     [theme.breakpoints.down('xs')]: {
       width: '100%',
     },
   },
 }))
-const LeftTextRightImage= ({ mainHeading, subHeading,description,buttonText,buttonHref,imageSrc }) => {
-
+const LeftTextRightImage = ({
+  mainHeading,
+  subHeading,
+  description,
+  buttonText,
+  buttonHref,
+  imageSrc,
+  hasExternalNav,
+}) => {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.leftContainerStyle}>
-      <Paper elevation={0} className={classes.leftinnerTextCardContainer}>
-        <Typography className={classes.leftcardHeading} variant='h4'> {mainHeading} </Typography>
-        <Typography variant="h6" color='primary' className={classes.leftsubcardHeading}>{subHeading}</Typography>
-        <Typography className={classes.leftdescription}>{description}</Typography>
-        <NavButton  href={buttonHref} to={buttonHref} className={classes.leftbuttonStyle}>{buttonText}</NavButton>
+      <Paper elevation={0} className={classes.leftInnerTextCardContainer}>
+        <Typography className={classes.leftCardHeading} variant='h4'>
+          {' '}
+          {mainHeading}{' '}
+        </Typography>
+        <Typography
+          variant='h6'
+          color='primary'
+          className={classes.leftSubcardHeading}
+        >
+          {subHeading}
+        </Typography>
+        <Typography className={classes.leftDescription}>
+          {description}
+        </Typography>
+        <NavButton
+          href={buttonHref}
+          to={buttonHref}
+          isExternal={hasExternalNav}
+          className={classes.leftButtonStyle}
+        >
+          {buttonText}
+        </NavButton>
       </Paper>
-      <Card className={classes.leftimgCard}>
+      <Card className={classes.leftImgCard}>
         <CardMedia
-          className={classes.leftcardMedia}
+          className={classes.leftCardMedia}
           component='img'
           image={imageSrc}
         />
       </Card>
     </Grid>
-
   );
 };
 export default LeftTextRightImage;
