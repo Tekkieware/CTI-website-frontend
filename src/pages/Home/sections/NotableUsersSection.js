@@ -13,11 +13,6 @@ const notableUsers = [
     src: '/images/hack-for-la.png',
   },
   {
-    alt: 'Code for America',
-    link: 'https://www.codeforamerica.org/',
-    src: '/images/code-for-america.svg',
-  },
-  {
     alt: 'OpenOakland',
     link: 'https://openoakland.org/',
     src: '/images/open-oakland.svg',
@@ -27,7 +22,6 @@ const notableUsers = [
     link: 'https://codefortulsa.org/',
     src: '/images/code-for-tulsa.png',
   },
-
   {
     alt: 'Code for Chapel Hill',
     link: 'http://www.codeforchapelhill.com/',
@@ -73,7 +67,7 @@ const NotableUsersSection = () => {
       <Grid item lg={12} md={12} sm={12} className={classes.sectionTitle}>
         <Typography variant='h1' align='center'>
           {' '}
-                    See how the Civic Tech Index is used by:
+          See how the Civic Tech Index is used by:
         </Typography>
       </Grid>
     );
@@ -87,10 +81,9 @@ const NotableUsersSection = () => {
             container
             alignItems='center'
             justify='center'
-            style={{ height: '100%' }}>
-            <IconButton
-              href={props.link
-              }>
+            style={{ height: '100%' }}
+          >
+            <IconButton href={props.link}>
               <img
                 style={{ top: '50%' }}
                 align='center'
@@ -105,12 +98,7 @@ const NotableUsersSection = () => {
 
     return notableUsers.map((image, key) => {
       return (
-        <LogoItem
-          key={key}
-          link={image.link}
-          alt={image.alt}
-          src={image.src}
-        />
+        <LogoItem key={key} link={image.link} alt={image.alt} src={image.src} />
       );
     });
   };
@@ -119,7 +107,13 @@ const NotableUsersSection = () => {
     return (
       <Grid item xs={12} style={{ padding: '30px' }}>
         <div align='center'>
-          <NavButton color='primary' href={{ pathname: '/organizations/affiliated', query: { contributor: true }}}>
+          <NavButton
+            color='primary'
+            href={{
+              pathname: '/organizations/affiliated',
+              query: { contributor: true },
+            }}
+          >
             View contributors
           </NavButton>
         </div>
@@ -132,7 +126,8 @@ const NotableUsersSection = () => {
       container
       alignItems='center'
       justify='center'
-      style={{ padding: '64.24px 0 0 0' }}>
+      style={{ padding: '64.24px 0 0 0' }}
+    >
       <Grid item xs={1} md={2} lg={1} />
       <Grid item xs={10} md={8} lg={10}>
         <Paper>
@@ -145,7 +140,6 @@ const NotableUsersSection = () => {
       </Grid>
       <Grid item xs={1} md={2} lg={1} />
     </Grid>
-
   );
 };
 
