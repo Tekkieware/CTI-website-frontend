@@ -11,7 +11,6 @@ import LeftTextRightImage from './LeftTextRightImage';
 import RightTextLeftImage from './RightTextLeftImage';
 
 const useStyles = makeStyles((theme) => ({
-
   titleStyle: {
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -23,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       fontSize: '28px',
     },
-  },
-  LinkText: {
-
   },
 }));
 

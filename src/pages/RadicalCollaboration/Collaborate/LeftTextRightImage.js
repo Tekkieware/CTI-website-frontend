@@ -9,12 +9,11 @@ import Paper from '@material-ui/core/Paper';
 import NavButton from '../../../components/NavButton';
 
 const useStyles = makeStyles((theme) => ({
-
   leftContainerStyle: {
-    display:"flex",
-    justifyContent:"space-between",
-    alignItems : 'center',
-    flexWrap:'wrap',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
     marginBottom: '40px',
     [theme.breakpoints.down('xs')]: {
       flexWrap: 'wrap-reverse',
@@ -25,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     background: 'none',
     width: '50%',
     [theme.breakpoints.down('sm')]: {
-      background: 'none',
       marginTop: '14px',
     },
     [theme.breakpoints.down('xs')]: {
@@ -38,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '42px',
     lineHeight: '48px',
     [theme.breakpoints.down('sm')]: {
-      fontSize:'30px',
+      fontSize: '30px',
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: '27px',
@@ -46,25 +44,25 @@ const useStyles = makeStyles((theme) => ({
   },
   leftSubcardHeading: {
     [theme.breakpoints.down('sm')]: {
-      fontSize:'15px',
+      fontSize: '15px',
     },
   },
   leftDescription: {
     marginTop: '7px',
-    fontSize:'18px',
+    fontSize: '18px',
     textAlign: 'justify',
     '& a:visited': {
       color: theme.palette.secondary.main,
     },
     [theme.breakpoints.down('sm')]: {
-      fontSize:'16px',
+      fontSize: '16px',
       textAlign: 'justify',
     },
   },
   leftButtonStyle: {
     padding: '8px 32px',
     top: '21px',
-    color:'#FEFEFE',
+    color: '#FEFEFE',
     [theme.breakpoints.down('sm')]: {
       top: '14px',
       padding: '16px 0px',
@@ -86,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-}))
+}));
 const LeftTextRightImage = ({
   mainHeading,
   subHeading,

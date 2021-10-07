@@ -9,12 +9,11 @@ import NavButton from '../../../components/NavButton';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
-
   rightContainerStyle: {
-    display:"flex",
-    justifyContent:"space-between",
-    alignItems : 'center',
-    flexWrap:'wrap',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
     marginBottom: '40px',
   },
   rightInnerTextCardContainer: {
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '42px',
     lineHeight: '48px',
     [theme.breakpoints.down('sm')]: {
-      fontSize:'30px',
+      fontSize: '30px',
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: '27px',
@@ -38,19 +37,19 @@ const useStyles = makeStyles((theme) => ({
   },
   rightSubcardHeading: {
     [theme.breakpoints.down('sm')]: {
-      fontSize:'15px',
+      fontSize: '15px',
     },
   },
   rightDescription: {
     marginTop: '7px',
-    fontSize:'18px',
+    fontSize: '18px',
     textAlign: 'justify',
     marginBottom: '11px',
     '& a:visited': {
       color: theme.palette.secondary.main,
     },
     [theme.breakpoints.down('sm')]: {
-      fontSize:'16px',
+      fontSize: '16px',
     },
   },
   rightButtonStyle: {
@@ -80,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-}))
+}));
 const RightImageLeftText = ({
   mainHeading,
   subHeading,
