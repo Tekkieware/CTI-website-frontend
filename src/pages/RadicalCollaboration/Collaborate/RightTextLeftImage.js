@@ -116,7 +116,6 @@ const RightImageLeftText = ({
         </Typography>
         <NavButton
           href={buttonHref}
-          to={buttonHref}
           isExternal={hasExternalNav}
           className={classes.rightButtonStyle}
         >
