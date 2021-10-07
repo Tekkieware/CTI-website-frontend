@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   typoHeading: {
     textAlign: 'center',
+    marginBottom: '12px',
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.75rem',
     },
@@ -42,7 +43,6 @@ const BottomCallToAction = ({
         direction='column'
         justify='center'
         alignItems='center'
-        spacing={4}
       >
         <Grid item>
           <Typography variant='h3' className={classes.typoHeading}>
