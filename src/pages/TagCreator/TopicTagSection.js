@@ -16,6 +16,7 @@ import Divider from '@material-ui/core/Divider';
 import { useClipboard } from 'use-clipboard-copy';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
 import ImageComponent from '../../components/ImageComponent';
+import StepComponent from './StepComponent'
 
 const useStyles = makeStyles((theme) => ({
   tagGridStyle: {
@@ -75,6 +76,9 @@ const useStyles = makeStyles((theme) => ({
   },
   typoPadding: {
     padding: '30px 0px',
+  },
+  stepGrid:{
+    paddingTop: '20px'
   },
 }));
 
@@ -416,6 +420,7 @@ export const CopyPasteTags = ({
   repositoryUrl,
   linkStyles,
 }) => {
+  const classes = useStyles();
   const copyPasteTopicTags = [...tagsToAdd, ...userTags];
 
   return (
@@ -447,6 +452,9 @@ export const CopyPasteTags = ({
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid className={classes.stepGrid}>
+      <StepComponent step='Step 4 of 4' stepHeading='Submit Project to the Index'/> 
       </Grid>
       <TagGeneratorInstructions
         copyPasteTopicTags={copyPasteTopicTags}
