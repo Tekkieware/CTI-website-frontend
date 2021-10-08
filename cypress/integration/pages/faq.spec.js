@@ -1,9 +1,8 @@
 const SEARCH = 'organization';
 const Q1 = 'Can I add multiple projects';
-const Q2 = "Our organization doesn't have a parent organization";
+const Q2 = 'Can I change the organization my project is listed under';
 const A1 = 'Yes, Please follow the link to add multiple projects.';
-const A2 =
-  'You can still be a part of Civic tech index, even if your organization is unaffiliated';
+const A2 = 'Yes, you can change the organization of your project.';
 
 describe('FAQ Page (using API)', () => {
   it('gets faq by search', () => {
@@ -17,7 +16,7 @@ describe('FAQ Page (using API)', () => {
       .first()
       .contains(Q2)
       .click({ force: true });
-    cy.get('[data-cy=faq-answer]').first().should('have.text', A2);
+    cy.get('[data-cy=faq-answer]').first().should('contain', A2);
   });
 });
 
@@ -39,6 +38,6 @@ describe('FAQ Page (using fixture)', () => {
       .first()
       .contains(Q1)
       .click({ force: true });
-    cy.get('[data-cy=faq-answer]').first().should('have.text', A1);
+    cy.get('[data-cy=faq-answer]').first().should('contain', A1);
   });
 });
