@@ -12,7 +12,6 @@ import {
 } from './TopicTag';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
-import Divider from '@material-ui/core/Divider';
 import { useClipboard } from 'use-clipboard-copy';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
 import ImageComponent from '../../components/ImageComponent';
@@ -78,8 +77,11 @@ const useStyles = makeStyles((theme) => ({
     padding: '30px 0px',
   },
   stepGrid:{
-    paddingTop: '20px'
+    paddingTop: '20px',
   },
+  currentTopicTagGrid:{
+    paddingBottom: '24px' ,
+  }
 }));
 
 const ButtonComponent = ({
@@ -118,6 +120,7 @@ const ButtonComponent = ({
 };
 
 export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
+  const classes = useStyles();
   return (
     <>
       {currentTags.length !== 0 ? (
@@ -132,6 +135,7 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
             direction='row'
             alignItems='center'
             data-cy='current-tags'
+            className={classes.currentTopicTagGrid}
           >
             <GeneratedTopicTag topicnames={currentTags} variant='generated' />
           </Grid>{' '}
@@ -144,9 +148,6 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
           </Typography>
         </Grid>
       )}
-      <Grid style={{ padding: '24px 0px' }}>
-        <Divider />
-      </Grid>
     </>
   );
 };
