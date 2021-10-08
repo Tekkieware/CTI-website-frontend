@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   currentTopicTagGrid:{
     paddingBottom: '24px' ,
-  }
+  },
 }));
 
 const ButtonComponent = ({
@@ -455,7 +455,7 @@ export const CopyPasteTags = ({
         </Grid>
       </Grid>
       <Grid className={classes.stepGrid}>
-      <StepComponent step='Step 4 of 4' stepHeading='Submit Project to the Index'/> 
+        <StepComponent step='Step 4 of 4' stepHeading='Submit Project to the Index'/>
       </Grid>
       <TagGeneratorInstructions
         copyPasteTopicTags={copyPasteTopicTags}

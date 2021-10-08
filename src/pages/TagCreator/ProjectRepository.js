@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   projRepoGrid:{
-    padding: '30px 0px'
-  }
+    padding: '30px 0px',
+  },
 }));
 
 export const ProjectRepositorySection = ({

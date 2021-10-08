@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
   },
   orgNameSectionGrid:{
-    padding: '30px 0px'
-  }
+    padding: '30px 0px',
+  },
 }));
 
 export const OrganizationSelectorSection = ({

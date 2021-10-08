@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   stepGrid:{
-    paddingTop: '50px'
+    paddingTop: '50px',
   },
 }));
 
@@ -309,15 +309,15 @@ const TagCreator = () => {
   const OrgProjSection = () => {
     return (
       <>
-         <Grid className={classes.stepGrid}>
-        <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+        <Grid className={classes.stepGrid}>
+          <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
         </Grid>
         <OrgNameSection
           setDisplayState={setDisplayState}
           orgName={orgName}
           linkStyles={linkStyles}
         />
-         <StepComponent step='Step 2 of 4' stepHeading='Find Project'/>
+        <StepComponent step='Step 2 of 4' stepHeading='Find Project'/>
         <ProjectRepositorySection
           repositoryUrl={fullRepositoryUrl}
           setDisplayState={setDisplayState}
@@ -355,9 +355,9 @@ const TagCreator = () => {
     case 'ProjectUrl':
       return (
         <>
-        <Grid className={classes.stepGrid}>
-        <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
-        </Grid>
+          <Grid className={classes.stepGrid}>
+            <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+          </Grid>
           <OrgNameSection
             setDisplayState={setDisplayState}
             orgName={orgName}
@@ -388,7 +388,7 @@ const TagCreator = () => {
                 currentTags={currentTags}
                 repositoryName={repositoryName}
               />
-               <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
+              <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
               <AddTagsQuestion
                 userTags={userTags}
                 displayState={displayState}
@@ -475,9 +475,9 @@ const TagCreator = () => {
     default:
       return (
         <>
-        <Grid className={classes.stepGrid}>
-        <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
-        </Grid>
+          <Grid className={classes.stepGrid}>
+            <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+          </Grid>
           <AffiliationQuestionSection
             value={value}
             handleChange={handleChange}
