@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 
 const About = () => {
   const breadCrumbLinks = [
-    { name: 'Home', href: '/home' },
+    { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
   ];
 
