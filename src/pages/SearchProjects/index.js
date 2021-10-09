@@ -172,7 +172,7 @@ const Projects = () => {
   };
 
   const fetchProjects = (queryStr, resetPageNum = false) => {
-    const q = ['civictechindex', queryStr];
+    const q = [queryStr, 'topic:civictechindex'];
     for (const filter of selectedFilters) {
       if (filter.category === 'pushed') {
         q.push(`pushed:${getDateQuery(filter.name)}`);
