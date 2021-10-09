@@ -16,22 +16,15 @@ const LIGHT_BLUE = '#0D99C6';
 const LIGHT_BLUE_VAR = '#5FCAF9';
 const YELLOW = '#FFE06D';
 const WHITE = '#FEFEFE';
-
 const colors = [DARK_BLUE, TEAL, LIGHT_BLUE, LIGHT_BLUE_VAR, YELLOW, WHITE];
 
-export default class Confetti extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
-  render() {
-    return (
-      <ReactCanvasConfetti
-        fire={this.props.fire}
-        colors={colors}
-        style={canvasStyles}
-      />
-    );
-  }
-}
+const Confetti = ({ fire }) => {
+  return (
+    <ReactCanvasConfetti
+      fire={fire}
+      colors={colors}
+      style={canvasStyles}
+    />
+  );
+};
+export default Confetti;
