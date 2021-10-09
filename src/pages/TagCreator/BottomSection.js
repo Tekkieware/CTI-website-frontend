@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Confetti from '../../components/Confetti';
 
 const useStyles = makeStyles((theme) => ({
   btnStyle: {
@@ -111,15 +112,17 @@ const useStyles = makeStyles((theme) => ({
 const BottomSection = () => {
   const classes = useStyles();
   const [addBtnClicked, setAddBtnClicked] = useState(false);
-  const btnClick = () => {
-    setAddBtnClicked(true);
-  };
 
-  const renderBtnWithDescription = (classes, btnClick) => {
+  const renderBtnWithDescription = () => {
     return (
       <>
         <Grid className={classes.btnContainerStyle}>
-          <Button onClick={btnClick} className={classes.btnStyle}>
+          <Button
+            className={classes.btnStyle}
+            onClick={() => {
+              setAddBtnClicked(true);
+            }}
+          >
             Added to Civic Tech Index
           </Button>
         </Grid>
@@ -162,7 +165,7 @@ const BottomSection = () => {
               <Typography variant='h3' className={classes.txtStyle}>
                 {addBtnClicked ? (
                   <>
-                    Thank you for submmiting<br></br> your project!
+                    Thank you for submitting<br></br> your project!
                   </>
                 ) : (
                   <>
@@ -172,7 +175,8 @@ const BottomSection = () => {
                 )}
               </Typography>
             </Grid>
-            {!addBtnClicked && renderBtnWithDescription(classes, btnClick)}
+            {!addBtnClicked && renderBtnWithDescription()}
+            <Confetti fire={addBtnClicked} />
             <Grid
               container
               direction='row'
