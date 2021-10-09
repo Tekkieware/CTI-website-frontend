@@ -41,7 +41,7 @@ export const ProjectRepositorySection = ({
       </Grid>
       <Grid item xs={10} sm={7} data-cy='grid-repository-url'>
         <Link
-          variant='h6'
+          variant='body1'
           href={repositoryUrl}
           className={classes.typoStyle}
         >
@@ -52,7 +52,7 @@ export const ProjectRepositorySection = ({
         <Link
           id='change-url'
           component='button'
-          variant='h6'
+          variant='body1'
           onClick={() => setDisplayState('ProjectUrl')}
           underline='always'
           style={linkStyles}

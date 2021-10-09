@@ -133,18 +133,18 @@ export const OrgNameSection = ({ setDisplayState, orgName, linkStyles }) => {
       className={classes.orgNameSectionGrid}
     >
       <Grid item xs={12} sm={3} className={classes.gridStyle}>
-        <Typography variant='body1'>Affliated Organization:</Typography>
+        <Typography variant='body1'>Affiliated Organization:</Typography>
       </Grid>
       {orgName ? (
         <Grid item xs={10} sm={7}>
-          <Typography variant='h6' className={classes.typoStyle}>
+          <Typography variant='body1' className={classes.typoStyle}>
             {orgName}
           </Typography>
         </Grid>
       ) : (
         <Grid item xs={7} style={{ paddingRight: '50px' }}>
-          <Typography variant='h6' className={classes.typoStyle}>
-            Unaffliated
+          <Typography variant='body1' className={classes.typoStyle}>
+            Unaffiliated
           </Typography>
         </Grid>
       )}
