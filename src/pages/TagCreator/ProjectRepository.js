@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '0.875rem',
     },
   },
+  projRepoGrid:{
+    padding: '30px 0px',
+  },
 }));
 
 export const ProjectRepositorySection = ({
@@ -31,7 +34,7 @@ export const ProjectRepositorySection = ({
       container
       direction='row'
       alignItems='center'
-      style={{ paddingBottom: '32px' }}
+      className={classes.projRepoGrid}
     >
       <Grid item xs={12} sm={3} className={classes.gridStyle}>
         <Typography variant='body1'>Project Repository URL:</Typography>

@@ -35,6 +35,7 @@ import {
 } from './TopicTagSection';
 import useTheme from '@material-ui/core/styles/useTheme';
 import BottomSection from './BottomSection';
+import StepComponent from './StepComponent'
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: '0px 16px',
     },
+  },
+  stepGrid:{
+    paddingTop: '50px',
   },
 }));
 
@@ -305,11 +309,15 @@ const TagCreator = () => {
   const OrgProjSection = () => {
     return (
       <>
+        <Grid className={classes.stepGrid}>
+          <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+        </Grid>
         <OrgNameSection
           setDisplayState={setDisplayState}
           orgName={orgName}
           linkStyles={linkStyles}
         />
+        <StepComponent step='Step 2 of 4' stepHeading='Find Project'/>
         <ProjectRepositorySection
           repositoryUrl={fullRepositoryUrl}
           setDisplayState={setDisplayState}
@@ -347,11 +355,15 @@ const TagCreator = () => {
     case 'ProjectUrl':
       return (
         <>
+          <Grid className={classes.stepGrid}>
+            <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+          </Grid>
           <OrgNameSection
             setDisplayState={setDisplayState}
             orgName={orgName}
             linkStyles={linkStyles}
           />
+          <StepComponent step='Step 2 of 4' stepHeading='Find Project'/>
           <ProjectRepositoryInput
             repositoryUrl={repositoryUrl}
             handleEnter={handleEnter}
@@ -376,6 +388,7 @@ const TagCreator = () => {
                 currentTags={currentTags}
                 repositoryName={repositoryName}
               />
+              <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
               <AddTagsQuestion
                 userTags={userTags}
                 displayState={displayState}
@@ -398,6 +411,7 @@ const TagCreator = () => {
       return (
         <>
           <OrgProjSection />
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
           <CurrentTopicTagSection
             currentTags={currentTags}
             repositoryName={repositoryName}
@@ -420,6 +434,7 @@ const TagCreator = () => {
       return (
         <>
           <OrgProjSection />
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
           <CurrentTopicTagSection
             currentTags={currentTags}
             repositoryName={repositoryName}
@@ -442,6 +457,7 @@ const TagCreator = () => {
       return (
         <>
           <OrgProjSection />
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
           <CurrentTopicTagSection
             currentTags={currentTags}
             repositoryName={repositoryName}
@@ -459,6 +475,9 @@ const TagCreator = () => {
     default:
       return (
         <>
+          <Grid className={classes.stepGrid}>
+            <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+          </Grid>
           <AffiliationQuestionSection
             value={value}
             handleChange={handleChange}

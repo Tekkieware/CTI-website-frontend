@@ -128,7 +128,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('loads correct 7 tags and new tags for `civictechindex/CTI-website-frontend` - unaffiliated', () => {
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
-    cy.get('p').contains('Unaffliated');
+    cy.get('p').contains('Unaffiliated');
     cy.get('[data-cy=grid-repository]').within(() => {
       cy.get('#repository-url', { force: true })
         .click()
@@ -169,7 +169,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('change the org form unaffiliated for `civictechindex/CTI-website-frontend` to affiliated', () => {
     cy.get('[data-cy=radio-no]').click();
     cy.get('#submitButton').click();
-    cy.get('p').contains('Unaffliated');
+    cy.get('p').contains('Unaffiliated');
     cy.get('#change-org').click();
     cy.contains('Are you affiliated with an organization?');
     cy.get('[data-cy=radio-yes]');

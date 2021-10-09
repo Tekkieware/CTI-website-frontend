@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   typoStyle: {
     fontWeight: '700',
   },
+  orgNameSectionGrid:{
+    padding: '30px 0px',
+  },
 }));
 
 export const OrganizationSelectorSection = ({
@@ -127,10 +130,10 @@ export const OrgNameSection = ({ setDisplayState, orgName, linkStyles }) => {
       container
       direction='row'
       alignItems='center'
-      style={{ padding: '48px 0px 32px 0px' }}
+      className={classes.orgNameSectionGrid}
     >
       <Grid item xs={12} sm={3} className={classes.gridStyle}>
-        <Typography variant='body1'>Affliated Organization:</Typography>
+        <Typography variant='body1'>Affiliated Organization:</Typography>
       </Grid>
       {orgName ? (
         <Grid item xs={10} sm={7}>
@@ -141,7 +144,7 @@ export const OrgNameSection = ({ setDisplayState, orgName, linkStyles }) => {
       ) : (
         <Grid item xs={7} style={{ paddingRight: '50px' }}>
           <Typography variant='body1' className={classes.typoStyle}>
-            Unaffliated
+            Unaffiliated
           </Typography>
         </Grid>
       )}

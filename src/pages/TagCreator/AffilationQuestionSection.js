@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
-    paddingTop: '30px',
+    paddingTop: '20px',
   },
   gridPadding: {
     padding: '10px',
