@@ -112,15 +112,17 @@ const useStyles = makeStyles((theme) => ({
 const BottomSection = () => {
   const classes = useStyles();
   const [addBtnClicked, setAddBtnClicked] = useState(false);
-  const btnClick = () => {
-    setAddBtnClicked(true);
-  };
 
-  const renderBtnWithDescription = (classes, btnClick) => {
+  const renderBtnWithDescription = () => {
     return (
       <>
         <Grid className={classes.btnContainerStyle}>
-          <Button onClick={btnClick} className={classes.btnStyle}>
+          <Button
+            className={classes.btnStyle}
+            onClick={() => {
+              setAddBtnClicked(true);
+            }}
+          >
             Added to Civic Tech Index
           </Button>
         </Grid>
@@ -173,7 +175,7 @@ const BottomSection = () => {
                 )}
               </Typography>
             </Grid>
-            {!addBtnClicked && renderBtnWithDescription(classes, btnClick)}
+            {!addBtnClicked && renderBtnWithDescription()}
             <Confetti fire={addBtnClicked} />
             <Grid
               container

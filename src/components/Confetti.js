@@ -27,13 +27,11 @@ export default class Confetti extends React.Component {
 
   render() {
     return (
-      <>
-        <ReactCanvasConfetti
-          fire={this.props.fire}
-          colors={colors}
-          style={canvasStyles}
-        />
-      </>
+      <ReactCanvasConfetti
+        fire={this.props.fire}
+        colors={colors}
+        style={canvasStyles}
+      />
     );
   }
 }
