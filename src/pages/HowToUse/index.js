@@ -12,13 +12,21 @@ const useStyles = makeStyles((theme) => ({
     padding: '64px 32px',
     margin: 'auto',
   },
-  typoStyle: {
-    fontWeight: '400',
+  summary: {
+    marginBottom: '30px',
+    textAlign: 'justify',
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
     },
   },
-  boxPadding:{
+  typoStyle: {
+    fontWeight: '400',
+    textAlign: 'justify',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '14px',
+    },
+  },
+  boxPadding: {
     padding: '24px 16px 0',
   },
 }));
@@ -42,6 +50,14 @@ const HowToUse = () => {
       <Box className='containerGray'>
         <Container>
           <Box className={classes.boxContainer}>
+            <Box>
+              <Typography variant='body1' className={classes.summary}>
+                By adding the civictechindex topic tag to your project, we can
+                create a continuously updated repository for all civic tech
+                enthusiasts to find open source projects to model, connect with,
+                and learn from.
+              </Typography>
+            </Box>
             <Box>
               <Typography variant='body1' className={classes.typoStyle}>
                 1. Under your project’s repository, click <SettingsGearIcon />{' '}
