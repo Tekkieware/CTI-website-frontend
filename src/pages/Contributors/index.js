@@ -175,8 +175,7 @@ export default function Contributors() {
                 className={classes.textStyle}
                 gutterBottom
               >
-                Check out our partners who have contributed to the Civic Tech
-                Index
+                View all Civic Tech Organizations with open-source repositories.
               </Typography>
             </Grid>
             <Grid item xs={12}>
