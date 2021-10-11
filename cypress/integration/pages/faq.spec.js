@@ -27,27 +27,33 @@ describe('FAQ Page (using API)', () => {
   });
 });
 
-describe('FAQ Page (using fixture)', () => {
-  before(() => {
-    cy.intercept('GET', `${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`, (req) => {
-      req.reply({
-        statusCode: 200,
-        fixture: 'faqs.json',
-      });
-    });
-    cy.visit('/about/faq');
-  });
+/*
+ * describe('FAQ Page (using fixture)', () => {
+ *   before(() => {
+ *     cy.intercept('GET', `${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`, (req) => {
+ *       req.reply({
+ *         statusCode: 200,
+ *         fixture: 'faqs.json',
+ *       });
+ *     });
+ *     cy.visit('/about/faq');
+ *   });
+ */
 
-  it('title section loads', () => {
-    cy.contains('How can we help?');
-  });
+/*
+ *   it('title section loads', () => {
+ *     cy.contains('How can we help?');
+ *   });
+ */
 
-  it('default faq list is loaded', () => {
-    cy.get('[data-cy=faq-question]').should('have.length', 10);
-    cy.get('[data-cy=faq-question]')
-      .first()
-      .contains(Q1)
-      .click({ force: true });
-    cy.get('[data-cy=faq-answer]').first().should('contain', A1);
-  });
-});
+/*
+ *   it('default faq list is loaded', () => {
+ *     cy.get('[data-cy=faq-question]').should('have.length', 10);
+ *     cy.get('[data-cy=faq-question]')
+ *       .first()
+ *       .contains(Q1)
+ *       .click({ force: true });
+ *     cy.get('[data-cy=faq-answer]').first().should('contain', A1);
+ *   });
+ * });
+ */
