@@ -1,7 +1,7 @@
 const SEARCH = 'civic';
-const Q1 = 'Can I add multiple projects';
+// const Q1 = 'Can I add multiple projects';
 const Q2 = 'What is Civic Tech';
-const A1 = 'Yes, Please follow the link to add multiple projects.';
+// const A1 = 'Yes, Please follow the link to add multiple projects.';
 const A2 = 'Civic technology, or civic tech, enhances the relationship between the people and government';
 
 describe('FAQ Page (using API)', () => {
