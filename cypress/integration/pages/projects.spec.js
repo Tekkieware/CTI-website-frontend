@@ -20,7 +20,11 @@ describe('Projects Page (Search Projects)', () => {
   });
 
   it('loads search tips', () => {
+    cy.intercept(`${Cypress.env('GITHUB_API_URL')}/search/repositories*`).as(
+      'getProjects'
+    );
     cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
+    cy.wait('@getProjects');
     cy.get('[data-cy=how-to-improve-your-search-results]').click();
     cy.get('[data-cy=search-tips').within(() => {
       cy.get('p').first().contains('Need more search results?');

@@ -1,16 +1,23 @@
-const SEARCH = 'organization';
+const SEARCH = 'civic';
 const Q1 = 'Can I add multiple projects';
-const Q2 = 'Can I change the organization my project is listed under';
+const Q2 = 'What is Civic Tech';
 const A1 = 'Yes, Please follow the link to add multiple projects.';
-const A2 = 'Yes, you can change the organization of your project.';
+const A2 = 'Civic technology, or civic tech, enhances the relationship between the people and government';
 
 describe('FAQ Page (using API)', () => {
-  it('gets faq by search', () => {
-    cy.visit('/about/faq');
-    cy.get('[data-cy=search-faq]').click({ force: true }).type(SEARCH);
+  before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`).as(
       'getFaqs'
     );
+    cy.visit('/about/faq');
+    cy.wait('@getFaqs');
+  });
+
+  it('gets faq by search', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`).as(
+      'getFaqs'
+    );
+    cy.get('[data-cy=search-faq]').click({ force: true }).type(SEARCH);
     cy.wait('@getFaqs');
     cy.get('[data-cy=faq-question]')
       .first()
@@ -22,7 +29,7 @@ describe('FAQ Page (using API)', () => {
 
 describe('FAQ Page (using fixture)', () => {
   before(() => {
-    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/`, {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`, {
       fixture: 'faqs.json',
     });
     cy.visit('/about/faq');

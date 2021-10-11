@@ -24,7 +24,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   ];
 
   beforeEach(() => {
-    cy.intercept('https://api.civictechindex.org/api/organizations/').as(
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
       'getOrganizations'
     );
     cy.visit('/join-index');
