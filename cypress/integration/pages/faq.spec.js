@@ -34,9 +34,8 @@ describe('FAQ Page (using fixture)', () => {
         statusCode: 200,
         fixture: 'faqs.json',
       });
-    }).as('getFaqs');
+    });
     cy.visit('/about/faq');
-    cy.wait('@getFaqs');
   });
 
   it('title section loads', () => {
