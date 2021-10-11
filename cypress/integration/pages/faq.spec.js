@@ -29,8 +29,11 @@ describe('FAQ Page (using API)', () => {
 
 describe('FAQ Page (using fixture)', () => {
   before(() => {
-    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`, {
-      fixture: 'faqs.json',
+    cy.intercept('GET', `${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`, (req) => {
+      req.reply({
+        statusCode: 200,
+        fixture: 'faqs.json',
+      });
     }).as('getFaqs');
     cy.visit('/about/faq');
     cy.wait('@getFaqs');
