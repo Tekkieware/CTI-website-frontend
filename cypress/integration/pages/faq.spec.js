@@ -31,8 +31,9 @@ describe('FAQ Page (using fixture)', () => {
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`, {
       fixture: 'faqs.json',
-    });
+    }).as('getFaqs');
     cy.visit('/about/faq');
+    cy.wait('@getFaqs');
   });
 
   it('title section loads', () => {
