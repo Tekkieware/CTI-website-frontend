@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    [theme.breakpoints.down('xs')]: {
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
   },

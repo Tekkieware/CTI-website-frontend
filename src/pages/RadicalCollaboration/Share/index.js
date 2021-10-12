@@ -43,7 +43,7 @@ const StarMediaSection = () => {
       spacing={4}
       className={classes.starMediaSection}
     >
-      <Grid item sm={4}>
+      <Grid item md={4}>
         <Card variant='outlined' className={classes.card}>
           <CardActions>
             <GitHubButton
@@ -63,19 +63,12 @@ const StarMediaSection = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item sm={4}>
+      <Grid item md={4}>
         <CardSection
           image='/images/medium.png'
           title='Medium logo'
           cardContent='Mention or write about us on Medium'
           link='https://medium.com/new-story'
-        />
-      </Grid>
-      <Grid item sm={4}>
-        <CardSection
-          image='/images/mail.png'
-          title='Mail logo'
-          cardContent='Share new tags with your project admin'
         />
       </Grid>
     </Grid>
