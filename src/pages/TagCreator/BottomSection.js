@@ -193,7 +193,7 @@ const BottomSection = () => {
                 addBtnClicked={addBtnClicked}
                 text='Collaborate with us'
                 btext='Learn More'
-                bhref='/support'
+                bhref='/support/collaborate'
               />
             </Grid>
           </Grid>
