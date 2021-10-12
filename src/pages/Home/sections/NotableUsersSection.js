@@ -18,6 +18,11 @@ const notableUsers = [
     src: '/images/open-oakland.svg',
   },
   {
+    alt: 'Code for KC',
+    link: 'https://codeforkc.org/',
+    src: '/images/Code_For_KC.png',
+  },
+  {
     alt: 'Code for Tulsa',
     link: 'https://codefortulsa.org/',
     src: '/images/code-for-tulsa.png',
