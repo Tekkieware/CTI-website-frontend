@@ -164,19 +164,18 @@ export default function Contributors() {
           <NavBreadcrumbs
             crumbs={[
               { name: 'Home', href: '/home' },
-              { name: 'Civic Tech Partners', href: '/organizations/all' },
+              { name: 'Index Contributors', href: '/organizations/all' },
             ]}
           />
           <Grid container>
-            <TitleSection>Civic Tech Partners</TitleSection>
+            <TitleSection>Index Contributors</TitleSection>
             <Grid item xs={12}>
               <Typography
                 color='textSecondary'
                 className={classes.textStyle}
                 gutterBottom
               >
-                Check out our partners who have contributed to the Civic Tech
-                Index
+                View all Civic Tech Organizations with open-source repositories.
               </Typography>
             </Grid>
             <Grid item xs={12}>
