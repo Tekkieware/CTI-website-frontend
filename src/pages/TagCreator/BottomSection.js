@@ -88,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   containerBelowBtnStyle: {
+    textAlign: 'center',
     [theme.breakpoints.up('md')]: {
       marginTop: theme.spacing(4),
     },
@@ -116,6 +117,9 @@ const BottomSection = () => {
   const renderBtnWithDescription = () => {
     return (
       <>
+         <Typography className={classes.containerBelowBtnStyle}>
+          Let us know when you&apos;ve added #civictechindex to your project!
+        </Typography>
         <Grid className={classes.btnContainerStyle}>
           <Button
             className={classes.btnStyle}
@@ -123,12 +127,9 @@ const BottomSection = () => {
               setAddBtnClicked(true);
             }}
           >
-            Added to Civic Tech Index
+            I've Added My Project!
           </Button>
         </Grid>
-        <Typography className={classes.containerBelowBtnStyle}>
-          Let us know when you&apos;ve added #civictechindex to your project!
-        </Typography>
       </>
     );
   };
