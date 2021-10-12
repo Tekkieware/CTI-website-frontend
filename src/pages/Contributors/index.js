@@ -246,8 +246,8 @@ export default function Contributors() {
   };
 
   const breadCrumbLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Civic Tech Organizations', href: '/organizations/all' },
+    { href: '/', name: 'Home' },
+    { href: '/organizations/all', name: 'Civic Tech Organizations' },
   ];
 
   return (

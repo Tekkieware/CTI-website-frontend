@@ -12,8 +12,8 @@ import { Typography } from '@material-ui/core';
 
 const Collaborate = () => {
   const breadCrumbLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Collaborate with Us', href: '/support/collaborate' },
+    { href: '/', name: 'Home' },
+    { href: '/support/collaborate', name: 'Collaborate with Us' },
   ];
 
   return (

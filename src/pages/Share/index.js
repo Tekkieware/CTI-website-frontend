@@ -165,8 +165,8 @@ const SocialMediaSection = () => {
 export default function ShareTheCti() {
   const classes = useStyles();
   const breadCrumbLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Share the CTI', href: '/support/share' },
+    { href: '/', name: 'Home' },
+    { href: '/support/share', name: 'Share the CTI' },
   ];
 
   return (
