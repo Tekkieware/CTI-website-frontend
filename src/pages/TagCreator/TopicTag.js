@@ -1,49 +1,10 @@
 import React, { useState } from 'react';
 import Chip from '@material-ui/core/Chip';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import useStyles from './styles';
 import CopyPasteIcon from '../../icons/CopyPasteIcon';
 import Grid from '@material-ui/core/Grid';
 import { useClipboard } from 'use-clipboard-copy';
 import ChipInput from 'material-ui-chip-input';
-
-const useStyles = makeStyles((theme) => ({
-  topicTag: {
-    backgroundColor: theme.palette.background.default,
-    borderRadius: '24px',
-    padding: '0 10px',
-    '&.MuiChip-outlined': {
-      borderColor: theme.palette.outline.gray,
-      [theme.breakpoints.down('md')]: {
-        height: '42px',
-      },
-      [theme.breakpoints.up('md')]: {
-        height: '48px',
-      },
-    },
-    '&.MuiChip-deletable svg': {
-      color: theme.palette.outline.gray,
-    },
-  },
-  addTag: {
-    paddingBottom: '10px',
-    '& .MuiChip-clickable': {
-      backgroundColor: theme.palette.background.default,
-      border: '1px solid',
-      borderColor: theme.palette.outline.gray,
-      borderRadius: '24px',
-      padding: '0 10px',
-      '&.MuiChip-deletable svg': {
-        color: theme.palette.outline.gray,
-      },
-      [theme.breakpoints.down('md')]: {
-        height: '42px',
-      },
-      [theme.breakpoints.up('md')]: {
-        height: '48px',
-      },
-    },
-  },
-}));
 
 export const GeneratedTopicTag = (props) => {
   const classes = useStyles();

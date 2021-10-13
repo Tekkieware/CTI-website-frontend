@@ -7,33 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles';
 import AddOrgForm from './AddOrgForm';
-
-const useStyles = makeStyles((theme) => ({
-  gridStyle: {
-    paddingRight: '8px',
-    [theme.breakpoints.down('xs')]: {
-      paddingBottom: '8px',
-    },
-  },
-  link: {
-    color: theme.palette.secondary.main,
-    textDecoration: 'underline',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  modalStyle: {
-    overflow: 'scroll',
-  },
-  typoStyle: {
-    fontWeight: '700',
-  },
-  orgNameSectionGrid:{
-    padding: '30px 0px',
-  },
-}));
 
 export const OrganizationSelectorSection = ({
   orgName,
@@ -64,7 +39,7 @@ export const OrganizationSelectorSection = ({
   return (
     <>
       <Grid item xs={12} sm={12}>
-        <p>Which Organization?</p>
+        <Typography variant='body1'style={{ padding: '34px 0 8px' }}>Which Organization?</Typography>
         <Autocomplete
           id='organization'
           style={{ width: '100%' }}
@@ -104,12 +79,12 @@ export const OrganizationSelectorSection = ({
           )}
         />
       </Grid>
-      <Grid item>
+      <Grid item style={{ paddingTop: '12px' }}>
         <Typography variant='body1'>
           Don’t see your organization? Click&nbsp;
           <Link
             id='add-org-link'
-            className={classes.link}
+            className={classes.orgLink}
             onClick={() => setDialogOpen(true)}
           >
             <b>here</b>
@@ -134,18 +109,18 @@ export const OrgNameSection = ({ setDisplayState, orgName, linkStyles }) => {
       alignItems='center'
       className={classes.orgNameSectionGrid}
     >
-      <Grid item xs={12} sm={3} className={classes.gridStyle}>
+      <Grid item xs={12} sm={3} className={classes.orgGridStyle}>
         <Typography variant='body1'>Affiliated Organization:</Typography>
       </Grid>
       {orgName ? (
         <Grid item xs={10} sm={7}>
-          <Typography variant='body1' className={classes.typoStyle}>
+          <Typography variant='body1' className={classes.orgTypoStyle}>
             {orgName}
           </Typography>
         </Grid>
       ) : (
         <Grid item xs={7} style={{ paddingRight: '50px' }}>
-          <Typography variant='body1' className={classes.typoStyle}>
+          <Typography variant='body1' className={classes.orgTypoStyle}>
             Unaffiliated
           </Typography>
         </Grid>
