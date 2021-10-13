@@ -67,25 +67,17 @@ const Collaborate = () => {
               mainHeading='Volunteer With Us'
               subHeading='Help us improve the Civic Tech Index.'
               description={[
-                'Please ',
+                'If you would like to volunteer for our organization please visit this ',
                 <Link
-                  key='about'
-                  to='https://www.hackforla.org/#about'
+                  key='join'
+                  to='https://www.hackforla.org/join'
                   target='_blank'
                 >
-                  complete this application
-                </Link>,
-                ' if you would like us to reach out to you directly or find us on our ',
-                <Link
-                  key='projects'
-                  to='https://www.hackforla.org/projects/civic-tech-index'
-                  target='_blank'
-                >
-                  project team page.
+                  page.
                 </Link>,
               ]}
               hasExternalNav={true}
-              buttonHref='http://www.hackforla.org/projects/civic-tech-index'
+              buttonHref='https://www.hackforla.org/join'
               buttonText='Become a Volunteer'
               imageSrc='/images/Volunteer-With-Us.png'
             />
@@ -99,7 +91,7 @@ const Collaborate = () => {
                   FAQ
                 </Link>,
                 ' to find answers or ',
-                <Link key='contact' to='/contact' target='_blank'>
+                <Link key='contact' to='/contact'>
                   contact us.
                 </Link>,
               ]}
