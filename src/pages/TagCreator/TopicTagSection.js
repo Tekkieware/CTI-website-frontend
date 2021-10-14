@@ -278,22 +278,22 @@ const TagGeneratorInstructions = ({
       <Grid container>
         <Grid item xs={12} style={{ padding: '24px 0px' }}>
           <Typography variant='h4'>
-            How to add your tags to your project&apos;s repository
+            How to add your tags to your project’s repository
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.gridLinkStyle}>
           <Typography variant='body1' className={classes.topTypoStyle}>
             1. Under your{' '}
             <Link target='_blank' href={repositoryUrl} underline='always'>
-              project&apos;s repository,
+              project’s repository,
             </Link>{' '}
             click <SettingsGearIcon /> to paste your tags.
           </Typography>
         </Grid>
         <Grid item xs={12} style={{ padding: '24px 16px 0' }}>
           <Typography variant='body1' className={classes.topTypoStyle}>
-            If you don&apos;t see the <SettingsGearIcon /> button it means you don&apos;t
-            have &quot;edit repository settings&quot; privileges (and can&apos;t perform the
+            If you don’t see the <SettingsGearIcon /> button it means you don’t
+            have “edit repository settings” privileges (and can’t perform the
             steps below). Please click{' '}
             <Link
               component='button'

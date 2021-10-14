@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import useStyles from './styles';
+import useStyles  from './styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +15,7 @@ const BottomSection = () => {
   const renderBtnWithDescription = () => {
     return (
       <>
-        <Typography className={classes.containerBelowBtnStyle}>
+         <Typography className={classes.containerBelowBtnStyle}>
           Let us know when you&apos;ve added #civictechindex to your project!
         </Typography>
         <Grid className={classes.btnContainerStyle}>
@@ -25,7 +25,7 @@ const BottomSection = () => {
               setAddBtnClicked(true);
             }}
           >
-            I&apos;ve Added My Project!
+            I've Added My Project!
           </Button>
         </Grid>
       </>

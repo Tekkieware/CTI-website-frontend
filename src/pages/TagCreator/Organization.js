@@ -81,7 +81,7 @@ export const OrganizationSelectorSection = ({
       </Grid>
       <Grid item style={{ paddingTop: '12px' }}>
         <Typography variant='body1'>
-          Don&apos;t see your organization? Click&nbsp;
+          Don’t see your organization? Click&nbsp;
           <Link
             id='add-org-link'
             className={classes.orgLink}
