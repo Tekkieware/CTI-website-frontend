@@ -1,7 +1,7 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
-  //AffiliatedQuestionSection.js
+  // AffiliatedQuestionSection.js
   questionContainerPadding: {
     paddingTop: '20px',
   },
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  //BottomSection.js
+  // BottomSection.js
   btnStyle: {
     '& .MuiButton-label': {
       whiteSpace: 'inherit',
@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  //Organization.js
+  // Organization.js
   orgGridStyle: {
     paddingRight: '8px',
     [theme.breakpoints.down('xs')]: {
@@ -137,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '30px 0px',
   },
 
-  //ProjectRepository.js
+  // ProjectRepository.js
   projGridStyle: {
     [theme.breakpoints.down('xs')]: {
       paddingBottom: '8px',
@@ -153,7 +153,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '30px 0px',
   },
 
-  //TopicTag.js
+  // TopicTag.js
   topicTag: {
     backgroundColor: theme.palette.background.default,
     borderRadius: '24px',
@@ -191,7 +191,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  //TopicTagSection.js
+  // TopicTagSection.js
   tagGridStyle: {
     display: 'flex',
     flexDirection: 'column',
