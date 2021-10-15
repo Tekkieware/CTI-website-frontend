@@ -74,7 +74,7 @@ const HowToUse = () => {
               </Typography>
               <Typography variant='body1' className={classes.typoStyle}>
                 Click{' '}
-                <Link key='join-index' to='http://civictechindex.org/join-index/how-to-add'>
+                <Link key='join-index' to='/join-index/how-to-add'>
                   here
                 </Link>
                 {' '}
