@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import Link from '../../components/common/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import GenericHeaderSection from '../../components/GenericHeaderSection';
@@ -69,6 +70,15 @@ const HowToUse = () => {
                 If you don’t see the <SettingsGearIcon /> button it means you
                 don’t have &quot;edit repository settings&quot; privileges (and
                 can’t perform the steps below).
+              </Typography>
+              <Typography variant='body1' className={classes.typoStyle}>
+                Click{' '}
+                <Link key='join-index' to='http://civictechindex.org/join-index/how-to-add'>
+                  here
+                </Link>
+                {' '}
+                {/* Please confirm if either 'GitHub' or 'Github' */}
+                to copy the url for this page to send to your GitHub admin.
               </Typography>
             </Box>
             <ImageComponent src='/images/instructions-step1.png' alt='Step 1' />
