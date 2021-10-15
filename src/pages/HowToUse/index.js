@@ -60,10 +60,10 @@ const HowToUse = () => {
           <Box className={classes.boxContainer}>
             <Box>
               <Typography variant='body1' className={classes.summary}>
-                By adding the civictechindex topic tag to your project, we can
-                create a continuously updated repository for all civic tech
-                enthusiasts to find open source projects to model, connect with,
-                and learn from.
+                By adding the <Box display='inline' fontWeight='fontWeightBold'>'civictechindex' </Box>
+                topic tag to your project, we can create a continuously updated
+                repository for all civic tech enthusiasts to find open source projects
+                to model, connect with, and learn from.
               </Typography>
             </Box>
             <Box>
