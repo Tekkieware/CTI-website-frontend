@@ -10,15 +10,21 @@ import SettingsGearIcon from '../../icons/SettingsGearIcon';
 
 const useStyles = makeStyles((theme) => ({
   boxContainer: {
-    padding: '64px 32px',
+    padding: '32px',
     margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+      padding: '32px 0',
+    },
   },
   summary: {
-    fontSize: '22px', // ** Tentative - Subject to Change **
-    marginBottom: '30px',
+    fontSize: '24px',
+    margin: '32px auto 64px',
     textAlign: 'justify',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '14px',
+    width: '66%',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '20px',
+      margin: '0px auto 32px',
+      width: '100%',
     },
   },
   typoStyle: {
