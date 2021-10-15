@@ -82,21 +82,22 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const IndvPageContainer = (props) => {
-  const [projects, setProjects] = useState([]);
-  const [bestMatchProjects, setBestMatchProjects] = useState([]);
-  const [lastUpdatedProjects, setLastUpdatedProjects] = useState([]);
-  const [stargazerProjects, setStargazerProjects] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
-  const [pages, setPages] = useState(1);
-  const [results, setResults] = useState('');
-  const [dropDownListItem, setDropDownListItem] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [sortMethod, setSortMethod] = useState('best match');
-  const inputSortMethodList = ['best match', 'updated', 'stars'];
-  const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false);
-  const [errorState, setErrorState] = useState(false);
-  const projectsPerPage = 4;
   const classes = useStyles();
+  const inputSortMethodList = ['best match', 'updated', 'stars'];
+  const projectsPerPage = 4;
+  const [affiliations, setAffiliations] = useState({});
+  const [bestMatchProjects, setBestMatchProjects] = useState([]);
+  const [dropDownListItem, setDropDownListItem] = useState('');
+  const [errorState, setErrorState] = useState(false);
+  const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false);
+  const [lastUpdatedProjects, setLastUpdatedProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [pages, setPages] = useState(1);
+  const [pageNum, setPageNum] = useState(1);
+  const [projects, setProjects] = useState([]);
+  const [results, setResults] = useState('');
+  const [sortMethod, setSortMethod] = useState('best match');
+  const [stargazerProjects, setStargazerProjects] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -109,6 +110,7 @@ export const IndvPageContainer = (props) => {
     setResults('');
     setDropDownListItem('');
     setSortMethod('best match');
+    fetchAffiliations();
   }, [props.pathName]);
 
   // Fetching the data for 'other repo' dropdown elements
@@ -215,12 +217,12 @@ export const IndvPageContainer = (props) => {
       indexOfFirstProject,
       indexOfLastProject
     );
-    const items = currentProjects.map((i) => renderCard(i));
+    const items = currentProjects.map((i) => renderCard(i, affiliations));
     setResults(items);
     if (isProjectSearchFinish) {
       setLoading(false);
     }
-  }, [projects, isProjectSearchFinish]);
+  }, [projects, isProjectSearchFinish, affiliations]);
 
   useEffect(() => {
     if (sortMethod === 'best match') {
@@ -261,6 +263,18 @@ export const IndvPageContainer = (props) => {
     return sortedProjectsArr;
   };
 
+  const fetchAffiliations = () => {
+    const affiliations = {};
+    axios.get(`${process.env.REACT_APP_API_URL}/api/aliases/`)
+      .then((res) => {
+        res.data.forEach((affl) => {
+          affiliations[affl.tag] = true;
+          affiliations[affl.alias] = true;
+        });
+        setAffiliations(affiliations);
+      });
+  };
+
   const handlePageChange = (pageNum) => {
     setPageNum(pageNum);
     const indexOfLastProject = pageNum * projectsPerPage;
@@ -269,7 +283,7 @@ export const IndvPageContainer = (props) => {
       indexOfFirstProject,
       indexOfLastProject
     );
-    const items = currentProjects.map((i) => renderCard(i));
+    const items = currentProjects.map((i) => renderCard(i, affiliations));
     setResults(items);
   };
 

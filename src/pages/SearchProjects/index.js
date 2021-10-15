@@ -64,28 +64,38 @@ const defaultFilterList = [
 
 
 
-const renderCard = (project, classes) => {
+const renderCard = (project, affiliations, classes) => {
+  const affiliationTags = [];
+  const topicTags = [];
   const calculateDaysSince = (updateTime) => {
     const days = new Date() - new Date(updateTime);
     return Math.round(days / (1000 * 3600 * 24));
   };
+
+  project.topics.forEach((topic) => {
+    if (affiliations[topic]) {
+      affiliationTags.push(topic);
+    } else {
+      topicTags.push(topic)
+    }
+  });
   return (
     <Box key={project.id} my={1} className={classes.projectCardBorder}>
       <ProjectCard
-        projectUrl={project.html_url}
-        organizationUrl={project.owner.html_url}
-        organizationAvatarUrl={project.owner.avatar_url}
-        ownerName={project.owner.login}
-        projectName={project.name}
-        projectDescription={project.description}
         homepage={project.homepage}
-        lastUpdate={calculateDaysSince(project.updated_at)}
         issueCount={project.open_issues}
+        lastUpdate={calculateDaysSince(project.updated_at)}
+        organizationAvatarUrl={project.owner.avatar_url}
+        organizationUrl={project.owner.html_url}
+        ownerName={project.owner.login}
+        projectDescription={project.description}
         projectLanguage={project.language}
-        topics={project.topics}
-        watchers={project.watchers_count}
+        projectName={project.name}
+        projectTags={affiliationTags}
+        projectUrl={project.html_url}
         stargazers={project.stargazers_count}
-        projectTags={[]}
+        topics={topicTags}
+        watchers={project.watchers_count}
       />
     </Box>
   );
@@ -94,6 +104,7 @@ const renderCard = (project, classes) => {
 const Projects = () => {
   const classes = useStyles();
   const location = useLocation();
+  const [affiliations, setAffiliations] = useState({});
   const [backupFilterList, setBackupFilterList] = useState([]);
   const [errorState, setErrorState] = useState(false);
   const [filterList, setFilterList] = useState(defaultFilterList);
@@ -119,11 +130,12 @@ const Projects = () => {
    * (e.g. Trending Topics on home page)
    */
   useEffect(() => {
+    fetchAffiliations();
+    fetchTopicTags();
     if (location.query) {
       setQuery(location.query.search);
       fetchProjects(location.query.search, false);
     }
-    fetchTopicTags();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -132,7 +144,7 @@ const Projects = () => {
       fetchProjects(query, false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterList, selectedFilters, pageNum, sort]);
+  }, [affiliations, filterList, selectedFilters, pageNum, sort]);
 
   // need to reset page to 1 when paginator count changes to avoid strange paginator states
   useEffect(() => {
@@ -171,6 +183,18 @@ const Projects = () => {
     return queryStr;
   };
 
+  const fetchAffiliations = () => {
+    const affiliations = {};
+    axios.get(`${process.env.REACT_APP_API_URL}/api/aliases/`)
+      .then((res) => {
+        res.data.forEach((affl) => {
+          affiliations[affl.tag] = true;
+          affiliations[affl.alias] = true;
+        });
+        setAffiliations(affiliations);
+      });
+  };
+
   const fetchProjects = (queryStr, resetPageNum = false) => {
     const q = [queryStr, 'topic:civictechindex'];
     for (const filter of selectedFilters) {
@@ -198,7 +222,7 @@ const Projects = () => {
       .then((res) => {
         setErrorState(false);
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
-        const items = res.data.items.map((project) => renderCard(project, classes));
+        const items = res.data.items.map((project) => renderCard(project, affiliations, classes));
 
         setResultCountHeader(
           <ResultHeader
