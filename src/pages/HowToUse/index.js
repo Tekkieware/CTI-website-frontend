@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   summary: {
+    fontSize: '22px', // ** Tentative - Subject to Change **
     marginBottom: '30px',
     textAlign: 'justify',
     [theme.breakpoints.down('xs')]: {
