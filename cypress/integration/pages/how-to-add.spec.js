@@ -12,13 +12,11 @@ describe('How To Add Page', () => {
   });
 
   it('copies correct URL', () => {
-    cy.get('[data-cy=copy-link')
-      .click()
-      .window()
-      .then((win) => {
-        win.navigator.clipboard.readText().then((text) => {
-          expect(text).to.eq(window.location.href);
-        });
+    cy.get('[data-cy=copy-link').click();
+    cy.window().then((win) => {
+      win.navigator.clipboard.readText().then((text) => {
+        expect(text).to.eq('http://localhost:3000/join-index/how-to-add');
       });
+    });
   });
 });
