@@ -16,7 +16,7 @@ describe('How To Add Page', () => {
     cy.window().then((win) => {
       win.navigator.clipboard.readText().then((text) => {
         expect(text).to.eq(window.location.href);
-      })
-    })
-  })
+      });
+    });
+  });
 });

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     textAlign: 'justify',
     '& a:visited': {
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
@@ -53,7 +53,7 @@ const HowToUse = () => {
   const copyText = (e, text) => {
     e.preventDefault();
     clipboard.copy(text);
-  }
+  };
   return (
     <Box className='pageContainer'>
       <Box className='boxBackground'>
@@ -69,10 +69,13 @@ const HowToUse = () => {
           <Box className={classes.boxContainer}>
             <Box>
               <Typography variant='body1' className={classes.summary}>
-                By adding the <Box display='inline' fontWeight='fontWeightBold'>'civictechindex' </Box>
+                By adding the{' '}
+                <Box display='inline' fontWeight='fontWeightBold'>
+                  'civictechindex'{' '}
+                </Box>
                 topic tag to your project, we can create a continuously updated
-                repository for all civic tech enthusiasts to find open source projects
-                to model, connect with, and learn from.
+                repository for all civic tech enthusiasts to find open source
+                projects to model, connect with, and learn from.
               </Typography>
             </Box>
             <Box>
@@ -96,8 +99,7 @@ const HowToUse = () => {
                   href='/join-index/how-to-add'
                 >
                   here
-                </Link>
-                {' '}
+                </Link>{' '}
                 to copy the url for this page to send to your GitHub admin.
               </Typography>
             </Box>
