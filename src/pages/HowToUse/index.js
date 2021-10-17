@@ -1,12 +1,13 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import Link from '../../components/common/Link';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import GenericHeaderSection from '../../components/GenericHeaderSection';
 import ImageComponent from '../../components/ImageComponent';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
+import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
   boxContainer: {
@@ -30,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
   typoStyle: {
     fontWeight: '400',
     textAlign: 'justify',
+    '& a:visited': {
+      color: theme.palette.secondary.main
+    },
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
     },
@@ -40,11 +44,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HowToUse = () => {
+  const clipboard = useClipboard();
   const classes = useStyles();
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
     { href: '/join-index/how-to-add', name: 'How to Add Your Project' },
   ];
+  const copyText = (e, text) => {
+    e.preventDefault();
+    clipboard.copy(text);
+  }
   return (
     <Box className='pageContainer'>
       <Box className='boxBackground'>
@@ -80,11 +89,15 @@ const HowToUse = () => {
               </Typography>
               <Typography variant='body1' className={classes.typoStyle}>
                 Click{' '}
-                <Link key='join-index' to='/join-index/how-to-add'>
+                <Link
+                  className={classes.link}
+                  onClick={(e) => copyText(e, 'http://civictechindex.org/join-index/how-to-add')}
+                  key='join-index'
+                  href='/join-index/how-to-add'
+                >
                   here
                 </Link>
                 {' '}
-                {/* Please confirm if either 'GitHub' or 'Github' */}
                 to copy the url for this page to send to your GitHub admin.
               </Typography>
             </Box>
