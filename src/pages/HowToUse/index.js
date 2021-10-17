@@ -71,7 +71,7 @@ const HowToUse = () => {
               <Typography variant='body1' className={classes.summary}>
                 By adding the{' '}
                 <Box display='inline' fontWeight='fontWeightBold'>
-                  'civictechindex'{' '}
+                  `&apos;`civictechindex`&apos;`{' '}
                 </Box>
                 topic tag to your project, we can create a continuously updated
                 repository for all civic tech enthusiasts to find open source
