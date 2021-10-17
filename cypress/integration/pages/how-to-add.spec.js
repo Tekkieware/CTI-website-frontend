@@ -15,7 +15,7 @@ describe('How To Add Page', () => {
     cy.get('[data-cy=copy-link').click();
     cy.window().then((win) => {
       win.navigator.clipboard.readText().then((text) => {
-        expect(text).to.eq('http://localhost:3000/join-index/how-to-add');
+        expect(text).to.eq(win.location.href);
       });
     });
   });
