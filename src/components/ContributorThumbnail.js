@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     '& a:visited': {
       color: theme.palette.secondary.dark,
     },
-    [theme.breakpoints.between('xs','sm')]: {
+    [theme.breakpoints.between('xs', 'sm')]: {
       fontSize: '12px',
     },
     [theme.breakpoints.up('md')]: {
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     '& a:visited': {
       color: theme.palette.text.secondary,
     },
-    [theme.breakpoints.between('xs','sm')]: {
+    [theme.breakpoints.between('xs', 'sm')]: {
       fontSize: '12px',
     },
     [theme.breakpoints.up('md')]: {
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contributorItem: {
     display: 'grid',
-    position:'absolute',
+    position: 'absolute',
     marginTop: '2px',
     right: '0',
     [theme.breakpoints.down('sm')]: {
@@ -172,17 +172,31 @@ const Thumbnail = ({
   dropdownLength,
   isChildThumbnail,
   checkboxValue,
-  inputValue,
   filtersActive,
 }) => {
   const classes = useStyles();
   let thumbnailImageStyle, thumbnailWrapperStyle;
-  if (
-    thumbnailInfo.imageUrl.includes('undefined') ||
-    thumbnailInfo.imageUrl.includes('scontent')
-  ) {
-    thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
+
+  const githubId = organization.github_id;
+
+  if (githubId === null) {
+    if (
+      thumbnailInfo.imageUrl !== null &&
+      organization.image_url !== null &&
+      organization.image_url !== ''
+    ) {
+      thumbnailInfo.imageUrl = organization.image_url;
+    }
+    if (
+      thumbnailInfo.imageUrl.includes('undefined') ||
+      thumbnailInfo.imageUrl.includes('scontent')
+    ) {
+      thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
+    }
+  } else {
+    thumbnailInfo.imageUrl = `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
   }
+
   if (organization.cti_contributor) {
     thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
   } else {
@@ -197,7 +211,6 @@ const Thumbnail = ({
   }
 
   const showtotalChildCount = () => {
-
     let displayedCount = '';
 
     if (dropdownLength) {
