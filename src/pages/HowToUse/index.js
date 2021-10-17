@@ -91,7 +91,7 @@ const HowToUse = () => {
                 Click{' '}
                 <Link
                   className={classes.link}
-                  onClick={(e) => copyText(e, 'http://civictechindex.org/join-index/how-to-add')}
+                  onClick={(e) => copyText(e, window.location.href)}
                   key='join-index'
                   href='/join-index/how-to-add'
                 >
