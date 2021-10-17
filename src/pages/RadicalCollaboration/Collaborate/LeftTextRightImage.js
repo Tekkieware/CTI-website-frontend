@@ -48,8 +48,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   leftDescription: {
-    marginTop: '7px',
     fontSize: '18px',
+    marginBottom: '11px',
+    marginTop: '7px',
     textAlign: 'justify',
     '& a:visited': {
       color: theme.palette.secondary.main,

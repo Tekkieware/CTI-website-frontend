@@ -4,24 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  gridStyle: {
-    [theme.breakpoints.down('xs')]: {
-      paddingBottom: '8px',
-    },
-  },
-  typoStyle: {
-    fontWeight: '700',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '0.875rem',
-    },
-  },
-  projRepoGrid:{
-    padding: '30px 0px',
-  },
-}));
+import useStyles from './styles';
 
 export const ProjectRepositorySection = ({
   repositoryUrl,
@@ -36,14 +19,14 @@ export const ProjectRepositorySection = ({
       alignItems='center'
       className={classes.projRepoGrid}
     >
-      <Grid item xs={12} sm={3} className={classes.gridStyle}>
+      <Grid item xs={12} sm={3} className={classes.projGridStyle}>
         <Typography variant='body1'>Project Repository URL:</Typography>
       </Grid>
       <Grid item xs={10} sm={7} data-cy='grid-repository-url'>
         <Link
           variant='body1'
           href={repositoryUrl}
-          className={classes.typoStyle}
+          className={classes.projTypoStyle}
         >
           {repositoryUrl}
         </Link>
