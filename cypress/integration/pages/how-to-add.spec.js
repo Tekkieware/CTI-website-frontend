@@ -10,4 +10,13 @@ describe('How To Add Page', () => {
   it('middle section loads', () => {
     cy.contains('After you have finished adding your tags, click Save Changes');
   });
+
+  it('copies correct URL', () => {
+    cy.get('[data-cy=copy-link').click();
+    cy.window().then((win) => {
+      win.navigator.clipboard.readText().then((text) => {
+        expect(text).to.eq(window.location.href);
+      })
+    })
+  })
 });
