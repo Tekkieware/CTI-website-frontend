@@ -130,7 +130,6 @@ const Projects = () => {
    * (e.g. Trending Topics on home page)
    */
   useEffect(() => {
-    fetchAffiliations();
     fetchTopicTags();
     if (location.query) {
       setQuery(location.query.search);
@@ -181,18 +180,6 @@ const Projects = () => {
       queryStr = `${getDateWithOffset(unit, Number(offsets[1]))}..${getDateWithOffset(unit, Number(offsets[0]))}`
     }
     return queryStr;
-  };
-
-  const fetchAffiliations = () => {
-    const affiliations = {};
-    axios.get(`${process.env.REACT_APP_API_URL}/api/aliases/`)
-      .then((res) => {
-        res.data.forEach((affl) => {
-          affiliations[affl.tag] = true;
-          affiliations[affl.alias] = true;
-        });
-        setAffiliations(affiliations);
-      });
   };
 
   const fetchProjects = (queryStr, resetPageNum = false) => {
@@ -269,11 +256,13 @@ const Projects = () => {
   };
 
   const fetchTopicTags = () => {
+    const afflns = {};
     axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
       .then((res) => {
         let tempFilterList = filterList.filter((filter) => filter.category !== 'topic');
         tempFilterList = tempFilterList.concat(res.data.filter((org) => org.org_tag)
           .map((org) => {
+            afflns[org.org_tag] = true;
             return {
               category: 'topic',
               name: org.org_tag,
@@ -282,6 +271,7 @@ const Projects = () => {
             };
           })
         );
+        setAffiliations(afflns);
         setFilterList(tempFilterList);
       });
   };

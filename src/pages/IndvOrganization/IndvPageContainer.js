@@ -264,14 +264,13 @@ export const IndvPageContainer = (props) => {
   };
 
   const fetchAffiliations = () => {
-    const affiliations = {};
-    axios.get(`${process.env.REACT_APP_API_URL}/api/aliases/`)
+    const afflns = {};
+    axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
       .then((res) => {
-        res.data.forEach((affl) => {
-          affiliations[affl.tag] = true;
-          affiliations[affl.alias] = true;
+        res.data.forEach((org) => {
+          afflns[org.org_tag] = true;
         });
-        setAffiliations(affiliations);
+        setAffiliations(afflns);
       });
   };
 
