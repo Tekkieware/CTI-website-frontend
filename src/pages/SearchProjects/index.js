@@ -16,6 +16,7 @@ import ProjectCard from '../../components/ProjectCard';
 import ResultFilters from './ResultFilters';
 import ResultHeader from './ResultHeader';
 import ResultContainer from './ResultContainer';
+import defaultSearchFilterList from './searchFilterList';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -34,36 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const defaultFilterList = [
-  { category: 'language', name: 'javascript', label: 'Javascript', selected: false },
-  { category: 'language', name: 'python', label: 'Python', selected: false },
-  { category: 'language', name: 'java', label: 'Java', selected: false },
-  { category: 'language', name: 'typescript', label: 'Typescript', selected: false },
-  { category: 'language', name: 'c#', label: 'C#', selected: false },
-  { category: 'language', name: 'php', label: 'PHP', selected: false },
-  { category: 'language', name: 'c++', label: 'C++', selected: false },
-  { category: 'language', name: 'c', label: 'C', selected: false },
-  { category: 'language', name: 'shell', label: 'Shell', selected: false },
-  { category: 'language', name: 'ruby', label: 'Ruby', selected: false },
-  { category: 'topic', name: '', label: 'Unaffiliated', selected: false },
-  { category: 'topic', name: 'code-for-all', label: 'Code for All', selected: false },
-  { category: 'topic', name: 'code-for-america', label: 'Code for America', selected: false },
-  { category: 'topic', name: 'hack-for-la', label: 'Hack for LA', selected: false },
-  { category: 'topic', name: 'open-oakland', label: 'Open Oakland', selected: false },
-  { category: 'topic', name: 'code-for-canada', label: 'Code for Canada', selected: false },
-  { category: 'topic', name: 'code-for-japan', label: 'Code for Japan', selected: false },
-  { category: 'topic', name: 'open-democracy-labs', label: 'Open Democracy Labs', selected: false },
-  { category: 'topic', name: 'yale-openlab', label: 'Yale Openlab', selected: false },
-  { category: 'pushed', name: '>=24h', label: 'Within the last 24 hours', selected: false },
-  { category: 'pushed', name: '>=7d', label: 'Within the last week', selected: false },
-  { category: 'pushed', name: '>=30d', label: 'Within the last 30 days', selected: false },
-  { category: 'pushed', name: '1-6m', label: '1 - 6 months', selected: false },
-  { category: 'pushed', name: '6-12m', label: '6 - 12 months', selected: false },
-  { category: 'pushed', name: '<1y', label: 'More than a year ago', selected: false },
-]
-
-
-
 const renderCard = (project, affiliations, classes) => {
   const affiliationTags = [];
   const topicTags = [];
@@ -76,7 +47,7 @@ const renderCard = (project, affiliations, classes) => {
     if (affiliations[topic]) {
       affiliationTags.push(topic);
     } else {
-      topicTags.push(topic)
+      topicTags.push(topic);
     }
   });
   return (
@@ -107,7 +78,6 @@ const Projects = () => {
   const [affiliations, setAffiliations] = useState({});
   const [backupFilterList, setBackupFilterList] = useState([]);
   const [errorState, setErrorState] = useState(false);
-  const [filterList, setFilterList] = useState(defaultFilterList);
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterSelector, setFilterSelector] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
@@ -116,12 +86,17 @@ const Projects = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState('');
   const [resultCountHeader, setResultCountHeader] = useState('');
+  const [searchFilterList, setSearchFilterList] = useState(
+    defaultSearchFilterList
+  );
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [sort, setSort] = useState('best match');
 
   const theme = useTheme();
-  const largeScreen = useMediaQuery(theme.breakpoints.up('lg'), { noSsr: true });
+  const largeScreen = useMediaQuery(theme.breakpoints.up('lg'), {
+    noSsr: true,
+  });
   const itemsPerPage = largeScreen ? 10 : 5;
 
   /*
@@ -135,15 +110,15 @@ const Projects = () => {
       setQuery(location.query.search);
       fetchProjects(location.query.search, false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   useEffect(() => {
     if (query) {
       fetchProjects(query, false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [affiliations, filterList, selectedFilters, pageNum, sort]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [affiliations, searchFilterList, selectedFilters, pageNum, sort]);
 
   // need to reset page to 1 when paginator count changes to avoid strange paginator states
   useEffect(() => {
@@ -151,18 +126,27 @@ const Projects = () => {
       fetchProjects(query, true);
     }
     setFilterOpen(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsPerPage]);
 
   const getDateQuery = (dateVal) => {
     const getDateWithOffset = (unit, offset) => {
       const d = new Date();
       switch (unit) {
-      case 'h': d.setHours(d.getHours() - offset); break;
-      case 'd': d.setDate(d.getDate() - offset); break;
-      case 'm': d.setMonth(d.getMonth() - offset); break;
-      case 'y': d.setFullYear(d.getFullYear() - offset); break;
-      default: return d.toISOString().split('T')[0];
+      case 'h':
+        d.setHours(d.getHours() - offset);
+        break;
+      case 'd':
+        d.setDate(d.getDate() - offset);
+        break;
+      case 'm':
+        d.setMonth(d.getMonth() - offset);
+        break;
+      case 'y':
+        d.setFullYear(d.getFullYear() - offset);
+        break;
+      default:
+        return d.toISOString().split('T')[0];
       }
       return d.toISOString().split('T')[0];
     };
@@ -171,13 +155,16 @@ const Projects = () => {
     const unit = dateVal.substring(dateVal.length - 1, dateVal.length);
     if (dateVal.indexOf('<') > -1) {
       const offset = Number(dateVal.substring(1, dateVal.length - 1));
-      queryStr = `<${getDateWithOffset(unit, offset)}`
+      queryStr = `<${getDateWithOffset(unit, offset)}`;
     } else if (dateVal.indexOf('>=') > -1) {
       const offset = Number(dateVal.substring(2, dateVal.length - 1));
-      queryStr = `>=${getDateWithOffset(unit, offset)}`
+      queryStr = `>=${getDateWithOffset(unit, offset)}`;
     } else {
       const offsets = dateVal.substring(0, dateVal.length - 1).split('-');
-      queryStr = `${getDateWithOffset(unit, Number(offsets[1]))}..${getDateWithOffset(unit, Number(offsets[0]))}`
+      queryStr = `${getDateWithOffset(
+        unit,
+        Number(offsets[1])
+      )}..${getDateWithOffset(unit, Number(offsets[0]))}`;
     }
     return queryStr;
   };
@@ -209,7 +196,9 @@ const Projects = () => {
       .then((res) => {
         setErrorState(false);
         setPages(Math.ceil(res.data.total_count / itemsPerPage));
-        const items = res.data.items.map((project) => renderCard(project, affiliations, classes));
+        const items = res.data.items.map((project) =>
+          renderCard(project, affiliations, classes)
+        );
 
         setResultCountHeader(
           <ResultHeader
@@ -225,7 +214,7 @@ const Projects = () => {
         );
         setFilterSelector(
           <FilterSelector
-            filterList={filterList}
+            filterList={searchFilterList}
             itemLength={res.data.items.length}
             onFilterChange={handleFilterChange}
             onFilterClose={handleFilterClose}
@@ -242,7 +231,7 @@ const Projects = () => {
         setResultCountHeader(null);
         setFilterSelector(
           <FilterSelector
-            filterList={filterList}
+            filterList={searchFilterList}
             itemLength={0}
             onFilterChange={handleFilterChange}
             onFilterClose={handleFilterClose}
@@ -257,27 +246,32 @@ const Projects = () => {
 
   const fetchTopicTags = () => {
     const afflns = {};
-    axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
       .then((res) => {
-        let tempFilterList = filterList.filter((filter) => filter.category !== 'topic');
-        tempFilterList = tempFilterList.concat(res.data.filter((org) => org.org_tag)
-          .map((org) => {
-            afflns[org.org_tag] = true;
-            return {
-              category: 'topic',
-              name: org.org_tag,
-              label: org.name,
-              selected: false,
-            };
-          })
+        let tempFilterList = searchFilterList.filter(
+          (searchFilter) => searchFilter.category !== 'topic'
+        );
+        tempFilterList = tempFilterList.concat(
+          res.data
+            .filter((org) => org.org_tag)
+            .map((org) => {
+              afflns[org.org_tag] = true;
+              return {
+                category: 'topic',
+                name: org.org_tag,
+                label: org.name,
+                selected: false,
+              };
+            })
         );
         setAffiliations(afflns);
-        setFilterList(tempFilterList);
+        setSearchFilterList(tempFilterList);
       });
   };
 
   const handleFilterChange = (flt, deleteFlt) => {
-    const tempList = filterList.map((filter) => {
+    const tempList = searchFilterList.map((filter) => {
       if (flt.category === 'all') {
         return { ...filter, selected: false };
       } else if (filter.category === flt.category && filter.name === flt.name) {
@@ -285,22 +279,22 @@ const Projects = () => {
       }
       return filter;
     });
-    setFilterList(tempList);
+    setSearchFilterList(tempList);
     setSelectedFilters(tempList.filter((filter) => filter.selected));
   };
 
   const handleFilterClose = (restore) => {
     if (restore) {
-      setFilterList(backupFilterList);
+      setSearchFilterList(backupFilterList);
       setSelectedFilters(backupFilterList.filter((filter) => filter.selected));
     }
     setFilterOpen(false);
   };
 
   const handleFilterOpen = () => {
-    setBackupFilterList(filterList);
+    setBackupFilterList(searchFilterList);
     setFilterOpen(true);
-  }
+  };
 
   const handlePageChange = (value) => {
     setPageNum(value);
@@ -351,7 +345,8 @@ const Projects = () => {
               <ResultFilters
                 filterTags={filterTags}
                 show={selectedFilters.length > 0}
-                onFilterChange={handleFilterChange} />
+                onFilterChange={handleFilterChange}
+              />
             </Grid>
             <Grid item xs={12}>
               <ResultContainer
@@ -381,7 +376,8 @@ const Projects = () => {
             <ResultFilters
               filterTags={filterTags}
               show={selectedFilters.length > 0}
-              onFilterChange={handleFilterChange} />
+              onFilterChange={handleFilterChange}
+            />
           </Grid>
           <Grid item xs={12}>
             <ResultContainer
@@ -393,25 +389,23 @@ const Projects = () => {
           </Grid>
         </Grid>
       </Grid>
-    )
+    );
   };
 
   return (
     <>
       <Box>
-        {!filterOpen &&
-            <HeaderSection
-              onLinkClick={() => setModalOpen(true)}
-              onSearchClick={handleSubmitClick}
-              onSearchInput={setQuery}
-              onSearchKeyPress={handleSubmit}
-              searchQuery={query}
-              showDefault={!showResults}
-            />
-        }
-        <Container>
-          {showResults && renderPage()}
-        </Container>
+        {!filterOpen && (
+          <HeaderSection
+            onLinkClick={() => setModalOpen(true)}
+            onSearchClick={handleSubmitClick}
+            onSearchInput={setQuery}
+            onSearchKeyPress={handleSubmit}
+            searchQuery={query}
+            showDefault={!showResults}
+          />
+        )}
+        <Container>{showResults && renderPage()}</Container>
       </Box>
       <HelpModal modalOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
