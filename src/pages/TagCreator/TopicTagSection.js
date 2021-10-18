@@ -10,79 +10,12 @@ import {
   DeletableTopicTag,
   ChipInputSection,
 } from './TopicTag';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles';
 import Link from '@material-ui/core/Link';
 import { useClipboard } from 'use-clipboard-copy';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
 import ImageComponent from '../../components/ImageComponent';
-import StepComponent from './StepComponent'
-
-const useStyles = makeStyles((theme) => ({
-  tagGridStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      flexDirection: 'row',
-    },
-  },
-  chipGrid: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  typoStyle: {
-    fontWeight: '400',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '14px',
-    },
-  },
-  gridLinkStyle: {
-    '& a:link': {
-      fontWeight: '700',
-      color: theme.palette.secondary.main,
-    },
-    '& a:visited': {
-      color: theme.palette.secondary.main,
-    },
-  },
-  lStyle: {
-    fontWeight: '700',
-    color: theme.palette.secondary.main,
-  },
-  repoChangeGrid: {
-    paddingTop: '10px',
-    paddingLeft: '10px',
-  },
-  addTopicGridPadding: {
-    padding: '20px 10px 10px',
-  },
-  newTopicGridPadding: {
-    padding: '20px 20px 0px 0px',
-  },
-  resetButton: {
-    backgroundColor: theme.palette.background.default,
-    border: '1px solid',
-    borderColor: theme.palette.background.darkGray,
-    color: theme.palette.spectrum.darkBlue,
-    '&:hover': {
-      background: 'none',
-    },
-  },
-  gridChipInput: {
-    paddingLeft: '10px',
-  },
-  typoPadding: {
-    padding: '30px 0px',
-  },
-  stepGrid:{
-    paddingTop: '20px',
-  },
-  currentTopicTagGrid:{
-    paddingBottom: '24px' ,
-  },
-}));
+import StepComponent from './StepComponent';
 
 const ButtonComponent = ({
   id,
@@ -173,7 +106,7 @@ export const AddTagsQuestion = ({
   const showAddTopicTag = () => {
     setChangeValue('GenerateTags');
     setDisplayState('GenerateTags');
-    setDisplayTypo(false)
+    setDisplayTypo(false);
   };
 
   return (
@@ -245,7 +178,7 @@ export const AddTopicTagSection = ({
         <Typography variant='body1'>
           What topic(s), cause(s), or civic issue(s) does your project address?
         </Typography>
-        <Typography variant='body1' className={classes.typoPadding}>
+        <Typography variant='body1' className={classes.topTypoPadding}>
           Separate tags by spaces and dashes for hyphenation. You can edit your
           tags later if you need too.
         </Typography>
@@ -293,7 +226,9 @@ export const NewTags = ({
       <Grid>
         <Grid className={classes.addTopicGridPadding}>
           <Typography variant='body1'>
-            {displayTypo ? 'New tags to add to your repository:':'Suggested tags to add to your repository:'}
+            {displayTypo
+              ? 'New tags to add to your repository:'
+              : 'Suggested tags to add to your repository:'}
           </Typography>
         </Grid>
         <Grid container className={classes.tagGridStyle}>
@@ -343,22 +278,22 @@ const TagGeneratorInstructions = ({
       <Grid container>
         <Grid item xs={12} style={{ padding: '24px 0px' }}>
           <Typography variant='h4'>
-            How to add your tags to your project’s repository
+            How to add your tags to your project&apos;s repository
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.gridLinkStyle}>
-          <Typography variant='body1' className={classes.typoStyle}>
+          <Typography variant='body1' className={classes.topTypoStyle}>
             1. Under your{' '}
             <Link target='_blank' href={repositoryUrl} underline='always'>
-              project’s repository,
+              project&apos;s repository,
             </Link>{' '}
             click <SettingsGearIcon /> to paste your tags.
           </Typography>
         </Grid>
         <Grid item xs={12} style={{ padding: '24px 16px 0' }}>
-          <Typography variant='body1' className={classes.typoStyle}>
-            If you don’t see the <SettingsGearIcon /> button it means you don’t
-            have “edit repository settings” privileges (and can’t perform the
+          <Typography variant='body1' className={classes.topTypoStyle}>
+            If you don&apos;t see the <SettingsGearIcon /> button it means you don&apos;t
+            have &quot;edit repository settings&quot; privileges (and can&apos;t perform the
             steps below). Please click{' '}
             <Link
               component='button'
@@ -374,7 +309,7 @@ const TagGeneratorInstructions = ({
         </Grid>
         <ImageComponent src='/images/instructions-step1.png' alt='Step 1' />
         <Grid item xs={12}>
-          <Typography variant='body1' className={classes.typoStyle}>
+          <Typography variant='body1' className={classes.topTypoStyle}>
             2. Under{' '}
             <Box component='span' style={{ fontWeight: '700' }}>
               &quot;Topics&quot;
@@ -383,7 +318,7 @@ const TagGeneratorInstructions = ({
           </Typography>
         </Grid>
         <Grid item xs={12} style={{ padding: '20px' }}>
-          <Typography variant='body1' className={classes.typoStyle}>
+          <Typography variant='body1' className={classes.topTypoStyle}>
             Click each individual generated topic tag to copy it one at a time.
             Paste selected tag into your repository.
           </Typography>
@@ -400,7 +335,7 @@ const TagGeneratorInstructions = ({
         </Grid>
         <ImageComponent src='/images/instructions-step2.png' alt='Step 2' />
         <Grid item xs={12}>
-          <Typography variant='body1' className={classes.typoStyle}>
+          <Typography variant='body1' className={classes.topTypoStyle}>
             3. After you have finished adding your tags, click{' '}
             <Box component='span' style={{ fontWeight: '700' }}>
               Save Changes
@@ -455,7 +390,10 @@ export const CopyPasteTags = ({
         </Grid>
       </Grid>
       <Grid className={classes.stepGrid}>
-        <StepComponent step='Step 4 of 4' stepHeading='Submit Project to the Index'/>
+        <StepComponent
+          step='Step 4 of 4'
+          stepHeading='Submit Project to the Index'
+        />
       </Grid>
       <TagGeneratorInstructions
         copyPasteTopicTags={copyPasteTopicTags}

@@ -51,13 +51,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const topicData = [
-  { tag: 'voting', search: 'voting' },
   { tag: 'election', search: 'election' },
   { tag: 'food-pantry', search: 'food' },
-  { tag: 'voting', search: 'voting' },
-  { tag: 'ballot', search: 'ballot' },
   { tag: 'budget', search: 'budget' },
-  { tag: 'employment', search: 'employment' },
   { tag: '311', search: '311' },
 ];
 

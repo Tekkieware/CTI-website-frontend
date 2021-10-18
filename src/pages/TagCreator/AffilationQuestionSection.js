@@ -2,19 +2,7 @@ import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  containerPadding: {
-    paddingTop: '20px',
-  },
-  gridPadding: {
-    padding: '10px',
-    '& a:visited': {
-      color: theme.palette.secondary.main,
-    },
-  },
-}));
+import useStyles from './styles';
 
 export const AffiliationQuestionSection = ({
   value,
@@ -24,8 +12,8 @@ export const AffiliationQuestionSection = ({
   const classes = useStyles();
   return (
     <>
-      <Grid container className={classes.containerPadding}>
-        <Grid item xs={12} className={classes.gridPadding}>
+      <Grid container className={classes.questionContainerPadding}>
+        <Grid item xs={12} className={classes.questionGridPadding}>
           <Typography variant='body1'>{question}</Typography>
         </Grid>
         <Grid item xs={4} sm={8}>

@@ -41,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   rightDescription: {
+    marginBottom: '11px',
     marginTop: '7px',
     fontSize: '18px',
     textAlign: 'justify',
-    marginBottom: '11px',
     '& a:visited': {
       color: theme.palette.secondary.main,
     },
