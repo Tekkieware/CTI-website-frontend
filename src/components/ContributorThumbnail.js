@@ -179,12 +179,8 @@ const Thumbnail = ({
 
   const githubId = organization.github_id;
 
-  if (githubId === null) {
-    if (
-      thumbnailInfo.imageUrl !== null &&
-      organization.image_url !== null &&
-      organization.image_url !== ''
-    ) {
+  if (!githubId) {
+    if (thumbnailInfo.imageUrl && organization.image_url) {
       thumbnailInfo.imageUrl = organization.image_url;
     }
     if (
