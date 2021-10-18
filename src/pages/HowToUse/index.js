@@ -1,27 +1,39 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import GenericHeaderSection from '../../components/GenericHeaderSection';
 import ImageComponent from '../../components/ImageComponent';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
+import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
   boxContainer: {
-    padding: '64px 32px',
+    padding: '32px',
     margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+      padding: '32px 0',
+    },
   },
   summary: {
-    marginBottom: '30px',
+    fontSize: '24px',
+    margin: '32px auto 64px',
     textAlign: 'justify',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '14px',
+    width: '66%',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '20px',
+      margin: '0px auto 32px',
+      width: '100%',
     },
   },
   typoStyle: {
     fontWeight: '400',
     textAlign: 'justify',
+    '& a:visited': {
+      color: theme.palette.secondary.main,
+    },
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
     },
@@ -32,11 +44,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HowToUse = () => {
+  const clipboard = useClipboard();
   const classes = useStyles();
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
     { href: '/join-index/how-to-add', name: 'How to Add Your Project' },
   ];
+  const copyText = (e, text) => {
+    e.preventDefault();
+    clipboard.copy(text);
+  };
   return (
     <Box className='pageContainer'>
       <Box className='boxBackground'>
@@ -52,10 +69,10 @@ const HowToUse = () => {
           <Box className={classes.boxContainer}>
             <Box>
               <Typography variant='body1' className={classes.summary}>
-                By adding the civictechindex topic tag to your project, we can
-                create a continuously updated repository for all civic tech
-                enthusiasts to find open source projects to model, connect with,
-                and learn from.
+                By adding the <b>&apos;civictechindex&apos; </b>
+                topic tag to your project, we can create a continuously updated
+                repository for all civic tech enthusiasts to find open source
+                projects to model, connect with, and learn from.
               </Typography>
             </Box>
             <Box>
@@ -69,6 +86,18 @@ const HowToUse = () => {
                 If you don’t see the <SettingsGearIcon /> button it means you
                 don’t have &quot;edit repository settings&quot; privileges (and
                 can’t perform the steps below).
+              </Typography>
+              <Typography variant='body1' className={classes.typoStyle}>
+                Click{' '}
+                <Link
+                  data-cy='copy-link'
+                  onClick={(e) => copyText(e, window.location.href)}
+                  key='join-index'
+                  href='/join-index/how-to-add'
+                >
+                  here
+                </Link>{' '}
+                to copy the url for this page to send to your GitHub admin.
               </Typography>
             </Box>
             <ImageComponent src='/images/instructions-step1.png' alt='Step 1' />
