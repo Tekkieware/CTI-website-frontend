@@ -1,27 +1,27 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from "axios";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import NavBreadcrumbs from "../../components/NavBreadcrumbs";
-import { useStyle } from "./styles.js";
-import GetStartedCard from '../../components/GetStartedCard'
-import { TitleSection } from '../../components'
+import axios from 'axios';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import NavBreadcrumbs from '../../components/NavBreadcrumbs';
+import { useStyle } from './styles.js';
+import GetStartedCard from '../../components/GetStartedCard';
+import { TitleSection } from '../../components';
 import Grid from '@material-ui/core/Grid';
-import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Affiliated  } from "./Affiliated";
-import { UnaffiliatedOrganizations } from "./UnaffiliatedOrganizations";
-import OrganizationSearch from "./OrganizationSearch";
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Affiliated } from './Affiliated';
+import { UnaffiliatedOrganizations } from './UnaffiliatedOrganizations';
+import OrganizationSearch from './OrganizationSearch';
 
 // eslint-disable-next-line
 function TabPanel(props) {
@@ -29,14 +29,14 @@ function TabPanel(props) {
 
   return (
     <Grid
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
       {value === index && (
-        <Box style={{ padding :'24px 0 24px 0' }}>
+        <Box style={{ padding: '24px 0 24px 0' }}>
           <Box>{children}</Box>
         </Box>
       )}
@@ -48,8 +48,11 @@ export default function Contributors() {
   const classes = useStyle();
   const location = useLocation();
   const [affiliatedCount, setAffiliatedCount] = useState(0);
-  const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] = useState({});
-  const [inputValue, setInputValue] = useState("");
+  const [searchAfflTotalCount, setsearchAfflTotalCount] = useState(0);
+  const [searchUnafflTotalCount, setsearchUnafflTotalCount] = useState(0);
+  const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] =
+    useState({});
+  const [inputValue, setInputValue] = useState('');
   const [organizations, setOrganizations] = useState([]);
   const [organizationNames, setOrganizationNames] = useState([]);
   const [filtersActive, setFiltersActive] = useState(false);
@@ -61,12 +64,17 @@ export default function Contributors() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+      const result = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/organizations/`
+      );
       const sortedOrgs = result.data.sort((a, b) => a.name - b.name);
       sortedOrgs.forEach((org) => {
-        if (org.depth === 3)
-        {
-          const childNodes = sortedOrgs.filter(((item) => item.depth === 4 && item.path.includes(org.path)));
+        if (org.depth === 3) {
+          const childNodes = sortedOrgs.filter(
+            (item) =>
+              item.depth === 4 &&
+              item.path.substring(0, 12).includes(org.path.substring(0, 12))
+          );
           org['totalCount'] = childNodes.length;
         }
       });
@@ -103,34 +111,45 @@ export default function Contributors() {
   }, [location]);
 
   useEffect(() => {
-    let afflCount = 0, unafflCount = 0;
+    let afflCount = 0,
+      searchAfflCount = 0,
+      searchUnafflCount = 0,
+      unafflCount = 0;
     const createAffiliatedOrganizations = () => {
-      const input = inputValue.toLowerCase().replace(/\s/g, "");
+      const input = inputValue.toLowerCase().replace(/\s/g, '');
       const affiliated = Object.create(null);
       const addToAffiliated = (organization) => {
-        if (!affiliated["Code for All"]) {
-          affiliated["Code for All"] = [];
+        if (!affiliated['Code for All']) {
+          affiliated['Code for All'] = [];
         }
-        affiliated["Code for All"].push(organization);
+        affiliated['Code for All'].push(organization);
         affiliated[organization.name] = [organization];
       };
       const addToUnaffiliated = (organization) => {
-        if (affiliated["unaffiliated"]) {
-          affiliated["unaffiliated"].push(organization);
-        }
-        else {
-          affiliated["unaffiliated"] = [organization];
+        if (affiliated['unaffiliated']) {
+          affiliated['unaffiliated'].push(organization);
+        } else {
+          affiliated['unaffiliated'] = [organization];
         }
       };
-
       for (const org of organizations) {
         if ((showIndexContrib && org.cti_contributor) || !showIndexContrib) {
-          const orgName = org.name.toLowerCase().replace(/\s/g, "");
-          if ((!inputValue || orgName.includes(input)) && orgName.toLowerCase() !== 'code for all') {
-            if (org.affiliated) {
+          const orgName = org.name.toLowerCase().replace(/\s/g, '');
+          if (
+            (!inputValue || orgName.includes(input)) &&
+            orgName.toLowerCase() !== 'code for all'
+          ) {
+            if (org.affiliated && org.depth !== 2) {
+              if (inputValue || showIndexContrib) {
+                searchAfflCount++;
+              }
               afflCount++;
               addToAffiliated(org);
-            } else {
+            }
+            if (!org.affiliated) {
+              if (inputValue) {
+                searchUnafflCount++;
+              }
               unafflCount++;
               addToUnaffiliated(org);
             }
@@ -140,6 +159,8 @@ export default function Contributors() {
       setFiltersActive(!!input || showIndexContrib);
       setUnaffiliatedCount(unafflCount);
       setAffiliatedCount(afflCount);
+      setsearchAfflTotalCount(searchAfflCount);
+      setsearchUnafflTotalCount(searchUnafflCount);
       setAffiliatedOrganizationsObject(affiliated);
     };
     createAffiliatedOrganizations();
@@ -153,7 +174,7 @@ export default function Contributors() {
   function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,
-      "aria-controls": `full-width-tabpanel-${index}`,
+      'aria-controls': `full-width-tabpanel-${index}`,
     };
   }
 
@@ -200,7 +221,13 @@ export default function Contributors() {
             >
               <Tab
                 icon='All'
-                label={<> ({totalUnaffiliatedCount + totalAffiliatedCount})</>}
+                label={
+                  <>
+                    {inputValue
+                      ? `(${searchUnafflTotalCount + searchAfflTotalCount})`
+                      : ` (${totalAffiliatedCount + totalUnaffiliatedCount})`}
+                  </>
+                }
                 {...a11yProps(0)}
                 classes={{
                   root: classes.tabRoot,
@@ -227,7 +254,13 @@ export default function Contributors() {
               />
               <Tab
                 icon='Affiliated'
-                label={<> ({totalAffiliatedCount})</>}
+                label={
+                  <>
+                    {inputValue
+                      ? `(${searchAfflTotalCount})`
+                      : ` (${totalAffiliatedCount})`}
+                  </>
+                }
                 classes={{
                   root: classes.tabRoot,
                   selected: classes.tabSelected,
@@ -272,6 +305,7 @@ export default function Contributors() {
                 filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalAffiliatedCount}
+                searchAfflTotalCount={searchAfflTotalCount}
                 showIndexContrib={showIndexContrib}
               />
             </TabPanel>
@@ -294,6 +328,7 @@ export default function Contributors() {
                 filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
                 totalaffiliatedCount={totalAffiliatedCount}
+                searchAfflTotalCount={searchAfflTotalCount}
                 showIndexContrib={showIndexContrib}
               />
             </TabPanel>
