@@ -5,6 +5,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
+import ContactForm from './ContactForm';
 import { GenericHeaderSection } from '../../../components/';
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +56,7 @@ const Contact = () => {
           </GenericHeaderSection>
         </Container>
       </Box>
-      <Card>
+      {/* <Card>
         <CardMedia
           component='iframe'
           title='googleContactForm'
@@ -68,7 +69,8 @@ const Contact = () => {
         >
           Loading…
         </CardMedia>
-      </Card>
+      </Card> */}
+      <ContactForm />
     </Box>
   );
 };
