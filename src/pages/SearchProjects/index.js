@@ -249,22 +249,21 @@ const Projects = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
       .then((res) => {
-        let tempFilterList = searchFilterList.filter(
-          (searchFilter) => searchFilter.category !== 'topic'
-        );
-        tempFilterList = tempFilterList.concat(
-          res.data
-            .filter((org) => org.org_tag)
-            .map((org) => {
-              afflns[org.org_tag] = true;
-              return {
-                category: 'topic',
-                name: org.org_tag,
-                label: org.name,
-                selected: false,
-              };
-            })
-        );
+        const tempFilterList = searchFilterList
+          .filter((searchFilter) => searchFilter.category !== 'topic')
+          .concat(
+            res.data
+              .filter((org) => org.org_tag)
+              .map((org) => {
+                afflns[org.org_tag] = true;
+                return {
+                  category: 'topic',
+                  name: org.org_tag,
+                  label: org.name,
+                  selected: false,
+                };
+              })
+          );
         setAffiliations(afflns);
         setSearchFilterList(tempFilterList);
       });

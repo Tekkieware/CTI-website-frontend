@@ -2,7 +2,7 @@ const searchFilterList = [
   {
     category: 'language',
     name: 'javascript',
-    label: 'Javascript',
+    label: 'JavaScript',
     selected: false,
   },
   { category: 'language', name: 'python', label: 'Python', selected: false },
@@ -10,7 +10,7 @@ const searchFilterList = [
   {
     category: 'language',
     name: 'typescript',
-    label: 'Typescript',
+    label: 'TypeScript',
     selected: false,
   },
   { category: 'language', name: 'c#', label: 'C#', selected: false },
@@ -65,7 +65,7 @@ const searchFilterList = [
   {
     category: 'topic',
     name: 'yale-openlab',
-    label: 'Yale Openlab',
+    label: 'Yale OpenLab',
     selected: false,
   },
   {
