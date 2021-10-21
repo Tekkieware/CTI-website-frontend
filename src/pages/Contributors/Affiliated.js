@@ -201,7 +201,7 @@ export const Affiliated = (props) => {
       </Grid>
       <Grid>
         {dropdownOpen &&
-          (!organizations['Code for All'] ? (
+          (!organizations ? (
             !inputValue ? (
               <h3 className={classes.loaders}>Loading...</h3>
             ) : (

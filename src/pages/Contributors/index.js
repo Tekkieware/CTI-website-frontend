@@ -50,8 +50,9 @@ export default function Contributors() {
   const [affiliatedCount, setAffiliatedCount] = useState(0);
   const [searchAfflTotalCount, setsearchAfflTotalCount] = useState(0);
   const [searchUnafflTotalCount, setsearchUnafflTotalCount] = useState(0);
-  const [affiliatedOrganizationsObject, setAffiliatedOrganizationsObject] =
-    useState({});
+  const [unaffiliatedOrganizationsObject, setUnaffiliatedOrganizationsObject] =
+    useState([]);
+  const [affiliatedObject, setaffiliatedObject] = useState({});
   const [inputValue, setInputValue] = useState('');
   const [organizations, setOrganizations] = useState([]);
   const [organizationNames, setOrganizationNames] = useState([]);
@@ -117,21 +118,8 @@ export default function Contributors() {
       unafflCount = 0;
     const createAffiliatedOrganizations = () => {
       const input = inputValue.toLowerCase().replace(/\s/g, '');
-      const affiliated = Object.create(null);
-      const addToAffiliated = (organization) => {
-        if (!affiliated['Code for All']) {
-          affiliated['Code for All'] = [];
-        }
-        affiliated['Code for All'].push(organization);
-        affiliated[organization.name] = [organization];
-      };
-      const addToUnaffiliated = (organization) => {
-        if (affiliated['unaffiliated']) {
-          affiliated['unaffiliated'].push(organization);
-        } else {
-          affiliated['unaffiliated'] = [organization];
-        }
-      };
+      const affiliated = [];
+      const unaffiliated = [];
       for (const org of organizations) {
         if ((showIndexContrib && org.cti_contributor) || !showIndexContrib) {
           const orgName = org.name.toLowerCase().replace(/\s/g, '');
@@ -144,14 +132,13 @@ export default function Contributors() {
                 searchAfflCount++;
               }
               afflCount++;
-              addToAffiliated(org);
-            }
-            if (!org.affiliated) {
+              affiliated.push(org);
+            } else if (!org.affiliated) {
               if (inputValue) {
                 searchUnafflCount++;
               }
               unafflCount++;
-              addToUnaffiliated(org);
+              unaffiliated.push(org);
             }
           }
         }
@@ -161,7 +148,8 @@ export default function Contributors() {
       setAffiliatedCount(afflCount);
       setsearchAfflTotalCount(searchAfflCount);
       setsearchUnafflTotalCount(searchUnafflCount);
-      setAffiliatedOrganizationsObject(affiliated);
+      setaffiliatedObject(affiliated);
+      setUnaffiliatedOrganizationsObject(unaffiliated);
     };
     createAffiliatedOrganizations();
   }, [inputValue, organizations, showIndexContrib]);
@@ -223,7 +211,7 @@ export default function Contributors() {
                 icon='All'
                 label={
                   <>
-                    {inputValue
+                    {inputValue || showIndexContrib
                       ? `(${searchUnafflTotalCount + searchAfflTotalCount})`
                       : ` (${totalAffiliatedCount + totalUnaffiliatedCount})`}
                   </>
@@ -240,8 +228,8 @@ export default function Contributors() {
                   <>
                     {' '}
                     (
-                    {affiliatedOrganizationsObject['unaffiliated']
-                      ? affiliatedOrganizationsObject['unaffiliated'].length
+                    {unaffiliatedOrganizationsObject
+                      ? unaffiliatedOrganizationsObject.length
                       : 0}
                     )
                   </>
@@ -256,7 +244,7 @@ export default function Contributors() {
                 icon='Affiliated'
                 label={
                   <>
-                    {inputValue
+                    {inputValue || showIndexContrib
                       ? `(${searchAfflTotalCount})`
                       : ` (${totalAffiliatedCount})`}
                   </>
@@ -290,14 +278,14 @@ export default function Contributors() {
             </FormGroup>
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
-                organization={affiliatedOrganizationsObject['unaffiliated']}
+                organization={unaffiliatedOrganizationsObject}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalUnaffiliatedCount}
                 showIndexContrib={showIndexContrib}
               />
               <Affiliated
-                organizations={affiliatedOrganizationsObject}
+                organizations={affiliatedObject}
                 inputValue={inputValue}
                 classes={classes}
                 affiliation='affiliated'
@@ -311,7 +299,7 @@ export default function Contributors() {
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
-                organization={affiliatedOrganizationsObject['unaffiliated']}
+                organization={unaffiliatedOrganizationsObject}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalUnaffiliatedCount}
@@ -320,7 +308,7 @@ export default function Contributors() {
             </TabPanel>
             <TabPanel value={tabValue} index={2}>
               <Affiliated
-                organizations={affiliatedOrganizationsObject}
+                organizations={affiliatedObject}
                 inputValue={inputValue}
                 classes={classes}
                 affiliation='affiliated'
