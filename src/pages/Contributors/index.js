@@ -113,23 +113,21 @@ export default function Contributors() {
   useEffect(() => {
     let afflCount = 0,
       unafflCount = 0;
-    const input = inputValue.toLowerCase().replace(/\s/g, '');
     const affiliated = [];
     const unaffiliated = [];
+    const input = inputValue.toLowerCase().replace(/\s/g, '');
     for (const org of organizations) {
-      if ((showIndexContrib && org.cti_contributor) || !showIndexContrib) {
-        const orgName = org.name.toLowerCase().replace(/\s/g, '');
-        if (
-          (!inputValue || orgName.includes(input)) &&
-          orgName !== 'codeforall'
-        ) {
-          if (org.affiliated && org.depth !== 2) {
-            afflCount++;
-            affiliated.push(org);
-          } else if (!org.affiliated) {
-            unafflCount++;
-            unaffiliated.push(org);
-          }
+      const orgName = org.name.toLowerCase().replace(/\s/g, '');
+      if (
+        ((showIndexContrib && org.cti_contributor) || !showIndexContrib) &&
+        orgName.includes(input)
+      ) {
+        if (org.affiliated && org.depth !== 2) {
+          afflCount++;
+          affiliated.push(org);
+        } else if (!org.affiliated) {
+          unafflCount++;
+          unaffiliated.push(org);
         }
       }
     }
