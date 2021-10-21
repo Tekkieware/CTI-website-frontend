@@ -114,13 +114,13 @@ const useStyles = makeStyles((theme) => ({
 /* eslint complexity: [0, 0]*/
 export const Affiliated = (props) => {
   const {
+    affiliatedCount,
     classes,
     inputValue,
     organizations,
     organizationData,
     filtersActive,
-    totalaffiliatedCount,
-    searchAfflTotalCount,
+    totalAffiliatedCount,
     showIndexContrib,
   } = props;
   const classesLocal = useStyles();
@@ -132,8 +132,8 @@ export const Affiliated = (props) => {
           Affiliated Organizations
           <span style={{ paddingLeft: '9px' }}>
             {filtersActive
-              ? `(${searchAfflTotalCount}/${totalaffiliatedCount})`
-              : `(${totalaffiliatedCount})`}
+              ? `(${affiliatedCount}/${totalAffiliatedCount})`
+              : `(${totalAffiliatedCount})`}
           </span>
         </Typography>
       </Grid>
@@ -167,8 +167,8 @@ export const Affiliated = (props) => {
             </Link>
             <span style={{ paddingLeft: '5px' }}>
               {filtersActive
-                ? `(${searchAfflTotalCount}/${totalaffiliatedCount})`
-                : ` (${totalaffiliatedCount})`}
+                ? `(${affiliatedCount}/${totalAffiliatedCount})`
+                : ` (${totalAffiliatedCount})`}
             </span>
           </Typography>
         </Grid>

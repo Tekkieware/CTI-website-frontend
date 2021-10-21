@@ -48,11 +48,7 @@ export default function Contributors() {
   const classes = useStyle();
   const location = useLocation();
   const [affiliatedCount, setAffiliatedCount] = useState(0);
-  const [searchAfflTotalCount, setsearchAfflTotalCount] = useState(0);
-  const [searchUnafflTotalCount, setsearchUnafflTotalCount] = useState(0);
-  const [unaffiliatedOrganizationsObject, setUnaffiliatedOrganizationsObject] =
-    useState([]);
-  const [affiliatedObject, setaffiliatedObject] = useState({});
+  const [affiliatedOrganizations, setAffiliatedOrganizations] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [organizations, setOrganizations] = useState([]);
   const [organizationNames, setOrganizationNames] = useState([]);
@@ -62,6 +58,9 @@ export default function Contributors() {
   const [totalAffiliatedCount, setTotalAffiliatedCount] = useState(0);
   const [totalUnaffiliatedCount, setTotalUnaffiliatedCount] = useState(0);
   const [unaffiliatedCount, setUnaffiliatedCount] = useState(0);
+  const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
+    []
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,45 +112,32 @@ export default function Contributors() {
 
   useEffect(() => {
     let afflCount = 0,
-      searchAfflCount = 0,
-      searchUnafflCount = 0,
       unafflCount = 0;
-    const createAffiliatedOrganizations = () => {
-      const input = inputValue.toLowerCase().replace(/\s/g, '');
-      const affiliated = [];
-      const unaffiliated = [];
-      for (const org of organizations) {
-        if ((showIndexContrib && org.cti_contributor) || !showIndexContrib) {
-          const orgName = org.name.toLowerCase().replace(/\s/g, '');
-          if (
-            (!inputValue || orgName.includes(input)) &&
-            orgName.toLowerCase() !== 'code for all'
-          ) {
-            if (org.affiliated && org.depth !== 2) {
-              if (inputValue || showIndexContrib) {
-                searchAfflCount++;
-              }
-              afflCount++;
-              affiliated.push(org);
-            } else if (!org.affiliated) {
-              if (inputValue) {
-                searchUnafflCount++;
-              }
-              unafflCount++;
-              unaffiliated.push(org);
-            }
+    const input = inputValue.toLowerCase().replace(/\s/g, '');
+    const affiliated = [];
+    const unaffiliated = [];
+    for (const org of organizations) {
+      if ((showIndexContrib && org.cti_contributor) || !showIndexContrib) {
+        const orgName = org.name.toLowerCase().replace(/\s/g, '');
+        if (
+          (!inputValue || orgName.includes(input)) &&
+          orgName !== 'codeforall'
+        ) {
+          if (org.affiliated && org.depth !== 2) {
+            afflCount++;
+            affiliated.push(org);
+          } else if (!org.affiliated) {
+            unafflCount++;
+            unaffiliated.push(org);
           }
         }
       }
-      setFiltersActive(!!input || showIndexContrib);
-      setUnaffiliatedCount(unafflCount);
-      setAffiliatedCount(afflCount);
-      setsearchAfflTotalCount(searchAfflCount);
-      setsearchUnafflTotalCount(searchUnafflCount);
-      setaffiliatedObject(affiliated);
-      setUnaffiliatedOrganizationsObject(unaffiliated);
-    };
-    createAffiliatedOrganizations();
+    }
+    setFiltersActive(!!input || showIndexContrib);
+    setAffiliatedCount(afflCount);
+    setUnaffiliatedCount(unafflCount);
+    setAffiliatedOrganizations(affiliated);
+    setUnaffiliatedOrganizations(unaffiliated);
   }, [inputValue, organizations, showIndexContrib]);
   TabPanel.propTypes = {
     children: PropTypes.node,
@@ -209,13 +195,7 @@ export default function Contributors() {
             >
               <Tab
                 icon='All'
-                label={
-                  <>
-                    {inputValue || showIndexContrib
-                      ? `(${searchUnafflTotalCount + searchAfflTotalCount})`
-                      : ` (${totalAffiliatedCount + totalUnaffiliatedCount})`}
-                  </>
-                }
+                label={` (${affiliatedCount + unaffiliatedCount})`}
                 {...a11yProps(0)}
                 classes={{
                   root: classes.tabRoot,
@@ -224,16 +204,7 @@ export default function Contributors() {
               />
               <Tab
                 icon='Unaffiliated'
-                label={
-                  <>
-                    {' '}
-                    (
-                    {unaffiliatedOrganizationsObject
-                      ? unaffiliatedOrganizationsObject.length
-                      : 0}
-                    )
-                  </>
-                }
+                label={` (${unaffiliatedCount})`}
                 classes={{
                   root: classes.tabRoot,
                   selected: classes.tabSelected,
@@ -242,13 +213,7 @@ export default function Contributors() {
               />
               <Tab
                 icon='Affiliated'
-                label={
-                  <>
-                    {inputValue || showIndexContrib
-                      ? `(${searchAfflTotalCount})`
-                      : ` (${totalAffiliatedCount})`}
-                  </>
-                }
+                label={` (${affiliatedCount})`}
                 classes={{
                   root: classes.tabRoot,
                   selected: classes.tabSelected,
@@ -278,45 +243,43 @@ export default function Contributors() {
             </FormGroup>
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
-                organization={unaffiliatedOrganizationsObject}
+                organization={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
-                totalunaffiliatedCount={totalUnaffiliatedCount}
+                totalUnaffiliatedCount={totalUnaffiliatedCount}
                 showIndexContrib={showIndexContrib}
               />
               <Affiliated
-                organizations={affiliatedObject}
+                organizations={affiliatedOrganizations}
                 inputValue={inputValue}
                 classes={classes}
                 affiliation='affiliated'
                 organizationData={organizations}
                 filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
-                totalaffiliatedCount={totalAffiliatedCount}
-                searchAfflTotalCount={searchAfflTotalCount}
+                totalAffiliatedCount={totalAffiliatedCount}
                 showIndexContrib={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
-                organization={unaffiliatedOrganizationsObject}
+                organization={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
-                totalunaffiliatedCount={totalUnaffiliatedCount}
+                totalUnaffiliatedCount={totalUnaffiliatedCount}
                 showIndexContrib={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={2}>
               <Affiliated
-                organizations={affiliatedObject}
+                organizations={affiliatedOrganizations}
                 inputValue={inputValue}
                 classes={classes}
                 affiliation='affiliated'
                 organizationData={organizations}
                 filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
-                totalaffiliatedCount={totalAffiliatedCount}
-                searchAfflTotalCount={searchAfflTotalCount}
+                totalAffiliatedCount={totalAffiliatedCount}
                 showIndexContrib={showIndexContrib}
               />
             </TabPanel>
