@@ -55,7 +55,7 @@ export const UnaffiliatedOrganizations = (props) => {
     filtersActive,
     organization,
     showIndexContrib,
-    totalunaffiliatedCount,
+    totalUnaffiliatedCount,
     unaffiliatedCount,
   } = props;
   const classes = useStyles();
@@ -69,13 +69,22 @@ export const UnaffiliatedOrganizations = (props) => {
           <span style={{ paddingLeft: '1px' }}>
             {' '}
             {filtersActive
-              ? `(${unaffiliatedCount}/${totalunaffiliatedCount})`
-              : `(${totalunaffiliatedCount})`}{' '}
+              ? `(${unaffiliatedCount}/${totalUnaffiliatedCount})`
+              : `(${totalUnaffiliatedCount})`}{' '}
           </span>
         </Typography>
       </Grid>
       {showIndexContrib ? (
-        <Grid item xs={12}  sm={12} md={12} container direction="row" justify="center" alignItems="center">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          container
+          direction='row'
+          justify='center'
+          alignItems='center'
+        >
           <Typography color='primary' className={classes.noargText}>
             {' '}
             No organization found{' '}
@@ -98,8 +107,7 @@ export const UnaffiliatedOrganizations = (props) => {
                     isChildThumbnail={isChildThumbnail}
                   ></ContributorThumbnail>
                 </Grid>
-              ))
-            }
+              ))}
           </Grid>
         </Grid>
       )}

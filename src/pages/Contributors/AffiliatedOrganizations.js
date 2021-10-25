@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     marginTop: '10px',
     justifyContent: 'center',
-    [theme.breakpoints.between('xs','sm')]: {
+    [theme.breakpoints.between('xs', 'sm')]: {
       marginLeft: '0',
       justifyContent: 'center',
       alignItems: 'center',
@@ -73,17 +73,14 @@ export const AffiliatedOrganizations = ({
   const classes = useStyles();
 
   const isChildThumbnail = true;
-  let organizationArray;
   let parentdata;
   let parentChildobj;
   let mapsearchedChildParent;
 
   const getParentData = () => {
-    organizationArray = organizations['Code for All'].filter((item) => item);
-
     parentdata = [];
 
-    organizationArray.forEach((org) => {
+    organizations.forEach((org) => {
       if (org.depth === 3) {
         org['childNodes'] = [];
         org['isOpen'] = false;
@@ -131,7 +128,13 @@ export const AffiliatedOrganizations = ({
   useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, organizations, organizationData, showIndexContrib,filtersActive]);
+  }, [
+    inputValue,
+    organizations,
+    organizationData,
+    showIndexContrib,
+    filtersActive,
+  ]);
 
   let childSort;
   let childNode;
@@ -155,7 +158,11 @@ export const AffiliatedOrganizations = ({
               inputValue={inputValue}
               filtersActive={filtersActive}
             >
-              <Grid container style={ { justifyContent:"center" } } alignItems='center'>
+              <Grid
+                container
+                style={{ justifyContent: 'center' }}
+                alignItems='center'
+              >
                 {childNode.length > 0 ? (
                   <Grid
                     item
@@ -166,7 +173,10 @@ export const AffiliatedOrganizations = ({
                     {childNode.map((child, idx) => {
                       return (
                         <Grid
-                          item xs={12} sm={5} lg={5}
+                          item
+                          xs={12}
+                          sm={5}
+                          lg={5}
                           className={classes.afflnThumbnails}
                           key={`affiliatedThumbnail_child_${i}_${idx}`}
                         >
@@ -224,7 +234,10 @@ export const AffiliatedOrganizations = ({
     inputValue !== ''
   ) {
     return (
-      <Grid className={classes.thumbnailGrid} data-cy='affiliated-organizations'>
+      <Grid
+        className={classes.thumbnailGrid}
+        data-cy='affiliated-organizations'
+      >
         {currentThumbnails.map((org, i) => {
           return (
             <Dropdown

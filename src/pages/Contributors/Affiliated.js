@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     '& h4': {
       paddingLeft: '10px',
       color: theme.palette.secondary.dark,
-      [theme.breakpoints.between('xs','sm')]: {
+      [theme.breakpoints.between('xs', 'sm')]: {
         fontSize: '15px',
       },
       [theme.breakpoints.up('md')]: {
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   codeforallText: {
-    fontSize:'24px',
+    fontSize: '24px',
     [theme.breakpoints.up('sm')]: {
       fontSize: '12px',
     },
@@ -114,13 +114,13 @@ const useStyles = makeStyles((theme) => ({
 /* eslint complexity: [0, 0]*/
 export const Affiliated = (props) => {
   const {
+    affiliatedCount,
     classes,
     inputValue,
     organizations,
     organizationData,
     filtersActive,
-    affiliatedCount,
-    totalaffiliatedCount,
+    totalAffiliatedCount,
     showIndexContrib,
   } = props;
   const classesLocal = useStyles();
@@ -132,8 +132,8 @@ export const Affiliated = (props) => {
           Affiliated Organizations
           <span style={{ paddingLeft: '9px' }}>
             {filtersActive
-              ? `(${affiliatedCount}/${totalaffiliatedCount})`
-              : `(${totalaffiliatedCount})`}
+              ? `(${affiliatedCount}/${totalAffiliatedCount})`
+              : `(${totalAffiliatedCount})`}
           </span>
         </Typography>
       </Grid>
@@ -146,10 +146,18 @@ export const Affiliated = (props) => {
         })}
       >
         <Grid>
-          <img src='/images/code_for_All.png' alt='code for all logo' className={classesLocal.codeforAllIcon}/>
+          <img
+            src='/images/code_for_All.png'
+            alt='code for all logo'
+            className={classesLocal.codeforAllIcon}
+          />
         </Grid>
         <Grid>
-          <Typography variant='h4' noWrap className={classesLocal.codeforallText}>
+          <Typography
+            variant='h4'
+            noWrap
+            className={classesLocal.codeforallText}
+          >
             <Link
               href='/organization/code-for-all'
               target='_blank'
@@ -159,8 +167,8 @@ export const Affiliated = (props) => {
             </Link>
             <span style={{ paddingLeft: '5px' }}>
               {filtersActive
-                ? `(${affiliatedCount}/${totalaffiliatedCount})`
-                : ` (${totalaffiliatedCount})`}
+                ? `(${affiliatedCount}/${totalAffiliatedCount})`
+                : ` (${totalAffiliatedCount})`}
             </span>
           </Typography>
         </Grid>
@@ -185,12 +193,15 @@ export const Affiliated = (props) => {
           data-cy='code-for-all-chevron'
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <DropdownArrow open={dropdownOpen} handleArrow={() => setDropdownOpen(!dropdownOpen)} />
+          <DropdownArrow
+            open={dropdownOpen}
+            handleArrow={() => setDropdownOpen(!dropdownOpen)}
+          />
         </Grid>
       </Grid>
       <Grid>
-        {dropdownOpen && (
-          !organizations['Code for All'] ? (
+        {dropdownOpen &&
+          (!organizations ? (
             !inputValue ? (
               <h3 className={classes.loaders}>Loading...</h3>
             ) : (
@@ -206,8 +217,7 @@ export const Affiliated = (props) => {
                 filtersActive={filtersActive}
               />
             </Grid>
-          )
-        )}
+          ))}
       </Grid>
     </Grid>
   );
