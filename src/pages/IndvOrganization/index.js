@@ -7,6 +7,7 @@ import Error404 from '../Error404';
 import { IndvPageContainer } from './IndvPageContainer';
 import Box from '@material-ui/core/Box';
 import '../../styles.css';
+import { getOrganizationLinks } from '../../components/getOrganizationLinks.js';
 
 const IndvOrgPage = ({ match }) => {
   const [showHeaderResults, setShowHeaderResults] = useState(false);
@@ -22,7 +23,7 @@ const IndvOrgPage = ({ match }) => {
   const [notFound, setNotFound] = useState(true);
   const [dropdownTitle, setDropdownTitle] = useState('');
 
-  const pathName = (match.params.name)?.toLowerCase()?.trim();
+  const pathName = match.params.name?.toLowerCase()?.trim();
 
   // Reset variables when the path changes.
   useEffect(() => {
@@ -35,7 +36,7 @@ const IndvOrgPage = ({ match }) => {
     setGithubLink('');
     setParentOrgs([]);
     setwebsiteUrlResults('');
-    if (pathName === ""){
+    if (pathName === '') {
       setNotFound(true);
       setIsPathChange(false);
     }
@@ -54,11 +55,9 @@ const IndvOrgPage = ({ match }) => {
             const name = org.name;
             const slug = org.slug;
             const orgTag = org.org_tag;
-            const githubId = org.github_id;
             const githubName = org.github_name;
             const url = org.url;
             const modifiedName = name?.replaceAll(' ', '').toLowerCase();
-            let imageUrl;
 
             // The matching criteria is matching one of these names from matchingNameArr
             const matchingNameArr = [
@@ -88,12 +87,7 @@ const IndvOrgPage = ({ match }) => {
               (link) => link.link_type === 'GitHub'
             )?.url;
 
-            if (githubId === null) {
-              imageUrl = org.image_url;
-            } else {
-              imageUrl = `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
-            }
-
+            const imageUrl = getOrganizationLinks(org).imageUrl;
             // Create the breadcrums on the Individual Organization Page
             const parentOrgs = [];
             const crumbs = [
@@ -150,24 +144,28 @@ const IndvOrgPage = ({ match }) => {
     }
   }, [isPathChange, pathName]);
 
-
-  return (
-    (!notFound) ? (
-      <Box className='containerGray'>
-        <Header crumbs={breadCrumbs}
-          showHeaderResults={showHeaderResults} githubLink={githubLink}
-          imageUrl={imageUrl} websiteUrlResults={websiteUrlResults} orgName={orgName}
-        />
-        <IndvPageContainer
-          orgGithubName={orgGithubName}
-          projectSearchTopicsArr={projectSearchTopicsArr}
-          largeScreen={projectSearchTopicsArr}
-          dropdownTitle={dropdownTitle}
-          parentOrgs={parentOrgs}
-          pathName={pathName}
-        />
-      </Box>
-    ) : (<Error404 />))
+  return !notFound ? (
+    <Box className='containerGray'>
+      <Header
+        crumbs={breadCrumbs}
+        showHeaderResults={showHeaderResults}
+        githubLink={githubLink}
+        imageUrl={imageUrl}
+        websiteUrlResults={websiteUrlResults}
+        orgName={orgName}
+      />
+      <IndvPageContainer
+        orgGithubName={orgGithubName}
+        projectSearchTopicsArr={projectSearchTopicsArr}
+        largeScreen={projectSearchTopicsArr}
+        dropdownTitle={dropdownTitle}
+        parentOrgs={parentOrgs}
+        pathName={pathName}
+      />
+    </Box>
+  ) : (
+    <Error404 />
+  );
 };
 
 export default IndvOrgPage;
