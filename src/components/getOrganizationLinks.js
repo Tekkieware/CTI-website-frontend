@@ -1,25 +1,20 @@
 /* eslint-disable no-console */
 
 const getGithubInfo = (organization) => {
-  const githubInfo = { imageUrl: null, organizationUrl: null };
+  const info = { imageUrl: null, organizationUrl: null };
   const { links } = organization;
-  let imageUrl;
-  if (links) {
+  if (links && links.length) {
     const githubLink = links.find((link) => link.link_type === 'GitHub');
-
-    console.log(githubLink, organization.github_id, organization);
     if (githubLink) {
       const githubId = organization.github_id;
-      if (githubId === null) {
-        imageUrl = organization.image_url;
-      } else {
-        imageUrl = `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
-      }
-      githubInfo.imageUrl = imageUrl;
-      githubInfo.organizationUrl = githubLink.url;
+
+      info.imageUrl = githubId
+        ? `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`
+        : organization.image_url;
+      info.organizationUrl = githubLink.url;
     }
   }
-  return githubInfo;
+  return info;
 };
 
 const getImageFromOrg = (organization) => {
