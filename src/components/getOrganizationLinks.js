@@ -1,29 +1,29 @@
 /* eslint-disable no-console */
 
-import { getOrgId } from "./getOrgId.js";
-
 const getGithubInfo = (organization) => {
-  const githubInfo = { imageUrl: null, organizationUrl: null };
+  const info = { imageUrl: null, organizationUrl: null };
   const { links } = organization;
-  if (links) {
-    const githubLink = links.find(link => link.link_type === 'GitHub')
+  if (links && links.length) {
+    const githubLink = links.find((link) => link.link_type === 'GitHub');
     if (githubLink) {
-      const id = getOrgId(githubLink.url);
-      const imageUrl = `https://avatars1.githubusercontent.com/u/${id}?s=100&v=4`;
-      githubInfo.imageUrl = imageUrl;
-      githubInfo.organizationUrl = githubLink.url;
+      const githubId = organization.github_id;
+
+      info.imageUrl = githubId
+        ? `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`
+        : organization.image_url;
+      info.organizationUrl = githubLink.url;
     }
   }
-  return githubInfo;
-}
+  return info;
+};
 
 const getImageFromOrg = (organization) => {
-  if (organization.image_url) {
+  if (organization.image_url && !organization.image_url.includes('scontent')) {
     return organization.image_url;
   } else {
     return '/images/default-github-repo-image.png';
   }
-}
+};
 
 const getLinksFromOrg = (organization) => {
   if (organization.links && organization.links.length) {
@@ -33,7 +33,7 @@ const getLinksFromOrg = (organization) => {
     console.log(`No links available for ${organization.name}`);
     return '/images/default-github-repo-image.png';
   }
-}
+};
 
 export const getOrganizationLinks = (organization) => {
   const thumbnailInfo = getGithubInfo(organization);

@@ -177,22 +177,6 @@ const Thumbnail = ({
   const classes = useStyles();
   let thumbnailImageStyle, thumbnailWrapperStyle;
 
-  const githubId = organization.github_id;
-
-  if (!githubId) {
-    if (thumbnailInfo.imageUrl && organization.image_url) {
-      thumbnailInfo.imageUrl = organization.image_url;
-    }
-    if (
-      thumbnailInfo.imageUrl.includes('undefined') ||
-      thumbnailInfo.imageUrl.includes('scontent')
-    ) {
-      thumbnailInfo.imageUrl = '/images/default-github-repo-image.png';
-    }
-  } else {
-    thumbnailInfo.imageUrl = `https://avatars1.githubusercontent.com/u/${githubId}?s=100&v=4`;
-  }
-
   if (organization.cti_contributor) {
     thumbnailWrapperStyle = classes.thumbnailWrapperContributor;
   } else {
