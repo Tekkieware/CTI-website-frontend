@@ -132,6 +132,12 @@ const themeSettings = {
         },
       },
     },
+    MuiCardActionArea: {
+      root: {
+        display: 'flex',
+        width: 'auto',
+      },
+    },
     MuiCardContent: {
       root: {
         padding: 0,
