@@ -244,7 +244,6 @@ const Thumbnail = ({
           >
             <Link
               href={`/organization/${organization.slug}`}
-              target='_blank'
               rel='noreferrer noopener'
             >
               {organization.name ? organization.name : organization}
