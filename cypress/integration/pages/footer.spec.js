@@ -3,7 +3,7 @@ const faker = require('faker')
 describe('Footer', () => {
   const BAD_FORMAT_EMAIL = 'test@'
   const DUPLICATE_EMAIL = 'test@test.test'
-  const RANDOM_EMAIL = faker.internet.email();
+  const RANDOM_EMAIL = `test_${faker.internet.email()}`;
 
   before(() => {
     cy.visit('/home')
