@@ -7,25 +7,34 @@ const calculateDaysSince = (updateTime) => {
   return Math.round(days / (1000 * 3600 * 24));
 };
 
-export const renderCard = (project) => {
+export const renderCard = (project, affiliations) => {
+  const affiliationTags = [];
+  const topicTags = [];
+  project.topics.forEach((topic) => {
+    if (affiliations[topic]) {
+      affiliationTags.push(topic);
+    } else {
+      topicTags.push(topic)
+    }
+  });
   return (
     <Grid item style={{ paddingTop: '12px' }}  key={project.id}>
       {' '}
       <ProjectCard
-        projectUrl={project.html_url}
-        organizationUrl={project.owner.html_url}
-        organizationAvatarUrl={project.owner.avatar_url}
-        ownerName={project.owner.login}
-        projectName={project.name}
-        projectDescription={project.description}
         homepage={project.homepage}
-        lastUpdate={calculateDaysSince(project.updated_at)}
         issueCount={project.open_issues}
+        lastUpdate={calculateDaysSince(project.updated_at)}
+        organizationAvatarUrl={project.owner.avatar_url}
+        organizationUrl={project.owner.html_url}
+        ownerName={project.owner.login}
+        projectDescription={project.description}
         projectLanguage={project.language}
-        topics={project.topics}
-        watchers={project.watchers_count}
+        projectName={project.name}
+        projectTags={affiliationTags}
+        projectUrl={project.html_url}
         stargazers={project.stargazers_count}
-        projectTags={project.parentOrgs}
+        topics={topicTags}
+        watchers={project.watchers_count}
       />
     </Grid>
   );
