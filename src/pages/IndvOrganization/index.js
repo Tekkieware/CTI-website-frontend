@@ -120,6 +120,7 @@ const IndvOrgPage = ({ match }) => {
             };
             setupBreadCrumbs();
 
+            document.title = `Civic Tech Index — ${name}`
             setOrgName(name);
             setNotFound(false);
             setImageUrl(imageUrl);
