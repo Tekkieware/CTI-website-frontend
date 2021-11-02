@@ -160,7 +160,6 @@ export const Affiliated = (props) => {
           >
             <Link
               href='/organization/code-for-all'
-              target='_blank'
               rel='noreferrer noopener'
             >
               Code for All

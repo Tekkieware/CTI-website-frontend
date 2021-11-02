@@ -23,7 +23,7 @@ import useStyles from './styles';
 const RouteTitled = ({ title, ...rest }) => {
   useEffect(() => {
     if (title) {
-      document.title = 'Civic Tech Index — ' + title;
+      document.title = `Civic Tech Index — ${title}`
     }
   });
 
@@ -53,7 +53,7 @@ const App = () => {
             <Route exact path='/organization/:name' component={IndvOrgPage} />
             {/* test and error page routes begin */}
             <RouteTitled path='/guides/:guide' component={Guides} title='Guides' />
-            <Route path='/404' component={Error404} />
+            <RouteTitled path='/404' component={Error404} title='404' />
             {/* test and error page routes end */}
             <Redirect from='/add' to='/join-index/how-to-add' />
             <Redirect from='/adding' to='/join-index/how-to-add' />
