@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   summary: {
+    color: 'white',
     fontSize: '24px',
     margin: '32px auto 64px',
     textAlign: 'justify',
@@ -62,19 +63,17 @@ const HowToUse = () => {
             mainTitle='How to Add Your Project'
             breadCrumbLinks={breadCrumbLinks}
           />
+          <Typography variant='body1' className={classes.summary}>
+            By adding the <b>&apos;civictechindex&apos; </b>
+            topic tag to your project, we can create a continuously updated
+            repository for all civic tech enthusiasts to find open source
+            projects to model, connect with, and learn from.
+          </Typography>
         </Container>
       </Box>
       <Box className='containerGray'>
         <Container>
           <Box className={classes.boxContainer}>
-            <Box>
-              <Typography variant='body1' className={classes.summary}>
-                By adding the <b>&apos;civictechindex&apos; </b>
-                topic tag to your project, we can create a continuously updated
-                repository for all civic tech enthusiasts to find open source
-                projects to model, connect with, and learn from.
-              </Typography>
-            </Box>
             <Box>
               <Typography variant='body1' className={classes.typoStyle}>
                 1. Under your project’s repository, click <SettingsGearIcon />{' '}
