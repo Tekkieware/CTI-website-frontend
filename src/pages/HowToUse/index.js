@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: '20px',
       margin: '0px auto 32px',
-      width: '100%',
+      width: '66%',
     },
   },
   typoStyle: {
