@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
       margin: '0px auto 32px',
       width: '66%',
     },
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+    },
   },
   typoStyle: {
     fontWeight: '400',
