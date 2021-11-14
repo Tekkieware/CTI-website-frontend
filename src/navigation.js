@@ -40,7 +40,7 @@ const navigation = [
   },
   {
     id: 'civicTechPartners',
-    header: 'Index Contributors',
+    header: 'Civic Tech Organizations',
     route: '#',
     subNavigation: [
       {

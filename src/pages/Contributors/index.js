@@ -157,11 +157,11 @@ export default function Contributors() {
           <NavBreadcrumbs
             crumbs={[
               { name: 'Home', href: '/home' },
-              { name: 'Index Contributors', href: '/organizations/all' },
+              { name: 'Civic Tech Organizations', href: '/organizations/all' },
             ]}
           />
           <Grid container>
-            <TitleSection>Index Contributors</TitleSection>
+            <TitleSection>Civic Tech Organizations</TitleSection>
             <Grid item xs={12}>
               <Typography
                 color='textSecondary'
