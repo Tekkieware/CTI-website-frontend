@@ -100,13 +100,19 @@ export default function Contributors() {
   }, []);
 
   useEffect(() => {
+    if (location.pathname.indexOf('all') > -1) {
+      setTabValue(0);
+    }
+    if (location.pathname.indexOf('contributors') > -1)
+    {
+      setShowIndexContrib(true);
+      setTabValue(0);
+    }
     if (location.pathname.indexOf('unaffiliated') > -1) {
       setTabValue(1);
-    } else if (location.pathname.indexOf('affiliated') > -1) {
-      setTabValue(2);
     }
-    if (location.query) {
-      setShowIndexContrib(location.query.contributor);
+    else if (location.pathname.indexOf('affiliated') > -1) {
+      setTabValue(2);
     }
   }, [location]);
 
