@@ -241,11 +241,10 @@ export default function Contributors() {
             </FormGroup>
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
-                organization={unaffiliatedOrganizations}
+                organizations={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalUnaffiliatedCount={totalUnaffiliatedCount}
-                showIndexContrib={showIndexContrib}
               />
               <Affiliated
                 organizations={affiliatedOrganizations}
@@ -261,11 +260,10 @@ export default function Contributors() {
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
-                organization={unaffiliatedOrganizations}
+                organizations={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalUnaffiliatedCount={totalUnaffiliatedCount}
-                showIndexContrib={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={2}>
