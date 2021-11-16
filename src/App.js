@@ -8,7 +8,7 @@ import Contact from './pages/Contact';
 import Collaborate from './pages/Collaborate';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
-import Faq from './pages/RadicalCollaboration/Faq';
+import Faq from './pages/Faq';
 import IndvOrgPage from './pages/IndvOrganization';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
