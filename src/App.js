@@ -16,7 +16,7 @@ import Landing from './pages/Landing';
 import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
 import Error404 from './pages/Error404';
-import ShareTheCti from './pages/RadicalCollaboration/Share';
+import ShareTheCti from './pages/Share';
 import Guides from './guides/';
 import useStyles from './styles';
 
