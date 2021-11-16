@@ -5,7 +5,7 @@ import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
 import About from './pages/About';
 import Contact from './pages/RadicalCollaboration/Contact';
-import Collaborate from './pages/RadicalCollaboration/Collaborate';
+import Collaborate from './pages/Collaborate';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
 import Faq from './pages/RadicalCollaboration/Faq';
