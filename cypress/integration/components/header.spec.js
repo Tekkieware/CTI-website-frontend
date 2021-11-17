@@ -40,7 +40,10 @@ describe('Header component', () => {
       .trigger('mouseover')
       .get('[data-cy=menuItem]')
       .within(() => {
-        cy.contains('View Organizations');
+        cy.contains('All');
+        cy.contains('Affiliated');
+        cy.contains('Unaffiliated');
+        cy.contains('Index Contributors');
       });
   });
 
