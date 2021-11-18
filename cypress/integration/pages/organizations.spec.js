@@ -27,7 +27,7 @@ describe('Contributors Page (using API)', () => {
 
   it('should find affiliatedOrg via search', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
-    cy.visit('/organizations/affiliated');
+    cy.visit('/organizations/all');
     cy.wait('@getOrganizations');
     cy.get('[data-cy=organization-search]').type(affiliatedOrg);
     cy.get('[class*=makeStyles-gpGrid]').click();
@@ -47,7 +47,7 @@ describe('Contributors Page (using API)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
       'getOrganizations'
     );
-    cy.visit('/organizations/affiliated');
+    cy.visit('/organizations/all');
     cy.wait('@getOrganizations');
     cy.get('[data-cy=organization-search]').type(affiliatedOrgPartial);
     cy.get('[data-cy=organization-search-list]').should('have.length', 1);
@@ -79,7 +79,7 @@ describe('Contributors Page (using fixture)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
       fixture: 'orgs.json',
     });
-    cy.visit('/organizations/');
+    cy.visit('/organizations/all');
   });
 
   it('should load 24 affiliated orgs', () => {
