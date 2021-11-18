@@ -11,7 +11,7 @@ import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
   boxContainer: {
-    padding: '32px',
+    padding: '3em 4em',
     margin: 'auto',
     [theme.breakpoints.down('md')]: {
       padding: '32px 0',
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   summary: {
     color: theme.palette.text.secondary,
     fontSize: '24px',
-    margin: '32px auto 64px',
+    margin: '2em auto',
     textAlign: 'justify',
     width: '66%',
     [theme.breakpoints.down('md')]: {
