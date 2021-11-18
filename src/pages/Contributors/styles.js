@@ -29,13 +29,9 @@ export const useStyle = makeStyles((theme) => ({
   },
   textStyle: {
     color: theme.palette.text.secondary,
-    fontWeight: 700,
-    fontSize: '24px',
+    fontWeight: 400,
     textAlign: 'center',
     marginTop: '-1rem',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 16,
-    },
   },
 
   projectsLink: {

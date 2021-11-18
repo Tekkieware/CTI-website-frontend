@@ -164,6 +164,7 @@ export default function Contributors() {
             <TitleSection>Civic Tech Organizations</TitleSection>
             <Grid item xs={12}>
               <Typography
+                variant='h6'
                 color='textSecondary'
                 className={classes.textStyle}
                 gutterBottom
