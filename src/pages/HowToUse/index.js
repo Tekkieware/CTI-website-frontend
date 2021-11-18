@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   summary: {
-    color: 'white',
+    color: theme.palette.text.secondary,
     fontSize: '24px',
     margin: '32px auto 64px',
     textAlign: 'justify',
