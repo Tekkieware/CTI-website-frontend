@@ -53,8 +53,7 @@ const useStyles = makeStyles((theme) => ({
 export const UnaffiliatedOrganizations = (props) => {
   const {
     filtersActive,
-    organization,
-    showIndexContrib,
+    organizations,
     totalUnaffiliatedCount,
     unaffiliatedCount,
   } = props;
@@ -74,27 +73,11 @@ export const UnaffiliatedOrganizations = (props) => {
           </span>
         </Typography>
       </Grid>
-      {showIndexContrib ? (
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={12}
-          container
-          direction='row'
-          justify='center'
-          alignItems='center'
-        >
-          <Typography color='primary' className={classes.noargText}>
-            {' '}
-            No organization found{' '}
-          </Typography>{' '}
-        </Grid>
-      ) : (
+      {organizations.length > 0 ? (
         <Grid>
           <Grid>
-            {organization &&
-              organization.map((org, index) => (
+            {organizations &&
+              organizations.map((org, index) => (
                 <Grid
                   item
                   xs={12}
@@ -109,6 +92,22 @@ export const UnaffiliatedOrganizations = (props) => {
                 </Grid>
               ))}
           </Grid>
+        </Grid>
+      ) : (
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          container
+          direction='row'
+          justify='center'
+          alignItems='center'
+        >
+          <Typography color='primary' className={classes.noargText}>
+            {' '}
+            No organization found{' '}
+          </Typography>{' '}
         </Grid>
       )}
     </Grid>

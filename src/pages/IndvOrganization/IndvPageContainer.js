@@ -90,6 +90,7 @@ export const IndvPageContainer = (props) => {
   const [dropDownListItem, setDropDownListItem] = useState('');
   const [errorState, setErrorState] = useState(false);
   const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false);
+  const [itemLength, setItemLength] = useState(0);
   const [lastUpdatedProjects, setLastUpdatedProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pages, setPages] = useState(1);
@@ -210,19 +211,12 @@ export const IndvPageContainer = (props) => {
 
   // Update the submitted projects list if the path, sort method or page number is changed.
   useEffect(() => {
-    setPageNum(1);
-    const indexOfLastProject = 1 * projectsPerPage;
-    const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-    const currentProjects = projects.slice(
-      indexOfFirstProject,
-      indexOfLastProject
-    );
-    const items = currentProjects.map((i) => renderCard(i, affiliations));
-    setResults(items);
+    handlePageChange(1);
     if (isProjectSearchFinish) {
       setLoading(false);
     }
-  }, [projects, isProjectSearchFinish, affiliations]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isProjectSearchFinish]);
 
   useEffect(() => {
     if (sortMethod === 'best match') {
@@ -278,11 +272,16 @@ export const IndvPageContainer = (props) => {
     setPageNum(pageNum);
     const indexOfLastProject = pageNum * projectsPerPage;
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+    let itemLen = projectsPerPage;
+    if (indexOfLastProject > projects.length) {
+      itemLen = projects.length - indexOfFirstProject;
+    }
     const currentProjects = projects.slice(
       indexOfFirstProject,
       indexOfLastProject
     );
     const items = currentProjects.map((i) => renderCard(i, affiliations));
+    setItemLength(itemLen);
     setResults(items);
   };
 
@@ -304,7 +303,14 @@ export const IndvPageContainer = (props) => {
             alignItems='center'
             className={classes.allSubmittedProjectSectionStyle}
           >
-            <Typography variant='h5'>All Submitted Projects:</Typography>
+            <Box>
+              <Typography variant='h5'>All Submitted Projects</Typography>
+              {projects.length > 0 && (
+                <Typography variant='body2' color='primary'>
+                  Displaying {itemLength} of {projects.length} results
+                </Typography>
+              )}
+            </Box>
             <SortDropdown
               inputSortMethodList={inputSortMethodList}
               defaultSortMethod={sortMethod}

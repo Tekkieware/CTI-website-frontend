@@ -35,12 +35,15 @@ describe('Header component', () => {
         cy.contains('Volunteer with Us');
       });
 
-    cy.findLink('Index Contributors')
+    cy.findLink('Civic Tech Organizations')
       .should('have.attr', 'href', '/home')
       .trigger('mouseover')
       .get('[data-cy=menuItem]')
       .within(() => {
-        cy.contains('View Organizations');
+        cy.contains('All');
+        cy.contains('Affiliated');
+        cy.contains('Unaffiliated');
+        cy.contains('Index Contributors');
       });
   });
 
@@ -51,7 +54,7 @@ describe('Header component', () => {
     cy.get('[class*=makeStyles-showMobileNav]').should('be.visible');
     cy.get('[class*=makeStyles-dropdownHeader]').first().should('have.text', 'Join the Index');
     cy.get('[class*=makeStyles-dropdownHeader]').eq(1).should('have.text', 'Overview');
-    cy.get('[class*=makeStyles-dropdownHeader]').eq(2).should('have.text', 'Index Contributors');
+    cy.get('[class*=makeStyles-dropdownHeader]').eq(2).should('have.text', 'Civic Tech Organizations');
     cy.get('[class*=makeStyles-dropdownHeader]').last().should('have.text', 'Radical Collaboration');
   });
 });

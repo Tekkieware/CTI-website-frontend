@@ -40,13 +40,28 @@ const navigation = [
   },
   {
     id: 'civicTechPartners',
-    header: 'Index Contributors',
+    header: 'Civic Tech Organizations',
     route: '#',
     subNavigation: [
       {
         id: 'organizations',
-        header: 'View Organizations',
+        header: 'All',
         route: '/organizations/all',
+      },
+      {
+        id: 'affiliatedorganizations',
+        header: 'Affiliated',
+        route: '/organizations/affiliated',
+      },
+      {
+        id: 'unaffiliatedorganizations',
+        header: 'Unaffiliated',
+        route: '/organizations/unaffiliated',
+      },
+      {
+        id: 'indexcontributors',
+        header: 'Index Contributors',
+        route: '/organizations/contributors',
       },
     ],
   },

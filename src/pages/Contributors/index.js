@@ -100,13 +100,19 @@ export default function Contributors() {
   }, []);
 
   useEffect(() => {
+    if (location.pathname.indexOf('all') > -1) {
+      setTabValue(0);
+    }
+    if (location.pathname.indexOf('contributors') > -1)
+    {
+      setShowIndexContrib(true);
+      setTabValue(0);
+    }
     if (location.pathname.indexOf('unaffiliated') > -1) {
       setTabValue(1);
-    } else if (location.pathname.indexOf('affiliated') > -1) {
-      setTabValue(2);
     }
-    if (location.query) {
-      setShowIndexContrib(location.query.contributor);
+    else if (location.pathname.indexOf('affiliated') > -1) {
+      setTabValue(2);
     }
   }, [location]);
 
@@ -157,11 +163,11 @@ export default function Contributors() {
           <NavBreadcrumbs
             crumbs={[
               { name: 'Home', href: '/home' },
-              { name: 'Index Contributors', href: '/organizations/all' },
+              { name: 'Civic Tech Organizations', href: '/organizations/all' },
             ]}
           />
           <Grid container>
-            <TitleSection>Index Contributors</TitleSection>
+            <TitleSection>Civic Tech Organizations</TitleSection>
             <Grid item xs={12}>
               <Typography
                 color='textSecondary'
@@ -241,11 +247,10 @@ export default function Contributors() {
             </FormGroup>
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
-                organization={unaffiliatedOrganizations}
+                organizations={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalUnaffiliatedCount={totalUnaffiliatedCount}
-                showIndexContrib={showIndexContrib}
               />
               <Affiliated
                 organizations={affiliatedOrganizations}
@@ -261,11 +266,10 @@ export default function Contributors() {
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
-                organization={unaffiliatedOrganizations}
+                organizations={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalUnaffiliatedCount={totalUnaffiliatedCount}
-                showIndexContrib={showIndexContrib}
               />
             </TabPanel>
             <TabPanel value={tabValue} index={2}>
