@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '.containerDefault': {
       backgroundColor: theme.palette.secondary.dark,
+      padding: '0 0 2em',
     },
     '.containerGray': {
       backgroundColor: theme.palette.background.secondary,
@@ -80,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '.boxBackground': {
       backgroundColor: theme.palette.background.primary,
-      minHeight: '300px',
+      margin: '2em 0 0',
     },
     '.indv-header-bg': {
       backgroundImage: 'url(/images/indv-org-page-bg.png)',

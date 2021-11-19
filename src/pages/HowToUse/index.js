@@ -11,21 +11,25 @@ import { useClipboard } from 'use-clipboard-copy';
 
 const useStyles = makeStyles((theme) => ({
   boxContainer: {
-    padding: '32px',
+    padding: '3em 4em',
     margin: 'auto',
     [theme.breakpoints.down('md')]: {
       padding: '32px 0',
     },
   },
   summary: {
+    color: theme.palette.text.secondary,
     fontSize: '24px',
-    margin: '32px auto 64px',
+    margin: '1em auto',
     textAlign: 'justify',
     width: '66%',
     [theme.breakpoints.down('md')]: {
       fontSize: '20px',
-      margin: '0px auto 32px',
-      width: '100%',
+      margin: '0px auto 1em',
+      width: '66%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
     },
   },
   typoStyle: {
@@ -62,19 +66,17 @@ const HowToUse = () => {
             mainTitle='How to Add Your Project'
             breadCrumbLinks={breadCrumbLinks}
           />
+          <Typography variant='body1' className={classes.summary}>
+            By adding the <b>&apos;civictechindex&apos; </b>
+            topic tag to your project, we can create a continuously updated
+            repository for all civic tech enthusiasts to find open source
+            projects to model, connect with, and learn from.
+          </Typography>
         </Container>
       </Box>
       <Box className='containerGray'>
         <Container>
           <Box className={classes.boxContainer}>
-            <Box>
-              <Typography variant='body1' className={classes.summary}>
-                By adding the <b>&apos;civictechindex&apos; </b>
-                topic tag to your project, we can create a continuously updated
-                repository for all civic tech enthusiasts to find open source
-                projects to model, connect with, and learn from.
-              </Typography>
-            </Box>
             <Box>
               <Typography variant='body1' className={classes.typoStyle}>
                 1. Under your project’s repository, click <SettingsGearIcon />{' '}
