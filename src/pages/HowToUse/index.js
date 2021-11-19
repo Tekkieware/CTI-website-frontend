@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   summary: {
     color: theme.palette.text.secondary,
     fontSize: '24px',
-    margin: '2em auto',
+    margin: '1em auto',
     textAlign: 'justify',
     width: '66%',
     [theme.breakpoints.down('md')]: {
       fontSize: '20px',
-      margin: '0px auto 32px',
+      margin: '0px auto 1em',
       width: '66%',
     },
     [theme.breakpoints.down('sm')]: {
