@@ -12,18 +12,15 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   subHeaderStyle: {
-    fontWeight: '700',
+     fontWeight: '400',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '20px',
       padding: '48px 30px',
     },
     [theme.breakpoints.up('sm')]: {
-      fontSize: '20px',
       padding: '48px 100px',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '24px',
       padding: '48px 200px',
     },
   },
@@ -90,7 +87,7 @@ const About = () => {
               ></iframe>
             </Grid>
             <Typography
-              variant='h5'
+              variant='h6'
               color='textSecondary'
               className={classes.subHeaderStyle}
             >

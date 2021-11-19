@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     maxWidth: '1150px',
     textAlign: 'center',
+    fontWeight: '400',
     [theme.breakpoints.down('sm')]: {
       padding: '0px 32px',
     },
@@ -20,13 +21,9 @@ const useStyles = makeStyles((theme) => ({
     },
     '& h6': {
       [theme.breakpoints.down('sm')]: {
-        fontSize: '20px',
-        fontWeight: '700',
         margin: '0px 0px 71px 0px',
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: '24px',
-        fontWeight: '700',
         margin: '0px 0px 86px 0px',
       },
     },
