@@ -3,18 +3,18 @@ describe('Contributors Page (using API)', () => {
   const parentOrg = 'Code for America';
   const affiliatedOrg = 'Code for ABQ';
   const affiliatedOrgPartial = 'ABQ';
-  const parentOrgCount = 24;
+  const parentOrgCount1 = 24;
+  const parentOrgCount2 = 1;
 
-  it(`should load grandparentOrg, ${parentOrgCount} children, parentOrg, affiliatedOrg`, () => {
+  it(`should load grandparentOrg, parentOrg, affiliatedOrg`, () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
     cy.visit('/organizations/all');
     cy.wait('@getOrganizations');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').uncheck();
     cy.contains(grandparentOrg).should('have.length', 1);
-    // cy.get('[href*=codeforall]').should('have.length', 1);
     cy.get('[data-cy=code-for-all-chevron]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
-      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount);
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount1);
       cy.get('[data-cy=thumbnail-dropdown]')
         .contains(parentOrg)
         .parentsUntil('[data-cy=thumbnail-dropdown]')
@@ -27,36 +27,33 @@ describe('Contributors Page (using API)', () => {
 
   it('should find affiliatedOrg via search', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
-    cy.visit('/organizations/all');
+    cy.visit('/organizations/affiliated');
     cy.wait('@getOrganizations');
-    cy.get('[data-cy=organization-search]').type(affiliatedOrg);
-    cy.get('[class*=makeStyles-gpGrid]').click();
+    cy.get('[data-cy=organization-search]').type(affiliatedOrg).type('{enter}');
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
       cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
     });
-    cy.get('[class*=endAdornment]').click().within(() => {
-      cy.get('button').click();
-    });
     cy.get('[data-cy=affiliated-organizations]').within(() => {
-      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount);
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount2);
     });
+    cy.get('[data-cy=organization-search]').clear();
   });
 
   it('should find affiliatedOrg via partial search', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
       'getOrganizations'
     );
-    cy.visit('/organizations/all');
+    cy.visit('/organizations/affiliated');
     cy.wait('@getOrganizations');
     cy.get('[data-cy=organization-search]').type(affiliatedOrgPartial);
     cy.get('[data-cy=organization-search-list]').should('have.length', 1);
     cy.get('[data-cy=organization-search-list]').click();
-    cy.get('[class*=makeStyles-gpGrid]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
       cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
     });
+    cy.get('[data-cy=organization-search]').clear();
   });
 
   it('should visit organizations page from home page link', () => {
@@ -78,8 +75,9 @@ describe('Contributors Page (using fixture)', () => {
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
       fixture: 'orgs.json',
-    });
+    }).as('getOrganizations');
     cy.visit('/organizations/all');
+    cy.wait('@getOrganizations');
   });
 
   it('should load 24 affiliated orgs', () => {
@@ -107,7 +105,11 @@ describe('Contributors Page (using fixture)', () => {
   });
 
   it('should navigate to unaffiliated and show unaffiliated orgs tab selected', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
+      fixture: 'orgs.json',
+    }).as('getOrganizations');
     cy.visit('/organizations/unaffiliated');
+    cy.wait('@getOrganizations');
     cy.get('[class*=MuiTabs-flexContainer]').within(() => {
       cy.get('button')
         .eq(0)
@@ -125,7 +127,11 @@ describe('Contributors Page (using fixture)', () => {
   });
 
   it('should navigate to affiliated and show affiliated orgs tab selected', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
+      fixture: 'orgs.json',
+    }).as('getOrganizations');
     cy.visit('/organizations/affiliated');
+    cy.wait('@getOrganizations');
     cy.get('[class*=MuiTabs-flexContainer]').within(() => {
       cy.get('button')
         .eq(0)
