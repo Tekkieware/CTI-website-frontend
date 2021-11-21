@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { DropdownArrow } from '../../components/DropdownArrow.js';
 import Grid from '@material-ui/core/Grid';
@@ -125,6 +125,13 @@ export const Affiliated = (props) => {
   } = props;
   const classesLocal = useStyles();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  useEffect(() => {
+    if (filtersActive && organizations.length) {
+      setDropdownOpen(true);
+    } else {
+      setDropdownOpen(false);
+    }
+  }, [filtersActive, organizations])
   return (
     <Grid>
       <Grid style={{ padding: '40px' }}>
