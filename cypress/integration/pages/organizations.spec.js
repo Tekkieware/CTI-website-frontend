@@ -215,7 +215,7 @@ describe('Contributors Page (using fixture)', () => {
       });
       cy.get('[class*=affiliatedThumbnailsWrapper]')
         .find('[class*=afflnThumbnails]')
-        .should('have.length', 8);
+        .should('have.length', 6);
     });
   });
 
@@ -227,7 +227,7 @@ describe('Contributors Page (using fixture)', () => {
       });
       cy.get('[class*=affiliatedThumbnailsWrapper]')
         .find('[class*=afflnThumbnails]')
-        .should('have.length.greaterThan', 8);
+        .should('have.length.greaterThan', 6);
     });
   });
 
