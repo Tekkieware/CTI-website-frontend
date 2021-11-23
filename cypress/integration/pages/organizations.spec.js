@@ -251,12 +251,15 @@ describe('Contributors Page (using fixture)', () => {
 
   // TODO: click open Code for America. need to adjust 25 number to 7 (?)
   it('should show index contributor indicators', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
+      fixture: 'orgs.json',
+    }).as('getOrganizations');
     cy.visit('/organizations/affiliated');
+    cy.wait('@getOrganizations');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').check();
     cy.get('[class*=makeStyles-gpGrid]').within(() => {
       cy.get('[class*=contributorIcon]').should('exist');
     });
-    cy.get('[class*=makeStyles-gpGrid]').click();
     // cy.get('[data-cy=contributor-icon]').should('have.length', 25);
     cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
       cy.contains('Code for America').parent().parent().parent().within(() => {
