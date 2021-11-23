@@ -76,8 +76,8 @@ const HowToUse = () => {
             By adding the <b>&apos;civictechindex&apos; </b>
             topic tag to your project, we can create a continuously updated
             repository for all civic tech enthusiasts to find open source
-            projects to model, connect with, and learn from.
-            Need an overview of what the CTI is? See our  <Link to='/about'>About</Link> page.
+            projects to model, connect with, and learn from. Need an overview of
+            what the CTI is? See our <Link to='/about'>About</Link> page.
           </Typography>
         </Container>
       </Box>
@@ -121,10 +121,11 @@ const HowToUse = () => {
             </Box>
             <Box className={classes.boxPadding}>
               <Typography variant='body1' className={classes.typoStyle}>
-              We recommend adding topic tags for
-              your affiliated organizations, e.g., Code-for-All, Code-for-Japan, code-for-Tokyo
-                topic tags that communicate what your project is about, e.g., food-pantry, climate, etc.
-                and don’t forget to use the topic tag: civictechindex.
+                We recommend adding topic tags for your affiliated
+                organizations, e.g., Code-for-All, Code-for-Japan,
+                code-for-Tokyo topic tags that communicate what your project is
+                about, e.g., food-pantry, climate, etc. and don’t forget to use
+                the topic tag: civictechindex.
               </Typography>
             </Box>
             <ImageComponent src='/images/instructions-step2.png' alt='Step 2' />
