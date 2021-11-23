@@ -15,7 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { GenericHeaderSection } from '../../components/';
+import { GenericHeaderSection } from '../../components';
 import { AffiliationQuestionSection } from './AffilationQuestionSection';
 import {
   OrgNameSection,
@@ -87,7 +87,7 @@ const usePrevious = (refValue) => {
 };
 
 // eslint-disable-next-line max-lines-per-function
-const TagCreator = () => {
+const TagGenerator = () => {
   const theme = useTheme();
   const classes = useStyles();
   const [changeValue, setChangeValue] = useQueryParam(
@@ -535,4 +535,4 @@ const TagCreator = () => {
   );
 };
 
-export default TagCreator;
+export default TagGenerator;

@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HowToUse = () => {
+const HowToAdd = () => {
   const clipboard = useClipboard();
   const classes = useStyles();
   const breadCrumbLinks = [
@@ -145,4 +145,4 @@ const HowToUse = () => {
   );
 };
 
-export default HowToUse;
+export default HowToAdd;
