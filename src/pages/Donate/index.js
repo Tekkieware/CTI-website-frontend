@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import Link from '../../components/common/Link';
 import useStyles from './styles.js';
-import { GenericHeaderSection } from '../../components/';
+import { GenericHeaderSection } from '../../components';
 
-const Donation = () => {
+const Donate = () => {
   const classes = useStyles();
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
@@ -70,4 +70,4 @@ const Donation = () => {
   );
 };
 
-export default Donation;
+export default Donate;
