@@ -9,18 +9,27 @@ import { GenericHeaderSection } from '../../components/';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import LeftTextRightImage from './LeftTextRightImage';
 import RightTextLeftImage from './RightTextLeftImage';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  titleStyle: {
-    textAlign: 'center',
+  headerStyle: {
+    color: theme.palette.text.secondary,
+    maxWidth: '1150px',
+    textAlign: 'justify',
+    fontWeight: '400',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '13px',
+      padding: '0px 32px',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '16px',
+      padding: '0px 100px',
     },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '28px',
+    '& h6': {
+      [theme.breakpoints.down('sm')]: {
+        margin: '0px 0px 71px 0px',
+      },
+      [theme.breakpoints.up('md')]: {
+        margin: '0px 0px 86px 0px',
+      },
     },
   },
 }));
@@ -38,7 +47,12 @@ const Collaborate = () => {
           <GenericHeaderSection
             mainTitle='Your help goes a long way'
             breadCrumbLinks={breadCrumbLinks}
-          />
+          >
+            <Typography variant='h6' className={classes.headerStyle}>
+              We would love to hear your thoughts or feedback on how we can
+              improve your experience with the Civic Tech Index!
+            </Typography>
+          </GenericHeaderSection>
         </Container>
       </Box>
       <Box className='containerGray'>
