@@ -17,28 +17,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '32px 0',
     },
   },
-  summary: {
-    color: theme.palette.text.secondary,
-    fontSize: '24px',
-    margin: '1em auto',
-    textAlign: 'justify',
-    width: '66%',
-    '& a:link': {
-      color: theme.palette.text.secondary,
-      fontWeight:'400',
-    },
-    '& a:visited': {
-      color: theme.palette.text.secondary,
-    },
-    [theme.breakpoints.down('md')]: {
-      fontSize: '20px',
-      margin: '0px auto 1em',
-      width: '66%',
-    },
-    [theme.breakpoints.down('sm')]: {
-      width: '90%',
-    },
-  },
   typoStyle: {
     textAlign: 'justify',
     '& a:visited': {
@@ -72,7 +50,7 @@ const HowToAdd = () => {
             mainTitle='How to Add Your Project'
             breadCrumbLinks={breadCrumbLinks}
           />
-          <Typography variant='body1' className={classes.summary}>
+          <Typography className='genSubheadTypo'>
             By adding the <b>&apos;civictechindex&apos; </b>
             topic tag to your project, we can create a continuously updated
             repository for all civic tech enthusiasts to find open source
