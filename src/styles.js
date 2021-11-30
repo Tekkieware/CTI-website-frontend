@@ -47,9 +47,6 @@ const useStyles = makeStyles((theme) => ({
     '.containerGray': {
       backgroundColor: theme.palette.background.secondary,
     },
-    '.containerTeal': {
-      backgroundColor: theme.palette.background.primary,
-    },
     '.containerWhite': {
       backgroundColor: theme.palette.background.default,
     },
@@ -82,11 +79,6 @@ const useStyles = makeStyles((theme) => ({
     '.boxBackground': {
       backgroundColor: theme.palette.background.primary,
       margin: '2em 0 0',
-    },
-    '.indv-header-bg': {
-      backgroundImage: 'url(/images/indv-org-page-bg.png)',
-      minHeight: '512px',
-      maxHeight: '580px',
     },
     '.genSubheadTypo': {
       color: theme.palette.text.secondary,
