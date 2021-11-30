@@ -88,6 +88,29 @@ const useStyles = makeStyles((theme) => ({
       minHeight: '512px',
       maxHeight: '580px',
     },
+    '.genSubheadTypo': {
+      color: theme.palette.text.secondary,
+      fontSize: '24px',
+      fontWeight: '500',
+      margin: 'auto',
+      textAlign: 'center',
+      width: '66%',
+      '& a:link': {
+        color: theme.palette.text.secondary,
+        fontWeight: '400',
+      },
+      '& a:visited': {
+        color: theme.palette.text.secondary,
+      },
+      [theme.breakpoints.down('md')]: {
+        fontSize: '20px',
+        width: '66%',
+      },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '20px',
+        width: '90%',
+      },
+    },
   },
 }));
 
