@@ -1,6 +1,10 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
+  movieGrid: {
+    justifyContent: 'center',
+    marginBottom: theme.spacing(2),
+  },
   frameStyle: {
     border: 'none',
     overflow: 'hidden',

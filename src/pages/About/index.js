@@ -47,7 +47,7 @@ const About = () => {
             mainTitle='A movement to index every open source civic tech project on GitHub'
             breadCrumbLinks={breadCrumbLinks}
           >
-            <Grid container justify='center' style={{ marginBottom: '16px' }}>
+            <Grid container className={classes.movieGrid}>
               <iframe
                 className={classes.frameStyle}
                 justify='center'
