@@ -103,15 +103,13 @@ export default function Contributors() {
     if (location.pathname.indexOf('all') > -1) {
       setTabValue(0);
     }
-    if (location.pathname.indexOf('contributors') > -1)
-    {
+    if (location.pathname.indexOf('contributors') > -1) {
       setShowIndexContrib(true);
       setTabValue(0);
     }
     if (location.pathname.indexOf('unaffiliated') > -1) {
       setTabValue(1);
-    }
-    else if (location.pathname.indexOf('affiliated') > -1) {
+    } else if (location.pathname.indexOf('affiliated') > -1) {
       setTabValue(2);
     }
   }, [location]);
@@ -169,12 +167,7 @@ export default function Contributors() {
           <Grid container>
             <TitleSection>Civic Tech Organizations</TitleSection>
             <Grid item xs={12}>
-              <Typography
-                variant='h6'
-                color='textSecondary'
-                className={classes.textStyle}
-                gutterBottom
-              >
+              <Typography className='genSubheadTypo'>
                 View all Civic Tech Organizations with open-source repositories.
               </Typography>
             </Grid>

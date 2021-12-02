@@ -6,31 +6,16 @@ import Container from '@material-ui/core/Container';
 import Link from '../../components/common/Link';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import { GenericHeaderSection } from '../../components/';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import LeftTextRightImage from './LeftTextRightImage';
 import RightTextLeftImage from './RightTextLeftImage';
-
-const useStyles = makeStyles((theme) => ({
-  titleStyle: {
-    textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '13px',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '16px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '28px',
-    },
-  },
-}));
+import { Typography } from '@material-ui/core';
 
 const Collaborate = () => {
   const breadCrumbLinks = [
     { name: 'Home', href: '/home' },
     { name: 'Collaborate with Us', href: '/support/collaborate' },
   ];
-  const classes = useStyles();
+
   return (
     <Box className='pageContainer'>
       <Box className='boxBackground'>
@@ -38,12 +23,17 @@ const Collaborate = () => {
           <GenericHeaderSection
             mainTitle='Your help goes a long way'
             breadCrumbLinks={breadCrumbLinks}
-          />
+          >
+            <Typography className='genSubheadTypo'>
+              We would love to hear your thoughts or feedback on how we can
+              improve your experience with the Civic Tech Index!
+            </Typography>
+          </GenericHeaderSection>
         </Container>
       </Box>
       <Box className='containerGray'>
         <Container>
-          <Grid container item className={classes.LinkText} xs={12} spacing={4}>
+          <Grid container item xs={12} spacing={4}>
             <LeftTextRightImage
               mainHeading='Donate'
               subHeading='Every gift helps us continue our work.'

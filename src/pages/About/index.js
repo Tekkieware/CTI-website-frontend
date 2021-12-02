@@ -47,7 +47,7 @@ const About = () => {
             mainTitle='A movement to index every open source civic tech project on GitHub'
             breadCrumbLinks={breadCrumbLinks}
           >
-            <Grid container justify='center'>
+            <Grid container className={classes.movieGrid}>
               <iframe
                 className={classes.frameStyle}
                 justify='center'
@@ -60,11 +60,7 @@ const About = () => {
                 webkitallowfullscreen='true'
               ></iframe>
             </Grid>
-            <Typography
-              variant='h6'
-              color='textSecondary'
-              className={classes.subHeaderStyle}
-            >
+            <Typography className='genSubheadTypo'>
               With your help, we can create a continuously updated repository
               for all civic tech enthusiasts to find open source projects to
               model, connect with, and learn from.
