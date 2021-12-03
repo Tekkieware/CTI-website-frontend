@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(23),
     width: '100%',
     border: '1px solid',
-    padding: theme.spacing(4),
+    padding: theme.spacing(3),
+    // padding: '24px',
     borderRadius: theme.spacing(0.5),
     borderColor: theme.palette.background.darkGray,
     display: 'flex',
@@ -56,9 +57,6 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
     boxShadow: '0px 6px 30px rgba(4, 45, 95, 0.08)',
   },
-  gitButtonDiv: {
-    paddingTop: theme.spacing(2),
-  },
   cardTypo: {
     textAlign: 'center',
     width: theme.spacing(27),
@@ -66,8 +64,9 @@ const useStyles = makeStyles((theme) => ({
   media: {
     display: 'flex',
     justifyContent: 'center',
-    height: theme.spacing(8),
-    width: theme.spacing(8),
+    alignItems: 'center',
+    height: '64px',
+    width: '64px',
   },
   logoContainer: {
     display: 'flex',
