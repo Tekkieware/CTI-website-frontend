@@ -35,7 +35,7 @@ import {
 } from './TopicTagSection';
 import useTheme from '@material-ui/core/styles/useTheme';
 import BottomSection from './BottomSection';
-import StepComponent from './StepComponent'
+import StepComponent from './StepComponent';
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '0px 16px',
     },
   },
-  stepGrid:{
+  stepGrid: {
     paddingTop: '50px',
   },
 }));
@@ -310,14 +310,17 @@ const TagGenerator = () => {
     return (
       <>
         <Grid className={classes.stepGrid}>
-          <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+          <StepComponent
+            step='Step 1 of 4'
+            stepHeading='Select Project Affiliation'
+          />
         </Grid>
         <OrgNameSection
           setDisplayState={setDisplayState}
           orgName={orgName}
           linkStyles={linkStyles}
         />
-        <StepComponent step='Step 2 of 4' stepHeading='Find Project'/>
+        <StepComponent step='Step 2 of 4' stepHeading='Find Project' />
         <ProjectRepositorySection
           repositoryUrl={fullRepositoryUrl}
           setDisplayState={setDisplayState}
@@ -356,14 +359,17 @@ const TagGenerator = () => {
       return (
         <>
           <Grid className={classes.stepGrid}>
-            <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+            <StepComponent
+              step='Step 1 of 4'
+              stepHeading='Select Project Affiliation'
+            />
           </Grid>
           <OrgNameSection
             setDisplayState={setDisplayState}
             orgName={orgName}
             linkStyles={linkStyles}
           />
-          <StepComponent step='Step 2 of 4' stepHeading='Find Project'/>
+          <StepComponent step='Step 2 of 4' stepHeading='Find Project' />
           <ProjectRepositoryInput
             repositoryUrl={repositoryUrl}
             handleEnter={handleEnter}
@@ -388,7 +394,10 @@ const TagGenerator = () => {
                 currentTags={currentTags}
                 repositoryName={repositoryName}
               />
-              <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
+              <StepComponent
+                step='Step 3 of 4'
+                stepHeading='Create Topic Tags'
+              />
               <AddTagsQuestion
                 userTags={userTags}
                 displayState={displayState}
@@ -411,7 +420,7 @@ const TagGenerator = () => {
       return (
         <>
           <OrgProjSection />
-          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
           <CurrentTopicTagSection
             currentTags={currentTags}
             repositoryName={repositoryName}
@@ -434,7 +443,7 @@ const TagGenerator = () => {
       return (
         <>
           <OrgProjSection />
-          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
           <CurrentTopicTagSection
             currentTags={currentTags}
             repositoryName={repositoryName}
@@ -457,7 +466,7 @@ const TagGenerator = () => {
       return (
         <>
           <OrgProjSection />
-          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags'/>
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
           <CurrentTopicTagSection
             currentTags={currentTags}
             repositoryName={repositoryName}
@@ -476,14 +485,17 @@ const TagGenerator = () => {
       return (
         <>
           <Grid className={classes.stepGrid}>
-            <StepComponent step='Step 1 of 4' stepHeading='Select Project Affiliation'/>
+            <StepComponent
+              step='Step 1 of 4'
+              stepHeading='Select Project Affiliation'
+            />
           </Grid>
           <AffiliationQuestionSection
             value={value}
             handleChange={handleChange}
             question={
               <>
-                Are you affiliated with an{' '}
+                  Are you affiliated with an{' '}
                 <Link to='/organizations/all'>organization</Link>?
               </>
             }
@@ -514,11 +526,7 @@ const TagGenerator = () => {
             mainTitle='Tag Generator'
             breadCrumbLinks={breadCrumbLinks}
           >
-            <Typography
-              variant='h6'
-              color='textSecondary'
-              style={{ fontWeight: '500', textAlign: 'center' }}
-            >
+            <Typography className='genSubheadTypo'>
               Join the Civic Tech Index by submitting your open-source project.
               <br /> This process takes less than one minute to complete.
             </Typography>
