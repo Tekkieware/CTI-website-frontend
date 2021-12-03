@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import GenericHeaderSection from '../../components/GenericHeaderSection';
@@ -17,23 +17,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '32px 0',
     },
   },
-  summary: {
-    color: theme.palette.text.secondary,
-    fontSize: '24px',
-    margin: '1em auto',
-    textAlign: 'justify',
-    width: '66%',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '20px',
-      margin: '0px auto 1em',
-      width: '66%',
-    },
-    [theme.breakpoints.down('sm')]: {
-      width: '90%',
-    },
-  },
   typoStyle: {
-    fontWeight: '400',
     textAlign: 'justify',
     '& a:visited': {
       color: theme.palette.secondary.main,
@@ -47,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HowToUse = () => {
+const HowToAdd = () => {
   const clipboard = useClipboard();
   const classes = useStyles();
   const breadCrumbLinks = [
@@ -66,11 +50,12 @@ const HowToUse = () => {
             mainTitle='How to Add Your Project'
             breadCrumbLinks={breadCrumbLinks}
           />
-          <Typography variant='body1' className={classes.summary}>
+          <Typography className='genSubheadTypo'>
             By adding the <b>&apos;civictechindex&apos; </b>
             topic tag to your project, we can create a continuously updated
             repository for all civic tech enthusiasts to find open source
-            projects to model, connect with, and learn from.
+            projects to model, connect with, and learn from. Need an overview of
+            what the CTI is? See our <Link to='/about'>About</Link> page.
           </Typography>
         </Container>
       </Box>
@@ -80,7 +65,7 @@ const HowToUse = () => {
             <Box>
               <Typography variant='body1' className={classes.typoStyle}>
                 1. Under your project’s repository, click <SettingsGearIcon />{' '}
-                to paste your tags.
+                to add topic tags.
               </Typography>
             </Box>
             <Box className={classes.boxPadding}>
@@ -112,6 +97,15 @@ const HowToUse = () => {
                 , paste the topic you want to add to your repository.{' '}
               </Typography>
             </Box>
+            <Box className={classes.boxPadding}>
+              <Typography variant='body1' className={classes.typoStyle}>
+                We recommend adding topic tags for your affiliated
+                organizations, e.g., Code-for-All, Code-for-Japan,
+                code-for-Tokyo topic tags that communicate what your project is
+                about, e.g., food-pantry, climate, etc. and don’t forget to use
+                the topic tag: civictechindex.
+              </Typography>
+            </Box>
             <ImageComponent src='/images/instructions-step2.png' alt='Step 2' />
             <Box>
               <Typography variant='body1' className={classes.typoStyle}>
@@ -129,4 +123,4 @@ const HowToUse = () => {
   );
 };
 
-export default HowToUse;
+export default HowToAdd;

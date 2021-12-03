@@ -123,22 +123,16 @@ export const AffiliatedOrganizations = ({
     return parentdata;
   };
 
-  const [currentThumbnails, setCurrentThumbnails] = useState(getParentData);
+  const [currentThumbnails, setCurrentThumbnails] = useState([]);
 
   useEffect(() => {
-    setCurrentThumbnails(getParentData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    inputValue,
-    organizations,
-    organizationData,
-    showIndexContrib,
-    filtersActive,
-  ]);
+    setCurrentThumbnails(getParentData());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [organizations]);
 
   let childSort;
   let childNode;
-  if (currentThumbnails && inputValue.length === 0) {
+  if (!filtersActive) {
     return (
       <Grid
         className={classes.thumbnailGrid}
@@ -147,7 +141,7 @@ export const AffiliatedOrganizations = ({
       >
         {currentThumbnails.map((org, i) => {
           childSort = org.childNodes;
-          childNode = org.isOpen ? childSort : childSort.slice(0, 8);
+          childNode = org.isOpen ? childSort : childSort.slice(0, 6);
           return (
             <Dropdown
               checkboxValue={showIndexContrib}
@@ -200,7 +194,7 @@ export const AffiliatedOrganizations = ({
                     filtersActive={filtersActive}
                   />
                 )}
-                {org.childNodes.length > 8 ? (
+                {org.childNodes.length > 6 ? (
                   <Grid
                     item
                     container
@@ -227,12 +221,7 @@ export const AffiliatedOrganizations = ({
         })}
       </Grid>
     );
-  } else if (
-    currentThumbnails &&
-    inputValue !== null &&
-    inputValue.length > 0 &&
-    inputValue !== ''
-  ) {
+  } else {
     return (
       <Grid
         className={classes.thumbnailGrid}
@@ -244,7 +233,7 @@ export const AffiliatedOrganizations = ({
               organization={org}
               key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
-              isOpen={org.childNodes.length <= 5 ? true : false}
+              isOpen={org.childNodes.length <= 6 && i === 0}
               inputValue={inputValue}
               checkboxValue={showIndexContrib}
               filtersActive={filtersActive}

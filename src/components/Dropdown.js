@@ -5,8 +5,7 @@ import { DropdownArrow } from './DropdownArrow';
 import Grid from '@material-ui/core/Grid';
 import clsx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
-
+const useStyles = makeStyles((theme) => ({
   dropdown: {
     margin: '24px auto',
     display: 'flex',
@@ -14,10 +13,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     boxSizing: 'border-box',
     border: '1px solid',
-    borderColor:theme.palette.outline.gray,
+    borderColor: theme.palette.outline.gray,
     borderRadius: '6px',
-    height:'80px',
-    padding:'12px 16px',
+    height: '80px',
+    padding: '12px 16px',
     [theme.breakpoints.down('sm')]: {
       height: '49px',
     },
@@ -30,7 +29,7 @@ const useStyles = makeStyles(theme => ({
       height: '49px',
     },
   },
-  flexGrid:{
+  flexGrid: {
     flexGrow: 1,
     justifyContent: 'flex-end',
   },
@@ -54,38 +53,56 @@ export const Dropdown = ({
     setColor(!colorStyle);
   };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     setOpenChild(isOpen);
     setColor(isOpen);
-  },[isOpen])
-
+  }, [isOpen]);
 
   return (
-
     <Grid data-cy='thumbnail-dropdown'>
       {dropdownLength > 0 ? (
-        <Grid item xs={10} className={clsx(classes.dropdown, { [classes.open]: colorStyle === true })} >
+        <Grid
+          item
+          xs={10}
+          className={clsx(classes.dropdown, {
+            [classes.open]: colorStyle === true,
+          })}
+        >
           <Grid>
-            <ContributorThumbnail organization={organization}  filtersActive={filtersActive} checkboxValue={checkboxValue} dropdownLength={dropdownLength} isOpen={colorStyle} isChildThumbnail={false}/>
+            <ContributorThumbnail
+              organization={organization}
+              filtersActive={filtersActive}
+              checkboxValue={checkboxValue}
+              dropdownLength={dropdownLength}
+              isOpen={colorStyle}
+              isChildThumbnail={false}
+            />
           </Grid>
           <Grid className={classes.flexGrid}></Grid>
-          <Grid item container className={classes.flexGrid} onClick={handleOpen}>
-            <DropdownArrow  open={openChild} setOpenFunction={setOpenChild}  handleArrow={handleOpen} />
+          <Grid
+            item
+            container
+            className={classes.flexGrid}
+            onClick={handleOpen}
+          >
+            <DropdownArrow
+              open={openChild}
+              setOpenFunction={setOpenChild}
+              handleArrow={handleOpen}
+            />
           </Grid>
         </Grid>
-      )
-
-        :
+      ) : (
         <Grid item xs={10} className={classes.dropdown}>
-          <ContributorThumbnail organization={organization}  checkboxValue={checkboxValue} isChildThumbnail={false}/>
+          <ContributorThumbnail
+            organization={organization}
+            checkboxValue={checkboxValue}
+            isChildThumbnail={false}
+          />
         </Grid>
-
-      }
+      )}
       {openChild && children}
-
     </Grid>
-
   );
 };
 export default Dropdown;
