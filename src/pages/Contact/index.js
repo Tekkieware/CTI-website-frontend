@@ -11,7 +11,7 @@ const Contact = () => {
     { name: 'Home', href: '/home' },
     { name: 'Contact', href: '/about/contact' },
   ];
-  const handlePageHeight = function () {
+  const handlePageHeight = () => {
     window.parent.scrollTo(0, 0);
   };
   return (
