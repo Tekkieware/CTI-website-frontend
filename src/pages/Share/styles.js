@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     border: '1px solid',
     padding: theme.spacing(3),
-    // padding: '24px',
     borderRadius: theme.spacing(0.5),
     borderColor: theme.palette.background.darkGray,
     display: 'flex',

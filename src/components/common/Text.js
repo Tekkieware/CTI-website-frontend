@@ -87,11 +87,11 @@ const Text = (props) => {
       classes={
         variant === 'body2'
           ? {
-              colorPrimary: classes.colorPrimary,
-              colorSecondary: classes.colorSecondary,
-              colorTextPrimary: classes.colorTextPrimary,
-              colorTextSecondary: classes.colorTextSecondary,
-            }
+            colorPrimary: classes.colorPrimary,
+            colorSecondary: classes.colorSecondary,
+            colorTextPrimary: classes.colorTextPrimary,
+            colorTextSecondary: classes.colorTextSecondary,
+          }
           : {}
       }
       className={isCustom ? clsx(classes[variant], className) : className}

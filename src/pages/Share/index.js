@@ -25,7 +25,7 @@ const StarMediaSection = () => {
         target='_blank'
       >
         <Card className={classes.card}>
-        <CardActions className={classes.media}>
+          <CardActions className={classes.media}>
             <GitHubButton
               href='https://github.com/civictechindex/CTI-website-frontend'
               data-icon='octicon-star'
