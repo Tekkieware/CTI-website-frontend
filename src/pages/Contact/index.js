@@ -11,7 +11,9 @@ const Contact = () => {
     { name: 'Home', href: '/home' },
     { name: 'Contact', href: '/about/contact' },
   ];
-
+  const handlePageHeight = () => {
+    window.parent.scrollTo(0, 0);
+  };
   return (
     <Box>
       <Box className='boxBackground'>
@@ -37,6 +39,7 @@ const Contact = () => {
           frameBorder='0'
           marginHeight='0'
           marginWidth='0'
+          onLoad={handlePageHeight}
         >
           Loading…
         </CardMedia>
