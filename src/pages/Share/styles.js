@@ -113,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   link: {
+    width: '100%',
     '& .MuiCardActionArea-focusHighlight': {
       backgroundColor: 'transparent',
     },

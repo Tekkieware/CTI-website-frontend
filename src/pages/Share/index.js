@@ -17,34 +17,6 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 const StarMediaSection = () => {
   const classes = useStyles();
 
-  const GitHubCard = () => {
-    return (
-      <CardActionArea
-        className={classes.link}
-        href='https://github.com/civictechindex/CTI-website-frontend'
-        target='_blank'
-      >
-        <Card className={classes.card}>
-          <CardActions className={classes.media}>
-            <GitHubButton
-              href='https://github.com/civictechindex/CTI-website-frontend'
-              data-icon='octicon-star'
-              data-size='large'
-              data-show-count='true'
-              aria-label='Star civictechindex/CTI-website-frontend on GitHub'
-            >
-              Star
-            </GitHubButton>
-          </CardActions>
-          <CardContent>
-            <Typography variant='h6' className={classes.cardTypo}>
-              Don’t forget to star our repository
-            </Typography>
-          </CardContent>
-        </Card>
-      </CardActionArea>
-    );
-  };
   const CardSection = ({ image, title, cardContent, link = '' }) => {
     return (
       <CardActionArea className={classes.link} href={link} target='_blank'>
@@ -69,7 +41,30 @@ const StarMediaSection = () => {
       className={classes.starMediaSection}
     >
       <Grid item md={4}>
-        <GitHubCard />
+        <CardActionArea
+          className={classes.link}
+          href='https://github.com/civictechindex/CTI-website-frontend'
+          target='_blank'
+        >
+          <Card className={classes.card}>
+            <CardActions className={classes.media}>
+              <GitHubButton
+                href='https://github.com/civictechindex/CTI-website-frontend'
+                data-icon='octicon-star'
+                data-size='large'
+                data-show-count='true'
+                aria-label='Star civictechindex/CTI-website-frontend on GitHub'
+              >
+                Star
+              </GitHubButton>
+            </CardActions>
+            <CardContent>
+              <Typography variant='h6' className={classes.cardTypo}>
+                Don’t forget to star our repository
+              </Typography>
+            </CardContent>
+          </Card>
+        </CardActionArea>
       </Grid>
       <Grid item md={4}>
         <CardSection
