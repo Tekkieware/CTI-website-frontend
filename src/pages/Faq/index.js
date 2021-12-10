@@ -71,16 +71,25 @@ const Faq = () => {
   );
 
   useEffect(() => {
-    getFaqData(query, largeScreen);
+    getFaqData(query, false);
   }, [pageNum, largeScreen]);
 
-  const handleFaqClick = (id) => {
+  const handleFaqClick = (faq) => {
     const expanded = [...expandedFaqs];
-    const idx = expanded.indexOf(id.toString());
+    const idx = expanded.indexOf(faq.id.toString());
     if (idx > -1) {
       expanded.splice(idx, 1);
     } else {
-      expanded.push(id.toString());
+      const requestBody = {
+        question: faq.question,
+        answer: faq.answer,
+        view_count: faq.view_count,
+      };
+      axios.post(
+        `${process.env.REACT_APP_API_URL}/api/faqs/${faq.id}/increment_count/`,
+        requestBody
+      );
+      expanded.push(faq.id.toString());
     }
     setExpandedFaqs(expanded);
   };
