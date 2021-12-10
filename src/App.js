@@ -17,6 +17,7 @@ import SearchProjects from './pages/SearchProjects';
 import TagGenerator from './pages/TagGenerator';
 import Error404 from './pages/Error404';
 import ShareTheCti from './pages/Share';
+import Privacy from './pages/Privacy'
 import Guides from './guides/';
 import useStyles from './styles';
 
@@ -53,6 +54,7 @@ const App = () => {
             <RouteTitled exact path='/support/collaborate' component={Collaborate} title='Collaborate with Us' />
             <RouteTitled exact path='/support/donate' component={Donate} title='Donate' />
             <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
+            <RouteTitled exact path='/privacy' component={Privacy} title='Privacy' />
             <Route exact path='/organization/:name' component={IndvOrgPage} />
             {/* test and error page routes begin */}
             <RouteTitled path='/guides/:guide' component={Guides} title='Guides' />

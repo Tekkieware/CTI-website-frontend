@@ -1,4 +1,5 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
+import spectrum from '../../theme-spectrum';
 
 const useStyles = makeStyles(theme => ({
   containerFooter: {
@@ -54,6 +55,9 @@ const useStyles = makeStyles(theme => ({
       paddingBottom: theme.spacing(1),
       fontSize: theme.font.small.fontSize,
     },
+  },
+  annotationLink:{
+      color:spectrum.lightBlue,
   },
   socialContainer: {
     width:'208px',

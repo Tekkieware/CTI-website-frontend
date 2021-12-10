@@ -1,6 +1,8 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+// import Link from '../../components/common/Link';
+import Link from '@material-ui/core/Link';
 import useStyles from './styles';
 
 export default function Annotation() {
@@ -12,6 +14,11 @@ export default function Annotation() {
         The Civic Tech Index is an open-source project, read more on our&nbsp;
         <a style={{ color: '#0D99C6', padding: '0px' }} href='https://github.com/civictechindex'>GitHub</a>.
       </Typography>
+      <Typography variant='body1' className={classes.annotationLink}>
+      <Link href='/privacy' underline='always'>
+                  Privacy Policy
+                </Link>
+                </Typography>
     </Grid>
   )
 }
