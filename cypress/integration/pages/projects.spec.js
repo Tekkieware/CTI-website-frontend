@@ -23,7 +23,7 @@ describe('Projects Page (Search Projects)', () => {
     cy.intercept(`${Cypress.env('GITHUB_API_URL')}/search/repositories*`).as(
       'getProjects'
     );
-    cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
+    cy.get('[data-cy=search-projects]').type(SEARCH).type('{enter}');
     cy.wait('@getProjects');
     cy.get('[data-cy=how-to-improve-your-search-results]').click();
     cy.get('[data-cy=search-tips').within(() => {
@@ -34,7 +34,12 @@ describe('Projects Page (Search Projects)', () => {
   });
 
   it('loads search results', () => {
-    cy.get('[data-cy=search-projects]').click().type(SEARCH).type('{enter}');
+    cy.visit('/projects');
+    cy.intercept(`${Cypress.env('GITHUB_API_URL')}/search/repositories*`).as(
+      'getProjects'
+    );
+    cy.get('[data-cy=search-projects]').type(SEARCH).type('{enter}');
+    cy.wait('@getProjects');
     cy.get('[data-cy=project-card] [data-cy=project-url]').each(($el, index, $list) => {
       const innerText = $el.text();
       expect(RESULTS.indexOf(innerText)).to.be.at.least(0);

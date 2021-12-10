@@ -57,7 +57,6 @@ const SanitizedAnswer = ({ answer }) => {
 const AccordionSection = (props) => {
   const [currentFaq, setCurrentFaq] = useState([]);
   const [sendRequest, setSendRequest] = useState(false);
-  const faqs = props.faqs;
   const classes = useStyles();
 
   useEffect(() => {
@@ -78,15 +77,22 @@ const AccordionSection = (props) => {
 
   return (
     <Grid item xs={12} sm={9} lg={11}>
-      {faqs.map((faq) => (
+      {props.faqs.map((faq) => (
         <Box key={faq.id}>
-          <Accordion className={classes.accordion}>
+          <Accordion
+            className={classes.accordion}
+            expanded={props.expandedFaqs.indexOf(faq.id.toString()) > -1}
+            onClick={() => props.onFaqClick(faq.id)}
+          >
             <AccordionSummary
               className={classes.summary}
               data-cy='faq-question'
               disabled={sendRequest}
               expandIcon={<ExpandMoreRoundedIcon />}
-              onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}
+              onClick={() => {
+                setSendRequest(true);
+                setCurrentFaq(faq);
+              }}
             >
               <Typography variant='h6'>{faq.question}</Typography>
             </AccordionSummary>
@@ -100,7 +106,7 @@ const AccordionSection = (props) => {
         </Box>
       ))}
     </Grid>
-  )
+  );
 }
 
 export default AccordionSection;
