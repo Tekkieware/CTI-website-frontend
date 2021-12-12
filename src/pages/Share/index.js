@@ -19,22 +19,19 @@ const StarMediaSection = () => {
 
   const CardSection = ({ image, title, cardContent, link = '' }) => {
     return (
-      <Card className={classes.card}>
-        <CardActionArea
-          className={`${classes.link} ${classes.media}`}
-          href={link}
-          target='_blank'
-        >
+      <CardActionArea className={classes.link} href={link} target='_blank'>
+        <Card className={classes.card}>
           <CardMedia className={classes.media} image={image} title={title} />
-        </CardActionArea>
-        <CardContent>
-          <Typography variant='h6' className={classes.cardTypo}>
-            {cardContent}
-          </Typography>
-        </CardContent>
-      </Card>
+          <CardContent>
+            <Typography variant='h6' className={classes.cardTypo}>
+              {cardContent}
+            </Typography>
+          </CardContent>
+        </Card>
+      </CardActionArea>
     );
   };
+
   return (
     <Grid
       container
@@ -44,24 +41,30 @@ const StarMediaSection = () => {
       className={classes.starMediaSection}
     >
       <Grid item md={4}>
-        <Card variant='outlined' className={classes.card}>
-          <CardActions>
-            <GitHubButton
-              href='https://github.com/civictechindex/CTI-website-frontend'
-              data-icon='octicon-star'
-              data-size='large'
-              data-show-count='true'
-              aria-label='Star civictechindex/CTI-website-frontend on GitHub'
-            >
-              Star
-            </GitHubButton>
-          </CardActions>
-          <CardContent>
-            <Typography variant='h6' className={classes.cardTypo}>
-              Don’t forget to star our repository
-            </Typography>
-          </CardContent>
-        </Card>
+        <CardActionArea
+          className={classes.link}
+          href='https://github.com/civictechindex/CTI-website-frontend'
+          target='_blank'
+        >
+          <Card className={classes.card}>
+            <CardActions className={classes.media}>
+              <GitHubButton
+                href='https://github.com/civictechindex/CTI-website-frontend'
+                data-icon='octicon-star'
+                data-size='large'
+                data-show-count='true'
+                aria-label='Star civictechindex/CTI-website-frontend on GitHub'
+              >
+                Star
+              </GitHubButton>
+            </CardActions>
+            <CardContent>
+              <Typography variant='h6' className={classes.cardTypo}>
+                Don’t forget to star our repository
+              </Typography>
+            </CardContent>
+          </Card>
+        </CardActionArea>
       </Grid>
       <Grid item md={4}>
         <CardSection
@@ -74,6 +77,7 @@ const StarMediaSection = () => {
     </Grid>
   );
 };
+
 const SocialMediaPostSection = () => {
   const classes = useStyles();
   return (
@@ -93,6 +97,7 @@ const SocialMediaPostSection = () => {
     </Grid>
   );
 };
+
 const SocialMediaSection = () => {
   const classes = useStyles();
   return (
