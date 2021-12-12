@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import React from 'react';
 import sanitizeHtml from 'sanitize-html';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -55,44 +54,27 @@ const SanitizedAnswer = ({ answer }) => {
 };
 
 const AccordionSection = (props) => {
-  const [currentFaq, setCurrentFaq] = useState([]);
-  const [sendRequest, setSendRequest] = useState(false);
-  const faqs = props.faqs;
   const classes = useStyles();
-
-  useEffect(() => {
-    const incrementViewCount = async function () {
-      const requestBody = {
-        question: currentFaq.question,
-        answer: currentFaq.answer,
-        view_count: currentFaq.view_count,
-      };
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/faqs/${currentFaq.id}/increment_count/`, requestBody);
-    };
-    if (sendRequest) {
-      // send the request
-      incrementViewCount()
-      setSendRequest(false);
-    }
-  }, [sendRequest, currentFaq]);
 
   return (
     <Grid item xs={12} sm={9} lg={11}>
-      {faqs.map((faq) => (
+      {props.faqs.map((faq) => (
         <Box key={faq.id}>
-          <Accordion className={classes.accordion}>
+          <Accordion
+            className={classes.accordion}
+            expanded={props.expandedFaqs.indexOf(faq.id.toString()) > -1}
+            onClick={() => props.onFaqClick(faq)}
+          >
             <AccordionSummary
               className={classes.summary}
               data-cy='faq-question'
-              disabled={sendRequest}
               expandIcon={<ExpandMoreRoundedIcon />}
-              onClick={() => { setSendRequest(true); setCurrentFaq(faq) }}
             >
               <Typography variant='h6'>{faq.question}</Typography>
             </AccordionSummary>
             <Divider />
             <AccordionDetails data-cy='faq-answer' className={classes.detail}>
-              <Typography>
+              <Typography onClick={(e) => e.stopPropagation()}>
                 <SanitizedAnswer answer={faq.answer} />
               </Typography>
             </AccordionDetails>
@@ -100,7 +82,7 @@ const AccordionSection = (props) => {
         </Box>
       ))}
     </Grid>
-  )
+  );
 }
 
 export default AccordionSection;
