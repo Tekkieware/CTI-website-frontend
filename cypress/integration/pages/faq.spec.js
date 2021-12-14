@@ -1,8 +1,8 @@
 const SEARCH = 'civic';
 // const Q1 = 'Can I add multiple projects';
-const Q2 = 'What is Civic Tech';
+const Q2 = 'Who are index contributors';
 // const A1 = 'Yes, Please follow the link to add multiple projects.';
-const A2 = 'Civic technology, or civic tech, enhances the relationship between the people and government';
+const A2 = 'are our partners who have contributed to the Civic Tech Index';
 
 describe('FAQ Page (using API)', () => {
   before(() => {
@@ -17,7 +17,7 @@ describe('FAQ Page (using API)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/faqs/*`).as(
       'getFaqs'
     );
-    cy.get('[data-cy=search-faq]').click({ force: true }).type(SEARCH);
+    cy.get('[data-cy=search-faq]').type(SEARCH);
     cy.wait('@getFaqs');
     cy.get('[data-cy=faq-question]')
       .first()

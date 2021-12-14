@@ -1,4 +1,4 @@
-/* eslint-disable sort-keys */
+/* eslint-disable max-lines-per-function */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from 'react';
 import Box from '@material-ui/core/Box';
@@ -8,7 +8,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import _ from 'lodash';
-
+import { ArrayParam, NumberParam, StringParam, useQueryParam, withDefault } from 'use-query-params';
 import { GetStartedCard, GenericHeaderSection } from '../../components';
 import SearchBar from '../SearchProjects/SearchBar';
 import FAQCard from '../../components/FAQCard';
@@ -20,50 +20,79 @@ const useStyles = makeStyles({
 });
 
 const Faq = () => {
-  const breadCrumbLinks = [
-    { name: 'Home', href: '/home' },
-    { name: 'FAQ', href: '/about/faq' },
-  ];
-  const [data, setData] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
-  const [query, setQuery] = useState('');
-  const [status, setStatus] = useState('fetchedFaq');
-  const [totalCount, setTotalCount] = useState(0);
   const classes = useStyles();
-  const apiUrl = `${process.env.REACT_APP_API_URL}/api/faqs/`;
-
   const theme = useTheme();
   const largeScreen = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,
   });
+  const apiUrl = `${process.env.REACT_APP_API_URL}/api/faqs/`;
+  const [faqs, setFaqs] = useState([]);
+  const [status, setStatus] = useState('fetchedFaq');
+  const [totalCount, setTotalCount] = useState(0);
+  const [expandedFaqs, setExpandedFaqs] = useQueryParam(
+    'opened',
+    withDefault(ArrayParam, [])
+  );
+  const [pageNum, setPageNum] = useQueryParam(
+    'page',
+    withDefault(NumberParam, 1)
+  );
+  const [query, setQuery] = useQueryParam(
+    'query',
+    withDefault(StringParam, '')
+  );
 
-  const getFAQData = async (currentQuery, resetPageNum) => {
+  const breadCrumbLinks = [
+    { name: 'Home', href: '/home' },
+    { name: 'FAQ', href: '/about/faq' },
+  ];
+
+  const getFaqData = async (currentQuery, resetState) => {
     const params = {
-      page: resetPageNum ? 1 : pageNum,
+      page: resetState ? 1 : pageNum,
       page_size: largeScreen ? 10 : 5,
       search: currentQuery,
     };
-    // reset pagination current page to 1 in certain cases such as new search query input
-    if (resetPageNum) {
+    if (resetState) {
+      setExpandedFaqs([]);
       setPageNum(1);
     }
     const res = await axios.get(apiUrl, { params: params });
-    setData(res.data.results);
+    setFaqs(res.data.results);
     setTotalCount(res.data.count);
     setStatus(params.search ? 'fetchedSearch' : 'fetchedFaq');
   };
 
   const debounce = useCallback(
     _.debounce((value) => {
-      getFAQData(value, true);
+      getFaqData(value, true);
     }, 300),
     []
   );
 
   useEffect(() => {
-    getFAQData(query, false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getFaqData(query, false);
   }, [pageNum, largeScreen]);
+
+  const handleFaqClick = (faq) => {
+    const expanded = [...expandedFaqs];
+    const idx = expanded.indexOf(faq.id.toString());
+    if (idx > -1) {
+      expanded.splice(idx, 1);
+    } else {
+      const requestBody = {
+        question: faq.question,
+        answer: faq.answer,
+        view_count: faq.view_count,
+      };
+      axios.post(
+        `${process.env.REACT_APP_API_URL}/api/faqs/${faq.id}/increment_count/`,
+        requestBody
+      );
+      expanded.push(faq.id.toString());
+    }
+    setExpandedFaqs(expanded);
+  };
 
   const handleInput = (event) => {
     setQuery(event.target.value);
@@ -87,17 +116,20 @@ const Faq = () => {
                 dataCy='search-faq'
                 onInput={handleInput}
                 placeholder='Search the Civic Tech Index'
+                value={query}
               />
             </Grid>
           </Grid>
         </GenericHeaderSection>
       </Container>
       <FAQCard
-        title={ status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
-        faqs={data}
-        pages={Math.ceil(totalCount / (largeScreen ? 10 : 5))}
         currentPageNum={pageNum}
+        expandedFaqs={expandedFaqs}
+        faqs={faqs}
+        onFaqClick={handleFaqClick}
         onPageChange={handlePageNumChange}
+        pages={Math.ceil(totalCount / (largeScreen ? 10 : 5))}
+        title={ status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
       />
       <GetStartedCard
         headerTitle='Can’t find an answer?'
@@ -107,5 +139,4 @@ const Faq = () => {
     </Box>
   );
 };
-
 export default Faq;
