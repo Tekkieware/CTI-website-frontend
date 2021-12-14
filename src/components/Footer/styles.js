@@ -57,7 +57,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
   annotationLink:{
-      color:spectrum.lightBlue,
+       color:spectrum.lightBlue,
+        '& a:visited': {
+           color: spectrum.lightBlue,
+        },
   },
   socialContainer: {
     width:'208px',
