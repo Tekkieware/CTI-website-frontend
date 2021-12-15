@@ -12,7 +12,8 @@ const YELLOW = '#FFE06D';
 const WHITE = '#FEFEFE';
 // Colors - Secondary
 const DARK_GRAY = '#6D6E74';
-const LIGHT_GRAY = '#F2F2F2';
+// const LIGHT_GRAY = '#F2F2F2';
+const NEW_GRAY = '#F5F5F5';
 const RED = '#D20E0E';
 const PURPLE = '#551A8B';
 // Colors - Grey
@@ -410,7 +411,7 @@ const customThemeSettings = {
   palette: {
     background: {
       primary: TEAL,
-      secondary: LIGHT_GRAY,
+      secondary: NEW_GRAY,
       dark: DARK_BLUE,
     },
     outline: {

@@ -11,6 +11,7 @@ const spectrum = {
   // Secondary
   darkGray: '#6D6E74',
   lightGray: '#F2F2F2',
+  newGray:'#F5F5F5',
   lightBlueHover: '#006B95',
   green: '#5A9E5F',
   red: '#D20E0E',
