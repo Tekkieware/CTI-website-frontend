@@ -7,6 +7,50 @@ import useStyles from './styles.js';
 import { GenericHeaderSection } from '../../components';
 import Link from '@material-ui/core/Link';
 
+const overviewList = [
+  "We may collect information from you when you visit and take actions on our website. We use this information to provide the services you've requested.",
+  'We utilize cookies (such as those stored by Google Analytics) to provide a better experience and improve our review tool website for your use.',
+  'We will not knowingly disclose or sell your personal information to any third party, except as provided in this privacy policy.',
+  'Protecting your personal information is extremely important to us, and we take all reasonable measures to do so.',
+];
+
+const personalInfoSubList = [
+  'Domain from which you access the Internet',
+  'Operating system on your computer and information about the browser you used when visiting the site',
+  'Date and time of your visit',
+  'Pages you visited',
+  'Address of the website that connects you to the Site (such as google.com or bing.com)',
+  'The queries you make on our site.',
+];
+
+const personalInfoList = [
+  'None of the information we collect about you when you visit CivicTechIndex.org is personally identifiable.',
+  'We use this non personally identifiable information to understand how the CivicTechIndex.org website is used, to improve the website, and to monitor usage for security purposes.',
+  'We will not collect personal information from you without your knowledge and consent, except in a few limited circumstances as described in this policy.',
+];
+
+const googleAnalyticsList = [
+  'We use Google Analytics to understand how visitors use our site and to gather aggregate performance metrics.',
+  'We’ve set up Google Analytics so that it doesn’t collect your full IP address.',
+  'We don’t collect any personally identifiable information using Google Analytics, and we do not combine the information collected through Google Analytics with any personally identifiable information.',
+];
+const cookiesList = [
+  'Cookies are small text files that websites place on the computers and mobile devices of people who visit those websites..',
+  'We use cookies and other technologies like pixel tags to remember your preferences, enhance your online experience, and to gather data on how you use our Sites to improve the way we promote our content, programs, and events.',
+  'Your use of our Sites indicates your consent to such use of Cookies.',
+];
+
+const lawList = [
+  'comply with law enforcement requests and legal process, such as a court order or subpoena;',
+  'respond to your requests; or',
+  'protect your, our, or others’ rights, property, or safety.',
+];
+
+const securityList = [
+  "CivicTechIndex.org utilizes Amazon Web Services (AWS).  AWS operates 'secure data networks' protected by industry standard firewalls and password protection systems. Only authorized individuals have access to the information provided by our users.",
+  'We make reasonable efforts to protect your information by using physical and electronic safeguards designed to improve the security of the information we maintain. However, as our Services are hosted electronically, we make no guarantees as to the security or privacy of your information.',
+];
+
 const Privacy = () => {
   const classes = useStyles();
   const breadCrumbLinks = [
@@ -14,49 +58,6 @@ const Privacy = () => {
     { href: '/privacy', name: 'Privacy' },
   ];
 
-  const overviewList = [
-    "We may collect information from you when you visit and take actions on our website. We use this information to provide the services you've requested.",
-    'We utilize cookies (such as those stored by Google Analytics) to provide a better experience and improve our review tool website for your use.',
-    'We will not knowingly disclose or sell your personal information to any third party, except as provided in this privacy policy.',
-    'Protecting your personal information is extremely important to us, and we take all reasonable measures to do so.',
-  ];
-
-  const personalInfoSubList = [
-    'Domain from which you access the Internet',
-    'Operating system on your computer and information about the browser you used when visiting the site',
-    'Date and time of your visit',
-    'Pages you visited',
-    'Address of the website that connects you to the Site (such as google.com or bing.com)',
-    'The queries you make on our site.',
-  ];
-
-  const personalInfoList = [
-    'None of the information we collect about you when you visit CivicTechIndex.org is personally identifiable.',
-    'We use this non personally identifiable information to understand how the CivicTechIndex.org website is used, to improve the website, and to monitor usage for security purposes.',
-    'We will not collect personal information from you without your knowledge and consent, except in a few limited circumstances as described in this policy.',
-  ];
-
-  const googleAnalyticsList = [
-    'We use Google Analytics to understand how visitors use our site and to gather aggregate performance metrics.',
-    'We’ve set up Google Analytics so that it doesn’t collect your full IP address.',
-    'We don’t collect any personally identifiable information using Google Analytics, and we do not combine the information collected through Google Analytics with any personally identifiable information.',
-  ];
-  const cookiesList = [
-    'Cookies are small text files that websites place on the computers and mobile devices of people who visit those websites..',
-    'We use cookies and other technologies like pixel tags to remember your preferences, enhance your online experience, and to gather data on how you use our Sites to improve the way we promote our content, programs, and events.',
-    'Your use of our Sites indicates your consent to such use of Cookies.',
-  ];
-
-  const lawList = [
-    'comply with law enforcement requests and legal process, such as a court order or subpoena;',
-    'respond to your requests; or',
-    'protect your, our, or others’ rights, property, or safety.',
-  ];
-
-  const securityList = [
-    "CivicTechIndex.org utilizes Amazon Web Services (AWS).  AWS operates 'secure data networks' protected by industry standard firewalls and password protection systems. Only authorized individuals have access to the information provided by our users.",
-    'We make reasonable efforts to protect your information by using physical and electronic safeguards designed to improve the security of the information we maintain. However, as our Services are hosted electronically, we make no guarantees as to the security or privacy of your information.',
-  ];
 
   const Heading = ({ heading }) => {
     return (
@@ -70,13 +71,13 @@ const Privacy = () => {
   const SubHeading = ({ subHeading }) => {
     return (
       <Grid item xs={10} md={8} className={classes.gridSubStyle}>
-            <Typography variant='h6' className={classes.h6Style}>
-              {subHeading}
-            </Typography>
-          </Grid>
+        <Typography variant='h6' className={classes.h6Style}>
+          {subHeading}
+        </Typography>
+      </Grid>
     );
   };
-  
+
   const Paragraph = ({ text }) => {
     return (
       <Grid item xs={10} md={8} className={classes.gridMargin}>
@@ -113,8 +114,8 @@ const Privacy = () => {
             <Grid item xs={10} md={8}>
               <Typography variant='body1' className={classes.typoPadding}>
                 CivicTechIndex.org is an informational website managed by Hack
-                for LA which is a project (of Code for America Labs, Inc. ("Code
-                for America", "we", "us", "our"). This Privacy Policy describes
+                for LA which is a project (of Code for America Labs, Inc. (&quot;Code
+                for America&quot;, &quot;we&quot;, &quot;us&quot;, &quot;our&quot;). This Privacy Policy describes
                 how we collect, use, and protect your personal information on
                 this website. By submitting your personal information on our
                 websites, you agree to the terms in this Privacy Policy. If you
@@ -178,7 +179,7 @@ const Privacy = () => {
                 <Typography variant='body1' className={classes.linkStyle}>
                   Google Analytics places a cookie on your web browser to
                   identify you as a unique user. This cookie cannot be used by
-                  anyone but Google. Google's ability to use and share
+                  anyone but Google. Google&apos;s ability to use and share
                   information collected by Google Analytics about your visits to
                   this site is restricted by the&nbsp;
                   <Link
