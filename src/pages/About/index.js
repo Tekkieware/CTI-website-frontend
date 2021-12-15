@@ -40,7 +40,7 @@ const About = () => {
   ];
 
   return (
-    <Box className='pageContainer'>
+    <Box className='containerTeal'>
       <Box className='boxBackround'>
         <Container className='containerDefault'>
           <GenericHeaderSection

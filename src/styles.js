@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.secondary.dark,
       },
     },
+    '.containerTeal': {
+      backgroundColor: theme.palette.background.primary,
+    },
     '.containerDefault': {
       backgroundColor: theme.palette.secondary.dark,
       padding: '0 0 2em',
