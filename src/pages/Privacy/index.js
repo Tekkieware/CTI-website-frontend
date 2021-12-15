@@ -149,7 +149,7 @@ const Privacy = () => {
               </li>
               <ul>
                 {personalInfoSubList.map((item, index) => (
-                  <li key={index} className={classes.listItemStyle}>
+                  <li key={index} className={classes.nestedListStyle}>
                     <Typography variant='body1'>{item}</Typography>
                   </li>
                 ))}
@@ -299,7 +299,7 @@ const Privacy = () => {
               </li>
               <ul>
                 {lawList.map((item, index) => (
-                  <li key={index} className={classes.listItemStyle}>
+                  <li key={index} className={classes.nestedListStyle}>
                     <Typography variant='body1'>{item}</Typography>
                   </li>
                 ))}

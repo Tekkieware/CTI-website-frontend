@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
   listItemStyle: {
     paddingBottom: theme.spacing(2),
   },
+  nestedListStyle:{
+    paddingBottom: theme.spacing(1), 
+  },
   gridSubStyle: {
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(2),
