@@ -1,10 +1,11 @@
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import spectrum from '../../theme-spectrum';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   containerFooter: {
     backgroundColor: '#0F1D2F',
     border: 'none',
-    paddingBottom:'64px',
+    paddingBottom: '64px',
   },
   subscribeSection: {
     padding: '0px 30px',
@@ -22,12 +23,12 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.error.main,
   },
   footerContainer: {
-    position: "relative",
-    padding:'56px 51.5px 0 51.5px',
-    display: "flex",
-    height: "100%",
-    maxWidth:'100vw',
-    justifyContent: "space-between",
+    position: 'relative',
+    padding: '56px 51.5px 0 51.5px',
+    display: 'flex',
+    height: '100%',
+    maxWidth: '100vw',
+    justifyContent: 'space-between',
     // info header links
     '& a:nth-child(1)': {
       fontWeight: 700,
@@ -55,17 +56,23 @@ const useStyles = makeStyles(theme => ({
       fontSize: theme.font.small.fontSize,
     },
   },
+  annotationLink: {
+    color: spectrum.lightBlue,
+    '& a:visited': {
+      color: spectrum.lightBlue,
+    },
+  },
   socialContainer: {
-    width:'208px',
-    display:'flex',
-    justifyContent:'space-between',
-    alignItems:'center',
+    width: '208px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     '& a': {
       margin: 0,
     },
   },
   socialIcons: {
-    paddingTop:'12px',
+    paddingTop: '12px',
   },
   socialContainerLarge: {
     textAlign: 'center',
@@ -73,21 +80,21 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(1.5),
     },
   },
-  subscribeSectionLarge:{
-    maxWidth:'293px',
+  subscribeSectionLarge: {
+    maxWidth: '293px',
   },
-  subscribeSectionSmall:{
-    display:'flex',
-    justifyContent:'space-between',
+  subscribeSectionSmall: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
-  newsLetter:{
-    maxWidth:'403px',
+  newsLetter: {
+    maxWidth: '403px',
   },
   emailSubscribe: {
-    display:'flex',
-    justifyContent:'space-between',
+    display: 'flex',
+    justifyContent: 'space-between',
     '& button': {
-      marginLeft:'8px',
+      marginLeft: '8px',
     },
   },
   successMessage: {
@@ -97,7 +104,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     borderRadius: '8px',
     marginBottom: '0px 8px 5px 0px',
-    width:'100%',
+    width: '100%',
   },
   sectionPaddingSm: {
     padding: '0px 10px 16px 0px',
@@ -107,17 +114,17 @@ const useStyles = makeStyles(theme => ({
     padding: '0px 10px 10px 5px',
     fontSize: '14px!important',
   },
-  submitBtn:{
-    marginTop:'5px!important' ,
-    fontSize:'16px!important',
+  submitBtn: {
+    marginTop: '5px!important',
+    fontSize: '16px!important',
   },
-  linkTypography:{
+  linkTypography: {
     fontSize: '14px!important',
   },
-  followTypographyLg:{
+  followTypographyLg: {
     fontSize: '14px!important',
   },
-  followTypographySm:{
+  followTypographySm: {
     fontSize: '16px!important',
   },
 }));
