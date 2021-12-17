@@ -53,9 +53,6 @@ const useStyles = makeStyles((theme) => ({
     '.containerWhite': {
       backgroundColor: theme.palette.background.default,
     },
-    '.containerTeal': {
-      backgroundColor: theme.palette.secondary.dark,
-    },
     '.containerWorld': {
       backgroundColor: theme.palette.secondary.dark,
       backgroundImage: 'url(/images/world-view.png),url(/images/mag.svg)',
