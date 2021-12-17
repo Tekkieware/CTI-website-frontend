@@ -51,6 +51,7 @@ const securityList = [
   'We make reasonable efforts to protect your information by using physical and electronic safeguards designed to improve the security of the information we maintain. However, as our Services are hosted electronically, we make no guarantees as to the security or privacy of your information.',
 ];
 
+// eslint-disable-next-line max-lines-per-function
 const Privacy = () => {
   const classes = useStyles();
   const breadCrumbLinks = [
