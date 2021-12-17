@@ -33,7 +33,7 @@ const Collaborate = () => {
       </Box>
       <Box className='containerGray'>
         <Container>
-          <Grid container item xs={12} spacing={4}>
+          <Grid container xs={12}>
             <LeftTextRightImage
               mainHeading='Donate'
               subHeading='Every gift helps us continue our work.'
