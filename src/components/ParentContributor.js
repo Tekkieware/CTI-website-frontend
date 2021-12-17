@@ -1,7 +1,7 @@
 import React from "react";
 import { useStyle } from "../pages/Contributors/styles";
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export const ParentContributor = ({ dropdownLength, children }) => {
   const classes = useStyle();

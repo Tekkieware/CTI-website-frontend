@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import Link from '../components/common/Link';
 import Text from '../components/common/Text';
 

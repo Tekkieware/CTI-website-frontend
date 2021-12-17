@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 import { GeneratedTopicTag,CopyPasteTopicTag,ClickableTopicTag }  from '../pages/TagGenerator/TopicTag'
 

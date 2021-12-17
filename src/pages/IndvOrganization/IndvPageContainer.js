@@ -1,16 +1,16 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState, useEffect } from 'react';
-import Box from '@material-ui/core/Box'
+import Box from '@mui/material/Box'
 import axios from 'axios';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import ListItem from '@material-ui/core/ListItem';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import ListItem from '@mui/material/ListItem';
 import PriorityQueue from 'js-priority-queue';
 import { renderCard } from './RenderProjectCard';
 import { OtherProjectsDropdown } from './OtherProjectsDropdown'
 import ResultContainer from '../SearchProjects/ResultContainer';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeStyles } from '@material-ui/styles';
+import CircularProgress from '@mui/material/CircularProgress';
+import { makeStyles } from '@mui/material/styles';
 import SortDropdown from '../../components/SortDropdown';
 
 const calculateDaysSince = (updateTime) => {

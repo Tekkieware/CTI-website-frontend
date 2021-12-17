@@ -1,9 +1,9 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Pagination from '@material-ui/lab/Pagination';
-import Typography from '@material-ui/core/Typography';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import { makeStyles } from '@material-ui/styles';
+import Box from '@mui/material/Box';
+import Pagination from '@mui/material/Pagination';
+import Typography from '@mui/material/Typography';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { makeStyles } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme) => ({
   message: {

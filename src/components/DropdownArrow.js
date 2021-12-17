@@ -1,7 +1,7 @@
 import React from "react";
-import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
-import ExpandLessRoundedIcon from '@material-ui/icons/ExpandLessRounded';
-import { makeStyles } from '@material-ui/core/styles';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
+import { makeStyles } from '@mui/material/styles';
 
 export const DropdownArrow  = ({ open,handleOpen }) => {
 

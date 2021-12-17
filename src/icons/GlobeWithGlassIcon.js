@@ -1,6 +1,6 @@
 import React from 'react';
-import useTheme from '@material-ui/core/styles/useTheme';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import useTheme from '@mui/material/styles/useTheme';
+import SvgIcon from '@mui/material/SvgIcon';
 
 const GlobeWithGlassIcon = (props) => {
   const theme = useTheme();

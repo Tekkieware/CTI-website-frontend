@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Link from '@material-ui/core/Link';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import Link from '@mui/material/Link';
+import CircularProgress from '@mui/material/CircularProgress';
 import useStyles from './styles';
 import AddOrgForm from './AddOrgForm';
 

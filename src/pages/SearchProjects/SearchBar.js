@@ -1,8 +1,8 @@
 import React from 'react';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import { makeStyles } from '@material-ui/core/styles';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { makeStyles } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme) => ({
   icon: {

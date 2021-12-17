@@ -1,7 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import CardMedia from '@material-ui/core/CardMedia';
+import { makeStyles } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import CardMedia from '@mui/material/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {

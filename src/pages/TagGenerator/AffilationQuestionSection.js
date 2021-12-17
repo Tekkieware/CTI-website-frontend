@@ -1,7 +1,7 @@
 import React from 'react';
-import Radio from '@material-ui/core/Radio';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Radio from '@mui/material/Radio';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import useStyles from './styles';
 
 export const AffiliationQuestionSection = ({

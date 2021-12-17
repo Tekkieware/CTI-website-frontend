@@ -1,10 +1,10 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/material/styles';
 import NavButton from '../../../components/NavButton';
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@mui/material/IconButton';
 
 const notableUsers = [
   {

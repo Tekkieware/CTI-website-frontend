@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import axios from 'axios';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { makeStyles, useTheme } from '@mui/material/styles';
 
 import FilterSelector from './FilterSelector';
 import FilterTag from './FilterTag';

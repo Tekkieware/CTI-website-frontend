@@ -1,11 +1,11 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import Paper from '@material-ui/core/Paper';
+import makeStyles from '@mui/material/styles/makeStyles';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Paper from '@mui/material/Paper';
 import NavButton from '../../components/NavButton';
 
 const useStyles = makeStyles((theme) => ({

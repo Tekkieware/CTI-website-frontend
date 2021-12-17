@@ -1,12 +1,12 @@
 import React from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+import makeStyles from '@mui/material/styles/makeStyles';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import { GetStartedCard, NavButton } from '../../components';
 import NotableUsersSection from './sections/NotableUsersSection';
 import TrendingTopicsSection from './sections/TrendingTopicsSection';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
   marketingPointContainerStyle: {

@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-import deepmerge from '@material-ui/utils/deepmerge';
+import { createTheme } from '@mui/material/styles';
+import { deepmerge } from '@mui/utils';
 import spectrum from './theme-spectrum';
 
 // Colors - Primary
@@ -20,8 +20,6 @@ const GREY100 = '#F4F4F4'; // default = #f5f5f5
 const GREY200 = '#E9E9E9'; // default = #eeeeee
 const GREY300 = '#D8D8D8'; // default = #e0e0e0
 const GREY900 = '#242424'; // default = #212121
-
-const breakpoints = createBreakpoints({});
 
 const defaultButtonSettings = {
   backgroundColor: LIGHT_BLUE,
@@ -60,14 +58,6 @@ const themeSettings = {
       },
     },
     MuiButton: {
-      root: {
-        borderRadius: 24,
-        height: 48,
-        [breakpoints.down('sm')]: {
-          height: 42,
-        },
-        ...defaultButtonSettings,
-      },
       label: {
         fontWeight: 700,
         marginLeft: 12,
@@ -144,17 +134,6 @@ const themeSettings = {
         '&:last-child': {
           paddingBottom: 0,
         },
-      },
-    },
-    MuiChip: {
-      root: {
-        borderRadius: 24,
-        cursor: 'pointer',
-        height: 48,
-        [breakpoints.down('sm')]: {
-          height: 42,
-        },
-        margin: '0 8px 8px 0',
       },
     },
     MuiCheckbox: {
@@ -429,6 +408,34 @@ const customThemeSettings = {
   },
 };
 
-const theme = deepmerge(themeSettings, customThemeSettings);
+const baseThemeSettings = deepmerge(themeSettings, customThemeSettings);
+const theme = createTheme(baseThemeSettings);
+
+theme.components.MuiButton = {
+  styleOverrides: {
+    root: {
+      borderRadius: 24,
+      height: 48,
+      [theme.breakpoints.down('sm')]: {
+        height: 42,
+      },
+      ...defaultButtonSettings,
+    },
+  },
+}
+
+theme.components.MuiChip = {
+  styleOverrides: {
+    root: {
+      borderRadius: 24,
+      cursor: 'pointer',
+      height: 48,
+      [theme.breakpoints.down('sm')]: {
+        height: 42,
+      },
+      margin: '0 8px 8px 0',
+    },
+  },
+}
 
 export default theme;

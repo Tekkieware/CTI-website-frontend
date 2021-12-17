@@ -1,9 +1,9 @@
 import React from 'react';
 import { ContributorThumbnail } from '../../components/ContributorThumbnail';
 
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import makeStyles from '@mui/material/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   unAfflText: {

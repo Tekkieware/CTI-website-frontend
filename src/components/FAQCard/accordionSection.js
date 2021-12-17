@@ -1,14 +1,14 @@
 import React from 'react';
 import sanitizeHtml from 'sanitize-html';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
-import { makeStyles } from '@material-ui/core/styles';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import { makeStyles } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme) => ({
   accordion: {

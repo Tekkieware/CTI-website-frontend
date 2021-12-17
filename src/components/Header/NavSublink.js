@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
-import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
+import { Link as RouterLink } from 'react-router-dom';
+import MenuItem from '@mui/material/MenuItem';
+import { withStyles } from '@mui/material/styles';
 
 const styles = (theme) => ({
   menuitem: {
@@ -44,4 +44,4 @@ const NavSublink = ({ classes, header, isExternal = false, route }) => {
   );
 };
 
-export default withRouter(withStyles(styles)(NavSublink));
+export default withStyles(styles)(NavSublink);

@@ -1,12 +1,12 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
 import React, { useEffect, useState } from 'react';
-import Box from '@material-ui/core/Box';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import Box from '@mui/material/Box';
+import CardMedia from '@mui/material/CardMedia';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/material/styles/';
 import { getOrganizationLinks } from './getOrganizationLinks.js';
 
 const useStyles = makeStyles((theme) => ({

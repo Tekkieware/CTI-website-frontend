@@ -83,7 +83,7 @@ In the case that there is a valid reason to have a local piece of stying just fo
 ### useTheme()
 
 ```javascript
-import { darken, useTheme } from '@material-ui/core/styles'
+import { darken, useTheme } from '@mui/material/styles'
 
 const XYZcomponent = () => {
   const theme = useTheme();
@@ -98,7 +98,7 @@ const XYZcomponent = () => {
 ### makeStyles()
 
 ```javascript
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/material/styles'
 
 const useStyles = makeStyles((theme) => ({
   foo: {

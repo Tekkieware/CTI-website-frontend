@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -37,7 +37,7 @@ const App = () => {
       <ScrollToTop />
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
-          <Switch>
+          <Routes>
             <Route exact path='/' component={Landing} />
             <RouteTitled exact path='/about' component={About} title='About' />
             <RouteTitled exact path='/about/contact' component={Contact} title='Contact Us' />
@@ -58,35 +58,35 @@ const App = () => {
             <RouteTitled path='/guides/:guide' component={Guides} title='Guides' />
             <RouteTitled path='/404' component={Error404} title='404' />
             {/* test and error page routes end */}
-            <Redirect from='/add' to='/join-index/how-to-add' />
-            <Redirect from='/adding' to='/join-index/how-to-add' />
-            <Redirect from='/adding-projects' to='/join-index/how-to-add' />
-            <Redirect from='/contact' to='/about/contact' />
-            <Redirect from='/collaborate' to='/support/collaborate' />
-            <Redirect from='/donate' to='/support/donate' />
-            <Redirect from='/donation' to='/support/donate' />
-            <Redirect from='/faq' to='/about/faq' />
-            <Redirect from='/how' to='/join-index/how-to-add' />
-            <Redirect from='/how-to' to='/join-index/how-to-add' />
-            <Redirect from='/how-to-use' to='/join-index/how-to-add' />
-            <Redirect from='/join' to='/join-index' />
-            <Redirect from='/All' to='/organizations/all' />
-            <Redirect from='/Affiliated' to='/organizations/affiliatedorganizations' />
-            <Redirect from='/Unaffiliated' to='/organizations/unaffiliatedorganizations' />
-            <Redirect from='/IndexContributors' to='/organizations/affiliated' />
-            <Redirect from='/search' to='/projects' />
-            <Redirect from='/share' to='/support/share' />
-            <Redirect from='/tag-creator' to='/join-index' />
-            <Redirect from='/tagcreator' to='/join-index' />
-            <Redirect from='/tag-generator' to='/join-index' />
-            <Redirect from='/taggenerator' to='/join-index' />
+            <Navigate from='/add' to='/join-index/how-to-add' />
+            <Navigate from='/adding' to='/join-index/how-to-add' />
+            <Navigate from='/adding-projects' to='/join-index/how-to-add' />
+            <Navigate from='/contact' to='/about/contact' />
+            <Navigate from='/collaborate' to='/support/collaborate' />
+            <Navigate from='/donate' to='/support/donate' />
+            <Navigate from='/donation' to='/support/donate' />
+            <Navigate from='/faq' to='/about/faq' />
+            <Navigate from='/how' to='/join-index/how-to-add' />
+            <Navigate from='/how-to' to='/join-index/how-to-add' />
+            <Navigate from='/how-to-use' to='/join-index/how-to-add' />
+            <Navigate from='/join' to='/join-index' />
+            <Navigate from='/All' to='/organizations/all' />
+            <Navigate from='/Affiliated' to='/organizations/affiliatedorganizations' />
+            <Navigate from='/Unaffiliated' to='/organizations/unaffiliatedorganizations' />
+            <Navigate from='/IndexContributors' to='/organizations/affiliated' />
+            <Navigate from='/search' to='/projects' />
+            <Navigate from='/share' to='/support/share' />
+            <Navigate from='/tag-creator' to='/join-index' />
+            <Navigate from='/tagcreator' to='/join-index' />
+            <Navigate from='/tag-generator' to='/join-index' />
+            <Navigate from='/taggenerator' to='/join-index' />
             {/* test and error page redirect begin */}
-            <Redirect from='/guides' to='/guides/colors' />
-            <Redirect from='/placeholder' to='/blank' />
-            <Redirect from='/template' to='/blank' />
-            <Redirect to='/404' />
+            <Navigate from='/guides' to='/guides/colors' />
+            <Navigate from='/placeholder' to='/blank' />
+            <Navigate from='/template' to='/blank' />
+            <Navigate to='/404' />
             {/* test and error page redirect end */}
-          </Switch>
+          </Routes>
         </Layout>
       </QueryParamProvider>
     </BrowserRouter>

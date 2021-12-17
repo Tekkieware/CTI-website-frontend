@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Header } from './Header';
 import Error404 from '../Error404';
 import { IndvPageContainer } from './IndvPageContainer';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import '../../styles.css';
 import { getOrganizationLinks } from '../../components/getOrganizationLinks.js';
 

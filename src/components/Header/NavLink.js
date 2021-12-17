@@ -1,8 +1,8 @@
 import React, { useState, useEffect  } from "react";
-import { NavLink as NaviLink, withRouter, useLocation } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
+import { NavLink as NaviLink, useLocation } from 'react-router-dom';
+import Link from '@mui/material/Link';
 import Menu from 'material-ui-popup-state/HoverMenu';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/material/styles';
 import { usePopupState, bindMenu, bindHover } from 'material-ui-popup-state/hooks';
 import { navigation } from '../../navigation';
 
@@ -68,4 +68,4 @@ const NavLink = ({ id, children, header, route }) => {
   );
 };
 
-export default withRouter(NavLink);
+export default NavLink;

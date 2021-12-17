@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom/';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Typography from '@material-ui/core/Typography';
-import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
-import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Typography from '@mui/material/Typography';
+import ExpandLessRounded from '@mui/icons-material/ExpandLessRounded';
+import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import useStyles from './styles';
 
 const DropdownList = ({ linkClickHandler, header, links, route }) => {

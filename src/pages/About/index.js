@@ -1,14 +1,14 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import {
   GetStartedCard,
   PictureCard,
   GenericHeaderSection,
 } from '../../components';
 import useStyles from './styles';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 
 const About = () => {
   const breadCrumbLinks = [

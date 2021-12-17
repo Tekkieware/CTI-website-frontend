@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import ClearRounded from '@material-ui/icons/ClearRounded';
-import MenuRounded from '@material-ui/icons/MenuRounded';
+import IconButton from '@mui/material/IconButton';
+import ClearRounded from '@mui/icons-material/ClearRounded';
+import MenuRounded from '@mui/icons-material/MenuRounded';
 import DropdownList from './DropdownList';
 import SearchContainer from './SearchContainer';
 import useStyles from './styles';

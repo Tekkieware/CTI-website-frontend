@@ -1,11 +1,11 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import Box from '@mui/material/Box';
+import makeStyles from '@mui/material/styles/makeStyles';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import FileUploadIcon from '../../icons/FileUploadIcon';
 
 const useStyles = makeStyles((theme) => ({

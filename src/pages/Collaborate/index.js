@@ -1,14 +1,14 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Link from '../../components/common/Link';
 import BottomCallToAction from '../../components/BottomCallToAction';
 import { GenericHeaderSection } from '../../components/';
 import LeftTextRightImage from './LeftTextRightImage';
 import RightTextLeftImage from './RightTextLeftImage';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 const Collaborate = () => {
   const breadCrumbLinks = [

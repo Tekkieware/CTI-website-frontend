@@ -1,5 +1,5 @@
 import React from 'react';
-import Hidden from '@material-ui/core/Hidden';
+import Hidden from '@mui/material/Hidden';
 import HeaderSmall from './HeaderSmall';
 import HeaderLarge from './HeaderLarge';
 

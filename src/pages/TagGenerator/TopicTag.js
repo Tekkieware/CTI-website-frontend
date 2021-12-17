@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
 import useStyles from './styles';
 import CopyPasteIcon from '../../icons/CopyPasteIcon';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { useClipboard } from 'use-clipboard-copy';
 import ChipInput from 'material-ui-chip-input';
 

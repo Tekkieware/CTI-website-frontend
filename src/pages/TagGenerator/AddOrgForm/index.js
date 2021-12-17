@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Dialog from '@material-ui/core/Dialog';
+import Dialog from '@mui/material/Dialog';
 
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';

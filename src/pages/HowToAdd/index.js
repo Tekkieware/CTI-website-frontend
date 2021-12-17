@@ -1,9 +1,9 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/material/styles';
 import GenericHeaderSection from '../../components/GenericHeaderSection';
 import ImageComponent from '../../components/ImageComponent';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';

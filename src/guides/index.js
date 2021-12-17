@@ -1,13 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
-import FormControl from '@material-ui/core/FormControl';
-import Grid from '@material-ui/core/Grid';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
-import { makeStyles } from '@material-ui/core/styles';
+import Container from '@mui/material/Container';
+import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import { makeStyles } from '@mui/material/styles';
 import Buttons from './buttons';
 import Colors from './colors';
 import TopicTags from './topic-tags';
@@ -72,4 +71,4 @@ const Guides = (props) => {
   );
 };
 
-export default withRouter(Guides);
+export default Guides;

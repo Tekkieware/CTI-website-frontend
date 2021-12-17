@@ -1,12 +1,12 @@
 import React,{ useState }  from 'react';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
-import ExpandLess from '@material-ui/icons/ExpandLessRounded';
-import ExpandMore from '@material-ui/icons/ExpandMoreRounded';
-import Collapse from '@material-ui/core/Collapse';
-import ListItem from '@material-ui/core/ListItem';
-import { makeStyles } from '@material-ui/styles';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItemText from '@mui/material/ListItemText';
+import ExpandLess from '@mui/icons-material/ExpandLessRounded';
+import ExpandMore from '@mui/icons-material/ExpandMoreRounded';
+import Collapse from '@mui/material/Collapse';
+import ListItem from '@mui/material/ListItem';
+import { makeStyles } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme) => ({
   list: {

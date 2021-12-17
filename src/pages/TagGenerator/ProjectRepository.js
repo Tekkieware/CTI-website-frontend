@@ -1,9 +1,9 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import useStyles from './styles';
 
 export const ProjectRepositorySection = ({

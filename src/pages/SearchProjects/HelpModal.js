@@ -1,9 +1,9 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/styles';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import { makeStyles } from '@mui/material/styles';
 
 import Link from '../../components/common/Link';
 

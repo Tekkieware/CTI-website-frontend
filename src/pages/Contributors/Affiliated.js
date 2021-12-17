@@ -1,12 +1,12 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import { DropdownArrow } from '../../components/DropdownArrow.js';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { AffiliatedOrganizations } from './AffiliatedOrganizations';
 import clsx from 'clsx';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import Link from '@mui/material/Link';
+import { makeStyles } from '@mui/material/styles';
 
 // eslint-disable-next-line max-lines-per-function
 const useStyles = makeStyles((theme) => ({

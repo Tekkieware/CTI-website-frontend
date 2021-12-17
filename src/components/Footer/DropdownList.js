@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom/';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
-import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import ExpandLessRounded from '@mui/icons-material/ExpandLessRounded';
+import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import useStyles from './styles';
 
 const DropdownList = ({ header, links, route }) => {

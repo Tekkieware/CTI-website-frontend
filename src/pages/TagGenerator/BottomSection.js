@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import useStyles from './styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Confetti from '../../components/Confetti';
 
 const BottomSection = () => {

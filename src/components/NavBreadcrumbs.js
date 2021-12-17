@@ -1,8 +1,7 @@
 import React from 'react';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Typography from '@material-ui/core/Typography';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import { ThemeProvider } from '@material-ui/core/styles';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import spectrum from './../theme-spectrum';
 
@@ -37,7 +36,7 @@ export default function NavBreadcrumbs(props) {
     color: activeLinkColor,
     opacity: FULL_OPAQUE,
   }
-  const theme = createMuiTheme({
+  const theme = createTheme({
     overrides: {
       MuiBreadcrumbs: {
         root: {

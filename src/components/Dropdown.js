@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Grid from '@mui/material/Grid';
+import { makeStyles } from '@mui/material/styles';
 import { ContributorThumbnail } from './ContributorThumbnail';
 import { DropdownArrow } from './DropdownArrow';
-import Grid from '@material-ui/core/Grid';
-import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   dropdown: {

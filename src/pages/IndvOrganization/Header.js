@@ -1,11 +1,11 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import NavBreadcrumbs from '../../components/NavBreadcrumbs';
 import HeaderTitle from './HeaderTitle';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import makeStyles from '@mui/material/styles/makeStyles';
 
 const DARK_BLUE = '#0F1D2F';
 const useStyles = makeStyles((theme) => ({

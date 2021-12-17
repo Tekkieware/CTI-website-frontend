@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
   hiddenStyle: {

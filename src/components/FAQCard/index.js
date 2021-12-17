@@ -1,12 +1,12 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Pagination from '@material-ui/lab/Pagination';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Pagination from '@mui/material/Pagination';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { makeStyles } from '@mui/material/styles';
 import AccordionSection from './accordionSection';
-import Container from '@material-ui/core/Container';
+import Container from '@mui/material/Container';
 
 const useStyles = makeStyles((theme) => ({
   message: {

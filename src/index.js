@@ -3,17 +3,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import WebFont from 'webfontloader';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import { ThemeProvider } from '@material-ui/core/styles/';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles/';
+import CssBaseline from '@mui/material/CssBaseline';
 import GA4React from 'ga-4-react';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import themeMui from './theme-mui';
+import theme from './theme-mui';
 
 const ga4react = new GA4React('G-5V7GWWCKF0'); // Google Analytics 4 measurement ID
-const theme = createMuiTheme(themeMui);
 
 WebFont.load({
   google: {

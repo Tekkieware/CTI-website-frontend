@@ -1,9 +1,9 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 import { GenericHeaderSection } from '../../components/';
 
 const Contact = () => {
