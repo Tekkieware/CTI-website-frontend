@@ -156,7 +156,7 @@ export default function Contributors() {
 
   return (
     <Box className='pageContainer'>
-      <Box className='containerDefault'>
+      <Box className='containerTeal'>
         <Container className={classes.firstSectionWrapper}>
           <NavBreadcrumbs
             crumbs={[
