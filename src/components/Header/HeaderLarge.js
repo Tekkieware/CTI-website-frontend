@@ -22,10 +22,12 @@ const HeaderLarge = () => {
               {nav.subNavigation.map((subNav) => {
                 return (
                   <NavSublink
-                    key={subNav.id}
+                    label={subNav.label}
                     header={subNav.header}
-                    route={subNav.route}
                     isExternal={subNav.isExternal}
+                    key={subNav.id}
+                    route={subNav.route}
+                    title={subNav.tooltip}
                   />
                 );
               })}

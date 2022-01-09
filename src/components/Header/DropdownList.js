@@ -26,13 +26,24 @@ const DropdownList = ({ linkClickHandler, header, links, route }) => {
     const { header, isExternal, route } = link;
     if (isExternal) {
       return (
-        <a style={{ textDecoration: 'none' }} href={route} onClick={handleClick}>
+        <a 
+          aria-label={link.label} 
+          href={route} onClick={handleClick} 
+          style={{ textDecoration: 'none' }} 
+          title={link.tooltip}
+        >
           {header}
         </a>
       );
     } else {
       return (
-        <Link style={{ textDecoration: 'none' }} to={route} onClick={handleClick}>
+        <Link
+          aria-label={link.label}
+          style={{ textDecoration: 'none' }}
+          title={link.tooltip}
+          to={route}
+          onClick={handleClick}
+        >
           {header}
         </Link>
       );

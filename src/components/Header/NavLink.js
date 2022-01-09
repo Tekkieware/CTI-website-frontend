@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 
-const NavLink = ({ id, children, header, route }) => {
+const NavLink = ({ label, id, children, header, route, title }) => {
   const classes = useStyles();
   const location = useLocation();
   const popupState = usePopupState({ variant: 'popper', popupId: 'navlink' });
