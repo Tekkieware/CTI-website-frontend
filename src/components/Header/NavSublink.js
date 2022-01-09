@@ -14,7 +14,14 @@ const styles = (theme) => ({
   },
 });
 
-const NavSublink = ({ classes, header, isExternal = false, label, route, title }) => {
+const NavSublink = ({
+  classes,
+  header,
+  isExternal = false,
+  label,
+  route,
+  title,
+}) => {
   return (
     <>
       {isExternal ? (

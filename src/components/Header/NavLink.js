@@ -1,9 +1,13 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from 'react';
 import { NavLink as NaviLink, withRouter, useLocation } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import Menu from 'material-ui-popup-state/HoverMenu';
 import { makeStyles } from '@material-ui/core/styles';
-import { usePopupState, bindMenu, bindHover } from 'material-ui-popup-state/hooks';
+import {
+  usePopupState,
+  bindMenu,
+  bindHover,
+} from 'material-ui-popup-state/hooks';
 import { navigation } from '../../navigation';
 
 const useStyles = makeStyles({
@@ -21,7 +25,6 @@ const useStyles = makeStyles({
   },
 });
 
-
 const NavLink = ({ label, id, children, header, route, title }) => {
   const classes = useStyles();
   const location = useLocation();
@@ -37,7 +40,7 @@ const NavLink = ({ label, id, children, header, route, title }) => {
         break;
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return (

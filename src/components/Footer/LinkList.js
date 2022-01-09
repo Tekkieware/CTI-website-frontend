@@ -20,11 +20,21 @@ const LinkList = ({ header, links, route }) => {
       </Typography>
       {links.map((link) => {
         return link.isExternal ? (
-          <a aria-label={link.label} key={link.id} href={link.route} title={link.tooltip}>
+          <a
+            aria-label={link.label}
+            key={link.id}
+            href={link.route}
+            title={link.tooltip}
+          >
             {link.header}
           </a>
         ) : (
-          <Link aria-label={link.label} key={link.id} to={link.route} title={link.tooltip}>
+          <Link
+            aria-label={link.label}
+            key={link.id}
+            to={link.route}
+            title={link.tooltip}
+          >
             {link.header}
           </Link>
         );
