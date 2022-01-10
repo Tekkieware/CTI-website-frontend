@@ -1,4 +1,6 @@
 /* eslint-disable max-lines-per-function */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect } from 'react';
 import Box from '@material-ui/core/Box'
 import axios from 'axios';
@@ -83,35 +85,30 @@ const useStyles = makeStyles((theme) => ({
 
 export const IndvPageContainer = (props) => {
   const classes = useStyles();
-  const inputSortMethodList = ['best match', 'updated', 'stars'];
   const projectsPerPage = 4;
+
+  const inputSortMethodList = ['best match', 'updated', 'stars'];
   const [affiliations, setAffiliations] = useState({});
-  const [bestMatchProjects, setBestMatchProjects] = useState([]);
   const [dropDownListItem, setDropDownListItem] = useState('');
   const [errorState, setErrorState] = useState(false);
-  const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false);
   const [itemLength, setItemLength] = useState(0);
-  const [lastUpdatedProjects, setLastUpdatedProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pages, setPages] = useState(1);
   const [pageNum, setPageNum] = useState(1);
   const [projects, setProjects] = useState([]);
+  const [projectsBestMatch, setProjectsBestMatch] = useState([]);
   const [results, setResults] = useState('');
   const [sortMethod, setSortMethod] = useState('best match');
-  const [stargazerProjects, setStargazerProjects] = useState([]);
 
   useEffect(() => {
     setLoading(true);
     setErrorState(false);
-    setIsProjectSearchFinish(false);
     setProjects([]);
-    setBestMatchProjects([]);
-    setLastUpdatedProjects([]);
-    setStargazerProjects([]);
     setResults('');
     setDropDownListItem('');
     setSortMethod('best match');
     fetchAffiliations();
+    setProjectsBestMatch([]);
   }, [props.pathName]);
 
   // Fetching the data for 'other repo' dropdown elements
@@ -150,86 +147,60 @@ export const IndvPageContainer = (props) => {
 
   // Loading the Submitted projects searched by element from its projectSearchTopicsArr
   useEffect(() => {
-    const repoMap = new Map();
     if (props.projectSearchTopicsArr.length > 0) {
       // remove duplicate search topics
-      let filteredArray = props.projectSearchTopicsArr;
-      filteredArray = filteredArray.filter((elem) => elem);
-      const topicSet = new Set(filteredArray);
-      topicSet.forEach(
-        async (topic) =>
-          await axios
-            .get(`https://api.github.com/search/repositories`, {
-              headers: { Accept: 'application/vnd.github.mercy-preview+json' },
-              params: {
-                q: 'topic:civictechindex ' + topic,
-                sort: 'best match',
-                order: 'desc',
-                per_page: 100,
-              },
-            })
-            .then((res) => {
-              repoMap.set(topic, res.data.items);
-              if (repoMap.size === topicSet.size) {
-                const repoKeyArr = [];
-                const bestMatchSortedProjectsArr = [];
-                topicSet.forEach((element) => {
-                  const repoArr = repoMap.get(element);
-                  repoArr.forEach((org) => {
-                    if (!repoKeyArr.includes(org.name)) {
-                      repoKeyArr.push(org.name);
-                      org.parentOrgs = props.parentOrgs;
-                      bestMatchSortedProjectsArr.push(org);
-                    }
-                  });
-                });
-
-                const lastUpdatedSortedProjectsArr = getSortedProjectsArr(
-                  'lastUpdated',
-                  bestMatchSortedProjectsArr
-                );
-                const stargazerSortedProjectsArr = getSortedProjectsArr(
-                  'stargazer',
-                  bestMatchSortedProjectsArr
-                );
-                setProjects(bestMatchSortedProjectsArr);
-                setBestMatchProjects(bestMatchSortedProjectsArr);
-                setStargazerProjects(stargazerSortedProjectsArr);
-                setLastUpdatedProjects(lastUpdatedSortedProjectsArr);
-                setPages(
-                  Math.ceil(bestMatchSortedProjectsArr.length / projectsPerPage)
-                );
-                setIsProjectSearchFinish(true);
-              }
-            })
-            .catch((err) => {
-              setErrorState(true);
-            })
+      const topicSet = new Set(
+        props.projectSearchTopicsArr.filter((topic) => topic)
       );
+      const orgNames = [];
+      topicSet.forEach((topic) => {
+        orgNames.push(`org:${topic}`);
+      });
+      axios
+        .get(`https://api.github.com/search/repositories`, {
+          headers: { Accept: 'application/vnd.github.mercy-preview+json' },
+          params: {
+            q: `${orgNames.join(' ')} topic:civictechindex`,
+            sort: 'best match',
+            order: 'desc',
+            per_page: 100,
+          },
+        })
+        .then((res) => {
+          const fetchedProjects = res.data.items.map((proj) => {
+            proj.parentOrgs = props.parentOrgs;
+            return proj;
+          });
+          setProjectsBestMatch(fetchedProjects);
+          setProjects(fetchedProjects);
+          setPages(
+            Math.ceil(fetchedProjects.length / projectsPerPage)
+          );
+          setLoading(false);
+        })
+        .catch((err) => {
+          setErrorState(true);
+        });
     }
-  }, [props.parentOrgs, props.projectSearchTopicsArr]);
+  }, [props.projectSearchTopicsArr]);
 
-  // Update the submitted projects list if the path, sort method or page number is changed.
-  useEffect(() => {
-    handlePageChange(1);
-    if (isProjectSearchFinish) {
-      setLoading(false);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isProjectSearchFinish]);
-
+  // Update the submitted projects list if the sort method is changed.
   useEffect(() => {
     if (sortMethod === 'best match') {
-      setProjects(bestMatchProjects);
+      setProjects(projectsBestMatch);
     } else if (sortMethod === 'updated') {
-      setProjects(lastUpdatedProjects);
+      setProjects(getSortedProjectsArr('lastUpdated', projects));
     } else {
-      setProjects(stargazerProjects);
+      setProjects(getSortedProjectsArr('stargazer', projects));
     }
-  }, [bestMatchProjects, lastUpdatedProjects, sortMethod, stargazerProjects]);
+  }, [sortMethod]);
+
+  useEffect(() => {
+    handlePageChange(1);
+  }, [projects]);
 
   // Using priorityQueue to sort result list.
-  const getSortedProjectsArr = (sortMethod, bestMatchSortedProjectsArr) => {
+  const getSortedProjectsArr = (sortMethod, unsortedProjects) => {
     let priorityQueue;
     const sortedProjectsArr = [];
     if (sortMethod === 'lastUpdated') {
@@ -247,8 +218,7 @@ export const IndvPageContainer = (props) => {
         },
       });
     }
-
-    bestMatchSortedProjectsArr.map((i) => priorityQueue.queue(i));
+    unsortedProjects.map((i) => priorityQueue.queue(i));
     const lengthOfPriorityQueue = priorityQueue.length;
     for (let index = 0; index < lengthOfPriorityQueue; ++index) {
       const project = priorityQueue.dequeue();
