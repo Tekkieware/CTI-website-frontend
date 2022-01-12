@@ -82,13 +82,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export const IndvPageContainer = (props) => {
   const classes = useStyles();
   const projectsPerPage = 4;
 
   const inputSortMethodList = ['best match', 'updated', 'stars'];
-  const [affiliations, setAffiliations] = useState({});
   const [dropDownListItem, setDropDownListItem] = useState('');
   const [errorState, setErrorState] = useState(false);
   const [itemLength, setItemLength] = useState(0);
@@ -107,7 +105,6 @@ export const IndvPageContainer = (props) => {
     setResults('');
     setDropDownListItem('');
     setSortMethod('best match');
-    fetchAffiliations();
     setProjectsBestMatch([]);
   }, [props.pathName]);
 
@@ -227,17 +224,6 @@ export const IndvPageContainer = (props) => {
     return sortedProjectsArr;
   };
 
-  const fetchAffiliations = () => {
-    const afflns = {};
-    axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-      .then((res) => {
-        res.data.forEach((org) => {
-          afflns[org.org_tag] = true;
-        });
-        setAffiliations(afflns);
-      });
-  };
-
   const handlePageChange = (pageNum) => {
     setPageNum(pageNum);
     const indexOfLastProject = pageNum * projectsPerPage;
@@ -250,7 +236,9 @@ export const IndvPageContainer = (props) => {
       indexOfFirstProject,
       indexOfLastProject
     );
-    const items = currentProjects.map((i) => renderCard(i, affiliations));
+    const items = currentProjects.map((i) =>
+      renderCard(i, props.affiliationsOrgTags)
+    );
     setItemLength(itemLen);
     setResults(items);
   };
