@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   rightButtonStyle: {
-    backgroundColor: theme.palette.spectrum.lightBlue,
     padding: '8px 32px',
     top: '21px',
     [theme.breakpoints.down('sm')]: {

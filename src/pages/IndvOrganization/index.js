@@ -17,6 +17,7 @@ const IndvOrgPage = ({ match }) => {
   const [githubLink, setGithubLink] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [parentOrgs, setParentOrgs] = useState([]);
+  const [affiliationsOrgTags, setAffiliationsOrgTags] = useState([]);
   const [projectSearchTopicsArr, setProjectSearchTopicsArr] = useState([]);
   const [breadCrumbs, setBreadCrumbs] = useState([]);
   const [isPathChange, setIsPathChange] = useState(false);
@@ -48,6 +49,16 @@ const IndvOrgPage = ({ match }) => {
       await axios
         .get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
         .then((res) => {
+          // Extract affiliations org tags
+          const affiliations = [];
+          res.data.forEach((org) => {
+            if (org.org_tag.length > 0) {
+              affiliations.push(org.org_tag);
+            }
+          });
+          setAffiliationsOrgTags(affiliations);
+
+          // Extract organization info
           for (const org of res.data.values()) {
             if (org === undefined || org === '') {
               continue;
@@ -162,6 +173,7 @@ const IndvOrgPage = ({ match }) => {
         dropdownTitle={dropdownTitle}
         parentOrgs={parentOrgs}
         pathName={pathName}
+        affiliationsOrgTags={affiliationsOrgTags}
       />
     </Box>
   ) : (

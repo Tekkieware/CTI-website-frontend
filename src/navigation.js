@@ -88,7 +88,9 @@ const navigation = [
       {
         id: 'volunteer',
         header: 'Volunteer with Us',
+        label: 'Get specific details on the Civic Tech Index project',
         route: 'https://www.hackforla.org/projects/civic-tech-index',
+        tooltip: 'Get specific details on the Civic Tech Index project',
         isExternal: true,
       },
     ],
@@ -98,7 +100,9 @@ const navigation = [
 const findSubNavParent = (subNavRoute) => {
   let results;
   navigation.forEach((nav) => {
-    const found = nav.subNavigation.some((element) => element.route === subNavRoute);
+    const found = nav.subNavigation.some(
+      (element) => element.route === subNavRoute
+    );
     if (found) {
       results = nav.route;
     }

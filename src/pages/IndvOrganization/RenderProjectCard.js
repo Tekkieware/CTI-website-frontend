@@ -7,11 +7,11 @@ const calculateDaysSince = (updateTime) => {
   return Math.round(days / (1000 * 3600 * 24));
 };
 
-export const renderCard = (project, affiliations) => {
+export const renderCard = (project, affiliationsOrgTags) => {
   const affiliationTags = [];
   const topicTags = [];
   project.topics.forEach((topic) => {
-    if (affiliations[topic]) {
+    if (affiliationsOrgTags.includes(topic)) {
       affiliationTags.push(topic);
     } else {
       topicTags.push(topic)

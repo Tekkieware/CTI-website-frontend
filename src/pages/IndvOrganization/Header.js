@@ -11,9 +11,12 @@ const DARK_BLUE = '#0F1D2F';
 const useStyles = makeStyles((theme) => ({
   indvOrgBackgroundImgStyle: {
     backgroundImage: 'url(/images/indv-org-page-bg.png)',
+    backgroundSize: 'contain',
     minHeight: '580px',
     [theme.breakpoints.down('md')]: {
       minHeight: '512px',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
     },
   },
   logImgStyle: {

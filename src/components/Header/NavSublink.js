@@ -14,27 +14,38 @@ const styles = (theme) => ({
   },
 });
 
-const NavSublink = ({ classes, header, isExternal = false, route }) => {
+const NavSublink = ({
+  classes,
+  header,
+  isExternal = false,
+  label,
+  route,
+  title,
+}) => {
   return (
     <>
       {isExternal ? (
         <MenuItem
+          aria-label={label}
           className={classes.menuitem}
           component='a'
           data-cy='menuItem'
           disableGutters
           disableRipple
           href={route}
+          title={title}
         >
           {header}
         </MenuItem>
       ) : (
         <MenuItem
+          aria-label={label}
           className={classes.menuitem}
           component={RouterLink}
           data-cy='menuItem'
           disableGutters
           disableRipple
+          title={title}
           to={route}
         >
           {header}
