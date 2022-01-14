@@ -26,13 +26,25 @@ const DropdownList = ({ linkClickHandler, header, links, route }) => {
     const { header, isExternal, route } = link;
     if (isExternal) {
       return (
-        <a style={{ textDecoration: 'none' }} href={route} onClick={handleClick}>
+        <a
+          aria-label={link.label}
+          href={route}
+          onClick={handleClick}
+          style={{ textDecoration: 'none' }}
+          title={link.tooltip}
+        >
           {header}
         </a>
       );
     } else {
       return (
-        <Link style={{ textDecoration: 'none' }} to={route} onClick={handleClick}>
+        <Link
+          aria-label={link.label}
+          style={{ textDecoration: 'none' }}
+          title={link.tooltip}
+          to={route}
+          onClick={handleClick}
+        >
           {header}
         </Link>
       );
@@ -46,11 +58,19 @@ const DropdownList = ({ linkClickHandler, header, links, route }) => {
           // component={Link} to={route} // uncomment to create Menu header as link
           variant='body2'
           color='textSecondary'
-          style={{ cursor: 'pointer', fontWeight: 'bold', textDecoration: 'none' }}
+          style={{
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            textDecoration: 'none',
+          }}
         >
           {header}
         </Typography>
-        {open ? <ExpandLessRounded color='secondary' /> : <ExpandMoreRounded color='primary' />}
+        {open ? (
+          <ExpandLessRounded color='secondary' />
+        ) : (
+          <ExpandMoreRounded color='primary' />
+        )}
       </Box>
       <Collapse in={open} className={classes.collapse}>
         <List dense disablePadding>

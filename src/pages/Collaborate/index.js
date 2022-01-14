@@ -54,14 +54,18 @@ const Collaborate = () => {
               buttonText='Share the Civic Tech Index'
             />
             <LeftTextRightImage
+              label='Read instructions on how to join Hack for LA'
               mainHeading='Volunteer With Us'
               subHeading='Help us improve the Civic Tech Index.'
+              title='Read instructions on how to join Hack for LA'
               description={[
                 'If you would like to volunteer for our organization please visit this ',
                 <Link
+                  aria-label='Read instructions on how to join Hack for LA'
                   key='join'
-                  to='https://www.hackforla.org/join'
                   target='_blank'
+                  title='Read instructions on how to join Hack for LA'
+                  to='https://www.hackforla.org/join'
                 >
                   page.
                 </Link>,

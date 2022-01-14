@@ -10,14 +10,14 @@ import Button from '@material-ui/core/Button';
  * @param {*} props.variant - optional - contained or outlined
  */
 
-export default function NavButton({ children, href, isExternal,...rest }) {
+export default function NavButton({ children, href, isExternal, label, title, ...rest }) {
 
   return isExternal ? (
-    <Button href={href} {...rest} target='_blank'>
+    <Button aria-label={label} href={href} title={title} {...rest} target='_blank'>
       {children}
     </Button>
   ) : (
-    <Button component={Link} to={href} {...rest}>
+    <Button aria-label={label} component={Link} title={title} to={href} {...rest}>
       {children}
     </Button>
   );

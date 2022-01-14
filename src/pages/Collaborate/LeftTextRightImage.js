@@ -90,6 +90,8 @@ const LeftTextRightImage = ({
   mainHeading,
   subHeading,
   description,
+  label,
+  title,
   buttonText,
   buttonHref,
   imageSrc,
@@ -115,9 +117,11 @@ const LeftTextRightImage = ({
           {description}
         </Typography>
         <NavButton
+          aria-label={label}
           href={buttonHref}
           isExternal={hasExternalNav}
           className={classes.leftButtonStyle}
+          title={title}
         >
           {buttonText}
         </NavButton>
