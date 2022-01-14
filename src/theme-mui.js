@@ -7,7 +7,8 @@ import spectrum from './theme-spectrum';
 const DARK_BLUE = '#0F1D2F';
 const TEAL = '#004364';
 const LIGHT_BLUE = '#0D99C6';
-const LIGHT_BLUE_VARIANT = '#5FCAF9';
+const LIGHT_BLUE_2 = '#5FCAF9';
+const LIGHT_BLUE_3 = '#0A7A9E';
 const YELLOW = '#FFE06D';
 const WHITE = '#FEFEFE';
 // Colors - Secondary
@@ -25,23 +26,23 @@ const GREY900 = '#242424'; // default = #212121
 const breakpoints = createBreakpoints({});
 
 const defaultButtonSettings = {
-  backgroundColor: LIGHT_BLUE,
+  backgroundColor: LIGHT_BLUE_3,
   color: WHITE,
   '&$disabled': {
-    backgroundColor: LIGHT_BLUE,
+    backgroundColor: LIGHT_BLUE_3,
     color: WHITE,
     opacity: '0.50',
   },
   '&:hover': {
-    backgroundColor: LIGHT_BLUE,
+    backgroundColor: LIGHT_BLUE_3,
     opacity: '0.92',
   },
   '&:focus': {
-    backgroundColor: LIGHT_BLUE,
+    backgroundColor: LIGHT_BLUE_3,
     opacity: '0.76',
   },
   '&:active': {
-    backgroundColor: LIGHT_BLUE,
+    backgroundColor: LIGHT_BLUE_3,
     opacity: '0.68',
   },
 };
@@ -233,13 +234,13 @@ const themeSettings = {
           fontWeight: 700,
         },
         '& a:active': {
-          color: LIGHT_BLUE_VARIANT,
+          color: LIGHT_BLUE_2,
         },
         '& a:link': {
           color: LIGHT_BLUE,
         },
         '& a:hover': {
-          color: LIGHT_BLUE_VARIANT,
+          color: LIGHT_BLUE_2,
         },
         '& a:visited': {
           color: PURPLE,
@@ -284,7 +285,7 @@ const themeSettings = {
       main: DARK_BLUE,
     },
     secondary: {
-      light: LIGHT_BLUE_VARIANT,
+      light: LIGHT_BLUE_2,
       main: LIGHT_BLUE,
       dark: TEAL,
     },
@@ -397,7 +398,7 @@ const themeSettings = {
 // customThemeSettings - extend Material-UI theming
 const customThemeSettings = {
   button: {
-    blue: LIGHT_BLUE_VARIANT,
+    blue: LIGHT_BLUE_2,
     borderRadius: 24,
   },
   font: {
@@ -420,7 +421,7 @@ const customThemeSettings = {
     text: {
       bright: YELLOW,
       dark: DARK_BLUE,
-      light: LIGHT_BLUE_VARIANT,
+      light: LIGHT_BLUE_2,
     },
   },
   typography: {
