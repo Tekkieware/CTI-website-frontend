@@ -95,6 +95,7 @@ const RightImageLeftText = ({
         <CardMedia
           className={classes.rightCardMedia}
           component='img'
+          alt=''
           image={imageSrc}
         />
       </Card>
