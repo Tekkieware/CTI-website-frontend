@@ -130,6 +130,7 @@ const LeftTextRightImage = ({
         <CardMedia
           className={classes.leftCardMedia}
           component='img'
+          alt=''
           image={imageSrc}
         />
       </Card>
