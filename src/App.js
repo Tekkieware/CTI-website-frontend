@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
@@ -18,6 +18,7 @@ import TagGenerator from './pages/TagGenerator';
 import Error404 from './pages/Error404';
 import ShareTheCti from './pages/Share';
 import Privacy from './pages/Privacy'
+import PopUp from './pages/CookieAndPrivacy/PopUp';
 import Guides from './guides/';
 import useStyles from './styles';
 
@@ -32,10 +33,12 @@ const RouteTitled = ({ title, ...rest }) => {
 };
 
 const App = () => {
+  const [showModal, setShowModal] = useState(false);
   useStyles();
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <PopUp showModal={showModal} setShowModal={setShowModal}/>
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Switch>
