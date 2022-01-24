@@ -1,4 +1,5 @@
-import React, { useEffect , useState } from 'react';
+/* eslint-disable max-lines-per-function */
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
@@ -17,7 +18,7 @@ import SearchProjects from './pages/SearchProjects';
 import TagGenerator from './pages/TagGenerator';
 import Error404 from './pages/Error404';
 import ShareTheCti from './pages/Share';
-import Privacy from './pages/Privacy'
+import Privacy from './pages/Privacy';
 import PopUp from './pages/CookieAndPrivacy/PopUp';
 import Guides from './guides/';
 import useStyles from './styles';
@@ -25,7 +26,7 @@ import useStyles from './styles';
 const RouteTitled = ({ title, ...rest }) => {
   useEffect(() => {
     if (title) {
-      document.title = `Civic Tech Index — ${title}`
+      document.title = `Civic Tech Index — ${title}`;
     }
   });
 
@@ -34,33 +35,98 @@ const RouteTitled = ({ title, ...rest }) => {
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
+
   useStyles();
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <PopUp showModal={showModal} setShowModal={setShowModal}/>
+      <PopUp showModal={showModal} setShowModal={setShowModal} />
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Switch>
             <Route exact path='/' component={Landing} />
             <RouteTitled exact path='/about' component={About} title='About' />
-            <RouteTitled exact path='/about/contact' component={Contact} title='Contact Us' />
+            <RouteTitled
+              exact
+              path='/about/contact'
+              component={Contact}
+              title='Contact Us'
+            />
             <RouteTitled exact path='/about/faq' component={Faq} title='FAQ' />
-            <RouteTitled exact path='/organizations/all' component={Contributors} title='All' />
-            <RouteTitled exact path='/organizations/affiliated' component={Contributors} title='Affiliated' />
-            <RouteTitled exact path='/organizations/unaffiliated' component={Contributors} title='Unaffiliated' />
-            <RouteTitled exact path='/organizations/contributors' component={Contributors} title='Index Contributors' />
+            <RouteTitled
+              exact
+              path='/organizations/all'
+              component={Contributors}
+              title='All'
+            />
+            <RouteTitled
+              exact
+              path='/organizations/affiliated'
+              component={Contributors}
+              title='Affiliated'
+            />
+            <RouteTitled
+              exact
+              path='/organizations/unaffiliated'
+              component={Contributors}
+              title='Unaffiliated'
+            />
+            <RouteTitled
+              exact
+              path='/organizations/contributors'
+              component={Contributors}
+              title='Index Contributors'
+            />
             <RouteTitled exact path='/home' component={Home} title='Home' />
-            <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
-            <RouteTitled exact path='/join-index' component={TagGenerator} title='Join the Index' />
-            <RouteTitled exact path='/join-index/how-to-add' component={HowToAdd} title='How to Add Your Project' />
-            <RouteTitled exact path='/support/collaborate' component={Collaborate} title='Collaborate with Us' />
-            <RouteTitled exact path='/support/donate' component={Donate} title='Donate' />
-            <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
-            <RouteTitled exact path='/privacy' component={Privacy} title='Privacy' />
+            <RouteTitled
+              exact
+              path='/projects'
+              component={SearchProjects}
+              title='Search Projects'
+            />
+            <RouteTitled
+              exact
+              path='/join-index'
+              component={TagGenerator}
+              title='Join the Index'
+            />
+            <RouteTitled
+              exact
+              path='/join-index/how-to-add'
+              component={HowToAdd}
+              title='How to Add Your Project'
+            />
+            <RouteTitled
+              exact
+              path='/support/collaborate'
+              component={Collaborate}
+              title='Collaborate with Us'
+            />
+            <RouteTitled
+              exact
+              path='/support/donate'
+              component={Donate}
+              title='Donate'
+            />
+            <RouteTitled
+              exact
+              path='/support/share'
+              component={ShareTheCti}
+              title='Share the CTI'
+            />
+            <RouteTitled
+              exact
+              path='/privacy'
+              component={Privacy}
+              title='Privacy'
+            />
             <Route exact path='/organization/:name' component={IndvOrgPage} />
             {/* test and error page routes begin */}
-            <RouteTitled path='/guides/:guide' component={Guides} title='Guides' />
+            <RouteTitled
+              path='/guides/:guide'
+              component={Guides}
+              title='Guides'
+            />
             <RouteTitled path='/404' component={Error404} title='404' />
             {/* test and error page routes end */}
             <Redirect from='/add' to='/join-index/how-to-add' />
@@ -76,9 +142,18 @@ const App = () => {
             <Redirect from='/how-to-use' to='/join-index/how-to-add' />
             <Redirect from='/join' to='/join-index' />
             <Redirect from='/All' to='/organizations/all' />
-            <Redirect from='/Affiliated' to='/organizations/affiliatedorganizations' />
-            <Redirect from='/Unaffiliated' to='/organizations/unaffiliatedorganizations' />
-            <Redirect from='/IndexContributors' to='/organizations/affiliated' />
+            <Redirect
+              from='/Affiliated'
+              to='/organizations/affiliatedorganizations'
+            />
+            <Redirect
+              from='/Unaffiliated'
+              to='/organizations/unaffiliatedorganizations'
+            />
+            <Redirect
+              from='/IndexContributors'
+              to='/organizations/affiliated'
+            />
             <Redirect from='/search' to='/projects' />
             <Redirect from='/share' to='/support/share' />
             <Redirect from='/tag-creator' to='/join-index' />

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     height: '206px',
     zIndex: 50000,
     position: 'fixed',
-    right: '1%',
+    right: '1.51%',
     bottom: '0.5%',
   },
   title: {
@@ -43,19 +43,19 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
   imageStyle: {
-    width: '16px',
-    height: '16px',
-    marginRight: '3%',
+    width: '26px',
+    height: '26px',
+    marginRight: '2%',
     verticalAlign: 'middle',
   },
   buttonStyle: {
     width: '150px',
     height: '36px',
-    color:'#0F1D2F',
+    color: '#0F1D2F',
     fontWeight: '700',
   },
   linkText: {
-    color:'#0F1D2F',
+    color: '#0F1D2F',
     fontWeight: '700',
     paddingRight: '25px',
   },
@@ -63,29 +63,53 @@ const useStyles = makeStyles((theme) => ({
 
 const PopUp = () => {
   const classes = useStyles();
+  const date = new Date();
+  const setCookie = function (cookieEmail, cookieValue, expDays) {
+    date.setTime(date.getTime() + expDays);
 
+    const expires = 'expires=' + date.toUTCString();
 
-  const closePopup = () => {
+    document.cookie = cookieEmail + cookieValue + ';' + expires + ';path=/';
 
-  }
+    return document.cookie;
+  };
 
-
+  const deleteCookie = function (cookieEmail) {
+    date.setTime(date.getTime());
+    const expires = 'expires=' + date.toUTCString();
+    document.cookie = cookieEmail + expires + ';path=/';
+  };
+  const acceptCookieConsent = () => {
+    deleteCookie('civictecindex_cookie_consent');
+    setCookie('civictecindex_cookie_consent', 1, 30);
+    document.getElementById('cookieNotice').style.display = 'none';
+  };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} id='cookieNotice'>
       <CardHeader className={classes.headStyle}></CardHeader>
       <Typography className={classes.title}>
-        <img src='/images/cookie.png' alt='Cookie logo' className={classes.imageStyle}/>
+        <img
+          src='/images/cookie.png'
+          alt='Cookie logo'
+          className={classes.imageStyle}
+        />
         <span>Cookies and Privacy Policy </span>
       </Typography>
       <CardContent className={classes.copyStyle}>
-        <Typography className={classes.hoverContent}>We use cookies and other tracking technologies to improve your browsing
-        experience and to better understand our website traffic. By browsing our
-        website, you consent to our use of cookies and other tracking
-        technologies.</Typography>
+        <Typography className={classes.hoverContent}>
+          We use cookies and other tracking technologies to improve your
+          browsing experience and to better understand our website traffic. By
+          browsing our website, you consent to our use of cookies and other
+          tracking technologies.
+        </Typography>
         <CardActions style={{ justifyContent: 'flex-end' }}>
-          <Link key='privacy' to='/privacy' className={classes.linkText}>LEARN MORE </Link>
-          <Button onClick={closePopup} className={classes.buttonStyle}>Accept</Button>
+          <Link key='privacy' to='/privacy' className={classes.linkText}>
+            LEARN MORE{' '}
+          </Link>
+          <Button onClick={acceptCookieConsent} className={classes.buttonStyle}>
+            Accept
+          </Button>
         </CardActions>
       </CardContent>
     </Card>
