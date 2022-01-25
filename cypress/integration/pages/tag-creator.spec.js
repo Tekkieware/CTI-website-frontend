@@ -138,7 +138,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=current-tags]').within(() => {
       cy.get('[data-cy=generated-topic-tag] span').each(($el, index, $list) => {
         const innerText = $el.text();
-        expect(UNAFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.eq(index);
+        expect(UNAFFILIATED_TEST_TAGS.indexOf(innerText)).to.be.at.least(0);
       });
     });
     cy.get('[data-cy=radio-yes]').click();
