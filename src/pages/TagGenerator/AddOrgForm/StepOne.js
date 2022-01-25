@@ -20,9 +20,9 @@ const StepOne = (props) => {
   const orgNameApiErr = props.apiErrors.name;
   const websiteUrlApiErr = props.apiErrors.website_url;
   const parentHelpInfo = `A parent organization is an organization like Code For America or Code for All. 
-    It's an umbrella organization that oversees your individual orgnanization.`
+    It's an umbrella organization that oversees your individual orgnanization.`;
   const tagHelpInfo = `This is the Github tag that your organization uses such as 
-    “code-for-america”, “open-oakland” or “hack4la”.`
+    “code-for-america”, “open-oakland” or “hack4la”.`;
   return (
     <>
       <DialogTitle>
