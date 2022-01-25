@@ -56,7 +56,7 @@ const HowToAdd = () => {
           <Typography className='genSubheadTypo'>
             By adding the
             <Box component='span' className={classes.boldFont}>
-              {' '}'civictechindex'{' '}
+              {` 'civictechindex' `}
             </Box>
             topic tag to your project, we can create a continuously updated
             repository for all civic tech enthusiasts to find open source
