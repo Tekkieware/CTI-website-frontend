@@ -5,6 +5,7 @@ describe('Projects Page (Search Projects)', () => {
     'civictechindex/CTI-website-backend',
     'hackforla/civic-opportunity',
     'hackforla/civic-tech-structure',
+    'hackforla/CivicTechJobs',
     'civictechindex/civictechindex-launch',
     'cnk/civictechindexadmin',
     'cnk/CivicTechIndex',

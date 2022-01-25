@@ -20,9 +20,9 @@ const StepOne = (props) => {
   const orgNameApiErr = props.apiErrors.name;
   const websiteUrlApiErr = props.apiErrors.website_url;
   const parentHelpInfo = `A parent organization is an organization like Code For America or Code for All. 
-    It's an umbrella organization that oversees your individual orgnanization.`
+    It's an umbrella organization that oversees your individual orgnanization.`;
   const tagHelpInfo = `This is the Github tag that your organization uses such as 
-    “code-for-america”, “open-oakland” or “hack4la”.`
+    “code-for-america”, “open-oakland” or “hack4la”.`;
   return (
     <>
       <DialogTitle>
@@ -33,8 +33,8 @@ const StepOne = (props) => {
         </Box>
         <Box className={classes.progress}>
           <Typography variant='body1'>Project Information</Typography>
-          <Typography variant='body1'>
-            <b>1/2</b>
+          <Typography variant='body1' className={classes.boldFont}>
+            1/2
           </Typography>
         </Box>
         <LinearProgress variant='determinate' color='secondary' value={50} />

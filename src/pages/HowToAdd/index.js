@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
       padding: '32px 0',
     },
   },
+  boldFont: {
+    fontWeight: 'bold',
+  },
   typoStyle: {
     textAlign: 'justify',
     '& a:visited': {
@@ -51,7 +54,10 @@ const HowToAdd = () => {
             breadCrumbLinks={breadCrumbLinks}
           />
           <Typography className='genSubheadTypo'>
-            By adding the <b>&apos;civictechindex&apos; </b>
+            By adding the
+            <Box component='span' className={classes.boldFont}>
+              {` 'civictechindex' `}
+            </Box>
             topic tag to your project, we can create a continuously updated
             repository for all civic tech enthusiasts to find open source
             projects to model, connect with, and learn from. Need an overview of

@@ -87,7 +87,7 @@ export const OrganizationSelectorSection = ({
             className={classes.orgLink}
             onClick={() => setDialogOpen(true)}
           >
-            <b>here</b>
+            here
           </Link>
           &nbsp;to add it.
         </Typography>

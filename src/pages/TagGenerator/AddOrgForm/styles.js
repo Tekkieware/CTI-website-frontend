@@ -1,6 +1,9 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
+  boldFont: {
+    fontWeight: 'bold',
+  },
   buttons: {
     display: 'flex',
     '&>*': {
