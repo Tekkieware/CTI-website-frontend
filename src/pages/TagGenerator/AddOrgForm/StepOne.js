@@ -33,8 +33,8 @@ const StepOne = (props) => {
         </Box>
         <Box className={classes.progress}>
           <Typography variant='body1'>Project Information</Typography>
-          <Typography variant='body1'>
-            <b>1/2</b>
+          <Typography variant='body1' className={classes.boldFont}>
+            1/2
           </Typography>
         </Box>
         <LinearProgress variant='determinate' color='secondary' value={50} />

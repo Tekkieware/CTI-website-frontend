@@ -27,8 +27,8 @@ const StepTwo = (props) => {
         </Box>
         <Box className={classes.progress}>
           <Typography variant='body1'>Social Media and Location</Typography>
-          <Typography variant='body1'>
-            <b>2/2</b>
+          <Typography variant='body1' className={classes.boldFont}>
+            2/2
           </Typography>
         </Box>
         <LinearProgress variant='determinate' color='secondary' value={100} />
