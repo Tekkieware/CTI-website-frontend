@@ -96,14 +96,14 @@ const useStyles = makeStyles((theme) => ({
         padding: '16px 0px',
         fontSize: '20px',
         fontWeight: '700',
-        color: '#0F1D2F',
+        color: theme.palette.text.primary,
       },
       '& a': {
         display: 'inline',
         padding: '12px 0px',
         fontSize: '16px',
         fontWeight: '400',
-        color: '#0F1D2F',
+        color: theme.palette.text.primary,
       },
       '& a:link': {
         underline: 'none',

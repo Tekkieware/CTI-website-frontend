@@ -16,7 +16,6 @@ export const OrganizationSelectorSection = ({
   options,
   setOptions,
 }) => {
-  const classes = useStyles();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -84,7 +83,6 @@ export const OrganizationSelectorSection = ({
           Don&apos;t see your organization? Click&nbsp;
           <Link
             id='add-org-link'
-            className={classes.orgLink}
             onClick={() => setDialogOpen(true)}
           >
             here
@@ -126,16 +124,14 @@ export const OrgNameSection = ({ setDisplayState, orgName, linkStyles }) => {
         </Grid>
       )}
       <Grid item xs={2}>
-        <Link
-          id='change-org'
-          component='button'
-          variant='body1'
-          onClick={handleChangeOrg}
-          underline='always'
-          style={linkStyles}
-        >
-          change
-        </Link>
+        <Typography>
+          <Link
+            id='change-org'
+            onClick={handleChangeOrg}
+          >
+            change
+          </Link>
+        </Typography>
       </Grid>
     </Grid>
   );

@@ -32,16 +32,14 @@ export const ProjectRepositorySection = ({
         </Link>
       </Grid>
       <Grid item xs={2}>
-        <Link
-          id='change-url'
-          component='button'
-          variant='body1'
-          onClick={() => setDisplayState('ProjectUrl')}
-          underline='always'
-          style={linkStyles}
-        >
-          change
-        </Link>
+        <Typography>
+          <Link
+            id='change-url'
+            onClick={() => setDisplayState('ProjectUrl')}
+          >
+            change
+          </Link>
+        </Typography>
       </Grid>
     </Grid>
   );

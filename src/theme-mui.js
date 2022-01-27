@@ -8,7 +8,7 @@ const DARK_BLUE = '#0F1D2F';
 const TEAL = '#004364';
 const LIGHT_BLUE = '#0D99C6';
 const LIGHT_BLUE_2 = '#5FCAF9';
-const LIGHT_BLUE_3 = '#0A7A9E';
+const MEDIUM_BLUE = '#0A75AD';
 const YELLOW = '#FFE06D';
 const WHITE = '#FEFEFE';
 // Colors - Secondary
@@ -26,23 +26,23 @@ const GREY900 = '#242424'; // default = #212121
 const breakpoints = createBreakpoints({});
 
 const defaultButtonSettings = {
-  backgroundColor: LIGHT_BLUE_3,
+  backgroundColor: MEDIUM_BLUE,
   color: WHITE,
   '&$disabled': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     color: WHITE,
     opacity: '0.50',
   },
   '&:hover': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     opacity: '0.92',
   },
   '&:focus': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     opacity: '0.76',
   },
   '&:active': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     opacity: '0.68',
   },
 };
@@ -231,13 +231,16 @@ const themeSettings = {
     MuiTypography: {
       root: {
         '& a': {
+          color: MEDIUM_BLUE,
+          cursor: 'pointer',
           fontWeight: 700,
+          textDecoration: 'underline',
+        },
+        '& a:link': {
+          color: MEDIUM_BLUE,
         },
         '& a:active': {
           color: LIGHT_BLUE_2,
-        },
-        '& a:link': {
-          color: LIGHT_BLUE,
         },
         '& a:hover': {
           color: LIGHT_BLUE_2,

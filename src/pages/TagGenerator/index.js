@@ -2,7 +2,7 @@
 /* eslint-disable complexity */
 
 import React, { useState, useEffect, useRef } from 'react';
-import Link from '../../components/common/Link';
+import Link from '@material-ui/core/Link';
 import {
   useQueryParam,
   StringParam,
@@ -490,16 +490,12 @@ const TagGenerator = () => {
               stepHeading='Select Project Affiliation'
             />
           </Grid>
-          <AffiliationQuestionSection
-            value={value}
-            handleChange={handleChange}
-            question={
-              <>
-                  Are you affiliated with an{' '}
-                <Link to='/organizations/all'>organization</Link>?
-              </>
-            }
-          />
+          <AffiliationQuestionSection value={value} handleChange={handleChange}>
+            <Typography variant='body1'>
+              Are you affiliated with an&nbsp;
+              <Link href='/organizations/all' color='inherit'>organization</Link>?
+            </Typography>
+          </AffiliationQuestionSection>
           {value === 'yes' ? (
             <RadioYes value={value} setOrgName={setOrgName} />
           ) : null}

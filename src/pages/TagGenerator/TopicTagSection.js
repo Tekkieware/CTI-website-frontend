@@ -114,10 +114,11 @@ export const AddTagsQuestion = ({
       <AffiliationQuestionSection
         value={addTagValue}
         handleChange={handleChangeTag}
-        question={
-          "Do you want to add more tags specific to your project's subject area to increase visibility?"
-        }
-      />
+      >
+        <Typography>
+          Do you want to add more tags specific to your project&apos;s subject area to increase visibility?
+        </Typography>
+      </AffiliationQuestionSection>
       {addTagValue === 'yes' ? (
         <AddTopicTagSection
           userTags={userTags}
@@ -281,7 +282,7 @@ const TagGeneratorInstructions = ({
             How to add your tags to your project&apos;s repository
           </Typography>
         </Grid>
-        <Grid item xs={12} className={classes.gridLinkStyle}>
+        <Grid item xs={12}>
           <Typography variant='body1' className={classes.topTypoStyle}>
             1. Under your{' '}
             <Link target='_blank' href={repositoryUrl} underline='always'>
@@ -296,11 +297,9 @@ const TagGeneratorInstructions = ({
             have &quot;edit repository settings&quot; privileges (and can&apos;t perform the
             steps below). Please click{' '}
             <Link
-              component='button'
               variant='body1'
               onClick={() => handleQueryParamLink()}
               underline='always'
-              className={classes.lStyle}
             >
               {clipboard.copied ? 'Copied' : 'here'}
             </Link>{' '}
@@ -375,15 +374,11 @@ export const CopyPasteTags = ({
                 variant='outlined'
               />
               <Grid item style={{ padding: '8px' }}>
-                <Link
-                  component='button'
-                  variant='body1'
-                  onClick={() => setDisplayState('ChangeTags')}
-                  underline='always'
-                  style={linkStyles}
-                >
-                  Add More tags
-                </Link>
+                <Typography>
+                  <Link onClick={() => setDisplayState('ChangeTags')}>
+                    Add More tags
+                  </Link>
+                </Typography>
               </Grid>
             </Grid>
           </Grid>
