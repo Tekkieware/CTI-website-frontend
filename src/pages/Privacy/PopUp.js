@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '2%',
     verticalAlign: 'middle',
   },
+  buttonLinkStyle: {
+    justifyContent: 'flex-end',
+  },
   buttonStyle: {
     width: '150px',
     height: '36px',
@@ -64,12 +67,12 @@ const useStyles = makeStyles((theme) => ({
 const PopUp = () => {
   const classes = useStyles();
   const date = new Date();
-  const setCookie = function (cookieEmail, cookieValue, expDays) {
+  const setCookie = function (cookieEmail) {
+    let cookieValue, expDays;
     date.setTime(date.getTime() + expDays);
-
     const expires = 'expires=' + date.toUTCString();
 
-    document.cookie = cookieEmail + cookieValue + ';' + expires + ';path=/';
+    document.cookie = `${cookieEmail} + ${cookieValue} + ';' + ${expires} + ';path=/'`;
 
     return document.cookie;
   };
@@ -77,11 +80,11 @@ const PopUp = () => {
   const deleteCookie = function (cookieEmail) {
     date.setTime(date.getTime());
     const expires = 'expires=' + date.toUTCString();
-    document.cookie = cookieEmail + expires + ';path=/';
+    document.cookie = `${cookieEmail} + ${expires} + ';path=/'`;
   };
   const acceptCookieConsent = () => {
-    deleteCookie('civictecindex_cookie_consent');
-    setCookie('civictecindex_cookie_consent', 1, 30);
+    deleteCookie('civictechindex_cookie_consent');
+    setCookie('civictechindex_cookie_consent', 1, 30);
     document.getElementById('cookieNotice').style.display = 'none';
   };
 
@@ -97,17 +100,24 @@ const PopUp = () => {
         <span>Cookies and Privacy Policy </span>
       </Typography>
       <CardContent className={classes.copyStyle}>
-        <Typography className={classes.hoverContent}>
+        <Typography
+          className={classes.hoverContent}
+          data-cy='cookie-privacy-textdescription'
+        >
           We use cookies and other tracking technologies to improve your
           browsing experience and to better understand our website traffic. By
           browsing our website, you consent to our use of cookies and other
           tracking technologies.
         </Typography>
-        <CardActions style={{ justifyContent: 'flex-end' }}>
+        <CardActions className={classes.buttonLinkStyle}>
           <Link key='privacy' to='/privacy' className={classes.linkText}>
             LEARN MORE{' '}
           </Link>
-          <Button onClick={acceptCookieConsent} className={classes.buttonStyle}>
+          <Button
+            onClick={acceptCookieConsent}
+            data-cy='accept-cookie'
+            className={classes.buttonStyle}
+          >
             Accept
           </Button>
         </CardActions>
