@@ -72,7 +72,7 @@ const PopUp = () => {
     date.setTime(date.getTime() + expDays);
     const expires = 'expires=' + date.toUTCString();
 
-    document.cookie = `${cookieEmail} + ${cookieValue} + ';' + ${expires} + ';path=/'`;
+    document.cookie = `${cookieEmail}${cookieValue}';'${expires}';path=/'`;
 
     return document.cookie;
   };
@@ -80,7 +80,7 @@ const PopUp = () => {
   const deleteCookie = function (cookieEmail) {
     date.setTime(date.getTime());
     const expires = 'expires=' + date.toUTCString();
-    document.cookie = `${cookieEmail} + ${expires} + ';path=/'`;
+    document.cookie = `${cookieEmail}${expires}';path=/'`;
   };
   const acceptCookieConsent = () => {
     deleteCookie('civictechindex_cookie_consent');
