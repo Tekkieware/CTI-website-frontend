@@ -110,13 +110,18 @@ const PopUp = () => {
           tracking technologies.
         </Typography>
         <CardActions className={classes.buttonLinkStyle}>
-          <Link key='privacy' to='/privacy' className={classes.linkText}>
+          <Link
+            className={classes.linkText}
+            data-cy='privacy-link'
+            key='privacy'
+            to='/privacy'
+          >
             LEARN MORE{' '}
           </Link>
           <Button
-            onClick={acceptCookieConsent}
-            data-cy='accept-cookie'
             className={classes.buttonStyle}
+            data-cy='accept-cookie'
+            onClick={acceptCookieConsent}
           >
             Accept
           </Button>
