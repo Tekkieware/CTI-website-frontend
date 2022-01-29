@@ -37,6 +37,7 @@ const HeaderLarge = () => {
                     key={subNav.id}
                     route={subNav.route}
                     title={subNav.tooltip}
+                    query={subNav.query}
                   />
                 );
               })}

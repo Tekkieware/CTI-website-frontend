@@ -19,6 +19,7 @@ const NavSublink = ({
   header,
   isExternal = false,
   label,
+  query,
   route,
   title,
 }) => {
@@ -46,7 +47,7 @@ const NavSublink = ({
           disableGutters
           disableRipple
           title={title}
-          to={route}
+          to={{ pathname: route, query: query }}
         >
           {header}
         </MenuItem>

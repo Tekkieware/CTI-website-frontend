@@ -43,10 +43,7 @@ const App = () => {
             <RouteTitled exact path='/about' component={About} title='About' />
             <RouteTitled exact path='/about/contact' component={Contact} title='Contact Us' />
             <RouteTitled exact path='/about/faq' component={Faq} title='FAQ' />
-            <RouteTitled exact path='/organizations/all' component={Contributors} title='All' />
-            <RouteTitled exact path='/organizations/affiliated' component={Contributors} title='Affiliated' />
-            <RouteTitled exact path='/organizations/unaffiliated' component={Contributors} title='Unaffiliated' />
-            <RouteTitled exact path='/organizations/contributors' component={Contributors} title='Index Contributors' />
+            <RouteTitled exact path={'/organizations'} component={Contributors} title='Organizations' />
             <RouteTitled exact path='/home' component={Home} title='Home' />
             <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
             <RouteTitled exact path='/join-index' component={TagGenerator} title='Join the Index' />
@@ -72,10 +69,6 @@ const App = () => {
             <Redirect from='/how-to' to='/join-index/how-to-add' />
             <Redirect from='/how-to-use' to='/join-index/how-to-add' />
             <Redirect from='/join' to='/join-index' />
-            <Redirect from='/All' to='/organizations/all' />
-            <Redirect from='/Affiliated' to='/organizations/affiliatedorganizations' />
-            <Redirect from='/Unaffiliated' to='/organizations/unaffiliatedorganizations' />
-            <Redirect from='/IndexContributors' to='/organizations/affiliated' />
             <Redirect from='/search' to='/projects' />
             <Redirect from='/share' to='/support/share' />
             <Redirect from='/tag-creator' to='/join-index' />

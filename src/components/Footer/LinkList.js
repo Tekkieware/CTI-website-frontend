@@ -32,7 +32,7 @@ const LinkList = ({ header, links, route }) => {
           <Link
             aria-label={link.label}
             key={link.id}
-            to={link.route}
+            to={{ pathname: link.route, query: link.query }}
             title={link.tooltip}
           >
             {link.header}
