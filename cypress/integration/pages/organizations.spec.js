@@ -1,4 +1,4 @@
-describe('Contributors Page (using API)', () => {
+describe('Organizations Page (using API)', () => {
   const grandparentOrg = 'Code for All';
   const parentOrg = 'Code for America';
   const affiliatedOrg = 'Code for ABQ';
@@ -6,9 +6,21 @@ describe('Contributors Page (using API)', () => {
   const parentOrgCount1 = 24;
   const parentOrgCount2 = 1;
 
-  it(`should load grandparentOrg, parentOrg, affiliatedOrg`, () => {
+  it('should load default page state from /organizations', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
-    cy.visit('/organizations/all');
+    cy.visit('/organizations');
+    cy.wait('@getOrganizations');
+    cy.get('[data-cy=index-contributors-checkbox]').within(() => {
+      cy.get('[type="checkbox"]').should('not.be.checked');
+    });
+    cy.get('[data-cy=status-tab-0]')
+      .invoke('attr', 'aria-selected')
+      .should('eq', 'true');
+  });
+
+  it('should load grandparentOrg, parentOrg, affiliatedOrg', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
+    cy.visit('/organizations', { qs: { contrib: false, status: 'any' }});
     cy.wait('@getOrganizations');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').uncheck();
     cy.contains(grandparentOrg).should('have.length', 1);
@@ -27,7 +39,7 @@ describe('Contributors Page (using API)', () => {
 
   it('should find affiliatedOrg via search', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
-    cy.visit('/organizations/affiliated');
+    cy.visit('/organizations', { qs: { contrib: false, status: 'affiliated' }});
     cy.wait('@getOrganizations');
     cy.get('[data-cy=organization-search]').type(affiliatedOrg).type('{enter}');
     cy.get('[data-cy=affiliated-organizations]').within(() => {
@@ -44,7 +56,7 @@ describe('Contributors Page (using API)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
       'getOrganizations'
     );
-    cy.visit('/organizations/affiliated');
+    cy.visit('/organizations', { qs: { contrib: false, status: 'affiliated' }});
     cy.wait('@getOrganizations');
     cy.get('[data-cy=organization-search]').type(affiliatedOrgPartial);
     cy.get('[data-cy=organization-search-list]').should('have.length', 1);
@@ -67,16 +79,19 @@ describe('Contributors Page (using API)', () => {
       'contain',
       'Want to add your organization'
     );
+    cy.get('[data-cy=index-contributors-checkbox]').within(() => {
+      cy.get('[type="checkbox"]').should('be.checked');
+    });
   });
 });
 
 /* eslint-disable max-lines-per-function */
-describe('Contributors Page (using fixture)', () => {
+describe('Organizations Page (using fixture)', () => {
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
       fixture: 'orgs.json',
     }).as('getOrganizations');
-    cy.visit('/organizations/all');
+    cy.visit('/organizations', { qs: { contrib: false, status: 'any' }});
     cy.wait('@getOrganizations');
   });
 
@@ -108,7 +123,7 @@ describe('Contributors Page (using fixture)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
       fixture: 'orgs.json',
     }).as('getOrganizations');
-    cy.visit('/organizations/unaffiliated');
+    cy.visit('/organizations', { qs: { contrib: false, status: 'unaffiliated' }});
     cy.wait('@getOrganizations');
     cy.get('[class*=MuiTabs-flexContainer]').within(() => {
       cy.get('button')
@@ -130,7 +145,7 @@ describe('Contributors Page (using fixture)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
       fixture: 'orgs.json',
     }).as('getOrganizations');
-    cy.visit('/organizations/affiliated');
+    cy.visit('/organizations', { qs: { contrib: false, status: 'affiliated' }});
     cy.wait('@getOrganizations');
     cy.get('[class*=MuiTabs-flexContainer]').within(() => {
       cy.get('button')
@@ -254,7 +269,7 @@ describe('Contributors Page (using fixture)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
       fixture: 'orgs.json',
     }).as('getOrganizations');
-    cy.visit('/organizations/affiliated');
+    cy.visit('/organizations', { qs: { contrib: false, status: 'affiliated' }});
     cy.wait('@getOrganizations');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').check();
     cy.get('[class*=makeStyles-gpGrid]').within(() => {
