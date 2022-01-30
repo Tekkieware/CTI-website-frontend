@@ -40,15 +40,15 @@ const SubscribeSection = ({ size }) => {
     case 'duplicate':
       return (
         <Typography variant='body2' className={classes.errorMessage}>
-            That email address has already been registered with us.
+          That email address has already been registered with us.
         </Typography>
       );
     case 'error':
       return (
         <Typography variant='body2' className={classes.errorMessage}>
-            The email address you have submitted was invalid.
+          The email address you have submitted was invalid.
           <br />
-            Please check the format and resubmit.
+          Please check the format and resubmit.
         </Typography>
       );
     case 'success':
@@ -58,9 +58,9 @@ const SubscribeSection = ({ size }) => {
           color='textSecondary'
           className={classes.successMessage}
         >
-            Thanks for subscribing!
+          Thanks for subscribing!
           <br />
-            We will be in touch soon.
+           We will be in touch soon.
         </Typography>
       );
     default:
@@ -119,7 +119,6 @@ const SubscribeSection = ({ size }) => {
           </Typography>
           <Grid className={size === 'lg' ? null : classes.emailSubscribe}>
             <TextField
-              id='searchTextfield'
               onInput={(e) => setInputValue(e.target.value)}
               placeholder='name@domain.com'
               inputProps={ariaLabel}
