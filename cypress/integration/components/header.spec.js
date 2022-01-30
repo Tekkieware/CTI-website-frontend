@@ -1,14 +1,19 @@
 describe('Header component', () => {
   const menuItems = {
     'Join the Index': ['Add Your Project', 'How to Add Your Project'],
-    'Overview': ['About', 'FAQ', 'Contact Us'],
+    Overview: ['About', 'FAQ', 'Contact Us'],
     'Radical Collaboration': [
       'Collaborate with Us',
       'Donate',
       'Share the CTI',
       'Volunteer with Us',
     ],
-    'Civic Tech Organizations': ['All', 'Affiliated', 'Unaffiliated', 'Index Contributors'],
+    'Civic Tech Organizations': [
+      'All',
+      'Affiliated',
+      'Unaffiliated',
+      'Index Contributors',
+    ],
   };
 
   beforeEach(() => {
@@ -36,9 +41,17 @@ describe('Header component', () => {
     cy.get('[class*=makeStyles-showMobileNav]').should('not.exist');
     cy.get('[data-cy=menuIcon]').click();
     cy.get('[class*=makeStyles-showMobileNav]').should('be.visible');
-    cy.get('[class*=makeStyles-dropdownHeader]').first().should('have.text', 'Join the Index');
-    cy.get('[class*=makeStyles-dropdownHeader]').eq(1).should('have.text', 'Overview');
-    cy.get('[class*=makeStyles-dropdownHeader]').eq(2).should('have.text', 'Civic Tech Organizations');
-    cy.get('[class*=makeStyles-dropdownHeader]').last().should('have.text', 'Radical Collaboration');
+    cy.get('[class*=makeStyles-dropdownHeader]')
+      .first()
+      .should('have.text', 'Join the Index');
+    cy.get('[class*=makeStyles-dropdownHeader]')
+      .eq(1)
+      .should('have.text', 'Overview');
+    cy.get('[class*=makeStyles-dropdownHeader]')
+      .eq(2)
+      .should('have.text', 'Civic Tech Organizations');
+    cy.get('[class*=makeStyles-dropdownHeader]')
+      .last()
+      .should('have.text', 'Radical Collaboration');
   });
 });
