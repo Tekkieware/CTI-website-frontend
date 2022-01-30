@@ -30,7 +30,7 @@ const NavSublink = ({
           aria-label={label}
           className={classes.menuitem}
           component='a'
-          data-cy='menuItem'
+          data-cy='menu-item'
           disableGutters
           disableRipple
           href={route}
@@ -43,7 +43,7 @@ const NavSublink = ({
           aria-label={label}
           className={classes.menuitem}
           component={RouterLink}
-          data-cy='menuItem'
+          data-cy='menu-item'
           disableGutters
           disableRipple
           title={title}

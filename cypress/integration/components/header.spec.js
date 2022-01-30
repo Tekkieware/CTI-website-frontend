@@ -8,42 +8,42 @@ describe('Header component', () => {
     cy.findLink('Join the Index')
       .should('have.attr', 'href', '/home')
       .trigger('mouseover')
-      .get('[data-cy=menuItem]')
+      .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('Add Your Project');
-        cy.contains('How to Add Your Project');
+        cy.contains('Add Your Project').should('be.visible');
+        cy.contains('How to Add Your Project').should('be.visible');
       });
 
     cy.findLink('Overview')
       .should('have.attr', 'href', '/home')
       .trigger('mouseover')
-      .get('[data-cy=menuItem]')
+      .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('About');
-        cy.contains('FAQ');
-        cy.contains('Contact Us');
+        cy.contains('About').should('be.visible');
+        cy.contains('FAQ').should('be.visible');
+        cy.contains('Contact Us').should('be.visible');
       });
 
     cy.findLink('Radical Collaboration')
       .should('have.attr', 'href', '/home')
       .trigger('mouseover')
-      .get('[data-cy=menuItem]')
+      .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('Collaborate with Us');
-        cy.contains('Donate');
-        cy.contains('Share the CTI');
-        cy.contains('Volunteer with Us');
+        cy.contains('Collaborate with Us').should('be.visible');
+        cy.contains('Donate').should('be.visible');
+        cy.contains('Share the CTI').should('be.visible');
+        cy.contains('Volunteer with Us').should('be.visible');
       });
 
     cy.findLink('Civic Tech Organizations')
       .should('have.attr', 'href', '/home')
       .trigger('mouseover')
-      .get('[data-cy=menuItem]')
+      .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('All');
-        cy.contains('Affiliated');
-        cy.contains('Unaffiliated');
-        cy.contains('Index Contributors');
+        cy.contains('All').should('be.visible');
+        cy.contains('Affiliated').should('be.visible');
+        cy.contains('Unaffiliated').should('be.visible');
+        cy.contains('Index Contributors').should('be.visible');
       });
   });
 

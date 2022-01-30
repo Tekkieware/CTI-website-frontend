@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 describe('Organizations Page (using API)', () => {
   const grandparentOrg = 'Code for All';
   const parentOrg = 'Code for America';
@@ -18,7 +19,24 @@ describe('Organizations Page (using API)', () => {
       .should('eq', 'true');
   });
 
+  it('should nav to orgs page with unaffiliated orgs shown', () => {
+    cy.visit('/home');
+    cy.findLink('Civic Tech Organizations')
+      .trigger('mouseover')
+      .get('[data-cy=menu-item]')
+      .within(() => {
+        cy.contains('Unaffiliated').click();
+      });
+    cy.get('[data-cy=index-contributors-checkbox]').within(() => {
+      cy.get('[type="checkbox"]').should('not.be.checked');
+    });
+    cy.get('[data-cy=status-tab-1]')
+      .invoke('attr', 'aria-selected')
+      .should('eq', 'true');
+  });
+
   it('should load grandparentOrg, parentOrg, affiliatedOrg', () => {
+    cy.visit('/home');
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
     cy.visit('/organizations', { qs: { contrib: false, status: 'any' }});
     cy.wait('@getOrganizations');
@@ -85,7 +103,6 @@ describe('Organizations Page (using API)', () => {
   });
 });
 
-/* eslint-disable max-lines-per-function */
 describe('Organizations Page (using fixture)', () => {
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`, {
