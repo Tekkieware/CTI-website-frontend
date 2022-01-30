@@ -1,9 +1,14 @@
 describe('Header component', () => {
   const menuItems = {
-    joinIndex: ['Add Your Project', 'How to Add Your Project'],
-    overview: ['About', 'FAQ', 'Contact Us'],
-    collab: ['Collaborate with Us', 'Donate', 'Share the CTI', 'Volunteer with Us'],
-    orgs: ['All', 'Affiliated', 'Unaffiliated', 'Index Contributors'],
+    'Join the Index': ['Add Your Project', 'How to Add Your Project'],
+    'Overview': ['About', 'FAQ', 'Contact Us'],
+    'Radical Collaboration': [
+      'Collaborate with Us',
+      'Donate',
+      'Share the CTI',
+      'Volunteer with Us',
+    ],
+    'Civic Tech Organizations': ['All', 'Affiliated', 'Unaffiliated', 'Index Contributors'],
   };
 
   beforeEach(() => {
@@ -12,45 +17,18 @@ describe('Header component', () => {
 
   it('loads nav links', () => {
     cy.viewport(1280, 800);
-    cy.findLink('Join the Index')
-      .should('have.attr', 'href', '/home')
-      .trigger('mouseover')
-      .get('[data-cy=menu-item]')
-      .within(() => {
-        menuItems.joinIndex.forEach((item) => {
-          cy.contains(item).should('be.visible');
+    for (const headerItem in menuItems) {
+      cy.findLink(headerItem)
+        .should('have.attr', 'href', '/home')
+        .trigger('mouseover')
+        .get('[data-cy=menu-item]')
+        .within(() => {
+          menuItems[headerItem].forEach((menuItem) => {
+            cy.contains(menuItem).should('be.visible');
+          });
         });
-      });
-
-    cy.findLink('Overview')
-      .should('have.attr', 'href', '/home')
-      .trigger('mouseover')
-      .get('[data-cy=menu-item]')
-      .within(() => {
-        menuItems.overview.forEach((item) => {
-          cy.contains(item).should('be.visible');
-        });
-      });
-
-    cy.findLink('Radical Collaboration')
-      .should('have.attr', 'href', '/home')
-      .trigger('mouseover')
-      .get('[data-cy=menu-item]')
-      .within(() => {
-        menuItems.collab.forEach((item) => {
-          cy.contains(item).should('be.visible');
-        });
-      });
-
-    cy.findLink('Civic Tech Organizations')
-      .should('have.attr', 'href', '/home')
-      .trigger('mouseover')
-      .get('[data-cy=menu-item]')
-      .within(() => {
-        menuItems.orgs.forEach((item) => {
-          cy.contains(item).should('be.visible');
-        });
-      });
+      cy.findLink(headerItem).trigger('mouseout');
+    }
   });
 
   it('mobile menu opens', () => {
