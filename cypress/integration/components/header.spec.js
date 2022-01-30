@@ -1,4 +1,11 @@
 describe('Header component', () => {
+  const menuItems = {
+    joinIndex: ['Add Your Project', 'How to Add Your Project'],
+    overview: ['About', 'FAQ', 'Contact Us'],
+    collab: ['Collaborate with Us', 'Donate', 'Share the CTI', 'Volunteer with Us'],
+    orgs: ['All', 'Affiliated', 'Unaffiliated', 'Index Contributors'],
+  };
+
   beforeEach(() => {
     cy.visit('/home');
   });
@@ -10,8 +17,9 @@ describe('Header component', () => {
       .trigger('mouseover')
       .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('Add Your Project').should('be.visible');
-        cy.contains('How to Add Your Project').should('be.visible');
+        menuItems.joinIndex.forEach((item) => {
+          cy.contains(item).should('be.visible');
+        });
       });
 
     cy.findLink('Overview')
@@ -19,9 +27,9 @@ describe('Header component', () => {
       .trigger('mouseover')
       .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('About').should('be.visible');
-        cy.contains('FAQ').should('be.visible');
-        cy.contains('Contact Us').should('be.visible');
+        menuItems.overview.forEach((item) => {
+          cy.contains(item).should('be.visible');
+        });
       });
 
     cy.findLink('Radical Collaboration')
@@ -29,10 +37,9 @@ describe('Header component', () => {
       .trigger('mouseover')
       .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('Collaborate with Us').should('be.visible');
-        cy.contains('Donate').should('be.visible');
-        cy.contains('Share the CTI').should('be.visible');
-        cy.contains('Volunteer with Us').should('be.visible');
+        menuItems.collab.forEach((item) => {
+          cy.contains(item).should('be.visible');
+        });
       });
 
     cy.findLink('Civic Tech Organizations')
@@ -40,10 +47,9 @@ describe('Header component', () => {
       .trigger('mouseover')
       .get('[data-cy=menu-item]')
       .within(() => {
-        cy.contains('All').should('be.visible');
-        cy.contains('Affiliated').should('be.visible');
-        cy.contains('Unaffiliated').should('be.visible');
-        cy.contains('Index Contributors').should('be.visible');
+        menuItems.orgs.forEach((item) => {
+          cy.contains(item).should('be.visible');
+        });
       });
   });
 
