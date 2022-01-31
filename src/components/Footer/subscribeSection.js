@@ -13,6 +13,7 @@ const SubscribeSection = ({ size }) => {
   const classes = useStyles();
   const [inputValue, setInputValue] = useState('');
   const [message, setMessage] = useState('');
+  const ariaLabel = { 'aria-label': 'Email Text Field' };
 
   const submitEmail = (event) => {
     event.preventDefault();
@@ -52,10 +53,14 @@ const SubscribeSection = ({ size }) => {
       );
     case 'success':
       return (
-        <Typography variant='h5' color='textSecondary' className={classes.successMessage}>
+        <Typography
+          variant='h5'
+          color='textSecondary'
+          className={classes.successMessage}
+        >
           Thanks for subscribing!
           <br />
-          We will be in touch soon.
+           We will be in touch soon.
         </Typography>
       );
     default:
@@ -63,65 +68,82 @@ const SubscribeSection = ({ size }) => {
     }
   };
 
-  return (
-    message === 'success' ? (
-      <Box>
-        {messageSwitch(message)}
-      </Box>
-    ) : (
-      <Box >
-        <Grid container className={size === 'lg' ? classes.subscribeSectionLarge : classes.subscribeSectionSmall}  >
-          <Grid   className={size === 'lg' ? null : classes.newsLetter} >
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              className={size !== 'lg'
+  return message === 'success' ? (
+    <Box>{messageSwitch(message)}</Box>
+  ) : (
+    <Box>
+      <Grid
+        container
+        className={
+          size === 'lg'
+            ? classes.subscribeSectionLarge
+            : classes.subscribeSectionSmall
+        }
+      >
+        <Grid className={size === 'lg' ? null : classes.newsLetter}>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            className={
+              size !== 'lg'
                 ? `${classes.sectionPaddingSm}`
                 : `${classes.sectionPaddingLg}`
-              }
-            >
-              Newsletter
-            </Typography>
-            <Typography
-              variant='body1'
-              color='textSecondary'
-              className={size !== 'lg'
+            }
+          >
+            Newsletter
+          </Typography>
+          <Typography
+            variant='body1'
+            color='textSecondary'
+            className={
+              size !== 'lg'
                 ? `${classes.sectionPaddingSm}`
                 : `${classes.sectionPaddingLg}`
-              }
-            >
-              To receive updates about new projects and trending topics on the index, subscribe here.
-            </Typography>
-          </Grid>
-          <form   onSubmit={submitEmail} >
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              className={size !== 'lg'
+            }
+          >
+            To receive updates about new projects and trending topics on the
+            index, subscribe here.
+          </Typography>
+        </Grid>
+        <form onSubmit={submitEmail}>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            className={
+              size !== 'lg'
                 ? `${classes.sectionPaddingSm}`
                 : `${classes.sectionPaddingLg}`
-              }>
-                E-mail
-            </Typography>
-            <Grid className={size === 'lg' ? null : classes.emailSubscribe} >
-              <TextField
-                onInput={(e) => setInputValue(e.target.value)}
-                placeholder='name@domain.com'
-                type='email'
-                variant='outlined'
-                className={size !== 'lg'
+            }
+          >
+            E-mail
+          </Typography>
+          <Grid className={size === 'lg' ? null : classes.emailSubscribe}>
+            <TextField
+              onInput={(e) => setInputValue(e.target.value)}
+              placeholder='name@domain.com'
+              inputProps={ariaLabel}
+              type='email'
+              variant='outlined'
+              className={
+                size !== 'lg'
                   ? `${classes.sectionPaddingSm}`
                   : `${classes.sectionPaddingLg}`
-                }
-              />
-              <Button color='primary' onClick={submitEmail} className={classes.submitBtn}>Submit</Button>
-            </Grid>
-          </form>
-          {messageSwitch(message)}
-
-        </Grid>
-      </Box>
-    )
+              }
+            />
+            <Button
+              type='submit'
+              value='Submit'
+              color='primary'
+              onClick={submitEmail}
+              className={classes.submitBtn}
+            >
+              Submit
+            </Button>
+          </Grid>
+        </form>
+        {messageSwitch(message)}
+      </Grid>
+    </Box>
   );
 };
 
