@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Link from '@material-ui/core/Link';
+import Link from '../../components/common/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from './styles';
 import AddOrgForm from './AddOrgForm';

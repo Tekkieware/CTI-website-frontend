@@ -2,7 +2,7 @@
 /* eslint-disable complexity */
 
 import React, { useState, useEffect, useRef } from 'react';
-import Link from '@material-ui/core/Link';
+import Link from '../../components/common/Link';
 import {
   useQueryParam,
   StringParam,
@@ -493,7 +493,7 @@ const TagGenerator = () => {
           <AffiliationQuestionSection value={value} handleChange={handleChange}>
             <Typography variant='body1'>
               Are you affiliated with an&nbsp;
-              <Link href='/organizations/all' color='inherit'>organization</Link>?
+              <Link to='/organizations/all'>organization</Link>?
             </Typography>
           </AffiliationQuestionSection>
           {value === 'yes' ? (

@@ -5,7 +5,7 @@ import { DropdownArrow } from '../../components/DropdownArrow.js';
 import Grid from '@material-ui/core/Grid';
 import { AffiliatedOrganizations } from './AffiliatedOrganizations';
 import clsx from 'clsx';
-import Link from '@material-ui/core/Link';
+import Link from '../../components/common/Link';
 import { makeStyles } from '@material-ui/core/styles';
 
 // eslint-disable-next-line max-lines-per-function
@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     '& a:link': {
-      color: theme.palette.secondary.dark,
+      color: `${theme.palette.secondary.dark} !important`,
     },
     '& a:visited': {
-      color: theme.palette.secondary.dark,
+      color: `${theme.palette.secondary.dark} !important`,
     },
     [theme.breakpoints.down('sm')]: {
       height: '43px',

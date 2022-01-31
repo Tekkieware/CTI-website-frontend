@@ -5,31 +5,12 @@ import { Link as RouterLink } from 'react-router-dom';
 import MuiLink from '@material-ui/core/Link';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
-import spectrum from '../../theme-spectrum';
 
 const useStyles = makeStyles({
   icon: {
     height: '0.875rem',
     '& svg': {
       transform: 'translateY(4px)',
-    },
-  },
-  link: {
-    color: spectrum.mediumBlue,
-    cursor: 'pointer',
-    fontWeight: 700,
-    textDecoration: 'underline',
-    '&:active': {
-      color: spectrum.lightBlue,
-    },
-    '&:link': {
-      color: spectrum.mediumBlue,
-    },
-    '&:hover': {
-      color: spectrum.lightBlue,
-    },
-    '&:visited': {
-      color: spectrum.purple,
     },
   },
 });
@@ -40,7 +21,7 @@ const Link = ({ to, children, ...props }) => {
   // If it has no 'to', just style it like a link
   if (!to) {
     return (
-      <MuiLink {...props} className={classes.link}>
+      <MuiLink {...props}>
         {children}
       </MuiLink>
     );
@@ -57,7 +38,7 @@ const Link = ({ to, children, ...props }) => {
 
   // Else assume 'to' is a route
   return (
-    <RouterLink to={to} className={classes.link} {...props}>
+    <RouterLink to={to} {...props}>
       {children}
     </RouterLink>
   );

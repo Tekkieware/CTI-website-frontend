@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
 import { GenericHeaderSection } from '../../components';
-import Link from '@material-ui/core/Link';
+import Link from '../../components/common/Link';
 
 const overviewList = [
   "We may collect information from you when you visit and take actions on our website. We use this information to provide the services you've requested.",

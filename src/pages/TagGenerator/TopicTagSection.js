@@ -11,7 +11,7 @@ import {
   ChipInputSection,
 } from './TopicTag';
 import useStyles from './styles';
-import Link from '@material-ui/core/Link';
+import Link from '../../components/common/Link';
 import { useClipboard } from 'use-clipboard-copy';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
 import ImageComponent from '../../components/ImageComponent';
@@ -239,15 +239,13 @@ export const NewTags = ({
               userTags={userTags}
               handleDelete={handleDelete}
             />
-            <Link
-              component='button'
-              variant='body1'
-              onClick={() => setDisplayState('ChangeTags')}
-              underline='always'
-              style={linkStyles}
-            >
-              Add More/Change Tags
-            </Link>
+            <Typography>
+              <Link
+                onClick={() => setDisplayState('ChangeTags')}
+              >
+                Add More/Change Tags
+              </Link>
+            </Typography>
           </Grid>
         </Grid>
       </Grid>

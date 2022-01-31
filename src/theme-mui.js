@@ -11,17 +11,23 @@ const LIGHT_BLUE_2 = '#5FCAF9';
 const MEDIUM_BLUE = '#0A75AD';
 const YELLOW = '#FFE06D';
 const WHITE = '#FEFEFE';
+
 // Colors - Secondary
 const DARK_GRAY = '#6D6E74';
-// const LIGHT_GRAY = '#F2F2F2';
 const NEW_GRAY = '#F5F5F5';
 const RED = '#D20E0E';
-const PURPLE = '#551A8B';
+
 // Colors - Grey
 const GREY100 = '#F4F4F4'; // default = #f5f5f5
 const GREY200 = '#E9E9E9'; // default = #eeeeee
 const GREY300 = '#D8D8D8'; // default = #e0e0e0
 const GREY900 = '#242424'; // default = #212121
+
+/*
+ * Colors - Unused in theme for now
+ * const LIGHT_GRAY = '#F2F2F2';
+ * const PURPLE = '#551A8B';
+ */
 
 const breakpoints = createBreakpoints({});
 
@@ -231,24 +237,44 @@ const themeSettings = {
     MuiTypography: {
       root: {
         '& a': {
-          color: MEDIUM_BLUE,
+          color: `${MEDIUM_BLUE} !important`,
           cursor: 'pointer',
           fontWeight: 700,
           textDecoration: 'underline',
         },
         '& a:link': {
-          color: MEDIUM_BLUE,
-        },
-        '& a:active': {
-          color: LIGHT_BLUE_2,
-        },
-        '& a:hover': {
-          color: LIGHT_BLUE_2,
+          color: `${MEDIUM_BLUE} !important`,
         },
         '& a:visited': {
-          color: PURPLE,
+          color: `${MEDIUM_BLUE} !important`,
+        },
+        '& a:active': {
+          color: `${LIGHT_BLUE_2} !important`,
+        },
+        '& a:hover': {
+          color: `${LIGHT_BLUE_2} !important`,
         },
       },
+      // root: {
+      //   '& a': {
+      //     color: `${MEDIUM_BLUE}`,
+      //     cursor: 'pointer',
+      //     fontWeight: 700,
+      //     textDecoration: 'underline',
+      //   },
+      //   '& a:link': {
+      //     color: `${MEDIUM_BLUE}`,
+      //   },
+      //   '& a:visited': {
+      //     color: `${MEDIUM_BLUE}`,
+      //   },
+      //   '& a:active': {
+      //     color: `${LIGHT_BLUE_2}`,
+      //   },
+      //   '& a:hover': {
+      //     color: `${LIGHT_BLUE_2}`,
+      //   },
+      // },
       colorPrimary: {
         color: DARK_BLUE,
       },

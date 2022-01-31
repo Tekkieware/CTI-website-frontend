@@ -35,10 +35,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '3px',
     color: theme.palette.secondary.dark,
     '& a:link': {
-      color: theme.palette.secondary.dark,
+      color: `${theme.palette.secondary.dark} !important`,
     },
     '& a:visited': {
-      color: theme.palette.secondary.dark,
+      color: `${theme.palette.secondary.dark} !important`,
     },
     [theme.breakpoints.between('xs', 'sm')]: {
       fontSize: '12px',
