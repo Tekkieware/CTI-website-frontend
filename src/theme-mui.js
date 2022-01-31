@@ -255,26 +255,6 @@ const themeSettings = {
           color: `${LIGHT_BLUE_2} !important`,
         },
       },
-      // root: {
-      //   '& a': {
-      //     color: `${MEDIUM_BLUE}`,
-      //     cursor: 'pointer',
-      //     fontWeight: 700,
-      //     textDecoration: 'underline',
-      //   },
-      //   '& a:link': {
-      //     color: `${MEDIUM_BLUE}`,
-      //   },
-      //   '& a:visited': {
-      //     color: `${MEDIUM_BLUE}`,
-      //   },
-      //   '& a:active': {
-      //     color: `${LIGHT_BLUE_2}`,
-      //   },
-      //   '& a:hover': {
-      //     color: `${LIGHT_BLUE_2}`,
-      //   },
-      // },
       colorPrimary: {
         color: DARK_BLUE,
       },
