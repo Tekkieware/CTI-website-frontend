@@ -33,12 +33,15 @@ const useStyles = makeStyles((theme) => ({
   orgText: {
     paddingLeft: '9px',
     paddingTop: '3px',
-    color: theme.palette.secondary.dark,
     '& a:link': {
       color: `${theme.palette.secondary.dark} !important`,
+      textDecoration: 'none',
     },
     '& a:visited': {
       color: `${theme.palette.secondary.dark} !important`,
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
     },
     [theme.breakpoints.between('xs', 'sm')]: {
       fontSize: '12px',
@@ -48,13 +51,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   blueColorText: {
+    color: `${theme.palette.text.secondary}`,
     paddingLeft: '16px',
-    color: theme.palette.text.secondary,
     '& a:link': {
-      color: theme.palette.text.secondary,
+      color: `${theme.palette.text.secondary} !important`,
+      textDecoration: 'none',
     },
     '& a:visited': {
-      color: theme.palette.text.secondary,
+      color: `${theme.palette.text.secondary} !important`,
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
     },
     [theme.breakpoints.between('xs', 'sm')]: {
       fontSize: '12px',

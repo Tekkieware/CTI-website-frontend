@@ -47,9 +47,13 @@ const useStyles = makeStyles((theme) => ({
     },
     '& a:link': {
       color: `${theme.palette.secondary.dark} !important`,
+      textDecoration: 'none',
     },
     '& a:visited': {
       color: `${theme.palette.secondary.dark} !important`,
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
     },
     [theme.breakpoints.down('sm')]: {
       height: '43px',
@@ -58,13 +62,13 @@ const useStyles = makeStyles((theme) => ({
   open: {
     backgroundColor: theme.palette.secondary.dark,
     '& h4': {
-      color: theme.palette.text.secondary,
+      color: `${theme.palette.text.secondary} !important`,
     },
     '& a:link': {
-      color: theme.palette.text.secondary,
+      color: `${theme.palette.text.secondary} !important`,
     },
     '& a:visited': {
-      color: theme.palette.text.secondary,
+      color: `${theme.palette.text.secondary} !important`,
     },
   },
   flexGrid: {
