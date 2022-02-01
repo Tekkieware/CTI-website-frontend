@@ -9,42 +9,42 @@ import IconButton from '@material-ui/core/IconButton';
 const notableUsers = [
   {
     alt: 'Hack for LA',
-    link: 'https://www.hackforla.org/',
+    link: 'http://civictechindex.org/organization/hack-for-la',
     src: '/images/hack-for-la.png',
   },
   {
     alt: 'OpenOakland',
-    link: 'https://openoakland.org/',
+    link: 'http://civictechindex.org/organization/open-oakland',
     src: '/images/open-oakland.svg',
   },
   {
     alt: 'Code for KC',
-    link: 'https://codeforkc.org/',
+    link: 'http://civictechindex.org/organization/code-for-kc',
     src: '/images/Code_For_KC.png',
   },
   {
     alt: 'Code for Tulsa',
-    link: 'https://codefortulsa.org/',
+    link: 'http://civictechindex.org/organization/code-for-tulsa',
     src: '/images/code-for-tulsa.png',
   },
   {
     alt: 'Code for Chapel Hill',
-    link: 'http://www.codeforchapelhill.com/',
+    link: 'http://civictechindex.org/organization/code-for-chapel-hill',
     src: '/images/code-for-chapel-hill.png',
   },
   {
     alt: 'Code for PDX',
-    link: 'https://www.meetup.com/Code-for-PDX/',
+    link: 'http://civictechindex.org/organization/code-for-pdx',
     src: '/images/code-for-PDX.png',
   },
   {
     alt: 'Code for Buffalo',
-    link: 'https://www.codeforbuffalo.org/',
+    link: 'http://civictechindex.org/organization/code-for-buffalo',
     src: '/images/code-for-buffalo.png',
   },
   {
     alt: 'BetaNYC',
-    link: 'https://beta.nyc/',
+    link: 'http://civictechindex.org/organization/betanyc',
     src: '/images/betanyc.png',
   },
 ];
