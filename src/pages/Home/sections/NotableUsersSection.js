@@ -114,7 +114,7 @@ const NotableUsersSection = () => {
         <div align='center'>
           <NavButton
             color='primary'
-            href={{ pathname: '/organizations/contributors' }}
+            href={{ pathname: '/organizations', query: { contrib: true, status: 'any' }}}
           >
             View contributors
           </NavButton>
