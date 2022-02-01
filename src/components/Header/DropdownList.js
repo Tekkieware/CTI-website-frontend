@@ -23,15 +23,15 @@ const DropdownList = ({ linkClickHandler, header, links, route }) => {
   };
 
   const LinkComponent = ({ link }) => {
-    const { header, isExternal, route } = link;
+    const { header, isExternal, label, query, route, tooltip } = link;
     if (isExternal) {
       return (
         <a
-          aria-label={link.label}
+          aria-label={label}
           href={route}
           onClick={handleClick}
           style={{ textDecoration: 'none' }}
-          title={link.tooltip}
+          title={tooltip}
         >
           {header}
         </a>
@@ -39,10 +39,10 @@ const DropdownList = ({ linkClickHandler, header, links, route }) => {
     } else {
       return (
         <Link
-          aria-label={link.label}
+          aria-label={label}
           style={{ textDecoration: 'none' }}
-          title={link.tooltip}
-          to={route}
+          title={tooltip}
+          to={{ pathname: route, query: query }}
           onClick={handleClick}
         >
           {header}

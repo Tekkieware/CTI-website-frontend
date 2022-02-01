@@ -1,9 +1,16 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable complexity */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import {
+  BooleanParam,
+  StringParam,
+  useQueryParam,
+  withDefault,
+} from 'use-query-params';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -23,8 +30,7 @@ import { Affiliated } from './Affiliated';
 import { UnaffiliatedOrganizations } from './UnaffiliatedOrganizations';
 import OrganizationSearch from './OrganizationSearch';
 
-// eslint-disable-next-line
-function TabPanel(props) {
+const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -42,7 +48,7 @@ function TabPanel(props) {
       )}
     </Grid>
   );
-}
+};
 
 export default function Contributors() {
   const classes = useStyle();
@@ -53,13 +59,19 @@ export default function Contributors() {
   const [organizations, setOrganizations] = useState([]);
   const [organizationNames, setOrganizationNames] = useState([]);
   const [filtersActive, setFiltersActive] = useState(false);
-  const [showIndexContrib, setShowIndexContrib] = useState(false);
-  const [tabValue, setTabValue] = useState(0);
   const [totalAffiliatedCount, setTotalAffiliatedCount] = useState(0);
   const [totalUnaffiliatedCount, setTotalUnaffiliatedCount] = useState(0);
   const [unaffiliatedCount, setUnaffiliatedCount] = useState(0);
   const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
     []
+  );
+  const [showIndexContrib, setShowIndexContrib] = useQueryParam(
+    'contrib',
+    withDefault(BooleanParam, false)
+  );
+  const [orgStatus, setOrgStatus] = useQueryParam(
+    'status',
+    withDefault(StringParam, 'any')
   );
 
   useEffect(() => {
@@ -100,19 +112,27 @@ export default function Contributors() {
   }, []);
 
   useEffect(() => {
-    if (location.pathname.indexOf('all') > -1) {
-      setTabValue(0);
+    if (!location.search) {
+      // handle case of navigating from menu item
+      if (location.query) {
+        setOrgStatus(location.query.status);
+        setShowIndexContrib(location.query.contrib);
+      // handle case of user entering /organizations route directly
+      } else {
+        setOrgStatus('any');
+        setShowIndexContrib(false);
+      }
+    // handle case of user entering bookmarked URL directly
+    } else if (!location.query) {
+      const queryParams = location.search.replace('?', '').split('&');
+      setOrgStatus(queryParams[1].split('=')[1]);
+      setShowIndexContrib(!!(Number(queryParams[0].split('=')[1])));
     }
-    if (location.pathname.indexOf('contributors') > -1) {
-      setShowIndexContrib(true);
-      setTabValue(0);
-    }
-    if (location.pathname.indexOf('unaffiliated') > -1) {
-      setTabValue(1);
-    } else if (location.pathname.indexOf('affiliated') > -1) {
-      setTabValue(2);
-    }
-  }, [location]);
+  }, [
+    location.search,
+    setOrgStatus,
+    setShowIndexContrib,
+  ]);
 
   useEffect(() => {
     let afflCount = 0,
@@ -141,17 +161,45 @@ export default function Contributors() {
     setAffiliatedOrganizations(affiliated);
     setUnaffiliatedOrganizations(unaffiliated);
   }, [inputValue, organizations, showIndexContrib]);
+
   TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
   };
-  // eslint-disable-next-line
-  function a11yProps(index) {
+
+  const a11yProps = (index) => {
     return {
       id: `full-width-tab-${index}`,
       'aria-controls': `full-width-tabpanel-${index}`,
+      'data-cy': `status-tab-${index}`,
     };
+  };
+
+  const getTabValue = (status) => {
+    switch (status) {
+    case 'any':
+      return 0;
+    case 'affiliated':
+      return 2;
+    case 'unaffiliated':
+      return 1;
+    default:
+      return 0;
+    }
+  };
+
+  const handleTabValueChange = (value) => {
+    switch (value) {
+    case 0:
+      setOrgStatus('any'); break;
+    case 1:
+      setOrgStatus('unaffiliated'); break;
+    case 2:
+      setOrgStatus('affiliated'); break;
+    default:
+      setOrgStatus('any');
+    }
   }
 
   return (
@@ -185,8 +233,8 @@ export default function Contributors() {
         <Container>
           <AppBar position='static' color='default' elevation={0}>
             <Tabs
-              value={tabValue}
-              onChange={(e, val) => setTabValue(val)}
+              value={getTabValue(orgStatus)}
+              onChange={(e, val) => handleTabValueChange(val)}
               variant='fullWidth'
               className={classes.tabs}
               classes={{ indicator: classes.indicator }}
@@ -220,7 +268,7 @@ export default function Contributors() {
               />
             </Tabs>
           </AppBar>
-          <Grid index={tabValue}>
+          <Grid index={getTabValue(orgStatus)}>
             <FormGroup className={classes.checkBox}>
               <FormControlLabel
                 control={
@@ -239,7 +287,7 @@ export default function Contributors() {
                 }
               />
             </FormGroup>
-            <TabPanel value={tabValue} index={0}>
+            <TabPanel value={getTabValue(orgStatus)} index={0}>
               <UnaffiliatedOrganizations
                 organizations={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
@@ -258,7 +306,7 @@ export default function Contributors() {
                 showIndexContrib={showIndexContrib}
               />
             </TabPanel>
-            <TabPanel value={tabValue} index={1}>
+            <TabPanel value={getTabValue(orgStatus)} index={1}>
               <UnaffiliatedOrganizations
                 organizations={unaffiliatedOrganizations}
                 filtersActive={filtersActive}
@@ -266,7 +314,7 @@ export default function Contributors() {
                 totalUnaffiliatedCount={totalUnaffiliatedCount}
               />
             </TabPanel>
-            <TabPanel value={tabValue} index={2}>
+            <TabPanel value={getTabValue(orgStatus)} index={2}>
               <Affiliated
                 organizations={affiliatedOrganizations}
                 inputValue={inputValue}
