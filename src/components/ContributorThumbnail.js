@@ -8,6 +8,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { getOrganizationLinks } from './getOrganizationLinks.js';
+import spectrum from '../theme-spectrum';
 
 const useStyles = makeStyles((theme) => ({
   thumbnailWrapper: {
@@ -34,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '9px',
     paddingTop: '3px',
     '& a:link': {
-      color: `${theme.palette.secondary.dark} !important`,
+      color: `${spectrum.teal} !important`,
       textDecoration: 'none',
     },
     '& a:visited': {
-      color: `${theme.palette.secondary.dark} !important`,
+      color: `${spectrum.teal} !important`,
     },
     '& a:hover': {
       textDecoration: 'underline',
@@ -51,14 +52,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   blueColorText: {
-    color: `${theme.palette.text.secondary}`,
+    color: `${spectrum.white}`,
     paddingLeft: '16px',
     '& a:link': {
-      color: `${theme.palette.text.secondary} !important`,
+      color: `${spectrum.white} !important`,
       textDecoration: 'none',
     },
     '& a:visited': {
-      color: `${theme.palette.text.secondary} !important`,
+      color: `${spectrum.white} !important`,
     },
     '& a:hover': {
       textDecoration: 'underline',
