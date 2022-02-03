@@ -493,7 +493,7 @@ const TagGenerator = () => {
           <AffiliationQuestionSection value={value} handleChange={handleChange}>
             <Typography variant='body1'>
               Are you affiliated with an&nbsp;
-              <Link to='/organizations/all'>organization</Link>?
+              <Link to='/organizations'>organization</Link>?
             </Typography>
           </AffiliationQuestionSection>
           {value === 'yes' ? (
