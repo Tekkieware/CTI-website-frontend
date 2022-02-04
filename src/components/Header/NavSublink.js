@@ -2,13 +2,14 @@ import React from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
+import spectrum from '../../theme-spectrum';
 
 const styles = (theme) => ({
   menuitem: {
     padding: theme.spacing(2),
     '&:hover': {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.text.secondary,
+      backgroundColor: spectrum.mediumBlue,
+      color: spectrum.white,
       fontWeight: '700',
     },
   },

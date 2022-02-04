@@ -70,15 +70,15 @@ const HowToAdd = () => {
           <Box className={classes.boxContainer}>
             <Box>
               <Typography variant='body1' className={classes.typoStyle}>
-                1. Under your project’s repository, click <SettingsGearIcon />{' '}
+                1. Under your project&apos;s repository, click <SettingsGearIcon />{' '}
                 to add topic tags.
               </Typography>
             </Box>
             <Box className={classes.boxPadding}>
               <Typography variant='body1' className={classes.typoStyle}>
-                If you don’t see the <SettingsGearIcon /> button it means you
-                don’t have &quot;edit repository settings&quot; privileges (and
-                can’t perform the steps below).
+                If you don&apos;t see the <SettingsGearIcon /> button it means you
+                don&apos;t have &quot;edit repository settings&quot; privileges (and
+                can&apos;t perform the steps below).
               </Typography>
               <Typography variant='body1' className={classes.typoStyle}>
                 Click{' '}

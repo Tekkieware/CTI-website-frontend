@@ -490,16 +490,12 @@ const TagGenerator = () => {
               stepHeading='Select Project Affiliation'
             />
           </Grid>
-          <AffiliationQuestionSection
-            value={value}
-            handleChange={handleChange}
-            question={
-              <>
-                  Are you affiliated with an{' '}
-                <Link to='/organizations/all'>organization</Link>?
-              </>
-            }
-          />
+          <AffiliationQuestionSection value={value} handleChange={handleChange}>
+            <Typography variant='body1'>
+              Are you affiliated with an&nbsp;
+              <Link to='/organizations'>organization</Link>?
+            </Typography>
+          </AffiliationQuestionSection>
           {value === 'yes' ? (
             <RadioYes value={value} setOrgName={setOrgName} />
           ) : null}
