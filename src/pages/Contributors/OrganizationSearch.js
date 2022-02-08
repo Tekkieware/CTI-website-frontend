@@ -91,7 +91,7 @@ const OrganizationSearch = ({
             renderInput={(params) => (
               <TextField
                 {...params}
-                aria-label={placeholder}
+                aria-label={placeholder} // REMOVE COMMENT BEFORE MERGE: Aria-label not exactly on input element
                 className={classes.input}
                 data-cy='organization-search'
                 InputProps={{
