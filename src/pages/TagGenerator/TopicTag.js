@@ -75,6 +75,7 @@ export const ChipInputSection = ({ handleAdd, handleDelete, userTags }) => {
   const classes = useStyles();
   return (
     <ChipInput
+      aria-label='Add topic tag' // REMOVE COMMENT BEFORE MERGE: Not exactly on input element
       fullWidth
       placeholder='| Add topic tag'
       alwaysShowPlaceholder={true}
