@@ -91,6 +91,7 @@ const OrganizationSearch = ({
             renderInput={(params) => (
               <TextField
                 {...params}
+                aria-label={placeholder}
                 className={classes.input}
                 data-cy='organization-search'
                 InputProps={{
