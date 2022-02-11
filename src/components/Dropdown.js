@@ -36,19 +36,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Dropdown = ({
-  organization,
+  checkboxValue,
   children,
   dropdownLength,
-  isOpen,
-  checkboxValue,
-  inputValue,
   filtersActive,
+  isOpen,
+  onClick,
+  organization,
 }) => {
   const [openChild, setOpenChild] = useState(isOpen ? true : false);
   const [colorStyle, setColor] = useState(isOpen ? true : false);
   const classes = useStyles();
 
-  const handleOpen = () => {
+  const handleClick = () => {
+    onClick(organization);
     setOpenChild(!openChild);
     setColor(!colorStyle);
   };
@@ -65,7 +66,7 @@ export const Dropdown = ({
           item
           xs={10}
           className={clsx(classes.dropdown, {
-            [classes.open]: colorStyle === true,
+            [classes.open]: isOpen,
           })}
         >
           <Grid>
@@ -74,7 +75,7 @@ export const Dropdown = ({
               filtersActive={filtersActive}
               checkboxValue={checkboxValue}
               dropdownLength={dropdownLength}
-              isOpen={colorStyle}
+              isOpen={isOpen}
               isChildThumbnail={false}
             />
           </Grid>
@@ -83,12 +84,11 @@ export const Dropdown = ({
             item
             container
             className={classes.flexGrid}
-            onClick={handleOpen}
+            onClick={handleClick}
           >
             <DropdownArrow
-              open={openChild}
-              setOpenFunction={setOpenChild}
-              handleArrow={handleOpen}
+              open={isOpen}
+              handleArrow={handleClick}
             />
           </Grid>
         </Grid>
@@ -101,7 +101,7 @@ export const Dropdown = ({
           />
         </Grid>
       )}
-      {openChild && children}
+      {isOpen && children}
     </Grid>
   );
 };

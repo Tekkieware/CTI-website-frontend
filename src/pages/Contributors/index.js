@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import {
+  ArrayParam,
   BooleanParam,
   StringParam,
   useQueryParam,
@@ -55,7 +56,6 @@ export default function Contributors() {
   const location = useLocation();
   const [affiliatedCount, setAffiliatedCount] = useState(0);
   const [affiliatedOrganizations, setAffiliatedOrganizations] = useState([]);
-  const [inputValue, setInputValue] = useState('');
   const [organizations, setOrganizations] = useState([]);
   const [organizationNames, setOrganizationNames] = useState([]);
   const [filtersActive, setFiltersActive] = useState(false);
@@ -65,13 +65,21 @@ export default function Contributors() {
   const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
     []
   );
-  const [showIndexContrib, setShowIndexContrib] = useQueryParam(
-    'contrib',
-    withDefault(BooleanParam, false)
+  const [expandedOrgs, setExpandedOrgs] = useQueryParam(
+    'opened',
+    withDefault(ArrayParam, [])
   );
   const [orgStatus, setOrgStatus] = useQueryParam(
     'status',
     withDefault(StringParam, 'any')
+  );
+  const [searchQuery, setSearchQuery] = useQueryParam(
+    'query',
+    withDefault(StringParam, '')
+  );
+  const [showIndexContrib, setShowIndexContrib] = useQueryParam(
+    'contrib',
+    withDefault(BooleanParam, false)
   );
 
   useEffect(() => {
@@ -124,9 +132,26 @@ export default function Contributors() {
       }
     // handle case of user entering bookmarked URL directly
     } else if (!location.query) {
-      const queryParams = location.search.replace('?', '').split('&');
-      setOrgStatus(queryParams[1].split('=')[1]);
-      setShowIndexContrib(!!(Number(queryParams[0].split('=')[1])));
+      const expanded = [];
+      const queryParams = {};
+      location.search.replace('?', '').split('&').forEach((param) => {
+        const [key, val] = param.split('=');
+        if (key === 'opened') {
+          expanded.push(val);
+        } else {
+          queryParams[key] = val;
+        }
+      });
+      setExpandedOrgs(expanded);
+      if ('query' in queryParams) {
+        setSearchQuery(queryParams.query);
+      }
+      if ('status' in queryParams) {
+        setOrgStatus(queryParams.status);
+      }
+      if ('contrib' in queryParams) {
+        setShowIndexContrib(!!Number(queryParams.contrib));
+      }
     }
   }, [
     location.search,
@@ -139,7 +164,7 @@ export default function Contributors() {
       unafflCount = 0;
     const affiliated = [];
     const unaffiliated = [];
-    const input = inputValue.toLowerCase().replace(/\s/g, '');
+    const input = searchQuery.toLowerCase().replace(/\s/g, '');
     for (const org of organizations) {
       const orgName = org.name.toLowerCase().replace(/\s/g, '');
       if (
@@ -160,7 +185,7 @@ export default function Contributors() {
     setUnaffiliatedCount(unafflCount);
     setAffiliatedOrganizations(affiliated);
     setUnaffiliatedOrganizations(unaffiliated);
-  }, [inputValue, organizations, showIndexContrib]);
+  }, [searchQuery, organizations, showIndexContrib]);
 
   TabPanel.propTypes = {
     children: PropTypes.node,
@@ -187,6 +212,22 @@ export default function Contributors() {
     default:
       return 0;
     }
+  };
+
+  const handleInputValueChange = (value) => {
+    setSearchQuery(value);
+    setExpandedOrgs([]);
+  };
+
+  const handleOrgClick = (org) => {
+    const expanded = [...expandedOrgs];
+    const idx = expanded.indexOf(org.id.toString());
+    if (idx > -1) {
+      expanded.splice(idx, 1);
+    } else {
+      expanded.push(org.id.toString());
+    }
+    setExpandedOrgs(expanded);
   };
 
   const handleTabValueChange = (value) => {
@@ -222,8 +263,8 @@ export default function Contributors() {
             <Grid item xs={12}>
               <OrganizationSearch
                 options={organizationNames}
-                inputValue={inputValue}
-                setInputValue={setInputValue}
+                inputValue={searchQuery}
+                setInputValue={handleInputValueChange}
               />
             </Grid>
           </Grid>
@@ -295,15 +336,16 @@ export default function Contributors() {
                 totalUnaffiliatedCount={totalUnaffiliatedCount}
               />
               <Affiliated
-                organizations={affiliatedOrganizations}
-                inputValue={inputValue}
-                classes={classes}
-                affiliation='affiliated'
-                organizationData={organizations}
-                filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
-                totalAffiliatedCount={totalAffiliatedCount}
+                classes={classes}
+                expandedOrgs={expandedOrgs}
+                filtersActive={filtersActive}
+                inputValue={searchQuery}
+                onOrgClick={handleOrgClick}
+                organizationData={organizations}
+                organizations={affiliatedOrganizations}
                 showIndexContrib={showIndexContrib}
+                totalAffiliatedCount={totalAffiliatedCount}
               />
             </TabPanel>
             <TabPanel value={getTabValue(orgStatus)} index={1}>
@@ -316,15 +358,16 @@ export default function Contributors() {
             </TabPanel>
             <TabPanel value={getTabValue(orgStatus)} index={2}>
               <Affiliated
-                organizations={affiliatedOrganizations}
-                inputValue={inputValue}
-                classes={classes}
-                affiliation='affiliated'
-                organizationData={organizations}
-                filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
-                totalAffiliatedCount={totalAffiliatedCount}
+                classes={classes}
+                expandedOrgs={expandedOrgs}
+                filtersActive={filtersActive}
+                inputValue={searchQuery}
+                onOrgClick={handleOrgClick}
+                organizationData={organizations}
+                organizations={affiliatedOrganizations}
                 showIndexContrib={showIndexContrib}
+                totalAffiliatedCount={totalAffiliatedCount}
               />
             </TabPanel>
           </Grid>
