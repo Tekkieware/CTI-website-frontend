@@ -8,41 +8,47 @@ const DARK_BLUE = '#0F1D2F';
 const TEAL = '#004364';
 const LIGHT_BLUE = '#0D99C6';
 const LIGHT_BLUE_2 = '#5FCAF9';
-const LIGHT_BLUE_3 = '#0A7A9E';
+const MEDIUM_BLUE = '#0A75AD';
 const YELLOW = '#FFE06D';
 const WHITE = '#FEFEFE';
+
 // Colors - Secondary
 const DARK_GRAY = '#6D6E74';
-// const LIGHT_GRAY = '#F2F2F2';
 const NEW_GRAY = '#F5F5F5';
 const RED = '#D20E0E';
-const PURPLE = '#551A8B';
+
 // Colors - Grey
 const GREY100 = '#F4F4F4'; // default = #f5f5f5
 const GREY200 = '#E9E9E9'; // default = #eeeeee
 const GREY300 = '#D8D8D8'; // default = #e0e0e0
 const GREY900 = '#242424'; // default = #212121
 
+/*
+ * Colors - Unused in theme for now
+ * const LIGHT_GRAY = '#F2F2F2';
+ * const PURPLE = '#551A8B';
+ */
+
 const breakpoints = createBreakpoints({});
 
 const defaultButtonSettings = {
-  backgroundColor: LIGHT_BLUE_3,
+  backgroundColor: MEDIUM_BLUE,
   color: WHITE,
   '&$disabled': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     color: WHITE,
     opacity: '0.50',
   },
   '&:hover': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     opacity: '0.92',
   },
   '&:focus': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     opacity: '0.76',
   },
   '&:active': {
-    backgroundColor: LIGHT_BLUE_3,
+    backgroundColor: MEDIUM_BLUE,
     opacity: '0.68',
   },
 };
@@ -231,19 +237,22 @@ const themeSettings = {
     MuiTypography: {
       root: {
         '& a': {
+          color: `${MEDIUM_BLUE} !important`,
+          cursor: 'pointer',
           fontWeight: 700,
-        },
-        '& a:active': {
-          color: LIGHT_BLUE_2,
+          textDecoration: 'underline',
         },
         '& a:link': {
-          color: LIGHT_BLUE,
-        },
-        '& a:hover': {
-          color: LIGHT_BLUE_2,
+          color: `${MEDIUM_BLUE} !important`,
         },
         '& a:visited': {
-          color: PURPLE,
+          color: `${MEDIUM_BLUE} !important`,
+        },
+        '& a:active': {
+          color: `${LIGHT_BLUE_2} !important`,
+        },
+        '& a:hover': {
+          color: `${LIGHT_BLUE_2} !important`,
         },
       },
       colorPrimary: {

@@ -6,6 +6,7 @@ const spectrum = {
   teal: '#004364',
   lightBlue: '#0D99C6',
   lightBlueVariant: '#5FCAF9',
+  mediumBlue: '#0A75AD',
   yellow: '#FFE06D',
   white: '#FEFEFE',
   // Secondary

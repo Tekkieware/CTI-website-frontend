@@ -13,9 +13,6 @@ const useStyles = makeStyles({
       transform: 'translateY(4px)',
     },
   },
-  muiLink: {
-    textDecoration: 'underline',
-  },
 });
 
 const Link = ({ to, children, ...props }) => {
@@ -24,7 +21,7 @@ const Link = ({ to, children, ...props }) => {
   // If it has no 'to', just style it like a link
   if (!to) {
     return (
-      <MuiLink {...props} className={classes.muiLink}>
+      <MuiLink {...props}>
         {children}
       </MuiLink>
     );

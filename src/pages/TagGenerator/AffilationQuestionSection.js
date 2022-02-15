@@ -1,20 +1,19 @@
 import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 
 export const AffiliationQuestionSection = ({
-  value,
+  children,
   handleChange,
-  question,
+  value,
 }) => {
   const classes = useStyles();
   return (
     <>
       <Grid container className={classes.questionContainerPadding}>
         <Grid item xs={12} className={classes.questionGridPadding}>
-          <Typography variant='body1'>{question}</Typography>
+          {children}
         </Grid>
         <Grid item xs={4} sm={8}>
           <Radio
