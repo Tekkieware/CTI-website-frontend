@@ -23,7 +23,11 @@ const StarMediaSection = () => {
         <Card className={classes.card}>
           <CardMedia className={classes.media} image={image} title={title} />
           <CardContent>
-            <Typography variant='h6' className={classes.cardTypo}>
+            <Typography
+              variant='h6'
+              aria-level='3'
+              className={classes.cardTypo}
+            >
               {cardContent}
             </Typography>
           </CardContent>
@@ -59,7 +63,11 @@ const StarMediaSection = () => {
               </GitHubButton>
             </CardActions>
             <CardContent>
-              <Typography variant='h6' className={classes.cardTypo}>
+              <Typography
+                variant='h6'
+                aria-level='3'
+                className={classes.cardTypo}
+              >
                 Don’t forget to star our repository
               </Typography>
             </CardContent>
@@ -112,6 +120,7 @@ const SocialMediaSection = () => {
         >
           <Typography
             variant='h4'
+            aria-level='2'
             className={classes.sectionHeadTypography}
             style={{
               marginBottom: '24px',
@@ -121,6 +130,7 @@ const SocialMediaSection = () => {
           </Typography>
           <Typography
             variant='h6'
+            aria-level='3'
             style={{
               marginBottom: '48px',
             }}
@@ -181,11 +191,16 @@ export default function ShareTheCti() {
               textAlign: 'center',
             }}
           >
-            <Typography variant='h4' className={classes.sectionHeadTypography}>
+            <Typography
+              variant='h4'
+              aria-level='2'
+              className={classes.sectionHeadTypography}
+            >
               Tell others about us!
             </Typography>
             <Typography
               variant='h6'
+              aria-level='2'
               style={{
                 margin: '8px 0 32px',
               }}

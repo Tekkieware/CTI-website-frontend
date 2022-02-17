@@ -37,7 +37,7 @@ const FAQCard = (props) => {
       <Container>
         <Grid container justify='center'>
           <Grid item xs={12} sm={9} lg={11} className={classes.titleContainer}>
-            <Typography variant='h6' className={classes.title}>
+            <Typography variant='h6' aria-level='2' className={classes.title}>
               {props.title}
             </Typography>
           </Grid>
