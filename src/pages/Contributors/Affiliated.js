@@ -117,26 +117,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /* eslint complexity: [0, 0]*/
-export const Affiliated = (props) => {
-  const {
-    affiliatedCount,
-    classes,
-    inputValue,
-    organizations,
-    organizationData,
-    filtersActive,
-    totalAffiliatedCount,
-    showIndexContrib,
-  } = props;
+export const Affiliated = ({
+  affiliatedCount,
+  classes,
+  expandedOrgs,
+  inputValue,
+  onOrgClick,
+  organizations,
+  organizationData,
+  filtersActive,
+  totalAffiliatedCount,
+  showIndexContrib,
+}) => {
   const classesLocal = useStyles();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
-    if (filtersActive && organizations.length) {
+    if ((filtersActive || expandedOrgs.length) && organizations.length) {
       setDropdownOpen(true);
     } else {
       setDropdownOpen(false);
     }
-  }, [filtersActive, organizations])
+  }, [expandedOrgs, filtersActive, organizations])
+
   return (
     <Grid>
       <Grid style={{ padding: '40px' }}>
@@ -221,11 +223,13 @@ export const Affiliated = (props) => {
           ) : (
             <Grid item xs={12} sm={10} className={classesLocal.dropDownGrid}>
               <AffiliatedOrganizations
-                organizations={organizations}
-                inputValue={inputValue}
-                organizationData={organizationData}
-                showIndexContrib={showIndexContrib}
+                expandedOrgs={expandedOrgs}
                 filtersActive={filtersActive}
+                inputValue={inputValue}
+                onOrgClick={onOrgClick}
+                organizationData={organizationData}
+                organizations={organizations}
+                showIndexContrib={showIndexContrib}
               />
             </Grid>
           ))}

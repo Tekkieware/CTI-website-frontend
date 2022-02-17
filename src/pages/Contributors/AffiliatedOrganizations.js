@@ -64,11 +64,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const AffiliatedOrganizations = ({
-  organizations,
-  inputValue,
-  organizationData,
-  showIndexContrib,
+  expandedOrgs,
   filtersActive,
+  inputValue,
+  onOrgClick,
+  organizationData,
+  organizations,
+  showIndexContrib,
 }) => {
   const classes = useStyles();
 
@@ -83,7 +85,7 @@ export const AffiliatedOrganizations = ({
     organizations.forEach((org) => {
       if (org.depth === 3) {
         org['childNodes'] = [];
-        org['isOpen'] = false;
+        org['allChildrenShown'] = false;
         parentdata.push(org);
       }
       if (org.depth === 4) {
@@ -99,7 +101,7 @@ export const AffiliatedOrganizations = ({
 
         if (!exist) {
           mapsearchedChildParent['childNodes'] = [];
-          mapsearchedChildParent['isOpen'] = false;
+          mapsearchedChildParent['allChildrenShown'] = false;
           parentChildobj = mapsearchedChildParent;
           parentdata.push(mapsearchedChildParent);
         } else {
@@ -115,7 +117,7 @@ export const AffiliatedOrganizations = ({
           }
         } else {
           org['childNodes'] = [];
-          org['isOpen'] = false;
+          org['allChildrenShown'] = false;
           parentdata.push(org);
         }
       }
@@ -141,16 +143,16 @@ export const AffiliatedOrganizations = ({
       >
         {currentThumbnails.map((org, i) => {
           childSort = org.childNodes;
-          childNode = org.isOpen ? childSort : childSort.slice(0, 6);
+          childNode = org.allChildrenShown ? childSort : childSort.slice(0, 6);
           return (
             <Dropdown
               checkboxValue={showIndexContrib}
-              organization={org}
-              key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
-              isOpen={false}
-              inputValue={inputValue}
               filtersActive={filtersActive}
+              isOpen={expandedOrgs.includes(org.id.toString())}
+              key={`affiliatedThumbnailsWrapper_${i}`}
+              onClick={onOrgClick}
+              organization={org}
             >
               <Grid
                 container
@@ -207,11 +209,11 @@ export const AffiliatedOrganizations = ({
                       className={classes.button}
                       onClick={() => {
                         const data = [...currentThumbnails];
-                        data[i].isOpen = !data[i].isOpen;
+                        data[i].allChildrenShown = !data[i].allChildrenShown;
                         setCurrentThumbnails(data);
                       }}
                     >
-                      {currentThumbnails[i].isOpen ? 'View Less' : 'View All'}
+                      {currentThumbnails[i].allChildrenShown ? 'View Less' : 'View All'}
                     </Button>
                   </Grid>
                 ) : null}
@@ -230,13 +232,13 @@ export const AffiliatedOrganizations = ({
         {currentThumbnails.map((org, i) => {
           return (
             <Dropdown
-              organization={org}
-              key={`affiliatedThumbnailsWrapper_${i}`}
-              dropdownLength={org.childNodes.length}
-              isOpen={org.childNodes.length <= 6 && i === 0}
-              inputValue={inputValue}
               checkboxValue={showIndexContrib}
+              dropdownLength={org.childNodes.length}
               filtersActive={filtersActive}
+              isOpen={expandedOrgs.includes(org.id.toString())}
+              onClick={onOrgClick}
+              key={`affiliatedThumbnailsWrapper_${i}`}
+              organization={org}
             >
               <Box className={classes.affiliatedThumbnailsWrapper}>
                 {org.childNodes.length === 0 ? (

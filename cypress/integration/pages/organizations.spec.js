@@ -62,12 +62,16 @@ describe('Organizations Page (using API)', () => {
     cy.get('[data-cy=organization-search]').type(affiliatedOrg).type('{enter}');
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
-      cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
+      cy.get('[data-cy=thumbnail-dropdown]').eq(0).click().within(() => {
+        cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
+      });
     });
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount2);
     });
-    cy.get('[data-cy=organization-search]').clear();
+    cy.get('[data-cy=organization-search]').within(() => {
+      cy.get('input').clear();
+    });
   });
 
   it('should find affiliatedOrg via partial search', () => {
@@ -81,9 +85,13 @@ describe('Organizations Page (using API)', () => {
     cy.get('[data-cy=organization-search-list]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
-      cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
+      cy.get('[data-cy=thumbnail-dropdown]').eq(0).click().within(() => {
+        cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
+      });
     });
-    cy.get('[data-cy=organization-search]').clear();
+    cy.get('[data-cy=organization-search]').within(() => {
+      cy.get('input').clear();
+    });
   });
 
   it('should visit organizations page from home page link', () => {
