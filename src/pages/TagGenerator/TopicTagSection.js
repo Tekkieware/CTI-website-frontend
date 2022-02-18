@@ -360,7 +360,7 @@ export const CopyPasteTags = ({
     <>
       <Grid>
         <Grid style={{ padding: '20px 0px' }}>
-          <Typography variant='h6'>
+          <Typography variant='h6' aria-level='3'>
             Here are the Topic Tags to add to {repositoryName}:
           </Typography>
         </Grid>

@@ -58,26 +58,65 @@ export default function PictureCard(props) {
 
   return (
     <>
-      <Box className='containerGray' pt='30px' pb='115px' >
+      <Box className='containerGray' pt='30px' pb='115px'>
         <Container>
-          <Grid container display="flex" justify="flex-start" >
-            <Grid item xs={8} md={8} lg={5} align='center' className={classes.item1_img} >
+          <Grid container display='flex' justify='flex-start'>
+            <Grid
+              item
+              xs={8}
+              md={8}
+              lg={5}
+              align='center'
+              className={classes.item1_img}
+            >
               <img src={items[0].src} alt={items[0].alt} />
             </Grid>
-            <Grid item xs={8} md={8} lg={5} className={classes.item1_txt} >
-              <Typography variant='h4' className={classes.textStyle} >{items[0].children}</Typography>
+            <Grid item xs={8} md={8} lg={5} className={classes.item1_txt}>
+              <Typography
+                variant='h4'
+                aria-level='2'
+                className={classes.textStyle}
+              >
+                {items[0].children}
+              </Typography>
             </Grid>
-            <Grid item xs={8} md={8} lg={5} align='center' className={classes.item2_img} >
+            <Grid
+              item
+              xs={8}
+              md={8}
+              lg={5}
+              align='center'
+              className={classes.item2_img}
+            >
               <img src={items[1].src} alt={items[1].alt} />
             </Grid>
-            <Grid item xs={8} md={8} lg={5} className={classes.item2_txt} >
-              <Typography variant='h4' className={classes.textStyle} >{items[1].children}</Typography>
+            <Grid item xs={8} md={8} lg={5} className={classes.item2_txt}>
+              <Typography
+                variant='h4'
+                aria-level='2'
+                className={classes.textStyle}
+              >
+                {items[1].children}
+              </Typography>
             </Grid>
-            <Grid item xs={8} md={8} lg={5} align='center' className={classes.item3_img} >
+            <Grid
+              item
+              xs={8}
+              md={8}
+              lg={5}
+              align='center'
+              className={classes.item3_img}
+            >
               <img src={items[2].src} alt={items[2].alt} />
             </Grid>
-            <Grid item xs={8} md={8} lg={5} className={classes.item3_txt} >
-              <Typography variant='h4' className={classes.textStyle} >{items[2].children}</Typography>
+            <Grid item xs={8} md={8} lg={5} className={classes.item3_txt}>
+              <Typography
+                variant='h4'
+                aria-level='2'
+                className={classes.textStyle}
+              >
+                {items[2].children}
+              </Typography>
             </Grid>
           </Grid>
         </Container>
