@@ -102,12 +102,17 @@ const LeftTextRightImage = ({
   return (
     <Grid container className={classes.leftContainerStyle}>
       <Paper elevation={0} className={classes.leftInnerTextCardContainer}>
-        <Typography className={classes.leftCardHeading} variant='h4'>
+        <Typography
+          variant='h4'
+          aria-level='2'
+          className={classes.leftCardHeading}
+        >
           {' '}
           {mainHeading}{' '}
         </Typography>
         <Typography
           variant='h6'
+          aria-level='3'
           color='primary'
           className={classes.leftSubcardHeading}
         >
