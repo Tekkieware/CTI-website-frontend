@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     height: '206px',
     zIndex: 50000,
     position: 'fixed',
-    right: '1.51%',
-    bottom: '0.5%',
+    right: '2px',
+    bottom: '2px',
   },
   title: {
     fontSize: '20px',
