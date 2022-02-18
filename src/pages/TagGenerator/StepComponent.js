@@ -13,10 +13,10 @@ const StepComponent = ({ step, stepHeading }) => {
   const classes = useStyles();
   return (
     <Grid>
-      <Typography variant='h5' className={classes.stepTypo}>
+      <Typography variant='h5' aria-level='2' className={classes.stepTypo}>
         {step}
       </Typography>
-      <Typography variant='h3' className={classes.stepTypo}>
+      <Typography variant='h3' aria-level='3' className={classes.stepTypo}>
         {stepHeading}
       </Typography>
     </Grid>

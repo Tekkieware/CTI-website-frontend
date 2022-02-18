@@ -66,7 +66,11 @@ const MediaInfo = () => {
             >
               Use our Logo on your Project!
             </Typography>
-            <Typography variant='h6' style={{ marginBottom: '16px' }}>
+            <Typography
+              variant='h6'
+              aria-level='3'
+              style={{ marginBottom: '16px' }}
+            >
               If you have done the following:
             </Typography>
             <Typography variant='body1' style={{ paddingBottom: '15px' }}>

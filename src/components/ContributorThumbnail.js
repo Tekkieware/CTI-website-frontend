@@ -243,7 +243,8 @@ const Thumbnail = ({
         </Grid>
         <Grid item className={classes.affthumbnailText}>
           <Typography
-            variant={isChildThumbnail ? 'body1' : 'h6'}
+            variant={isChildThumbnail ? 'h6' : 'h5'}
+            aria-level={isChildThumbnail ? '4' : '3'}
             noWrap
             data-cy='contributor-thumbnail-text'
             className={

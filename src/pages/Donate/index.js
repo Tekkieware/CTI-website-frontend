@@ -29,13 +29,20 @@ const Donate = () => {
         <Container>
           <Grid container>
             <Grid item xs={12} sm={6} className={classes.infoGrid}>
-              <Typography variant='h4' className={classes.infoDescription}>
+              <Typography
+                variant='h4'
+                aria-level='2'
+                className={classes.infoDescription}
+              >
                 The Civic Tech Index is being developed by Hack For LA, and is
                 currently taking donations through Code For America.
               </Typography>
               <Typography variant='body1' className={classes.infoSteps}>
                 1. Please follow this link to the Code For America{' '}
-                <Link to='https://www.codeforamerica.org/donate' target="_blank">
+                <Link
+                  to='https://www.codeforamerica.org/donate'
+                  target='_blank'
+                >
                   donation form
                 </Link>
                 .
@@ -44,7 +51,11 @@ const Donate = () => {
                 2. To make a donation to the Civic Tech Index, please select{' '}
                 Hack for LA under the brigades listed.
               </Typography>
-              <Typography variant='h5' className={classes.infoThank}>
+              <Typography
+                variant='h5'
+                aria-level='2'
+                className={classes.infoThank}
+              >
                 We appreciate your contribution.
               </Typography>
             </Grid>

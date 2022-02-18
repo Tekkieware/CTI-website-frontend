@@ -33,7 +33,7 @@ const TitleSection = (props) => {
     <Grid container>
       <Grid item xs={1} md={2} />
       <Grid item xs={10} md={8}>
-        <Typography variant='h1' className={classes.titleStyle}>
+        <Typography variant='h1' aria-level='1' className={classes.titleStyle}>
           {title}
         </Typography>
       </Grid>
