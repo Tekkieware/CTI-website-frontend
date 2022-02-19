@@ -66,6 +66,7 @@ export const OrganizationSelectorSection = ({
               variant='outlined'
               InputProps={{
                 ...params.InputProps,
+                placeholder: 'Select an Organization',
                 endAdornment: (
                   <React.Fragment>
                     {loading ? (
