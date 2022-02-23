@@ -58,7 +58,7 @@ const Collaborate = () => {
               mainHeading='Volunteer With Us'
               subHeading='Help us improve the Civic Tech Index.'
               title='Read instructions on how to join Hack for LA'
-              description='If you would like to volunteer for our organization please follow the link below for details.'
+              description='If you would like to volunteer for our organization, please follow the button link below for details.'
               hasExternalNav={true}
               buttonHref='https://www.hackforla.org/join'
               buttonText='Become a Volunteer'
