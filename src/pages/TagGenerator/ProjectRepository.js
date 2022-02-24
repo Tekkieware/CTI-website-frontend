@@ -66,7 +66,6 @@ export const ProjectRepositoryInput = ({
       </Grid>
       <Grid data-cy='grid-repository'>
         <TextField
-          aria-label='GitHub Project Repository URL' // REMOVE COMMENT BEFORE MERGE: Not exactly on input element
           id='repository-url'
           onKeyPress={handleEnter}
           value={repositoryUrl}
