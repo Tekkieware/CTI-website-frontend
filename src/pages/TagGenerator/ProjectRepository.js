@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Link from '../../components/common/Link';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import useStyles from './styles';
@@ -32,16 +32,14 @@ export const ProjectRepositorySection = ({
         </Link>
       </Grid>
       <Grid item xs={2}>
-        <Link
-          id='change-url'
-          component='button'
-          variant='body1'
-          onClick={() => setDisplayState('ProjectUrl')}
-          underline='always'
-          style={linkStyles}
-        >
-          change
-        </Link>
+        <Typography>
+          <Link
+            id='change-url'
+            onClick={() => setDisplayState('ProjectUrl')}
+          >
+            change
+          </Link>
+        </Typography>
       </Grid>
     </Grid>
   );

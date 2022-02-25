@@ -5,13 +5,14 @@ import { DropdownArrow } from '../../components/DropdownArrow.js';
 import Grid from '@material-ui/core/Grid';
 import { AffiliatedOrganizations } from './AffiliatedOrganizations';
 import clsx from 'clsx';
-import Link from '@material-ui/core/Link';
+import Link from '../../components/common/Link';
 import { makeStyles } from '@material-ui/core/styles';
+import spectrum from '../../theme-spectrum';
 
 // eslint-disable-next-line max-lines-per-function
 const useStyles = makeStyles((theme) => ({
   titleStyle: {
-    color: theme.palette.secondary.dark,
+    color: spectrum.teal,
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
       fontSize: '13px',
@@ -28,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     margin: 'auto',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: spectrum.white,
     borderRadius: '6px',
     padding: '8px 16px',
     '& h4': {
       paddingLeft: '10px',
-      color: theme.palette.secondary.dark,
+      color: spectrum.teal,
       [theme.breakpoints.between('xs', 'sm')]: {
         fontSize: '15px',
       },
@@ -46,25 +47,29 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     '& a:link': {
-      color: theme.palette.secondary.dark,
+      color: `${spectrum.teal} !important`,
+      textDecoration: 'none',
     },
     '& a:visited': {
-      color: theme.palette.secondary.dark,
+      color: `${spectrum.teal} !important`,
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
     },
     [theme.breakpoints.down('sm')]: {
       height: '43px',
     },
   },
   open: {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: spectrum.teal,
     '& h4': {
-      color: theme.palette.text.secondary,
+      color: `${spectrum.white} !important`,
     },
     '& a:link': {
-      color: theme.palette.text.secondary,
+      color: `${spectrum.white} !important`,
     },
     '& a:visited': {
-      color: theme.palette.text.secondary,
+      color: `${spectrum.white} !important`,
     },
   },
   flexGrid: {
@@ -91,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dropDownGrid: {
     margin: 'auto',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: spectrum.white,
     padding: '1px 0px',
   },
   contributorIcon: {
@@ -112,26 +117,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /* eslint complexity: [0, 0]*/
-export const Affiliated = (props) => {
-  const {
-    affiliatedCount,
-    classes,
-    inputValue,
-    organizations,
-    organizationData,
-    filtersActive,
-    totalAffiliatedCount,
-    showIndexContrib,
-  } = props;
+export const Affiliated = ({
+  affiliatedCount,
+  classes,
+  expandedOrgs,
+  inputValue,
+  onOrgClick,
+  organizations,
+  organizationData,
+  filtersActive,
+  totalAffiliatedCount,
+  showIndexContrib,
+}) => {
   const classesLocal = useStyles();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
-    if (filtersActive && organizations.length) {
+    if ((filtersActive || expandedOrgs.length) && organizations.length) {
       setDropdownOpen(true);
     } else {
       setDropdownOpen(false);
     }
-  }, [filtersActive, organizations])
+  }, [expandedOrgs, filtersActive, organizations])
+
   return (
     <Grid>
       <Grid style={{ padding: '40px' }}>
@@ -216,11 +223,13 @@ export const Affiliated = (props) => {
           ) : (
             <Grid item xs={12} sm={10} className={classesLocal.dropDownGrid}>
               <AffiliatedOrganizations
-                organizations={organizations}
-                inputValue={inputValue}
-                organizationData={organizationData}
-                showIndexContrib={showIndexContrib}
+                expandedOrgs={expandedOrgs}
                 filtersActive={filtersActive}
+                inputValue={inputValue}
+                onOrgClick={onOrgClick}
+                organizationData={organizationData}
+                organizations={organizations}
+                showIndexContrib={showIndexContrib}
               />
             </Grid>
           ))}

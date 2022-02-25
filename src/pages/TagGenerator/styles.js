@@ -120,13 +120,6 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '8px',
     },
   },
-  orgLink: {
-    color: theme.palette.secondary.main,
-    textDecoration: 'underline',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
   modalStyle: {
     overflow: 'scroll',
   },
@@ -211,19 +204,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
     },
-  },
-  gridLinkStyle: {
-    '& a:link': {
-      fontWeight: '700',
-      color: theme.palette.secondary.main,
-    },
-    '& a:visited': {
-      color: theme.palette.secondary.main,
-    },
-  },
-  lStyle: {
-    fontWeight: '700',
-    color: theme.palette.secondary.main,
   },
   repoChangeGrid: {
     paddingTop: '10px',

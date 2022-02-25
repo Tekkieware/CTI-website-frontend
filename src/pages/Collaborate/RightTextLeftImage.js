@@ -100,12 +100,17 @@ const RightImageLeftText = ({
         />
       </Card>
       <Paper elevation={0} className={classes.rightInnerTextCardContainer}>
-        <Typography className={classes.rightCardHeading} variant='h4'>
+        <Typography
+          variant='h4'
+          aria-level='2'
+          className={classes.rightCardHeading}
+        >
           {' '}
           {mainHeading}{' '}
         </Typography>
         <Typography
           variant='h6'
+          aria-level='3'
           color='primary'
           className={classes.rightSubcardHeading}
         >

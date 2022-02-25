@@ -63,7 +63,7 @@ export const UnaffiliatedOrganizations = (props) => {
   return (
     <Grid>
       <Grid style={{ padding: '24px 0px 32px' }}>
-        <Typography variant='h4' className={classes.unAfflText}>
+        <Typography variant='h4' aria-level='2' className={classes.unAfflText}>
           Unaffiliated Organizations
           <span style={{ paddingLeft: '1px' }}>
             {' '}

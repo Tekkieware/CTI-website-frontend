@@ -70,7 +70,9 @@ const AccordionSection = (props) => {
               data-cy='faq-question'
               expandIcon={<ExpandMoreRoundedIcon />}
             >
-              <Typography variant='h6'>{faq.question}</Typography>
+              <Typography variant='h6' aria-level='3'>
+                {faq.question}
+              </Typography>
             </AccordionSummary>
             <Divider />
             <AccordionDetails data-cy='faq-answer' className={classes.detail}>
