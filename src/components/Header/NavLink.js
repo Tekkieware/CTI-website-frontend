@@ -63,6 +63,7 @@ const NavLink = ({ label, id, children, header, route, title }) => {
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         transformOrigin={{ horizontal: 'left', vertical: 'top' }}
         PopoverClasses={{ paper: classes.popover }}
+        disableScrollLock={true}
         {...bindMenu(popupState)}
       >
         <div>{children}</div>

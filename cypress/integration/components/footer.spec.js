@@ -1,50 +1,53 @@
-const faker = require('faker')
+const faker = require('faker');
 
 describe('Footer', () => {
-  const BAD_FORMAT_EMAIL = 'test@'
-  const DUPLICATE_EMAIL = 'test@test.test'
+  const BAD_FORMAT_EMAIL = 'test@';
+  const DUPLICATE_EMAIL = 'test@test.test';
   const RANDOM_EMAIL = `test_${faker.internet.email()}`;
 
   before(() => {
-    cy.visit('/home')
-  })
+    cy.visit('/home');
+  });
 
   it('footer loads', () => {
     cy.get('[class*=containerFooter]').within(() => {
-      cy.contains('The Civic Tech Index is an open-source project, read more on our')
-    })
-  })
+      cy.contains(
+        'The Civic Tech Index is an open-source project, read more on our'
+      );
+    });
+  });
 
   it('navigates to donate', () => {
     cy.get('[class*=containerFooter]').within(() => {
-      cy.contains('Collaborate with Us').click()
-      cy.get('[href*=donate]').click()
-    })
-    cy.get('[class*=makeStyles-infoThank]')
-      .contains('We appreciate your contribution.')
-  })
+      cy.contains('Collaborate with Us').click();
+      cy.get('[href*=donate]').click();
+    });
+    cy.get('[class*=makeStyles-infoThank]').contains(
+      'We appreciate your contribution.'
+    );
+  });
 
   it('does not capture a poorly formatted email address', () => {
     cy.get('[class*=containerFooter]').within(() => {
-      cy.get('input').clear().type(BAD_FORMAT_EMAIL)
-      cy.get('button').click()
-      cy.contains('The email address you have submitted was invalid.')
-    })
-  })
+      cy.get('input').clear().type(BAD_FORMAT_EMAIL);
+      cy.get('button').click({ force: true });
+      cy.contains('The email address you have submitted was invalid.');
+    });
+  });
 
   it('does not capture a registered email address', () => {
     cy.get('[class*=containerFooter]').within(() => {
-      cy.get('input').clear().type(DUPLICATE_EMAIL)
-      cy.get('button').click()
-      cy.contains('That email address has already been registered with us.')
-    })
-  })
+      cy.get('input').clear().type(DUPLICATE_EMAIL);
+      cy.get('button').click();
+      cy.contains('That email address has already been registered with us.');
+    });
+  });
 
   it('captures a new email address', () => {
     cy.get('[class*=containerFooter]').within(() => {
-      cy.get('input').clear().type(RANDOM_EMAIL)
-      cy.get('button').click()
-      cy.contains('Thanks for subscribing!')
-    })
-  })
-})
+      cy.get('input').clear().type(RANDOM_EMAIL);
+      cy.get('button').click();
+      cy.contains('Thanks for subscribing!');
+    });
+  });
+});
