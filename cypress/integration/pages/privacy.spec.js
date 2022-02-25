@@ -1,4 +1,4 @@
-describe('About Page', () => {
+describe('Privacy Policy Page', () => {
   before(() => {
     cy.visit('/privacy')
   })
