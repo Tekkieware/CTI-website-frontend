@@ -251,7 +251,7 @@ export default function Contributors() {
   ];
 
   return (
-    <Box>
+    <Box className='pageContainer'>
       <Box className='boxBackground'>
         <Container className='containerTeal'>
           <Box className='boxBackground' display='flex' alignContent='center'>
