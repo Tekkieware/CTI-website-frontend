@@ -11,8 +11,24 @@ import {
 import { navigation } from '../../navigation';
 
 const useStyles = makeStyles({
-  active: {
+  link: {
+    fontWeight: 500,
+    '&:after': {
+      display: 'block',
+      content: 'attr(title)',
+      fontWeight: 700,
+      height: '1px',
+      visibility: 'hidden',
+    },
+  },
+  activeLink: {
     fontWeight: 700,
+    '&:hover': {
+      fontWeight: 700,
+    },
+    '&:active': {
+      fontWeight: 700,
+    },
   },
   menu: {
     padding: '0',
@@ -25,7 +41,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavLink = ({ label, id, children, header, route, title }) => {
+const NavLink = ({ id, children, header, route }) => {
   const classes = useStyles();
   const location = useLocation();
   const popupState = usePopupState({ variant: 'popper', popupId: 'navlink' });
@@ -46,10 +62,11 @@ const NavLink = ({ label, id, children, header, route, title }) => {
   return (
     <>
       <Link
-        className={active || popupState.isOpen ? classes.active : null}
+        className={active || popupState.isOpen ? classes.activeLink : classes.link}
         component={NaviLink}
         exact
         to={route}
+        title={header}
         underline='none'
         {...bindHover(popupState)}
       >
