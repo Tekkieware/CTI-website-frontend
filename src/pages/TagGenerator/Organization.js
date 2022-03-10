@@ -38,7 +38,9 @@ export const OrganizationSelectorSection = ({
   return (
     <>
       <Grid item xs={12} sm={12}>
-        <Typography variant='body1'style={{ padding: '34px 0 8px' }}>Which Organization?</Typography>
+        <Typography variant='body1' style={{ padding: '34px 0 8px' }}>
+          Which Organization?
+        </Typography>
         <Autocomplete
           id='organization'
           style={{ width: '100%' }}
@@ -82,10 +84,7 @@ export const OrganizationSelectorSection = ({
       <Grid item style={{ paddingTop: '12px' }}>
         <Typography variant='body1'>
           Don&apos;t see your organization? Click&nbsp;
-          <Link
-            id='add-org-link'
-            onClick={() => setDialogOpen(true)}
-          >
+          <Link id='add-org-link' onClick={() => setDialogOpen(true)}>
             here
           </Link>
           &nbsp;to add it.
@@ -126,10 +125,7 @@ export const OrgNameSection = ({ setDisplayState, orgName, linkStyles }) => {
       )}
       <Grid item xs={2}>
         <Typography>
-          <Link
-            id='change-org'
-            onClick={handleChangeOrg}
-          >
+          <Link id='change-org' onClick={handleChangeOrg}>
             change
           </Link>
         </Typography>
