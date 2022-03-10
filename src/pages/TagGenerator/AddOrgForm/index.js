@@ -165,7 +165,12 @@ const AddOrgForm = React.forwardRef(({ open, onClose }, ref) => {
   };
 
   return (
-    <Dialog fullWidth maxWidth='sm' open={open} ref={ref}>
+    <Dialog 
+      PaperProps={{ 'aria-label': 'Add Organization Modal' }} 
+      fullWidth maxWidth='sm' 
+      open={open} 
+      ref={ref}
+    >
       {renderStep()}
     </Dialog>
   );
