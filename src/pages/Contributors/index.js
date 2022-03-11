@@ -125,23 +125,26 @@ export default function Contributors() {
       if (location.query) {
         setOrgStatus(location.query.status);
         setShowIndexContrib(location.query.contrib);
-      // handle case of user entering /organizations route directly
+        // handle case of user entering /organizations route directly
       } else {
         setOrgStatus('any');
         setShowIndexContrib(false);
       }
-    // handle case of user entering bookmarked URL directly
+      // handle case of user entering bookmarked URL directly
     } else if (!location.query) {
       const expanded = [];
       const queryParams = {};
-      location.search.replace('?', '').split('&').forEach((param) => {
-        const [key, val] = param.split('=');
-        if (key === 'opened') {
-          expanded.push(val);
-        } else {
-          queryParams[key] = val;
-        }
-      });
+      location.search
+        .replace('?', '')
+        .split('&')
+        .forEach((param) => {
+          const [key, val] = param.split('=');
+          if (key === 'opened') {
+            expanded.push(val);
+          } else {
+            queryParams[key] = val;
+          }
+        });
       setExpandedOrgs(expanded);
       if ('query' in queryParams) {
         setSearchQuery(queryParams.query);
@@ -153,11 +156,7 @@ export default function Contributors() {
         setShowIndexContrib(!!Number(queryParams.contrib));
       }
     }
-  }, [
-    location.search,
-    setOrgStatus,
-    setShowIndexContrib,
-  ]);
+  }, [location.search, setOrgStatus, setShowIndexContrib]);
 
   useEffect(() => {
     let afflCount = 0,
@@ -203,14 +202,14 @@ export default function Contributors() {
 
   const getTabValue = (status) => {
     switch (status) {
-    case 'any':
-      return 0;
-    case 'affiliated':
-      return 2;
-    case 'unaffiliated':
-      return 1;
-    default:
-      return 0;
+      case 'any':
+        return 0;
+      case 'affiliated':
+        return 2;
+      case 'unaffiliated':
+        return 1;
+      default:
+        return 0;
     }
   };
 
@@ -232,42 +231,54 @@ export default function Contributors() {
 
   const handleTabValueChange = (value) => {
     switch (value) {
-    case 0:
-      setOrgStatus('any'); break;
-    case 1:
-      setOrgStatus('unaffiliated'); break;
-    case 2:
-      setOrgStatus('affiliated'); break;
-    default:
-      setOrgStatus('any');
+      case 0:
+        setOrgStatus('any');
+        break;
+      case 1:
+        setOrgStatus('unaffiliated');
+        break;
+      case 2:
+        setOrgStatus('affiliated');
+        break;
+      default:
+        setOrgStatus('any');
     }
-  }
+  };
+
+  const breadCrumbLinks = [
+    { name: 'Home', href: '/home' },
+    { name: 'Civic Tech Organizations', href: '/organizations/all' },
+  ];
 
   return (
     <Box className='pageContainer'>
-      <Box className='containerTeal'>
-        <Container className={classes.firstSectionWrapper}>
-          <NavBreadcrumbs
-            crumbs={[
-              { name: 'Home', href: '/home' },
-              { name: 'Civic Tech Organizations', href: '/organizations/all' },
-            ]}
-          />
-          <Grid container>
-            <TitleSection>Civic Tech Organizations</TitleSection>
-            <Grid item xs={12}>
-              <Typography className='genSubheadTypo'>
-                View all Civic Tech Organizations with open-source repositories.
-              </Typography>
+      <Box className='boxBackground'>
+        <Container className='containerTeal'>
+          <Box className='boxBackground' display='flex' alignContent='center'>
+            <Grid container className={classes.firstSectionWrapper}>
+              <Grid item xs={12}>
+                <NavBreadcrumbs
+                  crumbs={breadCrumbLinks}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TitleSection>Civic Tech Organizations</TitleSection>
+                <Grid item xs={12}>
+                  <Typography className='genSubheadTypo'>
+                    View all Civic Tech Organizations with open-source
+                    repositories.
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <OrganizationSearch
+                    options={organizationNames}
+                    inputValue={searchQuery}
+                    setInputValue={handleInputValueChange}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <OrganizationSearch
-                options={organizationNames}
-                inputValue={searchQuery}
-                setInputValue={handleInputValueChange}
-              />
-            </Grid>
-          </Grid>
+          </Box>
         </Container>
       </Box>
       <Box className='containerGray'>
