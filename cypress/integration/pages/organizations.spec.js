@@ -101,7 +101,7 @@ describe('Organizations Page (using API)', () => {
     cy.visit('/home');
     cy.contains('View contributors').click();
     cy.wait('@getOrganizations');
-    cy.get('[class*=pageContainer]').should(
+    cy.get('[class*=containerWhite]').should(
       'contain',
       'Want to add your organization'
     );
