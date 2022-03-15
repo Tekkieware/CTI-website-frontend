@@ -33,7 +33,7 @@ const Contact = () => {
         <CardMedia
           component='iframe'
           title='googleContactForm'
-          src='https://docs.google.com/forms/d/e/1FAIpQLSeTVA3JJdzS1Hftq5CmpGVYcn60KRXqu2ajM85NgF2vxEgghg/viewform?embedded=true'
+          src='https://docs.google.com/forms/d/1BiuXPE2iqPbXpF_-5uMDDWsR-aCSu42VKyRsz-PIL5I/viewform?edit_requested=true'
           width='640'
           height='1179'
           frameBorder='0'
