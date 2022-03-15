@@ -202,14 +202,14 @@ export default function Contributors() {
 
   const getTabValue = (status) => {
     switch (status) {
-      case 'any':
-        return 0;
-      case 'affiliated':
-        return 2;
-      case 'unaffiliated':
-        return 1;
-      default:
-        return 0;
+    case 'any':
+      return 0;
+    case 'affiliated':
+      return 2;
+    case 'unaffiliated':
+      return 1;
+    default:
+      return 0;
     }
   };
 
@@ -231,17 +231,17 @@ export default function Contributors() {
 
   const handleTabValueChange = (value) => {
     switch (value) {
-      case 0:
-        setOrgStatus('any');
-        break;
-      case 1:
-        setOrgStatus('unaffiliated');
-        break;
-      case 2:
-        setOrgStatus('affiliated');
-        break;
-      default:
-        setOrgStatus('any');
+    case 0:
+      setOrgStatus('any');
+      break;
+    case 1:
+      setOrgStatus('unaffiliated');
+      break;
+    case 2:
+      setOrgStatus('affiliated');
+      break;
+    default:
+      setOrgStatus('any');
     }
   };
 
