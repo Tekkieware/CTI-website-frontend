@@ -14,15 +14,17 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 3. [Clone to your local machine](#step-3-clone-your-online-repository-to-your-local-computer)
 
-4. [Set up Docker](#step-4-setting-up-docker)
+4. [Running the project app](#step-4-running-the-project-app)
+
+5. [Set up Docker (optional)](#step-5-setting-up-docker)
 
 **Before you start working on an issue**
 
-5. [Switch to new issue branch before you start making changes](#step-5-change-to-a-new-branch)
+6. [Switch to new issue branch before you start making changes](#step-5-change-to-a-new-branch)
 
 **After you've worked on your issue and before you make a pull request (PR):**
 
-6. [Code quality](#code-quality)
+7. [Code quality](#code-quality)
 
 **Okay. You're good to go!**
 
