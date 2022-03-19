@@ -16,7 +16,7 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 4. [Running the project app](#step-4-running-the-project-app)
 
-5. [Set up Docker (optional)](#step-5-setting-up-docker)
+5. [Set up Docker (optional)](#step-5-setting-up-docker-optional)
 
 **Before you start working on an issue**
 
