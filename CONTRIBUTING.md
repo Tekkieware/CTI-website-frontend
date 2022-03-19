@@ -76,9 +76,36 @@ You should now have a new folder called `CTI-website-frontend`.
 
 _Note: Instead of working on a clone, you can choose to make edits on a fork. To view the previous instructions on how to do that, look at [the version of this document dated Jan 14, 2021](https://github.com/civictechindex/CTI-website-frontend/blob/c4320bc33f6eada97bf3f404d240cac382ee7552/CONTRIBUTING.md)._
 
-## Step 4: Setting up Docker (Optional)
+## Step 4: Running the project app
 
-Docker will soon be the recommended approach to quickly getting started with local development, but this step is optional for now, and most devs are not using Docker.
+Once the repo is cloned or forked to your local computer verify that you have node and npm installed on your computer:
+
+```bash
+node -v
+```
+```bash
+npm -v
+```
+
+If you do not have node and npm installed you can find instructions on how to install them [here](https://nodejs.org/)
+
+You can then install all of the project dependencies.  Note that the following command only needs to be run once:
+
+```bash
+npm i
+```
+
+To run the project in development mode:
+
+```bash
+npm start
+```
+
+Then the project front end site can be accessed in your browser through the url http://localhost:3000/home
+
+## Step 5: Setting up Docker (Optional)
+
+Docker is another option for getting started with local development.
 
 Docker is a tool that can help create a local/offline version of the `CTI-website-frontend` website on your computer so you can test out your code before submitting a pull request.
 
@@ -100,7 +127,7 @@ Example:
 `docker run -p 80:80 webmasterimage`\
 In browser go to [localhost:80](localhost:80)
 
-## Step 5: Change to a new branch
+## Step 6: Change to a new branch
 
 Create a new branch for each issue you work on. Doing all your work on topic branches leaves the repository's main branch (named `main`) unmodified.
 
