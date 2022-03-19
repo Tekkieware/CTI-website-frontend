@@ -12,7 +12,7 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 2. [Using Git](#step-2-using-git)
 
-3. [Clone to your local machine](#step-3-clone-your-online-repository-to-your-local-computer)
+3. [Clone to your local machine](#step-3-clone-the-repository-to-your-local-computer)
 
 4. [Running the project app](#step-4-running-the-project-app)
 
