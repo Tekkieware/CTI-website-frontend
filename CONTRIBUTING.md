@@ -20,11 +20,11 @@ Feel free to drop into the [Civic Tech Index Slack](https://hackforla.slack.com/
 
 **Before you start working on an issue**
 
-6. [Switch to new issue branch before you start making changes](#step-5-change-to-a-new-branch)
+6. [Switch to new issue branch before you start making changes](#step-6-change-to-a-new-branch)
 
 **After you've worked on your issue and before you make a pull request (PR):**
 
-7. [Code quality](#code-quality)
+7. [Code quality](#step-7-code-quality)
 
 **Okay. You're good to go!**
 
@@ -201,7 +201,7 @@ git commit -m 'insert message here'
 
 ### d) Congratulations! You are now ready to push your work to GitHub
 
-## Step 6: Code quality
+## Step 7: Code quality
 
 We use ESLint and Code Climate to improve code quality. ESLint works on your local machine before you submit your PR, while Code Climate is part of the CI/CD process on GitHub after you submit.
 
