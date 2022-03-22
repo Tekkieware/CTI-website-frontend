@@ -227,4 +227,14 @@ describe('Add Organization Workflow', () => {
       cy.get('[data-cy=org-country-input]').should('contain', 'Country');
     });
   });
+
+  it('should contain accessible attributes', () => {
+    cy.get('#container-affiliated').within(() => {
+      cy.get('#add-org-link').click();
+    });
+    cy.get('[class*=MuiDialog-container]').within(() => {
+      cy.get('[class*=MuiDialog-paper]').invoke('attr', 'ariaLabel').should('eq', 'Add Organization Modal');
+    });
+  });
+
 });
