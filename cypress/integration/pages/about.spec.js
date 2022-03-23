@@ -1,10 +1,10 @@
 describe('About Page', () => {
   before(() => {
-    cy.visit('/about')
+    cy.visit('/about/what-is-cti')
   })
 
   beforeEach(() => {
-    // cy.visit('/about')
+    // cy.visit('/about/what-is-cti')
   })
 
   it('header loads', () => {

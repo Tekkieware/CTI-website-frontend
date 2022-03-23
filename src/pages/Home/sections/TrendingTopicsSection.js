@@ -69,7 +69,7 @@ const TrendingTopicsSection = () => {
             clickable
             component={RouterLink}
             label={topic.tag}
-            to={{ pathname: '/projects', query: { search: topic.search }}}
+            to={{ pathname: '/search-projects', query: { search: topic.search }}}
           />
         );
       })

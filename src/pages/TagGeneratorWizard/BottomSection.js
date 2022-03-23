@@ -85,14 +85,14 @@ const BottomSection = () => {
               <PaperComp
                 addBtnClicked={addBtnClicked}
                 text='Add Another Project'
-                btext='Tag Generator'
-                bhref='/tag-generator'
+                btext='Tag Generator Wizard'
+                bhref='/join-index/tag-generator-wizard'
               />
               <PaperComp
                 addBtnClicked={addBtnClicked}
                 text='Collaborate with us'
                 btext='Learn More'
-                bhref='/support/collaborate'
+                bhref='/radical-collaboration/collaborate'
               />
             </Grid>
           </Grid>

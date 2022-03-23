@@ -1,30 +1,30 @@
 const navigation = [
   {
-    id: 'join',
+    id: 'joinTheIndex',
     header: 'Join the Index',
     route: '#',
     subNavigation: [
       {
-        id: 'tagYourProject',
-        header: 'Add Your Project',
-        route: '/join-index',
+        id: 'tagGeneratorWizard',
+        header: 'Tag Generator Wizard',
+        route: '/join-index/tag-generator-wizard',
       },
       {
-        id: 'addProject',
+        id: 'howToAdd',
         header: 'How to Add Your Project',
         route: '/join-index/how-to-add',
       },
     ],
   },
   {
-    id: 'overview',
-    header: 'Overview',
+    id: 'about',
+    header: 'About',
     route: '#',
     subNavigation: [
       {
-        id: 'about',
-        header: 'About',
-        route: '/about',
+        id: 'whatIsCTI',
+        header: 'What is CTI?',
+        route: '/about/what-is-cti',
       },
       {
         id: 'faq',
@@ -39,7 +39,7 @@ const navigation = [
     ],
   },
   {
-    id: 'civicTechPartners',
+    id: 'civicTechOrganizations',
     header: 'Civic Tech Organizations',
     route: '#',
     subNavigation: [
@@ -50,19 +50,19 @@ const navigation = [
         query: { contrib: false, status: 'any' },
       },
       {
-        id: 'affiliatedorganizations',
+        id: 'affiliated',
         header: 'Affiliated',
         route: '/organizations',
         query: { contrib: false, status: 'affiliated' },
       },
       {
-        id: 'unaffiliatedorganizations',
+        id: 'unaffiliated',
         header: 'Unaffiliated',
         route: '/organizations',
         query: { contrib: false, status: 'unaffiliated' },
       },
       {
-        id: 'indexcontributors',
+        id: 'indexContributors',
         header: 'Index Contributors',
         route: '/organizations',
         query: { contrib: true, status: 'any' },
@@ -77,17 +77,17 @@ const navigation = [
       {
         id: 'collaborate',
         header: 'Collaborate with Us',
-        route: '/support/collaborate',
+        route: '/radical-collaboration/collaborate',
       },
       {
         id: 'donate',
         header: 'Donate',
-        route: '/support/donate',
+        route: '/radical-collaboration/donate',
       },
       {
         id: 'share',
         header: 'Share the CTI',
-        route: '/support/share',
+        route: '/radical-collaboration/share',
       },
       {
         id: 'volunteer',

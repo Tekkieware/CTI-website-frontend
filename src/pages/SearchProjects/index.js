@@ -7,7 +7,6 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
 import FilterSelector from './FilterSelector';
 import FilterTag from './FilterTag';
 import HeaderSection from './HeaderSection';
@@ -72,7 +71,7 @@ const renderCard = (project, affiliations, classes) => {
   );
 };
 
-const Projects = () => {
+const SearchProjects = () => {
   const classes = useStyles();
   const location = useLocation();
   const [affiliations, setAffiliations] = useState({});
@@ -133,20 +132,20 @@ const Projects = () => {
     const getDateWithOffset = (unit, offset) => {
       const d = new Date();
       switch (unit) {
-      case 'h':
-        d.setHours(d.getHours() - offset);
-        break;
-      case 'd':
-        d.setDate(d.getDate() - offset);
-        break;
-      case 'm':
-        d.setMonth(d.getMonth() - offset);
-        break;
-      case 'y':
-        d.setFullYear(d.getFullYear() - offset);
-        break;
-      default:
-        return d.toISOString().split('T')[0];
+        case 'h':
+          d.setHours(d.getHours() - offset);
+          break;
+        case 'd':
+          d.setDate(d.getDate() - offset);
+          break;
+        case 'm':
+          d.setMonth(d.getMonth() - offset);
+          break;
+        case 'y':
+          d.setFullYear(d.getFullYear() - offset);
+          break;
+        default:
+          return d.toISOString().split('T')[0];
       }
       return d.toISOString().split('T')[0];
     };
@@ -411,4 +410,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default SearchProjects;

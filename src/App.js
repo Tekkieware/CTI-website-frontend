@@ -4,7 +4,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
-import About from './pages/About';
+import WhatIsCTI from './pages/WhatIsCTI';
 import Contact from './pages/Contact';
 import Collaborate from './pages/Collaborate';
 import Contributors from './pages/Contributors';
@@ -15,7 +15,7 @@ import Home from './pages/Home';
 import HowToAdd from './pages/HowToAdd';
 import Landing from './pages/Landing';
 import SearchProjects from './pages/SearchProjects';
-import TagGenerator from './pages/TagGenerator';
+import TagGeneratorWizard from './pages/TagGeneratorWizard';
 import Error404 from './pages/Error404';
 import ShareTheCti from './pages/Share';
 import Privacy from './pages/Privacy';
@@ -44,7 +44,7 @@ const App = () => {
         <Layout>
           <Switch>
             <Route exact path='/' component={Landing} />
-            <RouteTitled exact path='/about' component={About} title='About' />
+            <RouteTitled exact path='/about/what-is-cti' component={WhatIsCTI} title='What is CTI?' />
             <RouteTitled
               exact
               path='/about/contact'
@@ -61,15 +61,15 @@ const App = () => {
             <RouteTitled exact path='/home' component={Home} title='Home' />
             <RouteTitled
               exact
-              path='/projects'
+              path='/search-projects'
               component={SearchProjects}
               title='Search Projects'
             />
             <RouteTitled
               exact
-              path='/join-index'
-              component={TagGenerator}
-              title='Join the Index'
+              path='/join-index/tag-generator-wizard'
+              component={TagGeneratorWizard}
+              title='Tag Generator Wizard'
             />
             <RouteTitled
               exact
@@ -79,19 +79,19 @@ const App = () => {
             />
             <RouteTitled
               exact
-              path='/support/collaborate'
+              path='/radical-collaboration/collaborate'
               component={Collaborate}
               title='Collaborate with Us'
             />
             <RouteTitled
               exact
-              path='/support/donate'
+              path='/radical-collaboration/donate'
               component={Donate}
               title='Donate'
             />
             <RouteTitled
               exact
-              path='/support/share'
+              path='/radical-collaboration/share'
               component={ShareTheCti}
               title='Share the CTI'
             />
@@ -114,20 +114,23 @@ const App = () => {
             <Redirect from='/adding' to='/join-index/how-to-add' />
             <Redirect from='/adding-projects' to='/join-index/how-to-add' />
             <Redirect from='/contact' to='/about/contact' />
-            <Redirect from='/collaborate' to='/support/collaborate' />
-            <Redirect from='/donate' to='/support/donate' />
-            <Redirect from='/donation' to='/support/donate' />
+            <Redirect from='/collaborate' to='/radical-collaboration/collaborate' />
+            <Redirect from='/donate' to='/radical-collaboration/donate' />
+            <Redirect from='/donation' to='/radical-collaboration/donate' />
             <Redirect from='/faq' to='/about/faq' />
             <Redirect from='/how' to='/join-index/how-to-add' />
             <Redirect from='/how-to' to='/join-index/how-to-add' />
             <Redirect from='/how-to-use' to='/join-index/how-to-add' />
-            <Redirect from='/join' to='/join-index' />
-            <Redirect from='/search' to='/projects' />
-            <Redirect from='/share' to='/support/share' />
-            <Redirect from='/tag-creator' to='/join-index' />
-            <Redirect from='/tagcreator' to='/join-index' />
-            <Redirect from='/tag-generator' to='/join-index' />
-            <Redirect from='/taggenerator' to='/join-index' />
+            <Redirect from='/join' to='/join-index/tag-generator-wizard' />
+            <Redirect from='/projects' to='/search-projects' />
+            <Redirect from='/search' to='/search-projects' />
+            <Redirect from='/share' to='/radical-collaboration/share' />
+            <Redirect from='/join-index' to='/join-index/tag-generator-wizard' />
+            <Redirect from='/join-index?tagsToAdd=civictechindex' to='/join-index/tag-generator-wizard' />
+            <Redirect from='/tag-creator' to='/join-index/tag-generator-wizard' />
+            <Redirect from='/tagcreator' to='/join-index/tag-generator-wizard' />
+            <Redirect from='/tag-generator' to='/join-index/tag-generator-wizard' />
+            <Redirect from='/taggenerator' to='/join-index/tag-generator-wizard' />
             {/* test and error page redirect begin */}
             <Redirect from='/guides' to='/guides/colors' />
             <Redirect from='/placeholder' to='/blank' />

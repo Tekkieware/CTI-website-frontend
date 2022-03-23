@@ -4,7 +4,6 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
-
 import NavBreadcrumbs from "../../components/NavBreadcrumbs.js";
 import SearchBar from './SearchBar';
 import { TitleSection } from '../../components'
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const breadCrumbLinks = [
   { href: '/home', name: 'Home' },
-  { href: '/projects', name: 'Search Projects' },
+  { href: '/search-projects', name: 'Search Projects' },
 ];
 
 const HeaderSection = ({

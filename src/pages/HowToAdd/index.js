@@ -61,7 +61,7 @@ const HowToAdd = () => {
             topic tag to your project, we can create a continuously updated
             repository for all civic tech enthusiasts to find open source
             projects to model, connect with, and learn from. Need an overview of
-            what the CTI is? See our <Link to='/about'>About</Link> page.
+            what the CTI is? See our <Link to='/about/what-is-cti'>About</Link> page.
           </Typography>
         </Container>
       </Box>

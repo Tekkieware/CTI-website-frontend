@@ -1,7 +1,7 @@
 describe('Header component', () => {
   const menuItems = {
-    'Join the Index': ['Add Your Project', 'How to Add Your Project'],
-    Overview: ['About', 'FAQ', 'Contact Us'],
+    'Join the Index': ['Tag Generator Wizard', 'How to Add Your Project'],
+    'About': ['What is CTI?', 'FAQ', 'Contact Us'],
     'Radical Collaboration': [
       'Collaborate with Us',
       'Donate',
