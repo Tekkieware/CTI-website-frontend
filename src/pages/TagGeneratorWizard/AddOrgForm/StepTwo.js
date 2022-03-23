@@ -119,7 +119,7 @@ const StepTwo = (props) => {
             Back
           </Button>
           <Tooltip
-            title='Once your org is submitted, you can return to the Tag Generator and add it to the CTI.'
+            title='Once your org is submitted, you can return to the Tag Generator Wizard and add it to the CTI.'
             aria-label='submit'
           >
             <Button

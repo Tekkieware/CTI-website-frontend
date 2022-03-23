@@ -13,7 +13,7 @@ describe('Projects Page (Search Projects)', () => {
   ];
 
   beforeEach(() => {
-    cy.visit('/projects');
+    cy.visit('/search-projects');
   });
 
   it('loads', () => {
@@ -35,7 +35,7 @@ describe('Projects Page (Search Projects)', () => {
   });
 
   it('loads search results', () => {
-    cy.visit('/projects');
+    cy.visit('/search-projects');
     cy.intercept(`${Cypress.env('GITHUB_API_URL')}/search/repositories*`).as(
       'getProjects'
     );

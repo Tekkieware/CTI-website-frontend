@@ -13,7 +13,7 @@ import { Typography } from '@material-ui/core';
 const Collaborate = () => {
   const breadCrumbLinks = [
     { name: 'Home', href: '/home' },
-    { name: 'Collaborate with Us', href: '/support/collaborate' },
+    { name: 'Collaborate with Us', href: '/radical-collaboration/collaborate' },
   ];
 
   return (
@@ -50,7 +50,7 @@ const Collaborate = () => {
               subHeading='Love the Index? Be an evangelist!'
               description='Help others and their communities discover, share and benefit from contributed projects on the index.'
               hasExternalNav={false}
-              buttonHref='/support/share'
+              buttonHref='/radical-collaboration/share'
               buttonText='Share the Civic Tech Index'
             />
             <LeftTextRightImage

@@ -247,7 +247,7 @@ export default function Contributors() {
 
   const breadCrumbLinks = [
     { name: 'Home', href: '/home' },
-    { name: 'Civic Tech Organizations', href: '/organizations/all' },
+    { name: 'Civic Tech Organizations', href: '/organizations' },
   ];
 
   return (
@@ -387,7 +387,7 @@ export default function Contributors() {
           <GetStartedCard
             headerTitle='Want to add your organization?'
             buttonText='Add Your Organization'
-            buttonHref='/taggenerator'
+            buttonHref='/join-index/tag-generator-wizard'
           />
         </Container>
       </Box>
