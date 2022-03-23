@@ -29,17 +29,25 @@ const RouteTitled = ({ title, ...rest }) => {
       document.title = `Civic Tech Index — ${title}`;
     }
   });
-
   return <Route {...rest} />;
 };
 
+
+// conditional render for cookie
+const CookieChecker = () => {
+  const cookieIsSet = document.cookie.includes('civictechindex_cookie_consent');
+  if (cookieIsSet) {
+    return null;
+  }
+  return <PopUp />;
+}
+
 const App = () => {
-  const [showModal, setShowModal] = useState(false);
   useStyles();
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <PopUp showModal={showModal} setShowModal={setShowModal} />
+      <CookieChecker />
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Switch>
