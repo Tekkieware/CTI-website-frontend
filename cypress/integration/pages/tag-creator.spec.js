@@ -184,4 +184,10 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('#submitButton').click();
     cy.get('p').contains(CHANGE_AFFILIATED_ORGANIZATION);
   });
+
+  it('confirms accesible property on organization search bar', () => {
+    cy.get('[data-cy=org-search]').within(() => {
+      cy.get('class*=MuiInputBase-input').invoke('attr', 'placeholder').should('eq', 'Select an Organization');
+    })
+  })
 });
