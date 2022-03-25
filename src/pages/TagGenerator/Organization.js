@@ -65,7 +65,6 @@ export const OrganizationSelectorSection = ({
               {...params}
               required
               variant='outlined'
-              data-cy="org-search"
               InputProps={{
                 ...params.InputProps,
                 placeholder: 'Select an Organization',
