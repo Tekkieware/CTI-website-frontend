@@ -67,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
 const PopUp = () => {
   const classes = useStyles();
   const date = new Date();
-
-  const setCookie = function (cookieEmail, cookieValue, expDays) {
+  
+  const setCookie = (cookieEmail, cookieValue, expDays) => {
     date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
     const expires = 'expires=' + date.toUTCString();
     const cookie = `${cookieEmail}=${cookieValue};${expires}`;
@@ -76,14 +76,14 @@ const PopUp = () => {
     return cookie;
   };
 
-  const deleteCookie = function (cookieEmail) {
+  const deleteCookie = (cookieEmail) => {
     date.setTime(date.getTime());
     const expires = 'expires=' + date.toUTCString();
     document.cookie = `${cookieEmail};${expires}`;
   };
 
   const acceptCookieConsent = () => {
-    deleteCookie("civictechindex_cookie_consent");
+    deleteCookie('civictechindex_cookie_consent');
     setCookie('civictechindex_cookie_consent', 1,30);
     document.getElementById('cookieNotice').style.display = 'none';
   };

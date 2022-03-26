@@ -34,7 +34,7 @@ const RouteTitled = ({ title, ...rest }) => {
 
 
 // conditional render for cookie
-const CookieChecker = () => {
+const CheckCookie = () => {
   const cookieIsSet = document.cookie.includes('civictechindex_cookie_consent');
   if (cookieIsSet) {
     return null;
@@ -47,7 +47,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <CookieChecker />
+      <CheckCookie/>
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Switch>
