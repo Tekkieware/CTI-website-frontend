@@ -202,14 +202,14 @@ export default function Contributors() {
 
   const getTabValue = (status) => {
     switch (status) {
-    case 'any':
-      return 0;
-    case 'affiliated':
-      return 2;
-    case 'unaffiliated':
-      return 1;
-    default:
-      return 0;
+      case 'any':
+        return 0;
+      case 'affiliated':
+        return 2;
+      case 'unaffiliated':
+        return 1;
+      default:
+        return 0;
     }
   };
 
@@ -231,17 +231,17 @@ export default function Contributors() {
 
   const handleTabValueChange = (value) => {
     switch (value) {
-    case 0:
-      setOrgStatus('any');
-      break;
-    case 1:
-      setOrgStatus('unaffiliated');
-      break;
-    case 2:
-      setOrgStatus('affiliated');
-      break;
-    default:
-      setOrgStatus('any');
+      case 0:
+        setOrgStatus('any');
+        break;
+      case 1:
+        setOrgStatus('unaffiliated');
+        break;
+      case 2:
+        setOrgStatus('affiliated');
+        break;
+      default:
+        setOrgStatus('any');
     }
   };
 
@@ -257,9 +257,7 @@ export default function Contributors() {
           <Box className='boxBackground' display='flex' alignContent='center'>
             <Grid container className={classes.firstSectionWrapper}>
               <Grid item xs={12}>
-                <NavBreadcrumbs
-                  crumbs={breadCrumbLinks}
-                />
+                <NavBreadcrumbs crumbs={breadCrumbLinks} />
               </Grid>
               <Grid item xs={12}>
                 <TitleSection>Civic Tech Organizations</TitleSection>
@@ -388,7 +386,7 @@ export default function Contributors() {
         <Container>
           <GetStartedCard
             headerTitle='Want to add your organization?'
-            buttonText='Add Your Project'
+            buttonText='Add Your Organization'
             buttonHref='/taggenerator'
           />
         </Container>
