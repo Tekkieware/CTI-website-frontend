@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 const PopUp = () => {
   const classes = useStyles();
   const date = new Date();
-  
+
   const setCookie = (cookieEmail, cookieValue, expDays) => {
     date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
     const expires = 'expires=' + date.toUTCString();
