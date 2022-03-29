@@ -355,165 +355,165 @@ const TagGeneratorWizard = () => {
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
     switch (displayState) {
-      case 'ProjectUrl':
-        return (
-          <>
-            <Grid className={classes.stepGrid}>
-              <StepComponent
-                step='Step 1 of 4'
-                stepHeading='Select Project Affiliation'
+    case 'ProjectUrl':
+      return (
+        <>
+          <Grid className={classes.stepGrid}>
+            <StepComponent
+              step='Step 1 of 4'
+              stepHeading='Select Project Affiliation'
+            />
+          </Grid>
+          <OrgNameSection
+            setDisplayState={setDisplayState}
+            orgName={orgName}
+            linkStyles={linkStyles}
+          />
+          <StepComponent step='Step 2 of 4' stepHeading='Find Project' />
+          <ProjectRepositoryInput
+            repositoryUrl={repositoryUrl}
+            handleEnter={handleEnter}
+            setRepositoryUrl={setRepositoryUrl}
+            topicSearchError={topicSearchError}
+            setTopicSearchError={setTopicSearchError}
+            handleSubmit={handleSubmit}
+          />
+        </>
+      );
+    case 'TopicTag':
+      return (
+        <>
+          <OrgProjSection />
+          {loadingTags ? (
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <>
+              <CurrentTopicTagSection
+                currentTags={currentTags}
+                repositoryName={repositoryName}
               />
-            </Grid>
-            <OrgNameSection
-              setDisplayState={setDisplayState}
-              orgName={orgName}
-              linkStyles={linkStyles}
-            />
-            <StepComponent step='Step 2 of 4' stepHeading='Find Project' />
-            <ProjectRepositoryInput
-              repositoryUrl={repositoryUrl}
-              handleEnter={handleEnter}
-              setRepositoryUrl={setRepositoryUrl}
-              topicSearchError={topicSearchError}
-              setTopicSearchError={setTopicSearchError}
-              handleSubmit={handleSubmit}
-            />
-          </>
-        );
-      case 'TopicTag':
-        return (
-          <>
-            <OrgProjSection />
-            {loadingTags ? (
-              <Box display='flex' alignItems='center' justifyContent='center'>
-                <CircularProgress />
-              </Box>
-            ) : (
-              <>
-                <CurrentTopicTagSection
-                  currentTags={currentTags}
-                  repositoryName={repositoryName}
-                />
-                <StepComponent
-                  step='Step 3 of 4'
-                  stepHeading='Create Topic Tags'
-                />
-                <AddTagsQuestion
-                  userTags={userTags}
-                  displayState={displayState}
-                  setDisplayState={setDisplayState}
-                  changeValue={changeValue}
-                  setChangeValue={setChangeValue}
-                  resetForm={resetForm}
-                  handleAdd={handleAdd}
-                  handleDelete={handleDelete}
-                  repoChangeAlert={repoChangeAlert}
-                  setRepoChangeAlert={setRepoChangeAlert}
-                  displayTypo={displayTypo}
-                  setDisplayTypo={setDisplayTypo}
-                />
-              </>
-            )}
-          </>
-        );
-      case 'GenerateTags':
-        return (
-          <>
-            <OrgProjSection />
-            <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <NewTags
-              tagsToAdd={tagsToAdd}
-              setDisplayState={setDisplayState}
-              setChangeValue={setChangeValue}
-              resetForm={resetForm}
-              linkStyles={linkStyles}
-              userTags={userTags}
-              setUserTags={setUserTags}
-              handleAdd={handleAdd}
-              handleDelete={handleDelete}
-              displayTypo={displayTypo}
-            />
-          </>
-        );
-      case 'ChangeTags':
-        return (
-          <>
-            <OrgProjSection />
-            <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <AddTopicTagSection
-              userTags={userTags}
-              displayState={displayState}
-              setDisplayState={setDisplayState}
-              changeValue={changeValue}
-              setChangeValue={setChangeValue}
-              resetForm={resetForm}
-              handleAdd={handleAdd}
-              handleDelete={handleDelete}
-              repoChangeAlert={repoChangeAlert}
-              setRepoChangeAlert={setRepoChangeAlert}
-            />
-          </>
-        );
-      case 'CopyPasteTags':
-        return (
-          <>
-            <OrgProjSection />
-            <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
-            <CurrentTopicTagSection
-              currentTags={currentTags}
-              repositoryName={repositoryName}
-            />
-            <CopyPasteTags
-              tagsToAdd={tagsToAdd}
-              setDisplayState={setDisplayState}
-              userTags={userTags}
-              repositoryName={repositoryName}
-              repositoryUrl={fullRepositoryUrl}
-              linkStyles={linkStyles}
-            />
-          </>
-        );
-      default:
-        return (
-          <>
-            <Grid className={classes.stepGrid}>
               <StepComponent
-                step='Step 1 of 4'
-                stepHeading='Select Project Affiliation'
+                step='Step 3 of 4'
+                stepHeading='Create Topic Tags'
               />
-            </Grid>
-            <AffiliationQuestionSection
-              value={value}
-              handleChange={handleChange}
-            >
-              <Typography variant='body1'>
-                Are you affiliated with an&nbsp;
-                <Link to='/organizations'>organization</Link>?
-              </Typography>
-            </AffiliationQuestionSection>
-            {value === 'yes' ? (
-              <RadioYes value={value} setOrgName={setOrgName} />
-            ) : null}
-            {value === 'no' ? (
-              <OrgChange
-                value={value}
-                orgName={orgName}
-                setOrgName={setOrgName}
-                setOrgTags={setOrgTags}
-                changeValue={changeValue}
+              <AddTagsQuestion
+                userTags={userTags}
+                displayState={displayState}
                 setDisplayState={setDisplayState}
+                changeValue={changeValue}
+                setChangeValue={setChangeValue}
+                resetForm={resetForm}
+                handleAdd={handleAdd}
+                handleDelete={handleDelete}
+                repoChangeAlert={repoChangeAlert}
+                setRepoChangeAlert={setRepoChangeAlert}
+                displayTypo={displayTypo}
+                setDisplayTypo={setDisplayTypo}
               />
-            ) : null}
-          </>
-        );
+            </>
+          )}
+        </>
+      );
+    case 'GenerateTags':
+      return (
+        <>
+          <OrgProjSection />
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <NewTags
+            tagsToAdd={tagsToAdd}
+            setDisplayState={setDisplayState}
+            setChangeValue={setChangeValue}
+            resetForm={resetForm}
+            linkStyles={linkStyles}
+            userTags={userTags}
+            setUserTags={setUserTags}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+            displayTypo={displayTypo}
+          />
+        </>
+      );
+    case 'ChangeTags':
+      return (
+        <>
+          <OrgProjSection />
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <AddTopicTagSection
+            userTags={userTags}
+            displayState={displayState}
+            setDisplayState={setDisplayState}
+            changeValue={changeValue}
+            setChangeValue={setChangeValue}
+            resetForm={resetForm}
+            handleAdd={handleAdd}
+            handleDelete={handleDelete}
+            repoChangeAlert={repoChangeAlert}
+            setRepoChangeAlert={setRepoChangeAlert}
+          />
+        </>
+      );
+    case 'CopyPasteTags':
+      return (
+        <>
+          <OrgProjSection />
+          <StepComponent step='Step 3 of 4' stepHeading='Create Topic Tags' />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <CopyPasteTags
+            tagsToAdd={tagsToAdd}
+            setDisplayState={setDisplayState}
+            userTags={userTags}
+            repositoryName={repositoryName}
+            repositoryUrl={fullRepositoryUrl}
+            linkStyles={linkStyles}
+          />
+        </>
+      );
+    default:
+      return (
+        <>
+          <Grid className={classes.stepGrid}>
+            <StepComponent
+              step='Step 1 of 4'
+              stepHeading='Select Project Affiliation'
+            />
+          </Grid>
+          <AffiliationQuestionSection
+            value={value}
+            handleChange={handleChange}
+          >
+            <Typography variant='body1'>
+                Are you affiliated with an&nbsp;
+              <Link to='/organizations'>organization</Link>?
+            </Typography>
+          </AffiliationQuestionSection>
+          {value === 'yes' ? (
+            <RadioYes value={value} setOrgName={setOrgName} />
+          ) : null}
+          {value === 'no' ? (
+            <OrgChange
+              value={value}
+              orgName={orgName}
+              setOrgName={setOrgName}
+              setOrgTags={setOrgTags}
+              changeValue={changeValue}
+              setDisplayState={setDisplayState}
+            />
+          ) : null}
+        </>
+      );
     }
   };
 

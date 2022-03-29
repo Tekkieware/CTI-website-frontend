@@ -132,20 +132,20 @@ const SearchProjects = () => {
     const getDateWithOffset = (unit, offset) => {
       const d = new Date();
       switch (unit) {
-        case 'h':
-          d.setHours(d.getHours() - offset);
-          break;
-        case 'd':
-          d.setDate(d.getDate() - offset);
-          break;
-        case 'm':
-          d.setMonth(d.getMonth() - offset);
-          break;
-        case 'y':
-          d.setFullYear(d.getFullYear() - offset);
-          break;
-        default:
-          return d.toISOString().split('T')[0];
+      case 'h':
+        d.setHours(d.getHours() - offset);
+        break;
+      case 'd':
+        d.setDate(d.getDate() - offset);
+        break;
+      case 'm':
+        d.setMonth(d.getMonth() - offset);
+        break;
+      case 'y':
+        d.setFullYear(d.getFullYear() - offset);
+        break;
+      default:
+        return d.toISOString().split('T')[0];
       }
       return d.toISOString().split('T')[0];
     };
