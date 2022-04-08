@@ -77,10 +77,10 @@ const CallToActionSection = () => {
   return (
     <Grid container style={{ paddingTop: '35px' }} justify='center'>
       <Grid container justify='space-around' style={{ width: '392px' }}>
-        <NavButton href='/join-index' color='primary'>
+        <NavButton href='/join-index/tag-generator-wizard' color='primary'>
           Add Your Project
         </NavButton>
-        <NavButton href='/about' variant='outlined'>
+        <NavButton href='/about/what-is-cti' variant='outlined'>
           Learn More
         </NavButton>
       </Grid>
@@ -117,7 +117,7 @@ const Home = () => {
         <GetStartedCard
           headerTitle='Ready to get started?'
           buttonText='Add Your Project'
-          buttonHref='/join-index'
+          buttonHref='/join-index/tag-generator-wizard'
         />
       </Box>
     </>

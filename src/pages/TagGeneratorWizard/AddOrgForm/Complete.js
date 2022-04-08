@@ -27,7 +27,7 @@ const Complete = ({ onClose }) => {
         </Typography>
         <Box className={classes.return}>
           <Button data-cy='return-button' onClick={onClose}>
-            Return to Tag Generator
+            Return to Tag Generator Wizard
           </Button>
         </Box>
       </Box>

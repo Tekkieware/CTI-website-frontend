@@ -7,7 +7,7 @@ export default function SearchContainer() {
 
   return (
     <div className={classes.searchContainer}>
-      <NavButton href='/projects'>Search Projects</NavButton>
+      <NavButton href='/search-projects'>Search Projects</NavButton>
     </div>
   );
 }
