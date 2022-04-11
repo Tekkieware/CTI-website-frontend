@@ -87,7 +87,7 @@ const usePrevious = (refValue) => {
 };
 
 // eslint-disable-next-line max-lines-per-function
-const TagGenerator = () => {
+const TagGeneratorWizard = () => {
   const theme = useTheme();
   const classes = useStyles();
   const [changeValue, setChangeValue] = useQueryParam(
@@ -144,7 +144,7 @@ const TagGenerator = () => {
   const [displayTypo, setDisplayTypo] = useState(true);
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
-    { href: '/join-index', name: 'Add Your Project' },
+    { href: '/join-index/tag-generator-wizard', name: 'Tag Generator Wizard' },
   ];
 
   const resetForm = () => {
@@ -490,9 +490,12 @@ const TagGenerator = () => {
               stepHeading='Select Project Affiliation'
             />
           </Grid>
-          <AffiliationQuestionSection value={value} handleChange={handleChange}>
+          <AffiliationQuestionSection
+            value={value}
+            handleChange={handleChange}
+          >
             <Typography variant='body1'>
-              Are you affiliated with an&nbsp;
+                Are you affiliated with an&nbsp;
               <Link to='/organizations'>organization</Link>?
             </Typography>
           </AffiliationQuestionSection>
@@ -519,7 +522,7 @@ const TagGenerator = () => {
       <Box className='boxBackground'>
         <Container className='containerDefault'>
           <GenericHeaderSection
-            mainTitle='Tag Generator'
+            mainTitle='Tag Generator Wizard'
             breadCrumbLinks={breadCrumbLinks}
           >
             <Typography className='genSubheadTypo'>
@@ -539,4 +542,4 @@ const TagGenerator = () => {
   );
 };
 
-export default TagGenerator;
+export default TagGeneratorWizard;

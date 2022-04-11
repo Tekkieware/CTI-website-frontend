@@ -10,10 +10,10 @@ import {
 import useStyles from './styles';
 import Grid from '@material-ui/core/Grid';
 
-const About = () => {
+const WhatIsCTI = () => {
   const breadCrumbLinks = [
     { name: 'Home', href: '/home' },
-    { name: 'About', href: '/about' },
+    { name: 'What is CTI?', href: '/about/what-is-cti' },
   ];
 
   const classes = useStyles();
@@ -75,10 +75,10 @@ const About = () => {
       <GetStartedCard
         headerTitle='Ready to get started?'
         buttonText='Add Your Project'
-        buttonHref='/join-index'
+        buttonHref='/join-index/tag-generator-wizard'
       />
     </Box>
   );
 };
 
-export default About;
+export default WhatIsCTI;

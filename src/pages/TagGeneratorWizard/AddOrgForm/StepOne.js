@@ -64,6 +64,7 @@ const StepOne = (props) => {
           error={!!orgNameApiErr}
           helperText={orgNameApiErr}
           label='Organization Name'
+          inputProps={{ 'aria-label': 'Organization Name' }}
           onChange={(event) => {
             props.onOrgName(event.target.value);
             props.setApiErrors({ ...props.apiErrors, name: '' });

@@ -7,7 +7,6 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
 import FilterSelector from './FilterSelector';
 import FilterTag from './FilterTag';
 import HeaderSection from './HeaderSection';
@@ -72,7 +71,7 @@ const renderCard = (project, affiliations, classes) => {
   );
 };
 
-const Projects = () => {
+const SearchProjects = () => {
   const classes = useStyles();
   const location = useLocation();
   const [affiliations, setAffiliations] = useState({});
@@ -411,4 +410,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default SearchProjects;

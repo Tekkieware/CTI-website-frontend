@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-describe('Tag Generator Page (Tag Creator)', () => {
+describe('Tag Generator Wizard (Tag Creator)', () => {
   const AFFILIATED_ORGANIZATION = 'Code for Boston';
   const CHANGE_AFFILIATED_ORGANIZATION = 'Hack for LA';
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311';
@@ -27,12 +27,12 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
       'getOrganizations'
     );
-    cy.visit('/join-index');
+    cy.visit('/join-index/tag-generator-wizard');
     cy.wait('@getOrganizations');
   });
 
   it('loads', () => {
-    cy.get('h1').contains('Tag Generator');
+    cy.get('h1').contains('Tag Generator Wizard');
   });
 
   it('loads correct 4 tags and affliate new tags for `codeforboston/voiceapp311` - affiliated', () => {

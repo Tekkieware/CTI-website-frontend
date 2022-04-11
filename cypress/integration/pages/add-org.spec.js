@@ -24,12 +24,12 @@ describe('Add Organization Workflow', () => {
 
   before(() => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
-    cy.visit('/join-index');
+    cy.visit('/join-index/tag-generator-wizard');
     cy.wait('@getOrganizations');
     cy.get('[data-cy=radio-yes]').click();
   });
 
-  it('loads first step and returns to tag generator', () => {
+  it('loads first step and returns to tag generator wizard', () => {
     cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as('getOrganizations');
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').should('be.empty');
@@ -48,7 +48,7 @@ describe('Add Organization Workflow', () => {
       cy.get('[data-cy=parent-org-input]').type('{downarrow}{downarrow}{enter}');
       cy.get('[data-cy=cancel-button]').click();
     });
-    cy.get('h1').contains('Tag Generator');
+    cy.get('h1').contains('Tag Generator Wizard');
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').should('be.empty');
     });
@@ -156,13 +156,13 @@ describe('Add Organization Workflow', () => {
     });
   });
 
-  it('should return to tag generator', () => {
+  it('should return to tag generator wizard', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=makeStyles-return]').within(() => {
         cy.get('[data-cy=return-button]').click();
       });
     });
-    cy.get('h1').contains('Tag Generator');
+    cy.get('h1').contains('Tag Generator Wizard');
     cy.get('#organization').should('have.value', VALID_NAME);
   });
 
@@ -227,4 +227,14 @@ describe('Add Organization Workflow', () => {
       cy.get('[data-cy=org-country-input]').should('contain', 'Country');
     });
   });
+
+  it('should contain accessible attributes', () => {
+    cy.get('#container-affiliated').within(() => {
+      cy.get('#add-org-link').click();
+    });
+    cy.get('[class*=MuiDialog-container]').within(() => {
+      cy.get('[class*=MuiDialog-paper]').invoke('attr', 'ariaLabel').should('eq', 'Add Organization Modal');
+    });
+  });
+
 });

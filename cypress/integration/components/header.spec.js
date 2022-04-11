@@ -1,18 +1,18 @@
 describe('Header component', () => {
   const menuItems = {
-    'Join the Index': ['Add Your Project', 'How to Add Your Project'],
-    Overview: ['About', 'FAQ', 'Contact Us'],
-    'Radical Collaboration': [
-      'Collaborate with Us',
-      'Donate',
-      'Share the CTI',
-      'Volunteer with Us',
-    ],
+    'Join the Index': ['Tag Generator Wizard', 'How to Add Your Project'],
+    'About': ['What is CTI?', 'FAQ', 'Contact Us'],
     'Civic Tech Organizations': [
       'All',
       'Affiliated',
       'Unaffiliated',
       'Index Contributors',
+    ],
+    'Radical Collaboration': [
+      'Collaborate with Us',
+      'Donate',
+      'Share the CTI',
+      'Volunteer with Us',
     ],
   };
 
@@ -46,7 +46,7 @@ describe('Header component', () => {
       .should('have.text', 'Join the Index');
     cy.get('[class*=makeStyles-dropdownHeader]')
       .eq(1)
-      .should('have.text', 'Overview');
+      .should('have.text', 'About');
     cy.get('[class*=makeStyles-dropdownHeader]')
       .eq(2)
       .should('have.text', 'Civic Tech Organizations');
