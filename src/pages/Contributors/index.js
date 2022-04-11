@@ -30,6 +30,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Affiliated } from './Affiliated';
 import { UnaffiliatedOrganizations } from './UnaffiliatedOrganizations';
 import OrganizationSearch from './OrganizationSearch';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -62,6 +63,7 @@ export default function Contributors() {
   const [totalAffiliatedCount, setTotalAffiliatedCount] = useState(0);
   const [totalUnaffiliatedCount, setTotalUnaffiliatedCount] = useState(0);
   const [unaffiliatedCount, setUnaffiliatedCount] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
     []
   );
@@ -81,7 +83,6 @@ export default function Contributors() {
     'contrib',
     withDefault(BooleanParam, false)
   );
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
@@ -172,10 +173,14 @@ export default function Contributors() {
       ) {
         if (org.affiliated && org.depth !== 2) {
           afflCount++;
+          setLoading(true);
           affiliated.push(org);
         } else if (!org.affiliated) {
           unafflCount++;
+          setLoading(true);
           unaffiliated.push(org);
+        } else {
+          setLoading(false);
         }
       }
     }
@@ -202,14 +207,14 @@ export default function Contributors() {
 
   const getTabValue = (status) => {
     switch (status) {
-      case 'any':
-        return 0;
-      case 'affiliated':
-        return 2;
-      case 'unaffiliated':
-        return 1;
-      default:
-        return 0;
+    case 'any':
+      return 0;
+    case 'affiliated':
+      return 2;
+    case 'unaffiliated':
+      return 1;
+    default:
+      return 0;
     }
   };
 
@@ -231,17 +236,17 @@ export default function Contributors() {
 
   const handleTabValueChange = (value) => {
     switch (value) {
-      case 0:
-        setOrgStatus('any');
-        break;
-      case 1:
-        setOrgStatus('unaffiliated');
-        break;
-      case 2:
-        setOrgStatus('affiliated');
-        break;
-      default:
-        setOrgStatus('any');
+    case 0:
+      setOrgStatus('any');
+      break;
+    case 1:
+      setOrgStatus('unaffiliated');
+      break;
+    case 2:
+      setOrgStatus('affiliated');
+      break;
+    default:
+      setOrgStatus('any');
     }
   };
 
@@ -280,107 +285,113 @@ export default function Contributors() {
         </Container>
       </Box>
       <Box className='containerGray'>
-        <Container>
-          <AppBar position='static' color='default' elevation={0}>
-            <Tabs
-              value={getTabValue(orgStatus)}
-              onChange={(e, val) => handleTabValueChange(val)}
-              variant='fullWidth'
-              className={classes.tabs}
-              classes={{ indicator: classes.indicator }}
-            >
-              <Tab
-                icon='All'
-                label={` (${affiliatedCount + unaffiliatedCount})`}
-                {...a11yProps(0)}
-                classes={{
-                  root: classes.tabRoot,
-                  selected: classes.tabSelected,
-                }}
-              />
-              <Tab
-                icon='Unaffiliated'
-                label={` (${unaffiliatedCount})`}
-                classes={{
-                  root: classes.tabRoot,
-                  selected: classes.tabSelected,
-                }}
-                {...a11yProps(1)}
-              />
-              <Tab
-                icon='Affiliated'
-                label={` (${affiliatedCount})`}
-                classes={{
-                  root: classes.tabRoot,
-                  selected: classes.tabSelected,
-                }}
-                {...a11yProps(2)}
-              />
-            </Tabs>
-          </AppBar>
-          <Grid index={getTabValue(orgStatus)}>
-            <FormGroup className={classes.checkBox}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={showIndexContrib}
-                    data-cy='index-contributors-checkbox'
-                    onChange={(e) => {
-                      setShowIndexContrib(e.target.checked);
-                    }}
-                  />
-                }
-                label={
-                  <Typography className={classes.formControlLabel}>
-                    Index Contributor
-                  </Typography>
-                }
-              />
-            </FormGroup>
-            <TabPanel value={getTabValue(orgStatus)} index={0}>
-              <UnaffiliatedOrganizations
-                organizations={unaffiliatedOrganizations}
-                filtersActive={filtersActive}
-                unaffiliatedCount={unaffiliatedCount}
-                totalUnaffiliatedCount={totalUnaffiliatedCount}
-              />
-              <Affiliated
-                affiliatedCount={affiliatedCount}
-                classes={classes}
-                expandedOrgs={expandedOrgs}
-                filtersActive={filtersActive}
-                inputValue={searchQuery}
-                onOrgClick={handleOrgClick}
-                organizationData={organizations}
-                organizations={affiliatedOrganizations}
-                showIndexContrib={showIndexContrib}
-                totalAffiliatedCount={totalAffiliatedCount}
-              />
-            </TabPanel>
-            <TabPanel value={getTabValue(orgStatus)} index={1}>
-              <UnaffiliatedOrganizations
-                organizations={unaffiliatedOrganizations}
-                filtersActive={filtersActive}
-                unaffiliatedCount={unaffiliatedCount}
-                totalUnaffiliatedCount={totalUnaffiliatedCount}
-              />
-            </TabPanel>
-            <TabPanel value={getTabValue(orgStatus)} index={2}>
-              <Affiliated
-                affiliatedCount={affiliatedCount}
-                classes={classes}
-                expandedOrgs={expandedOrgs}
-                filtersActive={filtersActive}
-                inputValue={searchQuery}
-                onOrgClick={handleOrgClick}
-                organizationData={organizations}
-                organizations={affiliatedOrganizations}
-                showIndexContrib={showIndexContrib}
-                totalAffiliatedCount={totalAffiliatedCount}
-              />
-            </TabPanel>
-          </Grid>
-        </Container>
+        {!loading ? (
+          <Box my={12} display='flex' justifyContent='center'>
+            <CircularProgress color='secondary' />
+          </Box>
+        ) : (
+          <Container>
+            <AppBar position='static' color='default' elevation={0}>
+              <Tabs
+                value={getTabValue(orgStatus)}
+                onChange={(e, val) => handleTabValueChange(val)}
+                variant='fullWidth'
+                className={classes.tabs}
+                classes={{ indicator: classes.indicator }}
+              >
+                <Tab
+                  icon='All'
+                  label={` (${affiliatedCount + unaffiliatedCount})`}
+                  {...a11yProps(0)}
+                  classes={{
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected,
+                  }}
+                />
+                <Tab
+                  icon='Unaffiliated'
+                  label={` (${unaffiliatedCount})`}
+                  classes={{
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected,
+                  }}
+                  {...a11yProps(1)}
+                />
+                <Tab
+                  icon='Affiliated'
+                  label={` (${affiliatedCount})`}
+                  classes={{
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected,
+                  }}
+                  {...a11yProps(2)}
+                />
+              </Tabs>
+            </AppBar>
+            <Grid index={getTabValue(orgStatus)}>
+              <FormGroup className={classes.checkBox}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={showIndexContrib}
+                      data-cy='index-contributors-checkbox'
+                      onChange={(e) => {
+                        setShowIndexContrib(e.target.checked);
+                      }}
+                    />
+                  }
+                  label={
+                    <Typography className={classes.formControlLabel}>
+                      Index Contributor
+                    </Typography>
+                  }
+                />
+              </FormGroup>
+              <TabPanel value={getTabValue(orgStatus)} index={0}>
+                <UnaffiliatedOrganizations
+                  organizations={unaffiliatedOrganizations}
+                  filtersActive={filtersActive}
+                  unaffiliatedCount={unaffiliatedCount}
+                  totalUnaffiliatedCount={totalUnaffiliatedCount}
+                />
+                <Affiliated
+                  affiliatedCount={affiliatedCount}
+                  classes={classes}
+                  expandedOrgs={expandedOrgs}
+                  filtersActive={filtersActive}
+                  inputValue={searchQuery}
+                  onOrgClick={handleOrgClick}
+                  organizationData={organizations}
+                  organizations={affiliatedOrganizations}
+                  showIndexContrib={showIndexContrib}
+                  totalAffiliatedCount={totalAffiliatedCount}
+                />
+              </TabPanel>
+              <TabPanel value={getTabValue(orgStatus)} index={1}>
+                <UnaffiliatedOrganizations
+                  organizations={unaffiliatedOrganizations}
+                  filtersActive={filtersActive}
+                  unaffiliatedCount={unaffiliatedCount}
+                  totalUnaffiliatedCount={totalUnaffiliatedCount}
+                />
+              </TabPanel>
+              <TabPanel value={getTabValue(orgStatus)} index={2}>
+                <Affiliated
+                  affiliatedCount={affiliatedCount}
+                  classes={classes}
+                  expandedOrgs={expandedOrgs}
+                  filtersActive={filtersActive}
+                  inputValue={searchQuery}
+                  onOrgClick={handleOrgClick}
+                  organizationData={organizations}
+                  organizations={affiliatedOrganizations}
+                  showIndexContrib={showIndexContrib}
+                  totalAffiliatedCount={totalAffiliatedCount}
+                />
+              </TabPanel>
+            </Grid>
+          </Container>
+        )}
       </Box>
       <Box className='containerWhite'>
         <Container>
