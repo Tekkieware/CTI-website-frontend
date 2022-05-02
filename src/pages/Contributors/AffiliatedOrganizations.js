@@ -68,16 +68,14 @@ export const AffiliatedOrganizations = ({
   filtersActive,
   inputValue,
   onOrgClick,
-  organizationData,
-  organizations,
+  organizations, // affiliated orgs
   showIndexContrib,
 }) => {
   const classes = useStyles();
 
   const isChildThumbnail = true;
   let parentdata;
-  let parentChildobj;
-  let mapsearchedChildParent;
+  let parentObj;
 
   const getParentData = () => {
     parentdata = [];
@@ -90,65 +88,94 @@ export const AffiliatedOrganizations = ({
       }
       if (org.depth === 3) {
         // console.log(parentdata);
-        parentChildobj = parentdata.find((d) => {
+        parentObj = parentdata.find((d) => {
           // console.log(org.path, d.path);
           return org.path.includes(d.path) && d.depth === 2;
         });
-        if (parentChildobj) {
-          parentChildobj.childNodes.push(org);
-        } else {
+        if (parentObj) {
           org['childNodes'] = [];
           org['allChildrenShown'] = false;
-          parentdata.push(org);
+          parentObj.childNodes.push(org);
+        } else {
+          // do we ever get here?
+          console.error('XXXX parent of depth 3 node not found');
+          // org['childNodes'] = [];
+          // org['allChildrenShown'] = false;
+          // parentdata.push(org);
         }
       }
       if (org.depth === 4) {
-        // parentChildobj = parentdata.find((d) => org.path.includes(d.path));
-        parentChildobj = [];
+        const grandparentObj = parentdata.find(
+          (d) => org.path.includes(d.path) && d.depth === 2
+        );
 
+        if (!grandparentObj) {
+          console.error('XXXX grandparent of depth 4 node not found');
+          console.log(org);
+          return;
+        }
+
+        // loop through grandparent to find parent
+        parentObj = grandparentObj['childNodes'].find((d) =>
+          org.path.includes(d.path)
+        );
+
+        /*
         // potential parent: common path and one level higher
         // I don't see  how this could find any more than one parent unless
         // there's some data corruption
         mapsearchedChildParent = organizationData.find(
           (d) => org.path.includes(d.path) && d.depth === 3
         );
+        // console.log(mapsearchedChildParent);
 
-        // see if parent is already included previously. Why?
-        const exist = parentdata.find(
-          (d) => mapsearchedChildParent.path === d.path
-        );
-
-        // set the parent we're going to use
-        if (!exist) {
-          // parent not found in accumulated list
-          // set the potential parent as the parent anyway
-          mapsearchedChildParent['childNodes'] = [];
-          mapsearchedChildParent['allChildrenShown'] = false;
-          parentChildobj = mapsearchedChildParent;
-          parentdata.push(mapsearchedChildParent);
-          // do we ever get here?
-          console.error('XXXX');
+        // NEW find potential grandparent
+        if (!mapsearchedChildParent) {
+          console.log('re-search for grandparent');
+          mapsearchedChildParent = organizationData.find(
+            (d) => org.path.includes(d.path) && d.depth === 2
+          );
         } else {
-          // set the found parent as parent
-          parentChildobj = exist;
+          // see if parent is already included previously. Why?
+          const exist = parentdata.find(
+            (d) => mapsearchedChildParent.path === d.path
+          );
+
+          // set the parent we're going to use
+          if (!exist) {
+            // parent not found in accumulated list
+            // set the potential parent as the parent anyway
+            mapsearchedChildParent['childNodes'] = [];
+            mapsearchedChildParent['allChildrenShown'] = false;
+            parentChildobj = mapsearchedChildParent;
+            parentdata.push(mapsearchedChildParent);
+            // do we ever get here?
+            console.error('XXXX');
+            console.log(mapsearchedChildParent);
+          } else {
+            // set the found parent as parent
+            parentChildobj = exist;
+          }
         }
+        */
 
         // apply show/hide filter
         // this would probably be more efficient if done to the entire array at
         // once
-        if (parentChildobj) {
+        if (parentObj) {
+          // console.log(parentObj);
           if (showIndexContrib && org['cti_contributor']) {
-            parentChildobj.childNodes.push(org);
+            parentObj.childNodes.push(org);
           }
           if (!showIndexContrib) {
-            parentChildobj.childNodes.push(org);
+            parentObj.childNodes.push(org);
           }
         } else {
-          org['childNodes'] = [];
-          org['allChildrenShown'] = false;
-          parentdata.push(org);
           // do we ever get here?
           console.error('XXXX');
+          // org['childNodes'] = [];
+          // org['allChildrenShown'] = false;
+          // parentdata.push(org);
         }
       }
     });
