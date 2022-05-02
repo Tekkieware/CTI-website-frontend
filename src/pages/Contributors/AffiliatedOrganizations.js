@@ -183,11 +183,11 @@ export const AffiliatedOrganizations = ({
     return parentdata;
   };
 
-  const [currentThumbnails, setCurrentThumbnails] = useState([]);
+  const [orgTree, setOrgTree] = useState([]);
 
   useEffect(() => {
-    setCurrentThumbnails(getParentData());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    setOrgTree(getParentData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [organizations]);
 
   let childSort;
@@ -196,10 +196,10 @@ export const AffiliatedOrganizations = ({
     return (
       <Grid
         className={classes.thumbnailGrid}
-        dropdownlength={currentThumbnails.length}
+        dropdownlength={orgTree.length}
         data-cy='affiliated-organizations'
       >
-        {currentThumbnails.map((org, i) => {
+        {orgTree.map((org, i) => {
           childSort = org.childNodes;
           childNode = org.allChildrenShown ? childSort : childSort.slice(0, 6);
           return (
@@ -266,12 +266,12 @@ export const AffiliatedOrganizations = ({
                       id='viewAllButton'
                       className={classes.button}
                       onClick={() => {
-                        const data = [...currentThumbnails];
+                        const data = [...orgTree];
                         data[i].allChildrenShown = !data[i].allChildrenShown;
-                        setCurrentThumbnails(data);
+                        setOrgTree(data);
                       }}
                     >
-                      {currentThumbnails[i].allChildrenShown ? 'View Less' : 'View All'}
+                      {orgTree[i].allChildrenShown ? 'View Less' : 'View All'}
                     </Button>
                   </Grid>
                 ) : null}
@@ -287,7 +287,7 @@ export const AffiliatedOrganizations = ({
         className={classes.thumbnailGrid}
         data-cy='affiliated-organizations'
       >
-        {currentThumbnails.map((org, i) => {
+        {orgTree.map((org, i) => {
           return (
             <Dropdown
               checkboxValue={showIndexContrib}
