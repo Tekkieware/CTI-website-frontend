@@ -89,16 +89,18 @@ export const AffiliatedOrganizations = ({
         parentdata.push(org);
       }
       if (org.depth === 3) {
-        console.log(parentdata);
+        // console.log(parentdata);
         parentChildobj = parentdata.find((d) => {
-          console.log(org.path, d.path);
+          // console.log(org.path, d.path);
           return org.path.includes(d.path) && d.depth === 2;
         });
-        parentChildobj.childNodes.push(org);
-
-        org['childNodes'] = [];
-        org['allChildrenShown'] = false;
-        parentdata.push(org);
+        if (parentChildobj) {
+          parentChildobj.childNodes.push(org);
+        } else {
+          org['childNodes'] = [];
+          org['allChildrenShown'] = false;
+          parentdata.push(org);
+        }
       }
       if (org.depth === 4) {
         // parentChildobj = parentdata.find((d) => org.path.includes(d.path));
@@ -124,6 +126,8 @@ export const AffiliatedOrganizations = ({
           mapsearchedChildParent['allChildrenShown'] = false;
           parentChildobj = mapsearchedChildParent;
           parentdata.push(mapsearchedChildParent);
+          // do we ever get here?
+          console.error('XXXX');
         } else {
           // set the found parent as parent
           parentChildobj = exist;
@@ -143,6 +147,8 @@ export const AffiliatedOrganizations = ({
           org['childNodes'] = [];
           org['allChildrenShown'] = false;
           parentdata.push(org);
+          // do we ever get here?
+          console.error('XXXX');
         }
       }
     });
