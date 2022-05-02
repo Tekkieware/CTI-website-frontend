@@ -98,6 +98,9 @@ export default function Contributors() {
           );
           org['totalCount'] = childNodes.length;
         }
+        // if (org.depth === 2) {
+        //   console.log(org)
+        // }
       });
       const names = [];
       let totalAfflCount = 0;
@@ -171,7 +174,7 @@ export default function Contributors() {
         ((showIndexContrib && org.cti_contributor) || !showIndexContrib) &&
         orgName.includes(input)
       ) {
-        if (org.affiliated && org.depth !== 2) {
+        if (org.affiliated) {
           afflCount++;
           setLoading(true);
           affiliated.push(org);

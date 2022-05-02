@@ -132,6 +132,8 @@ export const Affiliated = ({
   const classesLocal = useStyles();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
+    // console.log(organizationData)
+    // console.log(organizations)
     if ((filtersActive || expandedOrgs.length) && organizations.length) {
       setDropdownOpen(true);
     } else {

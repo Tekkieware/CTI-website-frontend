@@ -83,31 +83,55 @@ export const AffiliatedOrganizations = ({
     parentdata = [];
 
     organizations.forEach((org) => {
+      if (org.depth === 2) {
+        org['childNodes'] = [];
+        org['allChildrenShown'] = false;
+        parentdata.push(org);
+      }
       if (org.depth === 3) {
+        console.log(parentdata);
+        parentChildobj = parentdata.find((d) => {
+          console.log(org.path, d.path);
+          return org.path.includes(d.path) && d.depth === 2;
+        });
+        parentChildobj.childNodes.push(org);
+
         org['childNodes'] = [];
         org['allChildrenShown'] = false;
         parentdata.push(org);
       }
       if (org.depth === 4) {
-        parentChildobj = parentdata.find((d) => org.path.includes(d.path));
+        // parentChildobj = parentdata.find((d) => org.path.includes(d.path));
+        parentChildobj = [];
 
+        // potential parent: common path and one level higher
+        // I don't see  how this could find any more than one parent unless
+        // there's some data corruption
         mapsearchedChildParent = organizationData.find(
           (d) => org.path.includes(d.path) && d.depth === 3
         );
 
+        // see if parent is already included previously. Why?
         const exist = parentdata.find(
           (d) => mapsearchedChildParent.path === d.path
         );
 
+        // set the parent we're going to use
         if (!exist) {
+          // parent not found in accumulated list
+          // set the potential parent as the parent anyway
           mapsearchedChildParent['childNodes'] = [];
           mapsearchedChildParent['allChildrenShown'] = false;
           parentChildobj = mapsearchedChildParent;
           parentdata.push(mapsearchedChildParent);
         } else {
+          // set the found parent as parent
           parentChildobj = exist;
         }
 
+        // apply show/hide filter
+        // this would probably be more efficient if done to the entire array at
+        // once
         if (parentChildobj) {
           if (showIndexContrib && org['cti_contributor']) {
             parentChildobj.childNodes.push(org);
@@ -122,6 +146,7 @@ export const AffiliatedOrganizations = ({
         }
       }
     });
+    console.log(parentdata);
     return parentdata;
   };
 
