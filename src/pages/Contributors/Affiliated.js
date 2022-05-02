@@ -130,16 +130,80 @@ export const Affiliated = ({
   showIndexContrib,
 }) => {
   const classesLocal = useStyles();
+  const [orgTree, setOrgTree] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
-    // console.log(organizationData)
-    // console.log(organizations)
     if ((filtersActive || expandedOrgs.length) && organizations.length) {
       setDropdownOpen(true);
     } else {
       setDropdownOpen(false);
     }
-  }, [expandedOrgs, filtersActive, organizations])
+  }, [expandedOrgs, filtersActive, organizations]);
+
+  const getParentData = () => {
+    const parentdata = [];
+    let parentObj;
+
+    organizations.forEach((org) => {
+      if (org.depth === 2) {
+        org['childNodes'] = [];
+        org['allChildrenShown'] = false;
+        parentdata.push(org);
+      }
+      if (org.depth === 3) {
+        parentObj = parentdata.find((d) => {
+          return org.path.includes(d.path) && d.depth === 2;
+        });
+        if (parentObj) {
+          org['childNodes'] = [];
+          org['allChildrenShown'] = false;
+          parentObj.childNodes.push(org);
+        } else {
+          // do we ever get here?
+          console.error('XXXX parent of depth 3 node not found');
+        }
+      }
+      if (org.depth === 4) {
+        const grandparentObj = parentdata.find(
+          (d) => org.path.includes(d.path) && d.depth === 2
+        );
+
+        if (!grandparentObj) {
+          console.error('XXXX grandparent of depth 4 node not found');
+          console.log(org);
+          return;
+        }
+
+        // loop through grandparent to find parent
+        parentObj = grandparentObj['childNodes'].find((d) =>
+          org.path.includes(d.path)
+        );
+
+        // apply show/hide filter
+        // this would probably be more efficient if done to the entire array at
+        // once
+        if (parentObj) {
+          // console.log(parentObj);
+          if (showIndexContrib && org['cti_contributor']) {
+            parentObj.childNodes.push(org);
+          }
+          if (!showIndexContrib) {
+            parentObj.childNodes.push(org);
+          }
+        } else {
+          // do we ever get here?
+          console.error('XXXX');
+        }
+      }
+    });
+    console.log(parentdata);
+    return parentdata;
+  };
+
+  useEffect(() => {
+    setOrgTree(getParentData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [organizations]);
 
   return (
     <Grid>
@@ -229,8 +293,8 @@ export const Affiliated = ({
                 filtersActive={filtersActive}
                 inputValue={inputValue}
                 onOrgClick={onOrgClick}
-                organizationData={organizationData}
-                organizations={organizations}
+                orgTree={orgTree}
+                setOrgTree={setOrgTree}
                 showIndexContrib={showIndexContrib}
               />
             </Grid>
