@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
+import { Dropdown } from '../../components/Dropdown';
 import { DropdownArrow } from '../../components/DropdownArrow.js';
 import Grid from '@material-ui/core/Grid';
 import { AffiliatedOrganizations } from './AffiliatedOrganizations';
@@ -164,14 +165,48 @@ export const Affiliated = ({
         }
       }
       if (org.depth === 4) {
-        const grandparentObj = parentdata.find(
+        let grandparentObj = parentdata.find(
           (d) => org.path.includes(d.path) && d.depth === 2
         );
 
         if (!grandparentObj) {
-          console.error('XXXX grandparent of depth 4 node not found');
-          console.log(org);
-          return;
+          if (!showIndexContrib) {
+            console.error('XXXX grandparent of depth 4 node not found');
+            console.log(org);
+            return;
+          }
+
+          // this could happen when filtering on contributors. The parents won't
+          // be listed as contributors and need to be retrived from
+          // organizationData
+
+          // find grandparent of depth 2 and add to parentdata
+          grandparentObj = organizationData.find(
+            (d) => org.path.includes(d.path) && d.depth === 2
+          );
+          if (!grandparentObj) {
+            console.error(
+              'XXXX grandparent of depth 2 node not found in organizationData'
+            );
+            return;
+          }
+          grandparentObj['childNodes'] = [];
+          grandparentObj['allChildrenShown'] = false;
+          parentdata.push(grandparentObj);
+
+          // find parent of depth 3 and assign as child of grandparent
+          const parent = organizationData.find(
+            (d) => org.path.includes(d.path) && d.depth === 3
+          );
+          if (!parent) {
+            console.error(
+              'XXXX parent of depth 3 node not found in organizationData'
+            );
+            return;
+          }
+          parent['childNodes'] = [];
+          parent['allChildrenShown'] = false;
+          grandparentObj.childNodes.push(parent);
         }
 
         // loop through grandparent to find parent
@@ -179,20 +214,11 @@ export const Affiliated = ({
           org.path.includes(d.path)
         );
 
-        // apply show/hide filter
-        // this would probably be more efficient if done to the entire array at
-        // once
-        if (parentObj) {
-          // console.log(parentObj);
-          if (showIndexContrib && org['cti_contributor']) {
-            parentObj.childNodes.push(org);
-          }
-          if (!showIndexContrib) {
-            parentObj.childNodes.push(org);
-          }
-        } else {
+        if (!parentObj) {
           // do we ever get here?
-          console.error('XXXX');
+          console.error('XXXX parent of depth 3 not found in grandparentObj');
+        } else {
+          parentObj.childNodes.push(org);
         }
       }
     });
@@ -217,89 +243,39 @@ export const Affiliated = ({
           </span>
         </Typography>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        sm={10}
-        className={clsx(classesLocal.gpGrid, {
-          [classesLocal.open]: dropdownOpen,
-        })}
-      >
-        <Grid>
-          <img
-            src='/images/code_for_All.png'
-            alt='code for all logo'
-            className={classesLocal.codeforAllIcon}
-          />
-        </Grid>
-        <Grid>
-          <Typography
-            variant='h4'
-            noWrap
-            className={classesLocal.codeforallText}
+      {orgTree.map((org, i) => (
+        <div key={org.path}>
+          <Dropdown
+            checkboxValue={showIndexContrib}
+            dropdownLength={org.childNodes.length}
+            filtersActive={filtersActive}
+            isOpen={expandedOrgs.includes(org.id.toString())}
+            key={`affiliatedThumbnailsWrapper_${i}`}
+            onClick={onOrgClick}
+            organization={org}
           >
-            <Link
-              href='/organization/code-for-all'
-              rel='noreferrer noopener'
-            >
-              Code for All
-            </Link>
-            <span style={{ paddingLeft: '5px' }}>
-              {filtersActive
-                ? `(${affiliatedCount}/${totalAffiliatedCount})`
-                : ` (${totalAffiliatedCount})`}
-            </span>
-          </Typography>
-        </Grid>
-        <Grid>
-          {showIndexContrib ? (
-            <Typography>
-              <img
-                alt='contributor-icon'
-                data-cy='contributor-icon'
-                className={classesLocal.contributorIcon}
-                src='/images/Gparent_contributed.svg'
-              />
-            </Typography>
-          ) : (
-            ' '
-          )}
-        </Grid>
-        <Grid
-          item
-          container
-          className={classesLocal.flexGrid}
-          data-cy='code-for-all-chevron'
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-        >
-          <DropdownArrow
-            open={dropdownOpen}
-            handleArrow={() => setDropdownOpen(!dropdownOpen)}
-          />
-        </Grid>
-      </Grid>
-      <Grid>
-        {dropdownOpen &&
-          (!organizations ? (
-            !inputValue ? (
-              <h3 className={classes.loaders}>Loading...</h3>
+            {!organizations ? (
+              !inputValue ? (
+                <h3 className={classes.loaders}>Loading...</h3>
+              ) : (
+                <h3 className={classes.loaders}>No Results</h3>
+              )
             ) : (
-              <h3 className={classes.loaders}>No Results</h3>
-            )
-          ) : (
-            <Grid item xs={12} sm={10} className={classesLocal.dropDownGrid}>
-              <AffiliatedOrganizations
-                expandedOrgs={expandedOrgs}
-                filtersActive={filtersActive}
-                inputValue={inputValue}
-                onOrgClick={onOrgClick}
-                orgTree={orgTree}
-                setOrgTree={setOrgTree}
-                showIndexContrib={showIndexContrib}
-              />
-            </Grid>
-          ))}
-      </Grid>
+              <Grid item xs={12} sm={10} className={classesLocal.dropDownGrid}>
+                <AffiliatedOrganizations
+                  expandedOrgs={expandedOrgs}
+                  filtersActive={filtersActive}
+                  inputValue={inputValue}
+                  onOrgClick={onOrgClick}
+                  orgTree={org.childNodes}
+                  setOrgTree={setOrgTree}
+                  showIndexContrib={showIndexContrib}
+                />
+              </Grid>
+            )}
+          </Dropdown>
+        </div>
+      ))}
     </Grid>
   );
 };

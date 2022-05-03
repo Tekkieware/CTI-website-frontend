@@ -71,6 +71,11 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '18px',
     },
   },
+  grandparentText: {
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '24px',
+    },
+  },
   grandparentIcon: {
     marginTop: '22%',
     marginLeft: '13%',
@@ -211,19 +216,22 @@ const Thumbnail = ({
     return displayedCount;
   };
 
+  const showGrandparentText =
+    'childNodes' in organization && organization.depth === 2;
+
   return (
     <>
       <Box className={classes.contributorItem}>
         {organization.depth === 4 &&
         checkboxValue &&
         organization.cti_contributor ? (
-            <img
-              alt='contributor-icon'
-              data-cy='contributor-icon'
-              className={classes.contributorIcon}
-              src='/images/Child_contributed.svg'
-            />
-          ) : null}
+          <img
+            alt='contributor-icon'
+            data-cy='contributor-icon'
+            className={classes.contributorIcon}
+            src='/images/Child_contributed.svg'
+          />
+        ) : null}
       </Box>
       <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
@@ -247,9 +255,10 @@ const Thumbnail = ({
             aria-level={isChildThumbnail ? '4' : '3'}
             noWrap
             data-cy='contributor-thumbnail-text'
-            className={
-              isOpen ? `${classes.blueColorText}` : `${classes.orgText}`
-            }
+            className={`
+              ${isOpen ? classes.blueColorText : classes.orgText}
+              ${showGrandparentText ? classes.grandparentText : null}
+            `}
           >
             <Link
               href={`/organization/${organization.slug}`}
