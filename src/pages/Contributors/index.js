@@ -104,12 +104,10 @@ export default function Contributors() {
       let totalUnafflCount = 0;
       for (const org of sortedOrgs) {
         names.push(org.name);
-        if (org.name.toLowerCase() !== 'code for all') {
-          if (org.affiliated) {
-            totalAfflCount++;
-          } else {
-            totalUnafflCount++;
-          }
+        if (org.affiliated) {
+          totalAfflCount++;
+        } else {
+          totalUnafflCount++;
         }
       }
       setOrganizations(sortedOrgs);
