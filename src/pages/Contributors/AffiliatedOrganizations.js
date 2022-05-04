@@ -2,6 +2,7 @@
 /* eslint-disable complexity */
 
 import React, { useState, useEffect } from 'react';
+import { ArrayParam, useQueryParam, withDefault } from 'use-query-params';
 import { Dropdown } from '../../components/Dropdown';
 import { ContributorThumbnail } from '../../components/ContributorThumbnail';
 import Button from '@material-ui/core/Button';
@@ -75,6 +76,21 @@ export const AffiliatedOrganizations = ({
   const classes = useStyles();
 
   const isChildThumbnail = true;
+  const [viewAllChildren, setViewAllChildren] = useQueryParam(
+    'hidden',
+    withDefault(ArrayParam, [])
+  );
+
+  const handleViewAllClick = (i) => {
+    const viewAll = [...viewAllChildren];
+    const idx = viewAll.indexOf(orgTree[i].id.toString());
+    if (idx > -1) {
+      viewAll.splice(idx, 1);
+    } else {
+      viewAll.push(orgTree[i].id.toString());
+    }
+    setViewAllChildren(viewAll);
+  };
 
   let childSort;
   let childNode;
@@ -87,7 +103,9 @@ export const AffiliatedOrganizations = ({
       >
         {orgTree.map((org, i) => {
           childSort = org.childNodes;
-          childNode = org.allChildrenShown ? childSort : childSort.slice(0, 6);
+          childNode = viewAllChildren.includes(org.id.toString())
+            ? childSort
+            : childSort.slice(0, 6);
           return (
             <Dropdown
               checkboxValue={showIndexContrib}
@@ -152,12 +170,12 @@ export const AffiliatedOrganizations = ({
                       id='viewAllButton'
                       className={classes.button}
                       onClick={() => {
-                        const data = [...orgTree];
-                        data[i].allChildrenShown = !data[i].allChildrenShown;
-                        setOrgTree(data);
+                        handleViewAllClick(i);
                       }}
                     >
-                      {orgTree[i].allChildrenShown ? 'View Less' : 'View All'}
+                      {viewAllChildren.includes(org.id.toString())
+                        ? 'View Less'
+                        : 'View All'}
                     </Button>
                   </Grid>
                 ) : null}

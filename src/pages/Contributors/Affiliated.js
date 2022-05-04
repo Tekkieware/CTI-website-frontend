@@ -148,7 +148,6 @@ export const Affiliated = ({
     organizations.forEach((org) => {
       if (org.depth === 2) {
         org['childNodes'] = [];
-        org['allChildrenShown'] = false;
         parentdata.push(org);
       }
       if (org.depth === 3) {
@@ -157,7 +156,6 @@ export const Affiliated = ({
         });
         if (parentObj) {
           org['childNodes'] = [];
-          org['allChildrenShown'] = false;
           parentObj.childNodes.push(org);
         } else {
           // do we ever get here?
@@ -191,7 +189,6 @@ export const Affiliated = ({
             return;
           }
           grandparentObj['childNodes'] = [];
-          grandparentObj['allChildrenShown'] = false;
           parentdata.push(grandparentObj);
 
           // find parent of depth 3 and assign as child of grandparent
@@ -205,7 +202,6 @@ export const Affiliated = ({
             return;
           }
           parent['childNodes'] = [];
-          parent['allChildrenShown'] = false;
           grandparentObj.childNodes.push(parent);
         }
 
@@ -222,7 +218,6 @@ export const Affiliated = ({
         }
       }
     });
-    console.log(parentdata);
     return parentdata;
   };
 
