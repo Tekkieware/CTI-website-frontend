@@ -63,7 +63,7 @@ export default function Contributors() {
   const [totalAffiliatedCount, setTotalAffiliatedCount] = useState(0);
   const [totalUnaffiliatedCount, setTotalUnaffiliatedCount] = useState(0);
   const [unaffiliatedCount, setUnaffiliatedCount] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [unaffiliatedOrganizations, setUnaffiliatedOrganizations] = useState(
     []
   );
@@ -154,6 +154,7 @@ export default function Contributors() {
   }, [location.search, setOrgStatus, setShowIndexContrib]);
 
   useEffect(() => {
+    setLoading(true);
     const affiliated = [];
     const unaffiliated = [];
     const input = searchQuery.toLowerCase().replace(/\s/g, '');
@@ -164,13 +165,9 @@ export default function Contributors() {
         orgName.includes(input)
       ) {
         if (org.affiliated) {
-          setLoading(true);
           affiliated.push(org);
-        } else if (!org.affiliated) {
-          setLoading(true);
-          unaffiliated.push(org);
         } else {
-          setLoading(false);
+          unaffiliated.push(org);
         }
       }
     }
@@ -179,6 +176,7 @@ export default function Contributors() {
     setUnaffiliatedCount(unaffiliated.length);
     setAffiliatedOrganizations(affiliated);
     setUnaffiliatedOrganizations(unaffiliated);
+    setLoading(false);
   }, [searchQuery, organizations, showIndexContrib]);
 
   TabPanel.propTypes = {
@@ -275,7 +273,7 @@ export default function Contributors() {
         </Container>
       </Box>
       <Box className='containerGray'>
-        {!loading ? (
+        {loading ? (
           <Box my={12} display='flex' justifyContent='center'>
             <CircularProgress color='secondary' />
           </Box>
