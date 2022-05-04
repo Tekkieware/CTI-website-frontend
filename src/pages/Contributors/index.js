@@ -98,9 +98,6 @@ export default function Contributors() {
           );
           org['totalCount'] = childNodes.length;
         }
-        // if (org.depth === 2) {
-        //   console.log(org)
-        // }
       });
       const names = [];
       let totalAfflCount = 0;

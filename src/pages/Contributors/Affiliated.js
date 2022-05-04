@@ -132,14 +132,6 @@ export const Affiliated = ({
 }) => {
   const classesLocal = useStyles();
   const [orgTree, setOrgTree] = useState([]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  useEffect(() => {
-    if ((filtersActive || expandedOrgs.length) && organizations.length) {
-      setDropdownOpen(true);
-    } else {
-      setDropdownOpen(false);
-    }
-  }, [expandedOrgs, filtersActive, organizations]);
 
   const getParentData = () => {
     const parentdata = [];
@@ -159,7 +151,7 @@ export const Affiliated = ({
           parentObj.childNodes.push(org);
         } else {
           // do we ever get here?
-          console.error('XXXX parent of depth 3 node not found');
+          console.error(new Error('parent of depth 3 node not found'));
         }
       }
       if (org.depth === 4) {
@@ -169,8 +161,7 @@ export const Affiliated = ({
 
         if (!grandparentObj) {
           if (!showIndexContrib) {
-            console.error('XXXX grandparent of depth 4 node not found');
-            console.log(org);
+            console.error(new Error('grandparent of depth 4 node not found'));
             return;
           }
 
@@ -184,7 +175,9 @@ export const Affiliated = ({
           );
           if (!grandparentObj) {
             console.error(
-              'XXXX grandparent of depth 2 node not found in organizationData'
+              new Error(
+                'grandparent of depth 2 node not found in organizationData'
+              )
             );
             return;
           }
@@ -197,7 +190,7 @@ export const Affiliated = ({
           );
           if (!parent) {
             console.error(
-              'XXXX parent of depth 3 node not found in organizationData'
+              new Error('parent of depth 3 node not found in organizationData')
             );
             return;
           }
@@ -211,8 +204,9 @@ export const Affiliated = ({
         );
 
         if (!parentObj) {
-          // do we ever get here?
-          console.error('XXXX parent of depth 3 not found in grandparentObj');
+          console.error(
+            new Error('parent of depth 3 not found in grandparentObj')
+          );
         } else {
           parentObj.childNodes.push(org);
         }
