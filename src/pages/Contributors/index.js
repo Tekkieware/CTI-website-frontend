@@ -154,8 +154,6 @@ export default function Contributors() {
   }, [location.search, setOrgStatus, setShowIndexContrib]);
 
   useEffect(() => {
-    let afflCount = 0,
-      unafflCount = 0;
     const affiliated = [];
     const unaffiliated = [];
     const input = searchQuery.toLowerCase().replace(/\s/g, '');
@@ -166,11 +164,9 @@ export default function Contributors() {
         orgName.includes(input)
       ) {
         if (org.affiliated) {
-          afflCount++;
           setLoading(true);
           affiliated.push(org);
         } else if (!org.affiliated) {
-          unafflCount++;
           setLoading(true);
           unaffiliated.push(org);
         } else {
@@ -179,8 +175,8 @@ export default function Contributors() {
       }
     }
     setFiltersActive(!!input || showIndexContrib);
-    setAffiliatedCount(afflCount);
-    setUnaffiliatedCount(unafflCount);
+    setAffiliatedCount(affiliated.length);
+    setUnaffiliatedCount(unaffiliated.length);
     setAffiliatedOrganizations(affiliated);
     setUnaffiliatedOrganizations(unaffiliated);
   }, [searchQuery, organizations, showIndexContrib]);
