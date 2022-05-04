@@ -90,14 +90,10 @@ export default function Contributors() {
       );
       const sortedOrgs = result.data.sort((a, b) => a.name - b.name);
       sortedOrgs.forEach((org) => {
-        if (org.depth === 3) {
-          const childNodes = sortedOrgs.filter(
-            (item) =>
-              item.depth === 4 &&
-              item.path.substring(0, 12).includes(org.path.substring(0, 12))
-          );
-          org['totalCount'] = childNodes.length;
-        }
+        org['totalCount'] =
+          sortedOrgs.reduce((count, item) => {
+            return count + (item.path.includes(org.path) ? 1 : 0);
+          }, 0) - 1;
       });
       const names = [];
       let totalAfflCount = 0;
