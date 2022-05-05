@@ -271,7 +271,7 @@ const Thumbnail = ({
         </Grid>
         <Grid>
           <Typography>
-            {organization.depth === 3 && checkboxValue ? (
+            {organization.childNodes?.length > 0 && checkboxValue ? (
               <img
                 alt='contributor-icon'
                 data-cy='contributor-icon'

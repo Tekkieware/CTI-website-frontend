@@ -90,19 +90,32 @@ export default function Contributors() {
       );
       const sortedOrgs = result.data.sort((a, b) => a.name - b.name);
       sortedOrgs.forEach((org) => {
-        org['totalCount'] =
-          sortedOrgs.reduce((count, item) => {
-            return count + (item.path.includes(org.path) ? 1 : 0);
-          }, 0) - 1;
+        org.totalCount = 0;
+      });
+      sortedOrgs.forEach((org) => {
+        if (org.depth === 3) {
+          org.totalCount += sortedOrgs.reduce((count, item) => {
+            const isChildren = item.depth === 4 && item.path.includes(org.path);
+            return (isChildren ? 1 : 0) + count;
+          }, 0);
+          if (org.totalCount === 0) org.totalCount = 1;
+        }
+      });
+      let totalAfflCount = 0;
+      sortedOrgs.forEach((org) => {
+        if (org.depth === 2) {
+          org.totalCount += sortedOrgs.reduce((count, item) => {
+            const isChildren = item.depth === 3 && item.path.includes(org.path);
+            return (isChildren ? item.totalCount : 0) + count;
+          }, 0);
+          totalAfflCount += org.totalCount;
+        }
       });
       const names = [];
-      let totalAfflCount = 0;
       let totalUnafflCount = 0;
       for (const org of sortedOrgs) {
         names.push(org.name);
-        if (org.affiliated) {
-          totalAfflCount++;
-        } else {
+        if (!org.affiliated) {
           totalUnafflCount++;
         }
       }
@@ -110,6 +123,10 @@ export default function Contributors() {
       setOrganizationNames(names.sort());
       setTotalAffiliatedCount(totalAfflCount);
       setTotalUnaffiliatedCount(totalUnafflCount);
+      if (!filtersActive) {
+        setAffiliatedCount(totalAfflCount);
+        setUnaffiliatedCount(totalUnafflCount);
+      }
     };
     fetchData();
   }, []);
@@ -171,9 +188,15 @@ export default function Contributors() {
         }
       }
     }
-    setFiltersActive(!!input || showIndexContrib);
-    setAffiliatedCount(affiliated.length);
-    setUnaffiliatedCount(unaffiliated.length);
+    const hasFilter = !!input || showIndexContrib;
+    setFiltersActive(hasFilter);
+    if (hasFilter) {
+      setAffiliatedCount(affiliated.length);
+      setUnaffiliatedCount(unaffiliated.length);
+    } else {
+      setAffiliatedCount(totalAffiliatedCount);
+      setUnaffiliatedCount(totalUnaffiliatedCount);
+    }
     setAffiliatedOrganizations(affiliated);
     setUnaffiliatedOrganizations(unaffiliated);
     setLoading(false);

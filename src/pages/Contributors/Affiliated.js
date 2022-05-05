@@ -236,7 +236,11 @@ export const Affiliated = ({
         <div key={org.path}>
           <Dropdown
             checkboxValue={showIndexContrib}
-            dropdownLength={org.totalCount}
+            dropdownLength={org.childNodes.reduce((count, item) => {
+              const nodeCount =
+                item.childNodes.length === 0 ? 1 : item.childNodes.length;
+              return count + nodeCount;
+            }, 0)}
             filtersActive={filtersActive}
             isOpen={expandedOrgs.includes(org.id.toString())}
             key={`affiliatedThumbnailsWrapper_${i}`}
