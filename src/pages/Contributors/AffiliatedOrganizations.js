@@ -76,10 +76,7 @@ export const AffiliatedOrganizations = ({
   const classes = useStyles();
 
   const isChildThumbnail = true;
-  const [viewAllChildren, setViewAllChildren] = useQueryParam(
-    'hidden',
-    withDefault(ArrayParam, [])
-  );
+  const [viewAllChildren, setViewAllChildren] = useState([]);
 
   const handleViewAllClick = (i) => {
     const viewAll = [...viewAllChildren];
