@@ -160,7 +160,7 @@ export const Affiliated = ({
         );
 
         if (!grandparentObj) {
-          if (!showIndexContrib) {
+          if (!filtersActive) {
             console.error(new Error('grandparent of depth 4 node not found'));
             return;
           }
@@ -242,7 +242,7 @@ export const Affiliated = ({
               return count + nodeCount;
             }, 0)}
             filtersActive={filtersActive}
-            isOpen={expandedOrgs.includes(org.id.toString())}
+            isOpen={filtersActive || expandedOrgs.includes(org.id.toString())}
             key={`affiliatedThumbnailsWrapper_${i}`}
             onClick={onOrgClick}
             organization={org}

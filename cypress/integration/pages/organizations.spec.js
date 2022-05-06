@@ -42,14 +42,14 @@ describe('Organizations Page (using API)', () => {
     cy.wait('@getOrganizations');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').uncheck();
     cy.contains(grandparentOrg).should('have.length', 1);
-    cy.get('[data-cy=code-for-all-chevron]').click();
+    cy.get('[class*=makeStyles-chevron]').eq(0).click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', parentOrgCount1);
       cy.get('[data-cy=thumbnail-dropdown]')
         .contains(parentOrg)
         .parentsUntil('[data-cy=thumbnail-dropdown]')
         .within(() => {
-          cy.get('[data-cy=dropdown-chevron]').click();
+          cy.get('[class*=makeStyles-chevron]').click();
         });
       cy.contains(affiliatedOrg);
     });
@@ -121,7 +121,7 @@ describe('Organizations Page (using fixture)', () => {
   });
 
   it('should load 24 affiliated orgs', () => {
-    cy.get('[class*=makeStyles-gpGrid]').click();
+    cy.get('[class*=makeStyles-chevron]').eq(0).click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 24);
     });
@@ -189,17 +189,19 @@ describe('Organizations Page (using fixture)', () => {
   });
 
   it('should show grandparent org in closed state', () => {
-    cy.get('[class*=makeStyles-gpGrid]')
-      .invoke('attr', 'class')
-      .should('not.contain', 'makeStyles-open');
+    cy.get('[class*=makeStyles-chevron]')
+      .eq(0)
+      .get('[data-cy=dropdown-chevron-closed]')
+      .should('exist');
     cy.get('[class*=makeStyles-dropDownGrid]').should('not.exist');
   });
 
   it('should open grandparent org and show parent orgs', () => {
-    cy.get('[class*=makeStyles-gpGrid]').click();
-    cy.get('[class*=makeStyles-gpGrid]')
-      .invoke('attr', 'class')
-      .should('contain', 'makeStyles-open');
+    cy.get('[class*=makeStyles-chevron]').eq(0).click();
+    cy.get('[class*=makeStyles-chevron]')
+      .eq(0)
+      .get('[data-cy=dropdown-chevron-open]')
+      .should('exist');
     cy.get('[class*=makeStyles-dropDownGrid]').should('exist');
     cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
       cy.contains('Code for America').should('exist');
@@ -275,8 +277,8 @@ describe('Organizations Page (using fixture)', () => {
     cy.get('[data-cy=index-contributors-checkbox]').within(() => {
       cy.get('[type="checkbox"]').should('not.be.checked');
     });
-    cy.get('[class*=makeStyles-gpGrid]').within(() => {
       cy.get('[class*=contributorIcon]').should('not.exist');
+    cy.get('[class*=makeStyles-dropdown]').within(() => {
     });
     cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
       cy.contains('Code for America')
@@ -297,9 +299,11 @@ describe('Organizations Page (using fixture)', () => {
     cy.visit('/organizations', { qs: { contrib: false, status: 'affiliated' }});
     cy.wait('@getOrganizations');
     cy.get('[data-cy=index-contributors-checkbox] input:checkbox').check();
-    cy.get('[class*=makeStyles-gpGrid]').within(() => {
-      cy.get('[class*=contributorIcon]').should('exist');
-    });
+    cy.get('[class*=makeStyles-dropdown]')
+      .eq(0)
+      .within(() => {
+        cy.get('[data-cy=contributor-icon]').should('exist');
+      });
     // cy.get('[data-cy=contributor-icon]').should('have.length', 25);
     cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
       cy.contains('Code for America').parent().parent().parent().within(() => {
