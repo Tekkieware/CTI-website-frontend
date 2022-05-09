@@ -4,6 +4,8 @@ describe('Organizations Page (using API)', () => {
   const parentOrg = 'Code for America';
   const affiliatedOrg = 'Code for ABQ';
   const affiliatedOrgPartial = 'ABQ';
+  const affiliatedOrg2 = 'Code for Aomori';
+  const affiliatedOrg2Partial = 'Code for A';
   const parentOrgCount1 = 24;
   const parentOrgCount2 = 1;
 
@@ -85,9 +87,41 @@ describe('Organizations Page (using API)', () => {
     cy.get('[data-cy=organization-search-list]').click();
     cy.get('[data-cy=affiliated-organizations]').within(() => {
       cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 1);
-      cy.get('[data-cy=thumbnail-dropdown]').eq(0).click().within(() => {
-        cy.get('[data-cy=contributor-thumbnail-text]').contains(affiliatedOrg);
-      });
+      cy.get('[data-cy=thumbnail-dropdown]')
+        .eq(0)
+        .click()
+        .within(() => {
+          cy.get('[data-cy=contributor-thumbnail-text]').contains(
+            affiliatedOrg
+          );
+        });
+    });
+    cy.get('[data-cy=organization-search]').within(() => {
+      cy.get('input').clear();
+    });
+  });
+
+  it('should find affiliatedOrg2 via partial search', () => {
+    cy.intercept(`${Cypress.env('REACT_APP_API_URL')}/api/organizations/`).as(
+      'getOrganizations'
+    );
+    cy.visit('/organizations', {
+      qs: { contrib: false, status: 'affiliated' },
+    });
+    cy.wait('@getOrganizations');
+    cy.get('[data-cy=organization-search]')
+      .type(affiliatedOrg2Partial)
+      .type('{Enter}');
+    cy.get('[data-cy=affiliated-organizations]').within(() => {
+      cy.get('[data-cy=thumbnail-dropdown]').should('have.length', 4);
+      cy.get('[data-cy=thumbnail-dropdown]')
+        .eq(3)
+        .click()
+        .within(() => {
+          cy.get('[data-cy=contributor-thumbnail-text]').contains(
+            affiliatedOrg2
+          );
+        });
     });
     cy.get('[data-cy=organization-search]').within(() => {
       cy.get('input').clear();

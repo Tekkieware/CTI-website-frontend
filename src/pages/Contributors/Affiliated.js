@@ -204,9 +204,25 @@ export const Affiliated = ({
         );
 
         if (!parentObj) {
-          console.error(
-            new Error('parent of depth 3 not found in grandparentObj')
+          if (!filtersActive) {
+            console.error(
+              new Error('parent of depth 3 not found in grandparentObj')
+            );
+          }
+
+          // find parent of depth 3 and assign as child of grandparent
+          const parent = organizationData.find(
+            (d) => org.path.includes(d.path) && d.depth === 3
           );
+          if (!parent) {
+            console.error(
+              new Error('parent of depth 3 node not found in organizationData')
+            );
+            return;
+          }
+          parent['childNodes'] = [];
+          grandparentObj.childNodes.push(parent);
+          parent.childNodes.push(org);
         } else {
           parentObj.childNodes.push(org);
         }
