@@ -133,7 +133,7 @@ export const Affiliated = ({
   const classesLocal = useStyles();
   const [orgTree, setOrgTree] = useState([]);
 
-  const getParentData = () => {
+  const buildOrgTree = () => {
     const parentdata = [];
     let parentObj;
 
@@ -232,7 +232,7 @@ export const Affiliated = ({
   };
 
   useEffect(() => {
-    setOrgTree(getParentData());
+    setOrgTree(buildOrgTree());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [organizations]);
 
