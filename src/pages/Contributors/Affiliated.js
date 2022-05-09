@@ -134,68 +134,34 @@ export const Affiliated = ({
   const [orgTree, setOrgTree] = useState([]);
 
   const buildOrgTree = () => {
-    const parentdata = [];
+    const orgTree = [];
+    let grandparentObj;
     let parentObj;
 
     organizations.forEach((org) => {
       if (org.depth === 2) {
         org['childNodes'] = [];
-        parentdata.push(org);
+        orgTree.push(org);
       }
       if (org.depth === 3) {
-        parentObj = parentdata.find((d) => {
+        grandparentObj = orgTree.find((d) => {
           return org.path.includes(d.path) && d.depth === 2;
         });
-        if (parentObj) {
-          org['childNodes'] = [];
-          parentObj.childNodes.push(org);
-        } else {
-          // do we ever get here?
-          console.error(new Error('parent of depth 3 node not found'));
-        }
+        org['childNodes'] = [];
+        grandparentObj.childNodes.push(org);
       }
       if (org.depth === 4) {
-        let grandparentObj = parentdata.find(
+        grandparentObj = orgTree.find(
           (d) => org.path.includes(d.path) && d.depth === 2
         );
 
         if (!grandparentObj) {
-          if (!filtersActive) {
-            console.error(new Error('grandparent of depth 4 node not found'));
-            return;
-          }
-
-          // this could happen when filtering on contributors. The parents won't
-          // be listed as contributors and need to be retrived from
-          // organizationData
-
-          // find grandparent of depth 2 and add to parentdata
+          // find grandparent of depth 2 and add to orgTree
           grandparentObj = organizationData.find(
             (d) => org.path.includes(d.path) && d.depth === 2
           );
-          if (!grandparentObj) {
-            console.error(
-              new Error(
-                'grandparent of depth 2 node not found in organizationData'
-              )
-            );
-            return;
-          }
           grandparentObj['childNodes'] = [];
-          parentdata.push(grandparentObj);
-
-          // find parent of depth 3 and assign as child of grandparent
-          const parent = organizationData.find(
-            (d) => org.path.includes(d.path) && d.depth === 3
-          );
-          if (!parent) {
-            console.error(
-              new Error('parent of depth 3 node not found in organizationData')
-            );
-            return;
-          }
-          parent['childNodes'] = [];
-          grandparentObj.childNodes.push(parent);
+          orgTree.push(grandparentObj);
         }
 
         // loop through grandparent to find parent
@@ -204,31 +170,18 @@ export const Affiliated = ({
         );
 
         if (!parentObj) {
-          if (!filtersActive) {
-            console.error(
-              new Error('parent of depth 3 not found in grandparentObj')
-            );
-          }
-
           // find parent of depth 3 and assign as child of grandparent
-          const parent = organizationData.find(
+          parentObj = organizationData.find(
             (d) => org.path.includes(d.path) && d.depth === 3
           );
-          if (!parent) {
-            console.error(
-              new Error('parent of depth 3 node not found in organizationData')
-            );
-            return;
-          }
-          parent['childNodes'] = [];
-          grandparentObj.childNodes.push(parent);
-          parent.childNodes.push(org);
-        } else {
-          parentObj.childNodes.push(org);
+          parentObj['childNodes'] = [];
+          grandparentObj.childNodes.push(parentObj);
         }
+
+        parentObj.childNodes.push(org);
       }
     });
-    return parentdata;
+    return orgTree;
   };
 
   useEffect(() => {
