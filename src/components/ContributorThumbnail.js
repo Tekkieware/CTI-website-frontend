@@ -141,7 +141,6 @@ export const ContributorThumbnail = ({
   dropdownLength,
   isChildThumbnail,
   checkboxValue,
-  inputValue,
   filtersActive,
 }) => {
   const classes = useStyles();
@@ -162,7 +161,6 @@ export const ContributorThumbnail = ({
             dropdownLength={dropdownLength}
             isChildThumbnail={isChildThumbnail}
             checkboxValue={checkboxValue}
-            inputValue={inputValue}
             filtersActive={filtersActive}
           />
         ) : (
