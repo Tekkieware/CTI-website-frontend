@@ -311,9 +311,7 @@ describe('Organizations Page (using fixture)', () => {
     cy.get('[data-cy=index-contributors-checkbox]').within(() => {
       cy.get('[type="checkbox"]').should('not.be.checked');
     });
-      cy.get('[class*=contributorIcon]').should('not.exist');
-    cy.get('[class*=makeStyles-dropdown]').within(() => {
-    });
+    cy.get('[class*=contributorIcon]').should('not.exist');
     cy.get('[class*=makeStyles-dropDownGrid]').within(() => {
       cy.contains('Code for America')
         .parent()
