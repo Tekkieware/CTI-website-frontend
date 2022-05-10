@@ -123,10 +123,6 @@ export default function Contributors() {
       setOrganizationNames(names.sort());
       setTotalAffiliatedCount(totalAfflCount);
       setTotalUnaffiliatedCount(totalUnafflCount);
-      if (!filtersActive) {
-        setAffiliatedCount(totalAfflCount);
-        setUnaffiliatedCount(totalUnafflCount);
-      }
     };
     fetchData();
   }, []);
@@ -190,13 +186,8 @@ export default function Contributors() {
     }
     const hasFilter = !!input || showIndexContrib;
     setFiltersActive(hasFilter);
-    if (hasFilter) {
-      setAffiliatedCount(affiliated.length);
-      setUnaffiliatedCount(unaffiliated.length);
-    } else {
-      setAffiliatedCount(totalAffiliatedCount);
-      setUnaffiliatedCount(totalUnaffiliatedCount);
-    }
+    setAffiliatedCount(affiliated.length);
+    setUnaffiliatedCount(unaffiliated.length);
     setAffiliatedOrganizations(affiliated);
     setUnaffiliatedOrganizations(unaffiliated);
     setLoading(false);
